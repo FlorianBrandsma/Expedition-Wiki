@@ -1,0 +1,14 @@
+services:
+  expedition-wiki:
+    build: 
+      context: ./expedition-wiki
+      dockerfile: Dockerfile
+    container_name: expedition-wiki_c
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./expedition-wiki:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
