@@ -29,8 +29,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-interface BaseSearchFieldProps
-{
+interface BaseSearchFieldProps {
   placeholder: string
 }
 

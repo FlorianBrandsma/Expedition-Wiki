@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 
 import HomePage from './pages/homePage';
 import GamePage from './pages/gamePage';
+import ItemsPage from './pages/itemsPage';
 import ItemPage from './pages/itemPage';
 
 import MenuBG from './images/MenuBG.png'
@@ -62,7 +63,6 @@ export default function App() {
             background: `linear-gradient( ${ exLight } 66%, ${ exMain })`
           }
         },
-
         defaultProps: {
           disableRipple: true
         }
@@ -80,6 +80,10 @@ export default function App() {
           {
             path:'/:gameName',
             element: <GamePage />
+          },
+          {
+            path:'/:gameName/item',
+            element: <ItemsPage />
           },
           {
             path:'/:gameName/item/:name',

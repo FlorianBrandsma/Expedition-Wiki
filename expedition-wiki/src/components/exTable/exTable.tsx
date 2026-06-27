@@ -2,13 +2,13 @@ import { useLocation, Link } from 'react-router-dom';
 
 import { Table, TableBody, TableContainer, TableHead, TableRow, TableCell, Paper } from '@mui/material';
 
-import type { Item } from '../../data/types/types';
+import { ItemModel } from '../../data/models/itemModel';
 
 import { styled } from '@mui/material/styles';
 import styles from './ExTable.module.css';
 
 interface TableProps {
-  data: Item[]
+  data: ItemModel[]
   columns: string[]
 }
 
@@ -26,10 +26,10 @@ export default function ExTable({ data }: TableProps) {
         <TableHead>
         <TableRow sx={{ backgroundColor: 'primary.dark' }}>
           <TableCellHeader >Name</TableCellHeader>
-          <TableCellHeader align="right" >Id</TableCellHeader>
-          <TableCellHeader align="right" >Type</TableCellHeader>
-          <TableCellHeader align="right" >Slot</TableCellHeader>
-          <TableCellHeader align="right" >Source</TableCellHeader>
+          <TableCellHeader >Id</TableCellHeader>
+          <TableCellHeader >Type</TableCellHeader>
+          <TableCellHeader >Slot</TableCellHeader>
+          <TableCellHeader >Source</TableCellHeader>
         </TableRow>
         </TableHead>
         <TableBody>
@@ -39,16 +39,16 @@ export default function ExTable({ data }: TableProps) {
               <Link 
                 className={styles['link']}
                 key={item.id} 
-                to={`item/${item.name}`} 
-                mask={`${ location.mask?.pathname }/item/${item.name.replaceAll(' ', '_')}`}
+                to={`${item.name}`}
+                mask={`${ location.mask?.pathname }/${ item.name.replaceAll(' ', '_') }`}
               >
                 {item.name}
               </Link>
             </TableCell>
-            <TableCell align="right">{item.id}</TableCell>
-            <TableCell align="right">{item.id}</TableCell>
-            <TableCell align="right">{item.id}</TableCell>
-            <TableCell align="right">{item.id}</TableCell>
+            <TableCell >{item.id}</TableCell>
+            <TableCell >{item.id}</TableCell>
+            <TableCell >{item.id}</TableCell>
+            <TableCell >{item.id}</TableCell>
           </TableRow>
         ))}
         </TableBody>

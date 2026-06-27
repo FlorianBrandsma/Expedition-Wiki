@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import type { Game } from '../data/types/types';
+import type { Game } from '../data/models/models';
 
 interface GameContextType {
   game: Game;

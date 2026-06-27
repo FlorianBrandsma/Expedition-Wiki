@@ -1,29 +1,15 @@
-export interface IParameters {
-    readonly dataType: string;
-}
+import type { IParameters } from "./interfaces";
 
-export class GameParameters implements IParameters {
-
-	readonly dataType: string = "Game";
-
-	id?: number[];
-	excludeId?: number[];
-
-	releaseCandidateId?: number[];
-	releaseId?: number[];
-
-	name?: string;
-
-	constructor(init?:Partial<GameParameters>) {
-		Object.assign(this, init);
-	}
-}
+export const ItemRequestType = {
+  Custom: 0,
+  GetFilterItems: 1
+}  as const;
 
 export class ItemParameters implements IParameters {
 
 	readonly dataType: string = "Item";
 
-	requestType?: number;
+	requestType?: (typeof ItemRequestType)[keyof typeof ItemRequestType];
 
 	includeDependencies?: boolean;
 	includeItemComponents?: boolean;

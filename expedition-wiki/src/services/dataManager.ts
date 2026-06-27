@@ -1,4 +1,4 @@
-import type { IParameters } from '../data/parameters/parameters';
+import type { IParameters } from '../data/parameters/interfaces';
 import type { AlertColor } from '@mui/material/Alert';
 
 interface Cause {
@@ -27,7 +27,7 @@ export class HttpError extends Error {
   }
 }
 
-export async function getData<T>(parameters: IParameters): Promise<T[]> {
+export async function getData<T>(parameters: IParameters, ClassRef: new (data: any) => T): Promise<T[]> {
 
   const requestOptions = {
     method: 'POST',
@@ -45,7 +45,9 @@ export async function getData<T>(parameters: IParameters): Promise<T[]> {
     throw error;
   }
 
-  const data = (await response.json());
+  const data = await response.json();
+  const result = data.list.map((t:T) => new ClassRef(t));
 
-  return data.list as T[];
+  console.log(result);
+  return result;
 }

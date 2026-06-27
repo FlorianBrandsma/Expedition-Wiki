@@ -2,13 +2,13 @@ import * as React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useQuery } from '@tanstack/react-query'
 
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import { Autocomplete, CircularProgress, TextField } from '@mui/material';
 
 import { useGameContext } from '../../../context/gameContext';
 
-import type { Game } from '../../../data/types/types';
-import { GameParameters } from '../../../data/parameters/parameters';
+import { GameModel } from '../../../data/models/gameModel';
+import { GameParameters } from '../../../data/parameters/gameParameters';
 import { getData } from '../../../services/dataManager';
 
 function BaseAutoComplete({...props}) {
@@ -18,16 +18,16 @@ function BaseAutoComplete({...props}) {
   const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<Game[]>([]);
+  const [options, setOptions] = React.useState<GameModel[]>([]);
 
   const parameters = new GameParameters({
     releaseCandidateId: [0],
     releaseId:[0]
   });
 
-  const gameQuery = useQuery<Game[]>({
+  const gameQuery = useQuery<GameModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<Game>(parameters),
+    queryFn: () => getData(parameters, GameModel),
     enabled: false
   });
 
@@ -48,7 +48,7 @@ function BaseAutoComplete({...props}) {
     setOptions([]);
   };
 
-  const handleSelection = (option:Game) => {
+  const handleSelection = (option:GameModel) => {
 
     /* Open game page on selection */
     navigate(`/${ option.name }`, {
@@ -59,6 +59,7 @@ function BaseAutoComplete({...props}) {
   return (
     <Autocomplete
       {...props}
+      disablePortal
       disableClearable
       open={open}
       onOpen={handleOpen}
@@ -75,6 +76,24 @@ function BaseAutoComplete({...props}) {
             borderRadius: 0, 
             color: 'primary.contrastText',
             backgroundColor: 'primary.dark'
+          } 
+        },
+        listbox: {
+          sx: {
+            maxHeight: 500,
+            scrollbarColor: '#888 #ffffff00',
+
+            '& .MuiAutocomplete-option': {
+              '&:hover': {
+                backgroundColor: alpha('#000', 0.1)
+              }
+            },
+            "& .MuiAutocomplete-option[aria-selected='true']": {
+              backgroundColor: alpha('#000', 0.2),
+              "&.Mui-focused": {
+                backgroundColor: alpha('#000', 0.3),
+              }
+            }
           } 
         } 
       }}

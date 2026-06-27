@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useGameContext } from '../context/gameContext';
 
-import type { Item } from '../data/types/types';
-import { ItemParameters } from '../data/parameters/parameters';
+import { ItemModel } from '../data/models/itemModel';
+import { ItemParameters } from '../data/parameters/itemParameters';
 import { getData } from '../services/dataManager';
 
 import { Box, Typography } from '@mui/material';
@@ -21,9 +21,9 @@ export default function ItemPage() {
     name: params.name?.replaceAll('_', ' ')
   });
 
-  const itemQuery = useQuery<Item[]>({
+  const itemQuery = useQuery<ItemModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<Item>(parameters),
+    queryFn: () => getData<ItemModel>(parameters, ItemModel),
     initialData: []
   });
 
