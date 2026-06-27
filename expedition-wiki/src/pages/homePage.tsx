@@ -15,7 +15,7 @@ export default function HomePage() {
   
   const navigate = useNavigate();
   
-  const [game, setGame] = useState<GameModel>({ id: 0, name: "" });
+  const [gameModel, setGameModel] = useState<GameModel>({ id: 0, name: "" });
   
   const params = useParams<{ gameName: string }>();
 
@@ -35,26 +35,26 @@ export default function HomePage() {
   });
 
   /* Set game if the first result's id does not match that of the stored game */
-  if (gameQuery.data && game.id != gameQuery.data[0].id) {
-      setGame(gameQuery.data[0]); 
+  if (gameQuery.data && gameModel.id != gameQuery.data[0].id) {
+      setGameModel(gameQuery.data[0]); 
   }
 
   useEffect(() => {
     
     /* Navigate to the selected game if the stored game's name differs from the parameter name */
-    if (game.name.length == 0 || game.name == paramsGameName) return;
+    if (gameModel.name.length == 0 || gameModel.name == paramsGameName) return;
 
     /* Prioritize parameter name over state name */
-    const gameName = params.gameName ?? game.name;
+    const gameName = params.gameName ?? gameModel.name;
 
     navigate(`/${ gameName }`, {
       mask:`/${ gameName.replaceAll(' ', '_') }`
     });
   
-  }, [game])
+  }, [gameModel])
 
 	return (
-		<GameContext.Provider value={{ game, setGame }}>
+		<GameContext.Provider value={{ gameModel, setGameModel }}>
       <AppHeader/>
       <Paper square={true} sx={{
         margin: '0px 50px 5px 50px',

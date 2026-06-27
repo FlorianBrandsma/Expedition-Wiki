@@ -34,7 +34,7 @@ const itemHeaders: HeadCell<ItemModel>[] = [
 
 export default function ItemsPage() {
 
-	const { game } = useGameContext();
+	const { gameModel } = useGameContext();
 
   const [itemType,          setItemType]          = useState<number[]>([])
   const [supplyItemType,    setSupplyItemType]    = useState<number[]>([])
@@ -63,7 +63,7 @@ export default function ItemsPage() {
   /* Get items of the selected game */
 	const parameters = new ItemParameters({
     requestType: ItemRequestType.GetFilterItems,
-		gameId: [game.id],
+		gameId: [gameModel.id],
     itemType: itemType,
     supplyItemType: supplyItemType,
     equipmentItemType: equipmentItemType

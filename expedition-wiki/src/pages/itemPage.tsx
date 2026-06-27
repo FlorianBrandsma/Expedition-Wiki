@@ -13,11 +13,11 @@ export default function ItemPage() {
 
   const params = useParams<{ name: string }>();
   
-  const { game } = useGameContext();
+  const { gameModel } = useGameContext();
 
   const parameters = new ItemParameters({
     includeDependencies: true,
-    gameId:[game.id],
+    gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
   });
 

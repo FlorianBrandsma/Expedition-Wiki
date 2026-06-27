@@ -162,7 +162,7 @@ function CustomListItem(props: CustomListItemProps) {
 
   const [open, setOpen] = React.useState(false);
 
-  const { game } = useGameContext();
+  const { gameModel } = useGameContext();
 
   const handleClick = () => {
       setOpen(!open);
@@ -175,9 +175,9 @@ function CustomListItem(props: CustomListItemProps) {
 
     props.closeDrawer();
 
-    const mask =`/${ game.name.replaceAll(' ', '_')}/${ options.page }`;
+    const mask =`/${ gameModel.name.replaceAll(' ', '_')}/${ options.page }`;
     
-    navigate(`${ game.name }/${ options.page }`, {
+    navigate(`${ gameModel.name }/${ options.page }`, {
         mask: mask,
         state: options.state,
         replace: mask === location.mask?.pathname

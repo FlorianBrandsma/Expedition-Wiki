@@ -4,9 +4,9 @@ import { Typography } from '@mui/material';
 
 export default function GamePage() {
 
-  const { game } = useGameContext();
+  const { gameModel } = useGameContext();
 
 	return (
-		<Typography variant="h5">{game.name}</Typography>
+		<Typography variant="h5">{ gameModel.name }</Typography>
 	)
 }

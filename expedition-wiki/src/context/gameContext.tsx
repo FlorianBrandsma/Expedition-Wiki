@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 
-import type { Game } from '../data/models/models';
+import type { GameModel } from '../data/models/gameModel';
 
 interface GameContextType {
-  game: Game;
-  setGame: React.Dispatch<React.SetStateAction<Game>>;
+  gameModel: GameModel;
+  setGameModel: React.Dispatch<React.SetStateAction<GameModel>>;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);

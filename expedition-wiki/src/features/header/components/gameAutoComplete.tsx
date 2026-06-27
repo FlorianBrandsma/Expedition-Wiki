@@ -13,7 +13,7 @@ import { getData } from '../../../services/dataManager';
 
 function BaseAutoComplete({...props}) {
 
-  const { game } = useGameContext();
+  const { gameModel } = useGameContext();
 
   const navigate = useNavigate();
 
@@ -67,7 +67,7 @@ function BaseAutoComplete({...props}) {
       isOptionEqualToValue={(option, value) => option.id === value.id}
       getOptionLabel={(option) => option.name}
       options={options}
-      value={game}
+      value={gameModel}
       loading={gameQuery.isLoading}
       onChange={(_event, option) => { handleSelection(option) }}
       slotProps={{ 
