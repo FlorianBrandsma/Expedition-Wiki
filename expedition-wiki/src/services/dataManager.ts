@@ -48,6 +48,5 @@ export async function getData<T>(parameters: IParameters, ClassRef: new (data: a
   const data = await response.json();
   const result = data.list.map((t:T) => new ClassRef(t));
 
-  console.log(result);
   return result;
 }

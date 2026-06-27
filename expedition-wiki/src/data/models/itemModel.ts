@@ -8,6 +8,8 @@ export class ItemModel {
   name!: string;
   description!: string;
 
+  assetIconResourceName!: string;
+
   typeDescription: string;
 
   supplyItemModelList!: SupplyItemModel[];

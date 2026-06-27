@@ -37,6 +37,7 @@ export interface HeadCell<T> {
   id: keyof T;
   label: string;
   numeric: boolean;
+  render?: (row: T) => React.ReactNode;
 }
 
 interface EnhancedTableHeadProps<T> {
@@ -95,7 +96,7 @@ interface EnhancedTableProps<T> {
   rowKey: keyof T;
 }
 
-export default function EnhancedTable<T extends Record<string, any>>({ rows, headCells, rowKey }: EnhancedTableProps<T>) {
+export default function EnhancedTable<T extends { name: string } & Record<string, any>>({ rows, headCells, rowKey }: EnhancedTableProps<T>) {
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -172,7 +173,11 @@ export default function EnhancedTable<T extends Record<string, any>>({ rows, hea
                             id={cellIndex === 0 ? labelId : undefined}
                             scope={cellIndex === 0 ? 'row' : undefined}
                           >
-                            {typeof value === 'object' ? JSON.stringify(value) : value}
+                            {cell.render ? (
+                              cell.render(row)
+                            ) : (
+                              typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
+                            )}
                           </TableCell>
                         )
                       })

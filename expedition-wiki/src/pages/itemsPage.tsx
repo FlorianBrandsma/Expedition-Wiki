@@ -10,7 +10,7 @@ import { getData } from '../services/dataManager';
 
 import { ItemType, SupplyItemType, EquipmentItemType } from '../types/enums'
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../components/exFilterSelection/exFilterSelection';
 import EnhancedTable, { type HeadCell } from '../components/enhancedTable/enhancedTable';
 
@@ -23,7 +23,19 @@ const itemHeaders: HeadCell<ItemModel>[] = [
   { 
     id: 'name', 
     label: "Name", 
-    numeric: false
+    numeric: false,
+
+    render: (row) => (
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+        <Avatar 
+          src={`/images/icons/objects/${row.assetIconResourceName}.png`}
+          alt={row.name}
+          variant='rounded'
+          sx={{ width: 30, height: 30, backgroundColor: 'white'}}
+        />
+        {row.name}
+      </Box>
+    )
   },
   {
     id: 'typeDescription',
