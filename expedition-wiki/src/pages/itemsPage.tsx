@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
+import { useDebounce } from '../hooks/useDebounce';
 
 import { useGameContext } from '../context/gameContext';
 
@@ -10,8 +11,9 @@ import { getData } from '../services/dataManager';
 
 import { ItemType, SupplyItemType, EquipmentItemType } from '../types/enums'
 
-import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
+import { TextField, Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../components/exFilterSelection/exFilterSelection';
+import ExTextField from '../components/exTextField/exTextField';
 import EnhancedTable, { type HeadCell } from '../components/enhancedTable/enhancedTable';
 
 const itemHeaders: HeadCell<ItemModel>[] = [
@@ -48,16 +50,21 @@ export default function ItemsPage() {
 
 	const { gameModel } = useGameContext();
 
-  const [itemType,          setItemType]          = useState<number[]>([])
-  const [supplyItemType,    setSupplyItemType]    = useState<number[]>([])
-  const [equipmentItemType, setEquipmentItemType] = useState<number[]>([])
+  const [name,              setName]              = useState<string>('');
+  const [itemType,          setItemType]          = useState<number[]>([]);
+  const [supplyItemType,    setSupplyItemType]    = useState<number[]>([]);
+  const [equipmentItemType, setEquipmentItemType] = useState<number[]>([]);
+
+  const [nameInput, setNameInput] = useState<string>('');
+  
+  const debouncedName = useDebounce<string>(nameInput, 500);
 
   const stateItemType          = useLocation().state?.itemType;
   const stateSupplyItemType    = useLocation().state?.supplyItemType;
   const stateEquipmentItemType = useLocation().state?.equipmentItemType;
 
-  const itemTypeIndex          = ItemType         .findIndex(itemType =>          itemType          == stateItemType);
-  const supplyItemTypeIndex    = SupplyItemType   .findIndex(supplyItemType =>    supplyItemType    == stateSupplyItemType);
+  const itemTypeIndex          = ItemType         .findIndex(itemType          => itemType          == stateItemType);
+  const supplyItemTypeIndex    = SupplyItemType   .findIndex(supplyItemType    => supplyItemType    == stateSupplyItemType);
   const equipmentItemTypeIndex = EquipmentItemType.findIndex(equipmentItemType => equipmentItemType == stateEquipmentItemType);
 
   useEffect(() => {
@@ -78,7 +85,8 @@ export default function ItemsPage() {
 		gameId: [gameModel.id],
     itemType: itemType,
     supplyItemType: supplyItemType,
-    equipmentItemType: equipmentItemType
+    equipmentItemType: equipmentItemType,
+    name: name
 	});
 
 	const itemQuery = useQuery<ItemModel[]>({
@@ -87,34 +95,46 @@ export default function ItemsPage() {
 		initialData: []
 	});
 
+  useEffect(() => {
+    setName(debouncedName);
+  }, [debouncedName])
+
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column"}}>
 			<Typography variant="h5">Items</Typography>
-      <ExFilterSelection 
-        label={"Type"}
-        types={ItemType} 
-        type={itemType}
-        setType={setItemType}
-        sx={{ pt: 1, pb: 1, width: '750px', maxWidth: '100%' }} 
-      />
-      { itemType.includes(ItemType.indexOf('Supply')) && (
-        <ExFilterSelection 
-          label={"Supply Type"}
-          types={SupplyItemType} 
-          type={supplyItemType}
-          setType={setSupplyItemType}
-          sx={{ pt: 1, pb: 1, width: '750px', maxWidth: '100%' }} 
+      <Stack 
+        spacing={2} 
+        direction="column" 
+        sx={{ pt: 1, pb: 1, width: '750px', maxWidth: '100%' }}
+      >
+        <ExTextField
+          label={"Name"}
+          setValue={setNameInput}
         />
-      )}
-      { itemType.includes(ItemType.indexOf('Equipment')) && (
         <ExFilterSelection 
-          label={"Equipment Type"}
-          types={EquipmentItemType} 
-          type={equipmentItemType}
-          setType={setEquipmentItemType}
-          sx={{ pt: 1, pb: 1, width: '750px', maxWidth: '100%' }} 
+          label={"Type"}
+          types={ItemType} 
+          type={itemType}
+          setType={setItemType} 
         />
-      )}
+        { itemType.includes(ItemType.indexOf('Supply')) && (
+          <ExFilterSelection 
+            label={"Supply Type"}
+            types={SupplyItemType} 
+            type={supplyItemType}
+            setType={setSupplyItemType}
+          />
+        )}
+        { itemType.includes(ItemType.indexOf('Equipment')) && (
+          <ExFilterSelection 
+            label={"Equipment Type"}
+            types={EquipmentItemType} 
+            type={equipmentItemType}
+            setType={setEquipmentItemType}
+          />
+        )}
+      </Stack>
+
 			{ itemQuery.isLoading ? (
 				<Typography variant="h4">Loading...</Typography>
 			) : (

@@ -1,9 +1,9 @@
 import { styled, alpha } from '@mui/material/styles';
 
-import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import ExTextField from '../exTextField/exTextField';
   
 interface BaseFilterSelectionProps {
   label: string
@@ -75,30 +75,12 @@ function BaseFilterSelection({ label, types, type, setType, ...props }: BaseFilt
       }}
 
       renderInput={(params) => (
-        <TextField {...params} label={ label } />
+        <ExTextField {...params} label={label}/>
       )}
     />
   );
 }
 
-const ExFilterSelection = styled(BaseFilterSelection)(({ theme }) => ({
-  '& label.Mui-focused': {
-    color: theme.palette.primary.dark
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: theme.palette.primary.dark,
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderRadius: 0
-    },
-    '&:hover fieldset': {
-      borderColor: theme.palette.primary.dark,
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: theme.palette.primary.dark,
-    }
-  }
-}));
+const ExFilterSelection = styled(BaseFilterSelection)``
 
 export default ExFilterSelection;
