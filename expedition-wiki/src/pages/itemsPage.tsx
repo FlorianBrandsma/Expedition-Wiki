@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { useDebounce } from '../hooks/useDebounce';
@@ -11,7 +11,7 @@ import { getData } from '../services/dataManager';
 
 import { ItemType, SupplyItemType, EquipmentItemType } from '../types/enums'
 
-import { TextField, Avatar, Box, Button, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../components/exFilterSelection/exFilterSelection';
 import ExTextField from '../components/exTextField/exTextField';
 import EnhancedTable, { type HeadCell } from '../components/enhancedTable/enhancedTable';
@@ -134,11 +134,10 @@ export default function ItemsPage() {
           />
         )}
       </Stack>
-
 			{ itemQuery.isLoading ? (
 				<Typography variant="h4">Loading...</Typography>
 			) : (
-				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%'}}>
+				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rows={itemQuery.data} headCells={itemHeaders} rowKey="id" />
 					<Button 
 						variant="contained" 

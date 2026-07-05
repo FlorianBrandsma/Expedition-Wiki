@@ -60,7 +60,10 @@ export default function App() {
             fontSize: '1rem',
             textTransform: 'none',
             borderRadius: 0,
-            background: `linear-gradient( ${ exLight } 66%, ${ exMain })`
+            background: `linear-gradient( ${ exLight } 50%, ${ exMain })`,
+            '&.Mui-disabled': {
+              background: `linear-gradient( ${ exMain } 50%, ${ exDark })`
+            }
           }
         },
         defaultProps: {

@@ -8,6 +8,8 @@ export class ItemModel {
   name!: string;
   description!: string;
 
+  assetType!: number;
+  assetResourceName!: string;
   assetIconResourceName!: string;
 
   typeDescription: string;

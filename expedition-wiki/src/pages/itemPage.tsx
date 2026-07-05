@@ -7,7 +7,9 @@ import { ItemModel } from '../data/models/itemModel';
 import { ItemParameters } from '../data/parameters/itemParameters';
 import { getData } from '../services/dataManager';
 
-import { Box, Typography } from '@mui/material';
+import { Divider, Box, Typography } from '@mui/material';
+
+import ModelCard from '../features/modelViewer/components/modelCard';
 
 export default function ItemPage() {
 
@@ -27,17 +29,25 @@ export default function ItemPage() {
     initialData: []
   });
 
+  const itemModel = itemQuery.data[0];
+
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
-      <Typography variant="h6">Item</Typography>
-
-      { itemQuery.isLoading ? (
+      { !itemModel ? (
         <Typography variant="h4">Loading...</Typography>
       ) : (
         <>
-          <Typography variant="h5">{itemQuery.data[0]?.name}</Typography>
-          <Typography variant="body1">{itemQuery.data[0]?.description}</Typography>
+          <Typography variant="h5">{itemModel.name}</Typography>
+          <Divider/>
+          <Box sx={{ mt: 1 }}>
+            <ModelCard 
+              name={itemModel.name}
+              assetType={itemModel.assetType}
+              assetResourceName={itemModel.assetResourceName}
+            />
+            <Typography variant="body1">{itemModel.description}</Typography>
+          </Box>
         </>
       )}
       </Box>

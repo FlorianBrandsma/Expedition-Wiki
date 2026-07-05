@@ -18,33 +18,33 @@ interface ProviderProps
 
 export const AlertProvider = ({ children }:ProviderProps) => {
 
-    const [open, setOpen]         = useState<boolean>(false);
-    const [message, setMessage]   = useState<string>('');
-    const [severity, setSeverity] = useState<AlertColor>('info');
+  const [open, setOpen]         = useState<boolean>(false);
+  const [message, setMessage]   = useState<string>('');
+  const [severity, setSeverity] = useState<AlertColor>('info');
 
-    const showAlert = (message: string, severity: AlertColor) => {
+  const showAlert = (message: string, severity: AlertColor) => {
 
-        setMessage(message);
-        setSeverity(severity);
-        setOpen(true);
-    }
+    setMessage(message);
+    setSeverity(severity);
+    setOpen(true);
+  }
 
-    const hideAlert = () => {
-        setOpen(false);
-    }
+  const hideAlert = () => {
+    setOpen(false);
+  }
 
-    return (
-        <AlertContext value={showAlert}>
-            {children}
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                onClose={hideAlert}
-                message={message}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}       
-            >
-                <Alert severity={severity}>{message}</Alert>
-            </Snackbar>
-        </AlertContext>
-    );
+  return (
+    <AlertContext value={showAlert}>
+      {children}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={hideAlert}
+        message={message}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert severity={severity}>{message}</Alert>
+      </Snackbar>
+    </AlertContext>
+  );
 }

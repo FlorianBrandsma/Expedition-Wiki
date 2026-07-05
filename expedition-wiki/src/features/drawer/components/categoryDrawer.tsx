@@ -103,7 +103,7 @@ const DrawerOptions: DrawerOptions[] = [
 
 interface CategoryDrawerProps
 {
-  open: boolean,
+  open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
