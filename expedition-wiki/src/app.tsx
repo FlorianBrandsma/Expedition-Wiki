@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import HomePage from './pages/homePage';
 import GamePage from './pages/gamePage';
 import ItemsPage from './pages/itemsPage';
-import ItemPage from './pages/itemPage';
+import ItemPage from './pages/item/itemPage';
 
 import MenuBG from './images/MenuBG.png'
 

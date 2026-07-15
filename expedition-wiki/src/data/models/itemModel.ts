@@ -8,6 +8,9 @@ export class ItemModel {
   name!: string;
   description!: string;
 
+  quantityLimit!: number;
+  baseValue!: number;
+
   assetType!: number;
   assetResourceName!: string;
   assetIconResourceName!: string;
@@ -17,11 +20,19 @@ export class ItemModel {
   supplyItemModelList!: SupplyItemModel[];
   equipmentItemModelList!: EquipmentItemModel[];
 
+  supplyItemModel?: SupplyItemModel;
+  equipmentItemModel?: EquipmentItemModel;
+
   constructor(init:Partial<ItemModel>) {  
     Object.assign(this, init);
 
-    this.supplyItemModelList    = this.supplyItemModelList   .map((supplyItemModel)    => new SupplyItemModel   (supplyItemModel));
-    this.equipmentItemModelList = this.equipmentItemModelList.map((equipmentItemModel) => new EquipmentItemModel(equipmentItemModel));
+    this.baseValue = Number(init.baseValue!.toFixed(2));
+
+    this.supplyItemModelList    = this.supplyItemModelList   .map((model) => new SupplyItemModel   (model));
+    this.equipmentItemModelList = this.equipmentItemModelList.map((model) => new EquipmentItemModel(model));
+
+    this.supplyItemModel    = this.supplyItemModelList[0];
+    this.equipmentItemModel = this.equipmentItemModelList[0];
 
     this.typeDescription = this.getTypeDescription();
   }

@@ -11,9 +11,10 @@ import { getData } from '../services/dataManager';
 
 import { ItemType, SupplyItemType, EquipmentItemType } from '../types/enums'
 
-import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../components/exFilterSelection/exFilterSelection';
 import ExTextField from '../components/exTextField/exTextField';
+import ExIcon from '../components/exIcon/exIcon';
 import EnhancedTable, { type HeadCell } from '../components/enhancedTable/enhancedTable';
 
 const itemHeaders: HeadCell<ItemModel>[] = [
@@ -29,12 +30,7 @@ const itemHeaders: HeadCell<ItemModel>[] = [
 
     render: (row) => (
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-        <Avatar 
-          src={`/images/icons/objects/${row.assetIconResourceName}.png`}
-          alt={row.name}
-          variant='rounded'
-          sx={{ width: 30, height: 30, backgroundColor: 'white'}}
-        />
+        <ExIcon resourceName={row.assetIconResourceName} size={30} />
         {row.name}
       </Box>
     )

@@ -2,7 +2,8 @@ import type { IParameters } from "./interfaces";
 
 export const ItemRequestType = {
   Custom: 0,
-  GetFilterItems: 1
+  GetFilterItems: 1,
+  GetItemCurrencyItems: 7
 }  as const;
 
 export class ItemParameters implements IParameters {
