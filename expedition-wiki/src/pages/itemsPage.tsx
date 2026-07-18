@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDebounce } from '../hooks/useDebounce';
 
 import { useGameContext } from '../context/gameContext';
@@ -16,31 +16,6 @@ import ExFilterSelection from '../components/exFilterSelection/exFilterSelection
 import ExTextField from '../components/exTextField/exTextField';
 import ExIcon from '../components/exIcon/exIcon';
 import EnhancedTable, { type HeadCell } from '../components/enhancedTable/enhancedTable';
-
-const itemHeaders: HeadCell<ItemModel>[] = [
-  { 
-    id: 'id', 
-    label: 'Id', 
-    numeric: true
-  },
-  { 
-    id: 'name', 
-    label: "Name", 
-    numeric: false,
-
-    render: (row) => (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-        <ExIcon resourceName={row.assetIconResourceName} size={30} />
-        {row.name}
-      </Box>
-    )
-  },
-  {
-    id: 'typeDescription',
-    label: 'Type',
-    numeric: false
-  }
-]
 
 export default function ItemsPage() {
 
@@ -75,6 +50,26 @@ export default function ItemsPage() {
     setEquipmentItemType(equipmentItemTypeIndex >= 0 ? [equipmentItemTypeIndex] : [])
   }, [equipmentItemTypeIndex])
 
+  const handleItemTypeChange = (itemType: number[]) => {
+    setItemType(itemType);
+
+    if (!itemType.includes(ItemType.indexOf('Supply'))) {
+      setSupplyItemType([]);
+    }
+
+    if (!itemType.includes(ItemType.indexOf('Equipment'))) {
+      setEquipmentItemType([]);
+    }
+  }
+
+  const handleSupplyItemTypeChange = (supplyItemType: number[]) => {
+    setSupplyItemType(supplyItemType);
+  }
+
+  const handleEquipmentItemTypeChange = (equipmentItemType: number[]) => {
+    setEquipmentItemType(equipmentItemType);
+  }
+
   /* Get items of the selected game */
 	const parameters = new ItemParameters({
     requestType: ItemRequestType.GetFilterItems,
@@ -95,6 +90,36 @@ export default function ItemsPage() {
     setName(debouncedName);
   }, [debouncedName])
 
+  const itemHeaders = useMemo<HeadCell<ItemModel>[]>(() => [
+    { 
+      id: 'id', 
+      label: 'Id', 
+      numeric: true
+    },
+    { 
+      id: 'name', 
+      label: "Name", 
+      numeric: false,
+      render: (row) => (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <ExIcon resourceName={row.assetIconResourceName} size={30} />
+          <Link 
+            className='link'
+            to={`/${gameModel.name}/item/${row.name}`} 
+            mask={`/${gameModel.name.replaceAll(' ', '_')}/item/${row.name.replaceAll(' ', '_')}`}
+          >
+            {row.name}
+          </Link>
+        </Box>
+      )
+    },
+    {
+      id: 'typeDescription',
+      label: 'Type',
+      numeric: false
+    }
+  ], [gameModel]);
+
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column"}}>
 			<Typography variant="h5">Items</Typography>
@@ -111,14 +136,14 @@ export default function ItemsPage() {
           label={"Type"}
           types={ItemType} 
           type={itemType}
-          setType={setItemType} 
+          setType={handleItemTypeChange} 
         />
         { itemType.includes(ItemType.indexOf('Supply')) && (
           <ExFilterSelection 
             label={"Supply Type"}
             types={SupplyItemType} 
             type={supplyItemType}
-            setType={setSupplyItemType}
+            setType={handleSupplyItemTypeChange}
           />
         )}
         { itemType.includes(ItemType.indexOf('Equipment')) && (
@@ -126,7 +151,7 @@ export default function ItemsPage() {
             label={"Equipment Type"}
             types={EquipmentItemType} 
             type={equipmentItemType}
-            setType={setEquipmentItemType}
+            setType={handleEquipmentItemTypeChange}
           />
         )}
       </Stack>
@@ -134,7 +159,7 @@ export default function ItemsPage() {
 				<Typography variant="h4">Loading...</Typography>
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
-          <EnhancedTable rows={itemQuery.data} headCells={itemHeaders} rowKey="id" />
+          <EnhancedTable rowKey="id" rows={itemQuery.data} headCells={itemHeaders} enableOrder enablePagination />
 					<Button 
 						variant="contained" 
 						onClick={() => itemQuery.refetch()}

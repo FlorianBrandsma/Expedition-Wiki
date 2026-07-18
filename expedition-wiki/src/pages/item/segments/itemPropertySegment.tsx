@@ -10,11 +10,12 @@ import { ItemModel } from '../../../data/models/itemModel';
 import { ItemRequestType, ItemParameters } from '../../../data/parameters/itemParameters';
 import { getData } from '../../../services/dataManager';
 
-import { CardContent, CardMedia, TableRow, TableCell, IconButton, Box, Typography, Collapse, TableBody, Table } from '@mui/material';
+import { CardContent, CardMedia, TableRow, TableCell, IconButton, Box, Typography, Collapse, TableBody } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import ModelButton from '../../../features/modelViewer/components/modelButton';
+import ExTable from '../../../components/exTable/exTable';
 import ExCard from '../../../components/exCard/exCard';
 import ExCardHeader from '../../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../../components/exCard/exCardTableRow';
@@ -31,17 +32,7 @@ function CurrencyTable(props:CurrencyTableProps) {
   const itemModel = useItemContext();
 
   return (
-    <Table 
-      size='small' 
-      sx={{ 
-        border: '1px solid',
-        borderColor: 'primary.dark',
-        '& .MuiTableCell-root': {
-          border: '1px solid',
-          borderColor:'primary.dark'
-        }
-      }}
-    >
+    <ExTable size='small'>
       <TableBody>
         {props.itemModelList.map((row) => (
           <TableRow key={row.id}>
@@ -63,7 +54,7 @@ function CurrencyTable(props:CurrencyTableProps) {
           </TableRow>
         ))}
       </TableBody>
-    </Table>
+    </ExTable>
   )
 }
 
@@ -99,7 +90,7 @@ export default function PropertySegment() {
           '&:last-child': { paddingBottom: 1 }
         }}>
         <CardMedia 
-          component="img"
+          component='img'
           image={`/images/thumbnails/assets/${itemModel.assetResourceName}.png`}
           alt={itemModel.assetResourceName}
         />

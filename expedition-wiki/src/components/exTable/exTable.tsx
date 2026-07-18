@@ -1,58 +1,33 @@
-import { useLocation, Link } from 'react-router-dom';
-
-import { Table, TableBody, TableContainer, TableHead, TableRow, TableCell, Paper } from '@mui/material';
-
-import { ItemModel } from '../../data/models/itemModel';
+import { Table, type TableProps } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
-import styles from './ExTable.module.css';
 
-interface TableProps {
-  data: ItemModel[]
-  columns: string[]
+interface BaseTableProps extends Omit<TableProps, 'data'> {
+  children?: React.ReactNode;
 }
 
-const TableCellHeader = styled(TableCell)(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
-}));
-
-export default function ExTable({ data }: TableProps) {
-
-  const location = useLocation();
+function BaseTable({children, ...props}: BaseTableProps) {
 
   return (
-    <TableContainer component={Paper} square>
-      <Table sx={{ backgroundColor: 'primary.light' }} size="small" aria-label="simple-table">
-        <TableHead>
-        <TableRow sx={{ backgroundColor: 'primary.dark' }}>
-          <TableCellHeader >Name</TableCellHeader>
-          <TableCellHeader >Id</TableCellHeader>
-          <TableCellHeader >Type</TableCellHeader>
-          <TableCellHeader >Slot</TableCellHeader>
-          <TableCellHeader >Source</TableCellHeader>
-        </TableRow>
-        </TableHead>
-        <TableBody>
-        {data.map(item => (
-          <TableRow key={item.id} sx={{ '&:last-child td, &:last-child th': { border: 0} }}>
-            <TableCell component="th" scope="row">
-              <Link 
-                className={styles['link']}
-                key={item.id} 
-                to={`${item.name}`}
-                mask={`${ location.mask?.pathname }/${ item.name.replaceAll(' ', '_') }`}
-              >
-                {item.name}
-              </Link>
-            </TableCell>
-            <TableCell >{item.id}</TableCell>
-            <TableCell >{item.id}</TableCell>
-            <TableCell >{item.id}</TableCell>
-            <TableCell >{item.id}</TableCell>
-          </TableRow>
-        ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Table 
+      {...props}
+      size="small" 
+      aria-label="simple-table"
+    >
+      {children}
+    </Table>
   )
 }
+
+const ExTable = styled(BaseTable)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.light, 
+  borderRadius: 0,
+  border: '1px solid',
+  borderColor: theme.palette.primary.dark,
+  '& .MuiTableCell-root': {
+          border: '1px solid',
+          borderColor: theme.palette.primary.dark
+  }
+}));
+
+export default ExTable;

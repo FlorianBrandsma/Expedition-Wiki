@@ -1,37 +1,7 @@
 import * as React from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Paper from '@mui/material/Paper';
-
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  
-  return 0;
-}
-
-type Order = 'asc' | 'desc' | undefined;
-
-function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
-
-  return order === 'desc' ? (a, b) =>  descendingComparator(a, b, orderBy) : 
-                            (a, b) => -descendingComparator(a, b, orderBy);
-}
+import { Paper, Typography, TableContainer, TableHead, TableBody, TableRow, TableCell, TableSortLabel, TablePagination } from '@mui/material';
+import ExTable from '../../components/exTable/exTable';
 
 export interface HeadCell<T> {
   id: keyof T;
@@ -40,10 +10,13 @@ export interface HeadCell<T> {
   render?: (row: T) => React.ReactNode;
 }
 
+type Order = 'asc' | 'desc' | undefined;
+
 interface EnhancedTableHeadProps<T> {
   order: Order;
   orderBy: keyof T | undefined;
   headCells: readonly HeadCell<T>[];
+  enableOrder?: boolean | undefined;
   onRequestSort: (event: React.MouseEvent<unknown>, property: keyof T) => void;
 }
 
@@ -69,6 +42,7 @@ function EnhancedTableHead<T>(props: EnhancedTableHeadProps<T>) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
               sx={{ 
+                fontSize:'1rem',
                 color: 'primary.contrastText',
                 '&.Mui-active': {
                   color: 'primary.contrastText'
@@ -90,21 +64,66 @@ function EnhancedTableHead<T>(props: EnhancedTableHeadProps<T>) {
   );
 }
 
-interface EnhancedTableProps<T> {
-  rows: T[];
+interface BasicTableHeadProps<T> {
   headCells: readonly HeadCell<T>[];
-  rowKey: keyof T;
 }
 
-export default function EnhancedTable<T extends { name: string } & Record<string, any>>({ rows, headCells, rowKey }: EnhancedTableProps<T>) {
+function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
+
+  return (
+    <TableHead>
+      <TableRow sx={{ backgroundColor: 'primary.dark' }}>
+        {headCells.map((headCell) => (
+          <TableCell
+            key={String(headCell.id)}
+            align={headCell.numeric ? 'right' : 'left'}
+          >
+            <Typography
+              sx={{
+                color: 'primary.contrastText',
+                fontSize: '1rem'
+              }}
+            >
+              {headCell.label}
+            </Typography>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+}
+
+interface EnhancedTableProps<T> extends BasicTableHeadProps<T> {
+  rows: T[];
+  rowKey: keyof T;
+  enableOrder?: boolean | undefined;
+  enablePagination?: boolean | undefined;
+}
+
+function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
+
+  return order === 'desc' ? (a, b) =>  descendingComparator(a, b, orderBy) : 
+                            (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+
+  if (b[orderBy] < a[orderBy]) return -1;
+  if (b[orderBy] > a[orderBy]) return  1;
   
-  const navigate = useNavigate();
-  const location = useLocation();
+  return 0;
+}
+
+export default function EnhancedTable<T extends { name: string } & Record<string, any>>(props: EnhancedTableProps<T>) {
+
+  const rowsPerPageOptions = [25, 50, 100];
+
+  const { rows, headCells, rowKey, enableOrder, enablePagination } = props;
 
   const [order, setOrder] = React.useState<Order>();
   const [orderBy, setOrderBy] = React.useState<keyof T | undefined>();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(50);
+  const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
 
   const handleRequestSort = (_event: React.MouseEvent<unknown>, property: keyof T ) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -121,91 +140,79 @@ export default function EnhancedTable<T extends { name: string } & Record<string
     setPage(0);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const visibleRows = React.useMemo(() => {
 
-  const visibleRows = React.useMemo(() =>
-    (orderBy ? [...rows].sort(getComparator(order, orderBy)) : [...rows])
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-             
-    [order, orderBy, page, rowsPerPage, rows]
+    const sortedRows = orderBy ? [...rows].sort(getComparator(order, orderBy)) : [...rows];
+    
+    if (enablePagination) {
+      return sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    }
+    
+    return sortedRows;
+
+    }, [order, orderBy, page, rowsPerPage, rows]
   );
 
-  const handleClick = (row: T) => {
-
-    navigate(`${ row.name }`, {
-        mask:`${ location.mask?.pathname }/${ row.name.replaceAll(' ', '_')}`
-      })
-  }
-
   return (
-    <Box sx={{ width: 750, maxWidth: '100%' }}>
-      <Paper sx={{ borderRadius: 0, width: '100%' }} >
-        <TableContainer >
-          <Table
-            aria-labelledby="tableTitle"
-            size={'small'}
-            sx={{ backgroundColor: 'primary.light' }}
-          >
+    <Paper sx={{ borderRadius: 0, width: '100%' }} >
+      <TableContainer>
+        <ExTable size={'small'}>
+          {enableOrder ? (
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
               headCells={headCells}
               onRequestSort={handleRequestSort}
             />
-            <TableBody>
-              {visibleRows.map((row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <TableRow
-                    hover
-                    onClick={() => handleClick(row)}
-                    key={String(row[rowKey])}
-                    sx={{ cursor: 'pointer' }}
-                  >
-                    {
-                      headCells.map((cell, cellIndex) => {
-                        const value = row[cell.id];
-                        return (
-                          <TableCell
-                            key={String(cell.id)}
-                            align={cell.numeric ? 'right' : 'left'}
-                            component={cellIndex === 0 ? 'th' : 'td'}
-                            id={cellIndex === 0 ? labelId : undefined}
-                            scope={cellIndex === 0 ? 'row' : undefined}
-                          >
-                            {cell.render ? (
-                              cell.render(row)
-                            ) : (
-                              typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
-                            )}
-                          </TableCell>
-                        )
-                      })
-                    }
-                  </TableRow>
-                );
-              })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: 100/3 * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
+          ) : (
+            <BasicTableHead
+              headCells={headCells}
+            />
+          )}       
+          <TableBody>
+            {visibleRows.map((row, index) => {
+              const labelId = `enhanced-table-checkbox-${index}`;
+              return (
+                <TableRow key={String(row[rowKey])}>
+                  {
+                    headCells.map((cell, cellIndex) => {
+                      const value = row[cell.id];
+                      return (
+                        <TableCell
+                          key={String(cell.id)}
+                          align={cell.numeric ? 'right' : 'left'}
+                          component={cellIndex === 0 ? 'th' : 'td'}
+                          id={cellIndex === 0 ? labelId : undefined}
+                          scope={cellIndex === 0 ? 'row' : undefined}
+                        >
+                          {cell.render ? (
+                            cell.render(row)
+                          ) : (
+                            typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
+                          )}
+                        </TableCell>
+                      )
+                    })
+                  }
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              );
+            })}
+          </TableBody>
+        </ExTable>
+      </TableContainer>
+
+      {enablePagination && (
         <TablePagination
-          rowsPerPageOptions={[50, 100, 250]}
+          rowsPerPageOptions={rowsPerPageOptions}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          sx={{ backgroundColor: 'primary.light' }}
+          sx={{ 
+            backgroundColor: 'primary.light'
+          }}
           slotProps={{
             select: {
               MenuProps: {
@@ -232,7 +239,7 @@ export default function EnhancedTable<T extends { name: string } & Record<string
             }
           }}
         />
-      </Paper>
-    </Box>
+      )}
+    </Paper>
   );
 }

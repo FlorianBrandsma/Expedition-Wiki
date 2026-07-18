@@ -9,7 +9,7 @@ interface BaseFilterSelectionProps {
   label: string
   types: Readonly<Array<string>>
   type: number[]
-  setType: React.Dispatch<React.SetStateAction<number[]>>
+  setType: (type: number[]) => void
 }
 
 function BaseFilterSelection({ label, types, type, setType, ...props }: BaseFilterSelectionProps) {

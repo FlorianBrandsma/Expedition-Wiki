@@ -12,7 +12,7 @@ function BaseCard({ ...props }) {
 
 const ExCard = styled(BaseCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.light, 
-  borderRadius: 0, 
+  borderRadius: 0
 }));
 
 export default ExCard;
