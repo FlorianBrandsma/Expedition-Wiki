@@ -34,7 +34,7 @@ export default function ModelDialog(props: ModelDialogProps) {
 
   /* Can be updated with other pivot types when needed */
   const positionY: number = (() => {
-    switch (AssetList[props.assetType]?.PivotType)
+    switch (AssetList[props.assetType]?.pivotType)
     {
       case 'Bottom': return -10;
       

@@ -18,6 +18,6 @@ export default function ExCardTable(props:ExCardTableProps) {
           {props.children}
         </TableBody>
       </Table>
-    </Box>    
+    </Box>
   )
 }

@@ -11,6 +11,7 @@ import { getData } from '../../services/dataManager';
 import { Divider, Box, Typography } from '@mui/material';
 
 import ItemPropertySegment from './segments/itemPropertySegment';
+import ItemEquipmentSegment from './segments/itemEquipmentSegment';
 
 export default function ItemPage() {
 
@@ -44,6 +45,7 @@ export default function ItemPage() {
           <Box sx={{ mt: 1 }}>
             <ItemPropertySegment />
             <Typography variant="body1">{itemModel.description}</Typography>
+            <ItemEquipmentSegment/>
           </Box>
         </ItemContext.Provider>
       )}

@@ -8,6 +8,15 @@ export class EquipmentItemModel {
   id!: number;
   type!: number;
 
+  elementType!: number;
+
+  health!: number;
+  mana!: number;
+  physicalAttack!: number;
+  magicalAttack!: number;
+  physicalDefence!: number;
+  magicalDefence!: number;
+
   armEquipmentItemModelList!: ArmEquipmentItemModel[];
   gearEquipmentItemModelList!: GearEquipmentItemModel[];
   trinketEquipmentItemModelList!: TrinketEquipmentItemModel[];

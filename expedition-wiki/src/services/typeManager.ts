@@ -1,21 +1,21 @@
 import type { PivotType, AssetType, ArmEquipmentItemType, ArmEquipmentItemGripType } from "../types/enums"
 
 interface Asset {
-  AssetType: (typeof AssetType)[keyof typeof AssetType],
-  PivotType: (typeof PivotType)[keyof typeof PivotType]
+  assetType: (typeof AssetType)[keyof typeof AssetType],
+  pivotType: (typeof PivotType)[keyof typeof PivotType]
 }
 
 export const AssetList: Asset[] = [
-  { AssetType: 'Object',     PivotType: 'Center' },
-  { AssetType: 'Effect',     PivotType: 'Center' },
-  { AssetType: 'Human',      PivotType: 'Bottom' },
-  { AssetType: 'Drake',      PivotType: 'Bottom' },
-  { AssetType: 'Sword',      PivotType: 'Center' },
-  { AssetType: 'Greatsword', PivotType: 'Center' },
-  { AssetType: 'Crossbow',   PivotType: 'Center' },
-  { AssetType: 'Bow',        PivotType: 'Center' },
-  { AssetType: 'Staff',      PivotType: 'Center' },
-  { AssetType: 'Shield',     PivotType: 'Center' }
+  { assetType: 'Object',     pivotType: 'Center' },
+  { assetType: 'Effect',     pivotType: 'Center' },
+  { assetType: 'Human',      pivotType: 'Bottom' },
+  { assetType: 'Drake',      pivotType: 'Bottom' },
+  { assetType: 'Sword',      pivotType: 'Center' },
+  { assetType: 'Greatsword', pivotType: 'Center' },
+  { assetType: 'Crossbow',   pivotType: 'Center' },
+  { assetType: 'Bow',        pivotType: 'Center' },
+  { assetType: 'Staff',      pivotType: 'Center' },
+  { assetType: 'Shield',     pivotType: 'Center' }
 ]
 
 interface ArmEquipmentGroup {

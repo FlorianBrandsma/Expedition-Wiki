@@ -1,7 +1,7 @@
 import { TableRow, TableCell } from '@mui/material';
 
 export interface ExCardTableRowProps {
-  label: string;
+  label: React.ReactNode;
   value: React.ReactNode;
 }
 
@@ -23,7 +23,12 @@ export default function ExCardTableRow(props:ExCardTableRowProps) {
         }}> 
         {props.label} 
       </TableCell>
-      <TableCell sx={{ width: '60%' }}> {props.value} </TableCell>
+      <TableCell 
+        sx={{ 
+          width: '60%' 
+        }}> 
+        {props.value} 
+      </TableCell>
     </TableRow>
   )
 }
