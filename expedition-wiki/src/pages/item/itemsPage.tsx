@@ -1,21 +1,21 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useLocation } from 'react-router-dom';
-import { useDebounce } from '../hooks/useDebounce';
+import { useDebounce } from '../../hooks/useDebounce';
 
-import { useGameContext } from '../context/gameContext';
+import { useGameContext } from '../../context/gameContext';
 
-import { ItemModel } from '../data/models/itemModel';
-import { ItemRequestType, ItemParameters } from '../data/parameters/itemParameters';
-import { getData } from '../services/dataManager';
+import { ItemModel } from '../../data/models/itemModel';
+import { ItemRequestType, ItemParameters } from '../../data/parameters/itemParameters';
+import { getData } from '../../services/dataManager';
 
-import { ItemType, SupplyItemType, EquipmentItemType } from '../types/enums'
+import { ItemType, SupplyItemType, EquipmentItemType } from '../../types/enums'
 
 import { Box, Button, Stack, Typography } from '@mui/material';
-import ExFilterSelection from '../components/exFilterSelection/exFilterSelection';
-import ExTextField from '../components/exTextField/exTextField';
-import ExIcon from '../components/exIcon/exIcon';
-import EnhancedTable, { type HeadCell } from '../components/enhancedTable/enhancedTable';
+import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
+import ExTextField from '../../components/exTextField/exTextField';
+import ExIcon from '../../components/exIcon/exIcon';
+import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
 
 export default function ItemsPage() {
 

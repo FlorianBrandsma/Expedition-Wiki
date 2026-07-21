@@ -55,6 +55,113 @@ export const ElementType = [
 
 export type ElementType = typeof ElementType[number];
 
+export const EffectType = [
+  'Resource',
+  'Event',
+  'Status'
+] as const;
+
+export const EffectOutputType = [
+  'Neutral',
+  'Mixed',
+  'Helpful',
+  'Harmful'
+] as const;
+
+export const ResourceEffectType = [
+  'Damage',
+  'Restore',
+  'Absorb'
+] as const;
+
+export const DamageResourceEffectType = [
+  'Mitigable',
+  'Unmitigable'
+] as const;
+
+export const StatusEffectType = [
+  'Basic',
+  'Attribute',
+  'Ability',
+  'Aura',
+  'Repeat',
+  'Resist',
+  'Disable',
+  'Morph',
+  'Size',
+  'Sensor',
+  'Standing',
+  'Cluster' 
+] as const;
+
+export const StatusEffectState = [
+  'Active',
+  'Passive'
+] as const;
+
+export const AuraStatusEffectTargetType = [
+  'Any',
+  'Party',
+  'Ally',
+  'Opponent'
+] as const;
+
+export const DisableStatusEffectType = [
+  'Movement',
+  'Ability'
+] as const;
+
+export const SensorStatusEffectType = [
+  'Sight',
+  'Hearing',
+  'Proximity'
+] as const;
+
+export const EffectAttributeStatusEffectType = [
+  'Attack',
+  'Defence',
+  'Movement speed',
+  'Damage dealt',
+  'Damage taken',
+  'Power',
+  'Resistance'
+] as const;
+
+export const ResourceAmountType = [
+  'Whole',
+  'Percent'
+] as const;
+
+export const ResourceDamageType = [
+  'Physical',
+  'Magical'
+] as const;
+
+export const ResistStatusEffectType = [
+  'Resist',
+  'Clear'
+] as const;
+
+export const AbilityType = [
+  'Charge',
+  'Discharge'
+] as const;
+
+export const AbilityEffectTargetType = [
+  'User',
+  'Target'
+] as const;
+
+export const ChargeAbilityType = [
+  'Primary',
+  'Secondary'
+] as const;
+
+export const DischargeAbilityType = [
+  'Arm',
+  'Spell'
+] as const;
+
 export const ItemType = [
   'Supply',
   'Equipment',
@@ -119,4 +226,19 @@ export const EquipmentSlotType = [
   'Lower-body',
   'Neck',
   'Finger'
+] as const;
+
+export const InteractableType = [
+  'Agent',
+  'Obstacle'
+] as const;
+
+export const AgentInteractableType = [
+  'Character',
+  'Static'
+] as const;
+
+export const CharacterAgentInteractableType = [
+  'Non-playable',
+  'Playable'
 ] as const;

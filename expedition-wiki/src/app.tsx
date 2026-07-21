@@ -6,8 +6,18 @@ import { createTheme, ThemeProvider } from '@mui/material';
 
 import HomePage from './pages/homePage';
 import GamePage from './pages/gamePage';
-import ItemsPage from './pages/itemsPage';
+import EffectsPage from './pages/effect/effectsPage';
+import EffectPage from './pages/effect/effectPage';
+import AbilitiesPage from './pages/ability/abilitiesPage';
+import AbilityPage from './pages/ability/abilityPage';
+import ItemsPage from './pages/item/itemsPage';
 import ItemPage from './pages/item/itemPage';
+import InteractablesPage from './pages/interactable/interactablesPage';
+import InteractablePage from './pages/interactable/interactablePage';
+import ClassesPage from './pages/class/classesPage';
+import ClassPage from './pages/class/classPage';
+import FactionsPage from './pages/faction/factionsPage';
+import FactionPage from './pages/faction/factionPage';
 
 import MenuBG from './images/MenuBG.png'
 
@@ -85,12 +95,52 @@ export default function App() {
             element: <GamePage />
           },
           {
+            path:'/:gameName/effect',
+            element: <EffectsPage />,
+          },
+          {
+            path:'/:gameName/effect/:name',
+            element: <EffectPage />,
+          },
+          {
+            path:'/:gameName/ability',
+            element: <AbilitiesPage />,
+          },
+          {
+            path:'/:gameName/ability/:name',
+            element: <AbilityPage />,
+          },
+          {
             path:'/:gameName/item',
             element: <ItemsPage />
           },
           {
             path:'/:gameName/item/:name',
             element: <ItemPage />,
+          },
+          {
+            path:'/:gameName/interactable',
+            element: <InteractablesPage />
+          },
+          {
+            path:'/:gameName/interactable/:name',
+            element: <InteractablePage />,
+          },
+          {
+            path:'/:gameName/class',
+            element: <ClassesPage />,
+          },
+          {
+            path:'/:gameName/class/:name',
+            element: <ClassPage />,
+          },
+          {
+            path:'/:gameName/faction',
+            element: <FactionsPage />,
+          },
+          {
+            path:'/:gameName/faction/:name',
+            element: <FactionPage />,
           }
         ]
       },

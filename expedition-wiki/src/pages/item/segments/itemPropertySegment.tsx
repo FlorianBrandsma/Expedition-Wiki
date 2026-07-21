@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
@@ -10,9 +8,7 @@ import { ItemModel } from '../../../data/models/itemModel';
 import { ItemRequestType, ItemParameters } from '../../../data/parameters/itemParameters';
 import { getData } from '../../../services/dataManager';
 
-import { CardContent, CardMedia, TableBody, TableRow, TableCell, IconButton, Box, Typography, Collapse } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { CardContent, CardMedia, TableBody, TableRow, TableCell, Box } from '@mui/material';
 
 import ModelButton from '../../../features/modelViewer/components/modelButton';
 import ExTable from '../../../components/exTable/exTable';
@@ -66,8 +62,6 @@ export default function PropertySegment() {
 
   const itemModel = useItemContext();
   const { equipmentItemModel } = itemModel;
-
-  const [openOffensiveElements, setOpenOffensiveElements] = React.useState(false);
 
   const parameters = new ItemParameters({
     requestType: ItemRequestType.GetItemCurrencyItems,
