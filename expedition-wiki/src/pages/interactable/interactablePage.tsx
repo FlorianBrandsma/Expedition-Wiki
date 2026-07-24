@@ -34,7 +34,7 @@ export default function InteractablePage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
       { !interactableModel ? (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography variant="h5">Loading...</Typography>
       ) : (
         <InteractableContext.Provider value={ interactableModel }>
           <Typography variant="h5">{interactableModel.name}</Typography>

@@ -34,7 +34,7 @@ export default function ClassPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
       { !classModel ? (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography variant="h5">Loading...</Typography>
       ) : (
         <ClassContext.Provider value={ classModel }>
           <Typography variant="h5">{classModel.name}</Typography>

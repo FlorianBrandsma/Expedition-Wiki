@@ -34,7 +34,7 @@ export default function AbilityPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
       { !abilityModel ? (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography variant="h5">Loading...</Typography>
       ) : (
         <AbilityContext.Provider value={ abilityModel }>
           <Typography variant="h5">{abilityModel.name}</Typography>

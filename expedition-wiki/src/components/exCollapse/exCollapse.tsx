@@ -7,13 +7,12 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 interface ExCollapseProps {
   label: string;
   collapseComponent: React.ReactNode;
+  isOpen?: boolean;
 }
 
-export default function ExCollapse(props: ExCollapseProps) {
+export default function ExCollapse({ label, collapseComponent, isOpen }: ExCollapseProps) {
 
-  const {label, collapseComponent} = props;
-
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(isOpen);
 
   return (
     <>

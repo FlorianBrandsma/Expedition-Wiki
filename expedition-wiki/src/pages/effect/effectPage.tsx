@@ -34,7 +34,7 @@ export default function EffectPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
       { !effectModel ? (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography variant="h5">Loading...</Typography>
       ) : (
         <EffectContext.Provider value={ effectModel }>
           <Typography variant="h5">{effectModel.name}</Typography>

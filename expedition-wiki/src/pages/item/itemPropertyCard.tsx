@@ -1,26 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
-import { useGameContext } from '../../../context/gameContext';
-import { useItemContext } from '../itemContext';
+import { useGameContext } from '../../context/gameContext';
+import { useItemContext } from './itemContext';
 
-import { ItemModel } from '../../../data/models/itemModel';
-import { ItemRequestType, ItemParameters } from '../../../data/parameters/itemParameters';
-import { getData } from '../../../services/dataManager';
+import { ItemModel } from '../../data/models/itemModel';
+import { ItemRequestType, ItemParameters } from '../../data/parameters/itemParameters';
+import { getData } from '../../services/dataManager';
 
 import { CardContent, CardMedia, TableBody, TableRow, TableCell, Box } from '@mui/material';
 
-import ModelButton from '../../../features/modelViewer/components/modelButton';
-import ExTable from '../../../components/exTable/exTable';
-import ExCard from '../../../components/exCard/exCard';
-import ExCardHeader from '../../../components/exCard/exCardHeader';
-import ExCardTableRow from '../../../components/exCard/exCardTableRow';
-import ExCardTable from '../../../components/exCard/exCardTable';
-import ExIcon from '../../../components/exIcon/exIcon';
-import ExIconLabel from '../../../components/exIconLabel/exIconLabel';
-import ElementTable from '../../../components/elementTable/elementTable';
-import { ElementType } from '../../../types/enums';
-import ExCollapse from '../../../components/exCollapse/exCollapse';
+import ModelButton from '../../features/modelViewer/components/modelButton';
+import ExTable from '../../components/exTable/exTable';
+import ExCard from '../../components/exCard/exCard';
+import ExCardHeader from '../../components/exCard/exCardHeader';
+import ExCardTableRow from '../../components/exCard/exCardTableRow';
+import ExCardTable from '../../components/exCard/exCardTable';
+import ExIcon from '../../components/exIcon/exIcon';
+import ExIconLabel from '../../components/exIconLabel/exIconLabel';
+import ElementTable from '../../components/elementTable/elementTable';
+import { ElementType } from '../../types/enums';
+import ExCollapse from '../../components/exCollapse/exCollapse';
 
 interface CurrencyTableProps {
   itemModelList: ItemModel[];
@@ -58,7 +58,7 @@ function CurrencyTable(props:CurrencyTableProps) {
   )
 }
 
-export default function PropertySegment() {
+export default function ItemPropertyCard() {
 
   const itemModel = useItemContext();
   const { equipmentItemModel } = itemModel;
@@ -78,7 +78,8 @@ export default function PropertySegment() {
   <>
     <ExCard sx={{ 
         float: 'right', 
-        width: '250px'
+        width: '250px',
+        ml: 1, mb: 1
       }}
     >
       <ExCardHeader title={itemModel.name} />

@@ -439,6 +439,8 @@ interface CustomListItemProps
 
 function CustomListItem(props: CustomListItemProps) {
 
+  const { depth, options, closeDrawer } = props;
+
   const [open, setOpen] = React.useState(false);
 
   const { gameModel } = useGameContext();
@@ -452,7 +454,7 @@ function CustomListItem(props: CustomListItemProps) {
 
   const handleSelectOption = (options: DrawerOptions) => {
 
-    props.closeDrawer();
+    closeDrawer();
 
     const mask =`/${ gameModel.name.replaceAll(' ', '_')}/${ options.page }`;
     
@@ -464,22 +466,22 @@ function CustomListItem(props: CustomListItemProps) {
   }
 
   return (
-    <div key={props.options.label}>
+    <div key={options.label}>
       <ListItem disablePadding sx={{ display: 'flex', alignItems: 'stretch', height: '45px'}}>
-        <CustomButton sx={{ flex: 1, pl: 2 + props.depth * 2 }} onClick={() => { handleSelectOption(props.options) }}>
-          <ListItemText primary={props.options.label} />
+        <CustomButton sx={{ flex: 1, pl: 2 + depth * 2 }} onClick={() => { handleSelectOption(options) }}>
+          <ListItemText primary={options.label} />
         </CustomButton>
-        { props.options.children.length > 0 && (
+        { options.children.length > 0 && (
           <CustomButton sx={{ minWidth: '45px' }} onClick={handleClick}>
             { open ? <ExpandLess /> : <ExpandMore />}
           </CustomButton>
         )}
       </ListItem>
-      { props.options.children.length > 0 && (
+      { options.children.length > 0 && (
         <Collapse in={open}>
           <List disablePadding>
-            {props.options.children.map(options => (
-              <CustomListItem key={options.label} depth={props.depth + 1} options={options} closeDrawer={props.closeDrawer} />
+            {options.children.map(options => (
+              <CustomListItem key={options.label} depth={depth + 1} options={options} closeDrawer={closeDrawer} />
             ))}
           </List>
         </Collapse>

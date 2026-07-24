@@ -156,7 +156,7 @@ export default function ItemsPage() {
         )}
       </Stack>
 			{ itemQuery.isLoading ? (
-				<Typography variant="h4">Loading...</Typography>
+				<Typography variant="h5">Loading...</Typography>
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={itemQuery.data} headCells={itemHeaders} enableOrder enablePagination />

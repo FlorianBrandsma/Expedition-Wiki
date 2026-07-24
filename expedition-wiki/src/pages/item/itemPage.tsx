@@ -10,14 +10,20 @@ import { getData } from '../../services/dataManager';
 
 import { Divider, Box, Typography } from '@mui/material';
 
-import ItemPropertySegment from './segments/itemPropertySegment';
-import ItemEquipmentSegment from './segments/itemEquipmentSegment';
+import ItemPropertyCard from './itemPropertyCard';
+import ItemEquipmentClassSegment from './segments/itemEquipmentClassSegment';
+
+import type { ContentSegment } from '../../components/contentTable/contentTable';
+import ContentTable from '../../components/contentTable/contentTable';
+import Segment from '../../components/segment/segment';
 
 export default function ItemPage() {
 
   const params = useParams<{ name: string }>();
   
   const { gameModel } = useGameContext();
+
+  const contentSegments: ContentSegment[] = [];
 
   const parameters = new ItemParameters({
     includeDependencies: true,
@@ -33,19 +39,43 @@ export default function ItemPage() {
 
   const itemModel = itemQuery.data[0];
 
+  if (itemModel?.equipmentItemModel) {
+    contentSegments.push(
+      {
+        label: 'Equipment',
+        id: 'Equipment',
+        children: [
+          {
+            label: 'Classes',
+            id: 'Classes',
+            component: <ItemEquipmentClassSegment/>
+          }
+        ]
+      }
+    );
+  }
+
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
       { !itemModel ? (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography variant="h5">Loading...</Typography>
       ) : (
         <ItemContext.Provider value={ itemModel }>
           <Typography variant="h5">{itemModel.name}</Typography>
           <Divider/>
           <Box sx={{ mt: 1 }}>
-            <ItemPropertySegment />
+            <ItemPropertyCard />
             <Typography variant="body1">{itemModel.description}</Typography>
-            <ItemEquipmentSegment/>
+            
+            {contentSegments.length > 0 && (
+              <ContentTable segments={contentSegments} />
+            )}
+
+            {contentSegments.map((segment) => (
+              <Segment segment={segment}/>     
+            ))}
+
           </Box>
         </ItemContext.Provider>
       )}

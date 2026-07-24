@@ -34,7 +34,7 @@ export default function FactionPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
       { !factionModel ? (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography variant="h5">Loading...</Typography>
       ) : (
         <FactionContext.Provider value={ factionModel }>
           <Typography variant="h5">{factionModel.name}</Typography>
