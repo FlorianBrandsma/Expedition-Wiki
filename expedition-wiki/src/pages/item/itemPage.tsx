@@ -11,7 +11,7 @@ import { getData } from '../../services/dataManager';
 import { Divider, Box, Typography } from '@mui/material';
 
 import ItemPropertyCard from './itemPropertyCard';
-import ItemEquipmentClassSegment from './segments/itemEquipmentClassSegment';
+import ItemClassSegment from './segments/itemClassSegment';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
 import ContentTable from '../../components/contentTable/contentTable';
@@ -27,6 +27,7 @@ export default function ItemPage() {
 
   const parameters = new ItemParameters({
     includeDependencies: true,
+    includeClasses: true,
     gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
   });
@@ -39,20 +40,42 @@ export default function ItemPage() {
 
   const itemModel = itemQuery.data[0];
 
+  const classSegment = {
+    label: 'Classes',
+    id: 'Classes',
+    component: <ItemClassSegment/>
+  }
+
+  if (itemModel?.supplyItemModel) {
+
+    const supplySegment = {
+      label: 'Supply',
+      id: 'Supply',
+      children: []
+    } as ContentSegment;
+
+    if (itemModel.classModelList.length > 0) {
+      supplySegment.children!.push(classSegment);
+    }
+
+    if (supplySegment.children?.length !== 0)
+      contentSegments.push(supplySegment);
+  }
+
   if (itemModel?.equipmentItemModel) {
-    contentSegments.push(
-      {
-        label: 'Equipment',
-        id: 'Equipment',
-        children: [
-          {
-            label: 'Classes',
-            id: 'Classes',
-            component: <ItemEquipmentClassSegment/>
-          }
-        ]
-      }
-    );
+
+    const equipmentSegment = {
+      label: 'Equipment',
+      id: 'Equipment',
+      children: []
+    } as ContentSegment;
+
+    if (itemModel.classModelList.length > 0) {
+      equipmentSegment.children!.push(classSegment);
+    }
+
+    if (equipmentSegment.children?.length !== 0)
+      contentSegments.push(equipmentSegment);
   }
 
   return (
@@ -67,13 +90,13 @@ export default function ItemPage() {
           <Box sx={{ mt: 1 }}>
             <ItemPropertyCard />
             <Typography variant="body1">{itemModel.description}</Typography>
-            
+
             {contentSegments.length > 0 && (
               <ContentTable segments={contentSegments} />
             )}
 
             {contentSegments.map((segment) => (
-              <Segment segment={segment}/>     
+              <Segment key={segment.id} segment={segment}/>     
             ))}
 
           </Box>

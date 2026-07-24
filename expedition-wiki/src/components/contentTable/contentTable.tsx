@@ -39,7 +39,7 @@ function ContentTableItem(props: ContentTableItemProps) {
           borderLeft: '1px dotted', ml: 1, pt: 0.5, pb: 0, pl: 1.25, pr: 2.5 
         }}>
           {children.map((segment) => (
-            <ContentTableItem segment={segment} />
+            <ContentTableItem key={segment.id} segment={segment} />
           ))}
         </List>
       )}

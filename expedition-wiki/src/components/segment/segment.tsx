@@ -18,7 +18,7 @@ export default function Segment(props: SegmentProps) {
       {!subSegment && <Divider/>}
       {component}
       {children?.map((segment) => (
-        <Segment segment={segment} subSegment />     
+        <Segment key={segment.id} segment={segment} subSegment />     
       ))}
     </Box>
   )

@@ -1,3 +1,5 @@
+import { ClassModel } from "./classModel";
+
 import { ArmEquipmentItemType } from "../../types/enums";
 
 import { ArmEquipmentGroupList } from '../../services/typeManager';
@@ -7,8 +9,12 @@ export class ArmEquipmentItemModel {
   id!: number;
   type!: number;
 
+  classModelList!: ClassModel[];
+
   constructor(init:Partial<ArmEquipmentItemModel>) {  
     Object.assign(this, init);
+
+    this.classModelList = this.classModelList.map((model) => new ClassModel(model));
   }
 
   typeDescription(): string {

@@ -14,6 +14,7 @@ export class ItemParameters implements IParameters {
 
 	includeDependencies?: boolean;
 	includeItemComponents?: boolean;
+  includeClasses?: boolean;
 	includeEffects?: boolean;
 	includeAbilities?: boolean;
 

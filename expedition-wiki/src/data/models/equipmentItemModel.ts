@@ -1,5 +1,6 @@
 import { EquipmentItemType } from "../../types/enums";
 import { ArmEquipmentItemModel } from './armEquipmentItemModel';
+import type { ClassModel } from "./classModel";
 import { GearEquipmentItemModel } from './gearEquipmentItemModel';
 import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
 
@@ -36,6 +37,10 @@ export class EquipmentItemModel {
     this.gearEquipmentItemModel    = this.gearEquipmentItemModelList[0];
     this.trinketEquipmentItemModel = this.trinketEquipmentItemModelList[0];
 	}
+
+  get classModelList(): ClassModel[] {  
+    return this.armEquipmentItemModel?.classModelList ?? this.gearEquipmentItemModel?.classModelList ?? [];
+  }
 
   description(): string {
     

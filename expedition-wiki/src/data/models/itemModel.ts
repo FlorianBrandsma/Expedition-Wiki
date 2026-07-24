@@ -1,10 +1,14 @@
 import { ItemType } from "../../types/enums";
 import { SupplyItemModel } from "./supplyItemModel";
 import { EquipmentItemModel } from './equipmentItemModel';
+import type { ClassModel } from "./classModel";
 
 export class ItemModel {
   id!: number;
+  gameId!: number;
+
   type!: number;
+
   name!: string;
   description!: string;
 
@@ -35,6 +39,10 @@ export class ItemModel {
     this.equipmentItemModel = this.equipmentItemModelList[0];
 
     this.typeDescription = this.getTypeDescription();
+  }
+
+  get classModelList(): ClassModel[] {  
+    return this.supplyItemModel?.classModelList ?? this.equipmentItemModel?.classModelList ?? [];
   }
 
   getTypeDescription(): string {
