@@ -12,6 +12,7 @@ import { Divider, Box, Typography } from '@mui/material';
 
 import ItemPropertyCard from './itemPropertyCard';
 import ItemClassSegment from './segments/itemClassSegment';
+import ItemSupplyAbilitySegment from './segments/itemSupplyAbilitySegment';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
 import ContentTable from '../../components/contentTable/contentTable';
@@ -28,6 +29,7 @@ export default function ItemPage() {
   const parameters = new ItemParameters({
     includeDependencies: true,
     includeClasses: true,
+    includeAbilities: true,
     gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
   });
@@ -54,10 +56,17 @@ export default function ItemPage() {
       children: []
     } as ContentSegment;
 
-    if (itemModel.classModelList.length > 0) {
-      supplySegment.children!.push(classSegment);
+    const abilitySegment = {
+      label: 'Ability',
+      id: 'Ability',
+      component: <ItemSupplyAbilitySegment />
     }
+    
+    supplySegment.children!.push(abilitySegment);
 
+    if (itemModel.classModelList.length > 0) 
+      supplySegment.children!.push(classSegment);
+    
     if (supplySegment.children?.length !== 0)
       contentSegments.push(supplySegment);
   }
@@ -70,9 +79,8 @@ export default function ItemPage() {
       children: []
     } as ContentSegment;
 
-    if (itemModel.classModelList.length > 0) {
+    if (itemModel.classModelList.length > 0) 
       equipmentSegment.children!.push(classSegment);
-    }
 
     if (equipmentSegment.children?.length !== 0)
       contentSegments.push(equipmentSegment);

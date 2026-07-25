@@ -61,6 +61,7 @@ function CurrencyTable(props:CurrencyTableProps) {
 export default function ItemPropertyCard() {
 
   const itemModel = useItemContext();
+
   const { equipmentItemModel } = itemModel;
 
   const parameters = new ItemParameters({
@@ -93,6 +94,11 @@ export default function ItemPropertyCard() {
           component='img'
           image={`/images/thumbnails/assets/${itemModel.assetResourceName}.png`}
           alt={itemModel.assetResourceName}
+          sx={{
+            width: '66%',
+            display: 'block',
+            margin: 'auto'
+          }}
         />
         <ModelButton assetType={itemModel.assetType} assetResourceName={itemModel.assetResourceName} />
       </CardContent>

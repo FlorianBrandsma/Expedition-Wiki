@@ -101,8 +101,8 @@ export default function ItemsPage() {
       label: "Name", 
       numeric: false,
       render: (row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <ExIcon resourceName={row.assetIconResourceName} size={30} />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <ExIcon resourceName={row.assetIconResourceName} size={20} />
           <Link 
             className='link'
             to={`/${gameModel.name}/item/${row.name}`} 

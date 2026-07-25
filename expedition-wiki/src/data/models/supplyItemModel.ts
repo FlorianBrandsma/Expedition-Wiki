@@ -1,4 +1,5 @@
 import { SupplyItemType } from "../../types/enums";
+import { AbilityModel } from "./abilityModel";
 import { ClassModel } from "./classModel";
 
 export class SupplyItemModel {
@@ -6,12 +7,19 @@ export class SupplyItemModel {
   id!: number;
   type!: number;
 
+  abilityModelList!: AbilityModel[];
+
   classModelList!: ClassModel[];
+
+  abilityModel?: AbilityModel;
 
   constructor(init:Partial<SupplyItemModel>) {  
     Object.assign(this, init);
 
-    this.classModelList = this.classModelList.map((model) => new ClassModel(model));
+    this.abilityModelList = this.abilityModelList.map((model) => new AbilityModel(model));
+    this.classModelList   = this.classModelList  .map((model) => new ClassModel  (model));
+
+    this.abilityModel = this.abilityModelList[0];
 	}
 
   description(): string {

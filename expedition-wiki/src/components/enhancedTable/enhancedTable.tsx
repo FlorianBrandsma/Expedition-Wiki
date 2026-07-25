@@ -6,7 +6,7 @@ import ExTable from '../../components/exTable/exTable';
 export interface HeadCell<T> {
   id: keyof T;
   label: string;
-  numeric: boolean;
+  numeric?: boolean;
   render?: (row: T) => React.ReactNode;
 }
 

@@ -8,7 +8,7 @@ export class AbilityModel {
   energy!: number;
   enmity!: number;
 
-  coooldownDuration!: number;
+  cooldownDuration!: number;
 
   executions!: number;
 
@@ -17,6 +17,6 @@ export class AbilityModel {
   constructor(init:Partial<AbilityModel>) {  
     Object.assign(this, init);
 
-    this.coooldownDuration = Number(init.coooldownDuration!.toFixed(2));
+    this.cooldownDuration = Number(init.cooldownDuration!.toFixed(2));
   }
 };
