@@ -1,12 +1,12 @@
 import { EquipmentItemType } from "../../types/enums";
 import { ArmEquipmentItemModel } from './armEquipmentItemModel';
-import type { ClassModel } from "./classModel";
 import { GearEquipmentItemModel } from './gearEquipmentItemModel';
 import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
+import { EffectModel } from "./effectModel";
+import type { ClassModel } from "./classModel";
 
 export class EquipmentItemModel {
 
-  id!: number;
   type!: number;
 
   elementType!: number;
@@ -18,13 +18,11 @@ export class EquipmentItemModel {
   physicalDefence!: number;
   magicalDefence!: number;
 
-  armEquipmentItemModelList!: ArmEquipmentItemModel[];
-  gearEquipmentItemModelList!: GearEquipmentItemModel[];
+  armEquipmentItemModelList!:     ArmEquipmentItemModel[];
+  gearEquipmentItemModelList!:    GearEquipmentItemModel[];
   trinketEquipmentItemModelList!: TrinketEquipmentItemModel[];
 
-  armEquipmentItemModel?: ArmEquipmentItemModel;
-  gearEquipmentItemModel?: GearEquipmentItemModel;
-  trinketEquipmentItemModel?: TrinketEquipmentItemModel;
+  effectModelList!: EffectModel[];
 
   constructor(init:Partial<EquipmentItemModel>) {  
     Object.assign(this, init);
@@ -33,10 +31,20 @@ export class EquipmentItemModel {
     this.gearEquipmentItemModelList    = this.gearEquipmentItemModelList   .map((model) => new GearEquipmentItemModel   (model));
     this.trinketEquipmentItemModelList = this.trinketEquipmentItemModelList.map((model) => new TrinketEquipmentItemModel(model));
 
-    this.armEquipmentItemModel     = this.armEquipmentItemModelList[0];
-    this.gearEquipmentItemModel    = this.gearEquipmentItemModelList[0];
-    this.trinketEquipmentItemModel = this.trinketEquipmentItemModelList[0];
+    this.effectModelList = this.effectModelList.map((model) => new EffectModel(model));
 	}
+
+  get armEquipmentItemModel(): ArmEquipmentItemModel {  
+    return this.armEquipmentItemModelList[0];
+  }
+
+  get gearEquipmentItemModel(): GearEquipmentItemModel {  
+    return this.gearEquipmentItemModelList[0];
+  }
+  
+  get trinketEquipmentItemModel(): TrinketEquipmentItemModel {  
+    return this.trinketEquipmentItemModelList[0];
+  }
 
   get classModelList(): ClassModel[] {  
     return this.armEquipmentItemModel?.classModelList ?? this.gearEquipmentItemModel?.classModelList ?? [];

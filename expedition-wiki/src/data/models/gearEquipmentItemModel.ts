@@ -4,7 +4,6 @@ import { GearEquipmentItemType, GearEquipmentItemMaterialType } from "../../type
 
 export class GearEquipmentItemModel {
 
-  id!: number;
   type!: number;
   materialType!: number;
 

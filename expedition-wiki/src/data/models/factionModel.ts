@@ -1,4 +1,5 @@
 export class FactionModel {
+  
   id!: number;
   type!: number;
 

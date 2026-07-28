@@ -20,7 +20,7 @@ export default function ItemClassSegment() {
     { 
       id: 'name', 
       label: "Name", 
-      numeric: false,
+      align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Link 

@@ -7,6 +7,12 @@ export const PivotType = [
   'Right'
 ] as const;
 
+export const AssetIndefiniteArticle = [
+  'None',
+  'A',
+  'An'
+] as const;
+
 export const AssetType = [
   'Object',
   'Effect',
@@ -241,4 +247,10 @@ export const AgentInteractableType = [
 export const CharacterAgentInteractableType = [
   'Non-playable',
   'Playable'
+] as const;
+
+export const CombatState = [
+  'Passive',
+  'Active',
+  'Defeated'
 ] as const;

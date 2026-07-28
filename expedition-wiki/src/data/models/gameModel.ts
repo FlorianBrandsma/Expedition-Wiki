@@ -1,4 +1,5 @@
 export class GameModel {
+  
   id!: number;
   name!: string;
 

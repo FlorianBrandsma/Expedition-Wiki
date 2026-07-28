@@ -94,12 +94,12 @@ export default function ItemsPage() {
     { 
       id: 'id', 
       label: 'Id', 
-      numeric: true
+      align: 'right'
     },
     { 
       id: 'name', 
-      label: "Name", 
-      numeric: false,
+      label: 'Name', 
+      align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.assetIconResourceName} size={20} />
@@ -116,7 +116,7 @@ export default function ItemsPage() {
     {
       id: 'typeDescription',
       label: 'Type',
-      numeric: false
+      align: 'left'
     }
   ], [gameModel]);
 

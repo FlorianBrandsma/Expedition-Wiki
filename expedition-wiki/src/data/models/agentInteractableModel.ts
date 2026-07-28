@@ -1,6 +1,5 @@
 export class AgentInteractableModel {
 
-  id!: number;
   type!: number;
 
   elementType!: number;

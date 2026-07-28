@@ -2,7 +2,6 @@ import { TrinketEquipmentItemType } from "../../types/enums";
 
 export class TrinketEquipmentItemModel {
 
-  id!: number;
   type!: number;
 
   constructor(init:Partial<TrinketEquipmentItemModel>) {  

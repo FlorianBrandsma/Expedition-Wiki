@@ -14,7 +14,7 @@ export default function ExIconLabel(props:ExIconLabelProps) {
   const {url, size, alignment, label} = props;
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: alignment, gap: 0.5 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: alignment, gap: size / 50 }}>
       <Box
         component="img"
         src={url}

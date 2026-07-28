@@ -1,4 +1,5 @@
 export class InteractableModel {
+  
   id!: number;
   type!: number;
   name!: string;

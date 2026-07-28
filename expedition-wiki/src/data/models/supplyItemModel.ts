@@ -4,7 +4,6 @@ import { ClassModel } from "./classModel";
 
 export class SupplyItemModel {
 
-  id!: number;
   type!: number;
 
   abilityModelList!: AbilityModel[];

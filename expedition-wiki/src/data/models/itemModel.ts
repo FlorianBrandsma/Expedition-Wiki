@@ -4,8 +4,8 @@ import { EquipmentItemModel } from './equipmentItemModel';
 import type { ClassModel } from "./classModel";
 
 export class ItemModel {
+
   id!: number;
-  gameId!: number;
 
   type!: number;
 
@@ -19,13 +19,8 @@ export class ItemModel {
   assetResourceName!: string;
   assetIconResourceName!: string;
 
-  typeDescription: string;
-
-  supplyItemModelList!: SupplyItemModel[];
+  supplyItemModelList!:    SupplyItemModel[];
   equipmentItemModelList!: EquipmentItemModel[];
-
-  supplyItemModel?: SupplyItemModel;
-  equipmentItemModel?: EquipmentItemModel;
 
   constructor(init:Partial<ItemModel>) {  
     Object.assign(this, init);
@@ -34,23 +29,26 @@ export class ItemModel {
 
     this.supplyItemModelList    = this.supplyItemModelList   .map((model) => new SupplyItemModel   (model));
     this.equipmentItemModelList = this.equipmentItemModelList.map((model) => new EquipmentItemModel(model));
+  }
 
-    this.supplyItemModel    = this.supplyItemModelList[0];
-    this.equipmentItemModel = this.equipmentItemModelList[0];
+  get supplyItemModel(): SupplyItemModel {  
+    return this.supplyItemModelList[0];
+  }
 
-    this.typeDescription = this.getTypeDescription();
+  get equipmentItemModel(): EquipmentItemModel {  
+    return this.equipmentItemModelList[0];
   }
 
   get classModelList(): ClassModel[] {  
     return this.supplyItemModel?.classModelList ?? this.equipmentItemModel?.classModelList ?? [];
   }
 
-  getTypeDescription(): string {
+  get typeDescription(): string {
 
     switch (ItemType[this.type])
     {
-      case 'Supply':    return this.supplyItemModelList   [0].description();
-      case 'Equipment': return this.equipmentItemModelList[0].description();
+      case 'Supply':    return this.supplyItemModel   !.description();
+      case 'Equipment': return this.equipmentItemModel!.description();
       case 'Good':      return "Good";
       case 'Currency':  return "Currency";
     }

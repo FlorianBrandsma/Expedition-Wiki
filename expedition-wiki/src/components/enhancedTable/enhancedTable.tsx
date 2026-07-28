@@ -6,7 +6,7 @@ import ExTable from '../../components/exTable/exTable';
 export interface HeadCell<T> {
   id: keyof T;
   label: string;
-  numeric?: boolean;
+  align: 'right' | 'left' | 'center';
   render?: (row: T) => React.ReactNode;
 }
 
@@ -34,7 +34,7 @@ function EnhancedTableHead<T>(props: EnhancedTableHeadProps<T>) {
         {headCells.map((headCell) => (
           <TableCell
             key={String(headCell.id)}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.align}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -76,7 +76,7 @@ function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
         {headCells.map((headCell) => (
           <TableCell
             key={String(headCell.id)}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.align}
           >
             <Typography
               sx={{
@@ -180,7 +180,7 @@ export default function EnhancedTable<T extends { name: string } & Record<string
                       return (
                         <TableCell
                           key={String(cell.id)}
-                          align={cell.numeric ? 'right' : 'left'}
+                          align={cell.align}
                           component={cellIndex === 0 ? 'th' : 'td'}
                           id={cellIndex === 0 ? labelId : undefined}
                           scope={cellIndex === 0 ? 'row' : undefined}

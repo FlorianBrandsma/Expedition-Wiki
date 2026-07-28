@@ -17,6 +17,8 @@ import ItemSupplyAbilitySegment from './segments/itemSupplyAbilitySegment';
 import type { ContentSegment } from '../../components/contentTable/contentTable';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
+import ItemEquipmentAbilitySegment from './segments/itemEquipmentAbilitySegment';
+import ItemEquipmentEffectSegment from './segments/itemEquipmentEffectSegment';
 
 export default function ItemPage() {
 
@@ -29,6 +31,7 @@ export default function ItemPage() {
   const parameters = new ItemParameters({
     includeDependencies: true,
     includeClasses: true,
+    includeEffects: true,
     includeAbilities: true,
     gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
@@ -59,7 +62,7 @@ export default function ItemPage() {
     const abilitySegment = {
       label: 'Ability',
       id: 'Ability',
-      component: <ItemSupplyAbilitySegment />
+      component: <ItemSupplyAbilitySegment/>
     }
     
     supplySegment.children!.push(abilitySegment);
@@ -79,8 +82,26 @@ export default function ItemPage() {
       children: []
     } as ContentSegment;
 
+    const effectSegment = {
+      label: 'Effects',
+      id: 'Effects',
+      component: <ItemEquipmentEffectSegment/>
+    }
+
+    const abilitySegment = {
+      label: 'Abilities',
+      id: 'Abilities',
+      component: <ItemEquipmentAbilitySegment/>
+    }
+
     if (itemModel.classModelList.length > 0) 
       equipmentSegment.children!.push(classSegment);
+
+    if (itemModel.equipmentItemModel.effectModelList.length > 0)
+      equipmentSegment.children!.push(effectSegment);
+
+    if (itemModel.equipmentItemModel?.armEquipmentItemModel?.dischargeAbilityModelList.length > 0)
+      equipmentSegment.children!.push(abilitySegment);
 
     if (equipmentSegment.children?.length !== 0)
       contentSegments.push(equipmentSegment);

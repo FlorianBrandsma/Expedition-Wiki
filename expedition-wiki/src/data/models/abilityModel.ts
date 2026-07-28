@@ -1,4 +1,5 @@
 export class AbilityModel {
+  
   id!: number;
   type!: number;
 
