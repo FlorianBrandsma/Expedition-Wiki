@@ -34,6 +34,10 @@ export class ResourceEffectModel {
     return this.absorbResourceEffectModelList[0];
   }
 
+  typeDescription(): string {
+    return `${ ResourceEffectType[this.type] } Resource`;
+  }
+
   description(stack: number): React.ReactNode {
 
     switch (ResourceEffectType[this.type])

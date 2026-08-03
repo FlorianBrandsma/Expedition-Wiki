@@ -17,6 +17,7 @@ export class ItemParameters implements IParameters {
   includeClasses?: boolean;
 	includeEffects?: boolean;
 	includeAbilities?: boolean;
+  includeEquipmentSets?: boolean;
 
 	id?: number[];
 	excludeId?: number[];

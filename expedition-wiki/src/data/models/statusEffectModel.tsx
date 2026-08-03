@@ -104,6 +104,10 @@ export class StatusEffectModel {
     return this.clusterStatusEffectModelList[0];
   }
 
+  typeDescription(): string {
+    return `${ StatusEffectType[this.type] } Status`;
+  }
+
   descriptionComponent(stack: number): React.ReactNode {
   
     switch (StatusEffectType[this.type])

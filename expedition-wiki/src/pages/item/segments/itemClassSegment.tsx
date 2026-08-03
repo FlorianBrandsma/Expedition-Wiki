@@ -22,15 +22,13 @@ export default function ItemClassSegment() {
       label: "Name", 
       align: 'left',
       render: (row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Link 
-            className='link'
-            to={`/${gameModel.name}/class/${row.name}`} 
-            mask={`/${gameModel.name.replaceAll(' ', '_')}/class/${row.name.replaceAll(' ', '_')}`}
-          >
-            {row.name}
-          </Link>
-        </Box>
+        <Link 
+          className='link'
+          to={`/${gameModel.name}/class/${row.name}`} 
+          mask={`/${gameModel.name.replaceAll(' ', '_')}/class/${row.name.replaceAll(' ', '_')}`}
+        >
+          {row.name}
+        </Link>
       )
     }
   ], [itemModel]);

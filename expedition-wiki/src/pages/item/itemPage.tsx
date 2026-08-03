@@ -19,6 +19,7 @@ import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 import ItemEquipmentAbilitySegment from './segments/itemEquipmentAbilitySegment';
 import ItemEquipmentEffectSegment from './segments/itemEquipmentEffectSegment';
+import ItemEquipmentSetSegment from './segments/itemEquipmentSetSegment';
 
 export default function ItemPage() {
 
@@ -33,6 +34,7 @@ export default function ItemPage() {
     includeClasses: true,
     includeEffects: true,
     includeAbilities: true,
+    includeEquipmentSets: true,
     gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
   });
@@ -56,16 +58,14 @@ export default function ItemPage() {
     const supplySegment = {
       label: 'Supply',
       id: 'Supply',
-      children: []
+      children: [
+        {
+          label: 'Ability',
+          id: 'Ability',
+          component: <ItemSupplyAbilitySegment/>
+        }
+      ]
     } as ContentSegment;
-
-    const abilitySegment = {
-      label: 'Ability',
-      id: 'Ability',
-      component: <ItemSupplyAbilitySegment/>
-    }
-    
-    supplySegment.children!.push(abilitySegment);
 
     if (itemModel.classModelList.length > 0) 
       supplySegment.children!.push(classSegment);
@@ -82,26 +82,35 @@ export default function ItemPage() {
       children: []
     } as ContentSegment;
 
-    const effectSegment = {
-      label: 'Effects',
-      id: 'Effects',
-      component: <ItemEquipmentEffectSegment/>
-    }
-
-    const abilitySegment = {
-      label: 'Abilities',
-      id: 'Abilities',
-      component: <ItemEquipmentAbilitySegment/>
-    }
-
     if (itemModel.classModelList.length > 0) 
       equipmentSegment.children!.push(classSegment);
 
-    if (itemModel.equipmentItemModel.effectModelList.length > 0)
-      equipmentSegment.children!.push(effectSegment);
+    if (itemModel.equipmentItemModel.effectModelList.length > 0) {
+      
+      equipmentSegment.children!.push({
+        label: 'Effects',
+        id: 'Effects',
+        component: <ItemEquipmentEffectSegment/>
+      });
+    }
 
-    if (itemModel.equipmentItemModel?.armEquipmentItemModel?.dischargeAbilityModelList.length > 0)
-      equipmentSegment.children!.push(abilitySegment);
+    if (itemModel.equipmentItemModel?.armEquipmentItemModel?.dischargeAbilityModelList.length > 0) {
+
+      equipmentSegment.children!.push({
+        label: 'Abilities',
+        id: 'Abilities',
+        component: <ItemEquipmentAbilitySegment/>
+      });
+    }
+
+    if (itemModel.equipmentItemModel.equipmentSetModelList.length > 0) {
+
+      equipmentSegment.children!.push({
+        label: 'Sets',
+        id: 'Sets',
+        component: <ItemEquipmentSetSegment/>
+      });
+    }
 
     if (equipmentSegment.children?.length !== 0)
       contentSegments.push(equipmentSegment);

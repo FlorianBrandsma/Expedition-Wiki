@@ -92,11 +92,6 @@ export default function ItemsPage() {
 
   const itemHeaders = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
-      id: 'id', 
-      label: 'Id', 
-      align: 'right'
-    },
-    { 
       id: 'name', 
       label: 'Name', 
       align: 'left',

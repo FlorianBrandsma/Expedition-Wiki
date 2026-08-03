@@ -5,4 +5,8 @@ export class EventEffectModel {
   constructor(init:Partial<EventEffectModel>) {  
     Object.assign(this, init);
   }
+
+  typeDescription(): string {
+    return 'Event';
+  }
 };

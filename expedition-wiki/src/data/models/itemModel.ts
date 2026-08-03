@@ -47,8 +47,8 @@ export class ItemModel {
 
     switch (ItemType[this.type])
     {
-      case 'Supply':    return this.supplyItemModel   !.description();
-      case 'Equipment': return this.equipmentItemModel!.description();
+      case 'Supply':    return this.supplyItemModel   !.typeDescription();
+      case 'Equipment': return this.equipmentItemModel!.typeDescription();
       case 'Good':      return "Good";
       case 'Currency':  return "Currency";
     }

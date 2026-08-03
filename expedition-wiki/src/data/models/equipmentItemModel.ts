@@ -3,7 +3,8 @@ import { ArmEquipmentItemModel } from './armEquipmentItemModel';
 import { GearEquipmentItemModel } from './gearEquipmentItemModel';
 import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
 import { EffectModel } from "./effectModel";
-import type { ClassModel } from "./classModel";
+import { EquipmentSetModel } from "./equipmentSetModel";
+import { ClassModel } from "./classModel";
 
 export class EquipmentItemModel {
 
@@ -23,6 +24,7 @@ export class EquipmentItemModel {
   trinketEquipmentItemModelList!: TrinketEquipmentItemModel[];
 
   effectModelList!: EffectModel[];
+  equipmentSetModelList!: EquipmentSetModel[];
 
   constructor(init:Partial<EquipmentItemModel>) {  
     Object.assign(this, init);
@@ -31,7 +33,8 @@ export class EquipmentItemModel {
     this.gearEquipmentItemModelList    = this.gearEquipmentItemModelList   .map((model) => new GearEquipmentItemModel   (model));
     this.trinketEquipmentItemModelList = this.trinketEquipmentItemModelList.map((model) => new TrinketEquipmentItemModel(model));
 
-    this.effectModelList = this.effectModelList.map((model) => new EffectModel(model));
+    this.effectModelList       = this.effectModelList      .map((model) => new EffectModel      (model));
+    this.equipmentSetModelList = this.equipmentSetModelList.map((model) => new EquipmentSetModel(model));
 	}
 
   get armEquipmentItemModel(): ArmEquipmentItemModel {  
@@ -50,13 +53,7 @@ export class EquipmentItemModel {
     return this.armEquipmentItemModel?.classModelList ?? this.gearEquipmentItemModel?.classModelList ?? [];
   }
 
-  description(): string {
-    
-    switch (EquipmentItemType[this.type])
-    {
-      case 'Arm':     return "Arm Equipment";
-      case 'Gear':    return "Gear Equipment";
-      case 'Trinket': return "Trinket Equipment";
-    }
+  typeDescription(): string {
+    return `${ EquipmentItemType[this.type] } Equipment`;
   }
 }

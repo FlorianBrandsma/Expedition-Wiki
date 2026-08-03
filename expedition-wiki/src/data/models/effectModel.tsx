@@ -39,6 +39,16 @@ export class EffectModel {
     return this.statusEffectModelList[0];
   }
 
+  get typeDescription(): string {
+  
+    switch (EffectType[this.type])
+    {
+      case 'Resource': return this.resourceEffectModel!.typeDescription();
+      case 'Event':    return this.eventEffectModel   !.typeDescription();
+      case 'Status':   return this.statusEffectModel  !.typeDescription();
+    }
+  }
+
   descriptionComponent(stack?: number): React.ReactNode {
 
     const currentStack = stack ?? this.stack;

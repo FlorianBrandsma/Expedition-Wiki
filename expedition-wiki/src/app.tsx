@@ -14,10 +14,12 @@ import ItemsPage from './pages/item/itemsPage';
 import ItemPage from './pages/item/itemPage';
 import InteractablesPage from './pages/interactable/interactablesPage';
 import InteractablePage from './pages/interactable/interactablePage';
-import ClassesPage from './pages/class/classesPage';
-import ClassPage from './pages/class/classPage';
+import EquipmentSetsPage from './pages/equipmentSet/equipmentSetsPage';
+import EquipmentSetPage from './pages/equipmentSet/equipmentSetPage';
 import FactionsPage from './pages/faction/factionsPage';
 import FactionPage from './pages/faction/factionPage';
+import ClassesPage from './pages/class/classesPage';
+import ClassPage from './pages/class/classPage';
 
 import MenuBG from './images/MenuBG.png'
 
@@ -127,12 +129,12 @@ export default function App() {
             element: <InteractablePage />,
           },
           {
-            path:'/:gameName/class',
-            element: <ClassesPage />,
+            path:'/:gameName/set',
+            element: <EquipmentSetsPage />,
           },
           {
-            path:'/:gameName/class/:name',
-            element: <ClassPage />,
+            path:'/:gameName/set/:name',
+            element: <EquipmentSetPage />,
           },
           {
             path:'/:gameName/faction',
@@ -141,6 +143,14 @@ export default function App() {
           {
             path:'/:gameName/faction/:name',
             element: <FactionPage />,
+          },
+          {
+            path:'/:gameName/class',
+            element: <ClassesPage />,
+          },
+          {
+            path:'/:gameName/class/:name',
+            element: <ClassPage />,
           }
         ]
       },

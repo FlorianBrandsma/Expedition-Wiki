@@ -21,12 +21,7 @@ export class SupplyItemModel {
     this.abilityModel = this.abilityModelList[0];
 	}
 
-  description(): string {
-      
-    switch (SupplyItemType[this.type])
-    {
-      case 'Usable':     return "Usable Supply";
-      case 'Consumable': return "Consumable Supply";
-    }
+  typeDescription(): string {
+    return `${ SupplyItemType[this.type] } Supply`;
   }
 }

@@ -7,7 +7,7 @@ import { useItemContext } from '../itemContext';
 import { EffectModel } from '../../../data/models/effectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import ExIcon from '../../../components/exIcon/exIcon';
 
 export default function ItemEquipmentEffectSegment() {
@@ -36,7 +36,12 @@ export default function ItemEquipmentEffectSegment() {
       )
     },
     {
-      id: 'id',
+      id: 'typeDescription',
+      label: 'Type',
+      align: 'left'
+    },
+    {
+      id: 'type',
       label: 'Description',
       align: 'left',
       render: (row) => (
