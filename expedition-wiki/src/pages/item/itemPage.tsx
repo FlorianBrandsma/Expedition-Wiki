@@ -8,6 +8,8 @@ import { ItemModel } from '../../data/models/itemModel';
 import { ItemParameters } from '../../data/parameters/itemParameters';
 import { getData } from '../../services/dataManager';
 
+import { ItemComponentType } from '../../types/enums';
+
 import { Divider, Box, Typography } from '@mui/material';
 
 import ItemPropertyCard from './itemPropertyCard';
@@ -20,6 +22,8 @@ import Segment from '../../components/segment/segment';
 import ItemEquipmentAbilitySegment from './segments/itemEquipmentAbilitySegment';
 import ItemEquipmentEffectSegment from './segments/itemEquipmentEffectSegment';
 import ItemEquipmentSetSegment from './segments/itemEquipmentSetSegment';
+import ItemCraftSegment from './segments/itemCraftSegment';
+import ItemCraftComponentSegment from './segments/itemCraftComponentSegment';
 
 export default function ItemPage() {
 
@@ -31,6 +35,8 @@ export default function ItemPage() {
 
   const parameters = new ItemParameters({
     includeDependencies: true,
+    includeItemComponents: true,
+    includeComponentItems: true,
     includeClasses: true,
     includeEffects: true,
     includeAbilities: true,
@@ -116,6 +122,40 @@ export default function ItemPage() {
       contentSegments.push(equipmentSegment);
   }
 
+  if (itemModel) {
+
+    const craftSegment = {
+      label: 'Crafting',
+      id: 'Crafting',
+      children: []
+    } as ContentSegment
+
+    ItemComponentType.forEach((type) => {
+      
+      const itemComponentModelList = itemModel.itemComponentModelList.filter(x => ItemComponentType[x.type] == type);
+
+      if (itemComponentModelList.length > 0) {
+
+        craftSegment.children!.push({
+          label: type,
+          id: type,
+          component: <ItemCraftSegment itemComponentModelList={itemComponentModelList}/>
+        })
+      }
+    })
+
+    if (itemModel.componentItemModelList.length > 0) {
+      craftSegment.children!.push({
+        label: 'Component',
+        id: 'Component',
+        component: <ItemCraftComponentSegment />
+      })
+    }
+
+    if (craftSegment.children?.length !== 0)
+      contentSegments.push(craftSegment);
+  }
+  
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>

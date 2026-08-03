@@ -19,7 +19,7 @@ export default function ItemClassSegment() {
   const headers = useMemo<HeadCell<ClassModel>[]>(() => [
     { 
       id: 'name', 
-      label: "Name", 
+      label: 'Name', 
       align: 'left',
       render: (row) => (
         <Link 

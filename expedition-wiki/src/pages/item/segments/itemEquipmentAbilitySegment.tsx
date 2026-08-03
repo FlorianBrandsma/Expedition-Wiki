@@ -20,7 +20,8 @@ export default function ItemEquipmentAbilitySegment() {
   const headers = useMemo<HeadCell<AbilityModel>[]>(() => [
     { 
       id: 'name', 
-      label: "Name", 
+      label: 'Name',
+      align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.iconResourceName} size={20} />
@@ -36,7 +37,8 @@ export default function ItemEquipmentAbilitySegment() {
     },
     {
       id: 'description',
-      label: 'Description'
+      label: 'Description',
+      align: 'left'
     }
   ], [equipmentItemModel]);
 

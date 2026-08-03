@@ -4,42 +4,47 @@ import { Link } from 'react-router-dom';
 import { useGameContext } from '../../../context/gameContext';
 import { useItemContext } from '../itemContext';
 
-import { EquipmentSetModel } from '../../../data/models/equipmentSetModel';
+import { ItemModel } from '../../../data/models/itemModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import { Box } from '@mui/material';
 
-export default function ItemEquipmentSetSegment() {
+export default function ItemCraftComponentSegment() {
 
   const { gameModel } = useGameContext();
-  const { equipmentItemModel } = useItemContext();
+  const itemModel = useItemContext();
 
-  if (!equipmentItemModel) return;
+  if (!itemModel) return;
 
-  const headers = useMemo<HeadCell<EquipmentSetModel>[]>(() => [
+  const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
       id: 'name', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExIcon resourceName={row.iconResourceName} size={20} />
+          <ExIcon resourceName={row.assetIconResourceName} size={20} />
           <Link 
             className='link'
-            to={`/${gameModel.name}/set/${row.name}`} 
-            mask={`/${gameModel.name.replaceAll(' ', '_')}/set/${row.name.replaceAll(' ', '_')}`}
+            to={`/${gameModel.name}/item/${row.name}`} 
+            mask={`/${gameModel.name.replaceAll(' ', '_')}/item/${row.name.replaceAll(' ', '_')}`}
           >
             {row.name}
           </Link>
         </Box>
       )
+    },
+    {
+      id: 'quantity',
+      label: 'Quantity',
+      align: 'right'
     }
-  ], [equipmentItemModel]);
+  ], [itemModel]);
 
   return (
     <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey="id" rows={equipmentItemModel.equipmentSetModelList} headCells={headers} />
+      <EnhancedTable rowKey="id" rows={itemModel.componentItemModelList} headCells={headers} />
     </Box>
   )
 }

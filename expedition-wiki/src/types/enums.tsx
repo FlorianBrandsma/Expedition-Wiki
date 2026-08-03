@@ -234,6 +234,11 @@ export const EquipmentSlotType = [
   'Finger'
 ] as const;
 
+export const ItemComponentType = [
+  'Create',
+  'Scrap'
+] as const;
+
 export const InteractableType = [
   'Agent',
   'Obstacle'

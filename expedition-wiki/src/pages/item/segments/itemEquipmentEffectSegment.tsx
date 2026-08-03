@@ -20,7 +20,7 @@ export default function ItemEquipmentEffectSegment() {
   const headers = useMemo<HeadCell<EffectModel>[]>(() => [
     { 
       id: 'name', 
-      label: "Name", 
+      label: 'Name', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>

@@ -366,16 +366,22 @@ const DrawerOptions: DrawerOptions[] = [
       }
     ]
   },
-  /* Classes */
+  /* Sets */
   {
-    label: 'Classes', 
-    page: 'class',
+    label: 'Sets', 
+    page: 'set',
     children: []
   },
   /* Factions */
   {
     label: 'Factions', 
     page: 'faction',
+    children: []
+  },
+  /* Classes */
+  {
+    label: 'Classes', 
+    page: 'class',
     children: []
   }
 ]
