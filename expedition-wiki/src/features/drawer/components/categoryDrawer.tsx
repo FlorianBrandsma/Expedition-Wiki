@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { useGameContext } from '../../../context/gameContext';
 
@@ -304,6 +304,18 @@ const DrawerOptions: DrawerOptions[] = [
             children: []
           }
         ]
+      },
+      {
+        label: 'Goods', 
+        page: 'item',
+        state: { itemType: ItemType[2] }, 
+        children: []
+      },
+      {
+        label: 'Currencies', 
+        page: 'item',
+        state: { itemType: ItemType[3] }, 
+        children: []
       }
     ]
   },
@@ -434,7 +446,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     background: alpha(theme.palette.common.white, 0.25),
   }
-}));
+})) as typeof Button;
 
 interface CustomListItemProps
 {
@@ -452,29 +464,28 @@ function CustomListItem(props: CustomListItemProps) {
   const { gameModel } = useGameContext();
 
   const handleClick = () => {
-      setOpen(!open);
+    setOpen(!open);
   };
 
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const handleSelectOption = (options: DrawerOptions) => {
-
-    closeDrawer();
-
-    const mask =`/${ gameModel.name.replaceAll(' ', '_')}/${ options.page }`;
-    
-    navigate(`${ gameModel.name }/${ options.page }`, {
-        mask: mask,
-        state: options.state,
-        replace: mask === location.mask?.pathname
-      })
-  }
+  const searchParams = options.state ? `?${new URLSearchParams(options.state).toString()}` : '';
+  const path         = `${ gameModel.name }/${ options.page }${searchParams}`;
+  const maskPath     =`/${ gameModel.name.replaceAll(' ', '_')}/${ options.page }${searchParams}`;
+  const replace      = maskPath.split('?')[0] === location.mask?.pathname;
 
   return (
     <div key={options.label}>
       <ListItem disablePadding sx={{ display: 'flex', alignItems: 'stretch', height: '45px'}}>
-        <CustomButton sx={{ flex: 1, pl: 2 + depth * 2 }} onClick={() => { handleSelectOption(options) }}>
+        <CustomButton 
+          component={Link}
+          to={path}
+          {...({
+            mask: maskPath,
+            replace: replace
+          })}
+          onClick={() => { closeDrawer(); }}
+          sx={{ flex: 1, pl: 2 + depth * 2 }} >
           <ListItemText primary={options.label} />
         </CustomButton>
         { options.children.length > 0 && (

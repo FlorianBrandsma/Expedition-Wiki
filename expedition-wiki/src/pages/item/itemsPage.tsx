@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDebounce } from '../../hooks/useDebounce';
 
 import { useGameContext } from '../../context/gameContext';
@@ -19,7 +19,11 @@ import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enh
 
 export default function ItemsPage() {
 
-	const { gameModel } = useGameContext();
+  const { gameModel } = useGameContext();
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [name,              setName]              = useState<string>('');
   const [itemType,          setItemType]          = useState<number[]>([]);
@@ -30,25 +34,31 @@ export default function ItemsPage() {
   
   const debouncedName = useDebounce<string>(nameInput, 500);
 
-  const stateItemType          = useLocation().state?.itemType;
-  const stateSupplyItemType    = useLocation().state?.supplyItemType;
-  const stateEquipmentItemType = useLocation().state?.equipmentItemType;
-
-  const itemTypeIndex          = ItemType         .findIndex(itemType          => itemType          == stateItemType);
-  const supplyItemTypeIndex    = SupplyItemType   .findIndex(supplyItemType    => supplyItemType    == stateSupplyItemType);
-  const equipmentItemTypeIndex = EquipmentItemType.findIndex(equipmentItemType => equipmentItemType == stateEquipmentItemType);
+  const [routeParams, setRouteParams] = useState(() => 
+    Object.fromEntries(searchParams)
+  );
 
   useEffect(() => {
-    setItemType(itemTypeIndex >= 0 ? [itemTypeIndex] : [])
-  }, [itemTypeIndex])
+
+    if (searchParams.size > 0) {
+      setRouteParams(Object.fromEntries(searchParams));
+
+      const cleanPath = location.mask?.pathname ?? location.pathname;
+      navigate(cleanPath, { replace: true, mask: cleanPath });
+    }
+  }, [searchParams, navigate, location.pathname]);
 
   useEffect(() => {
-    setSupplyItemType(supplyItemTypeIndex >= 0 ? [supplyItemTypeIndex] : [])
-  }, [supplyItemTypeIndex])
 
-  useEffect(() => {
+    const itemTypeIndex          = ItemType         .findIndex(type => type == routeParams.itemType);
+    const supplyItemTypeIndex    = SupplyItemType   .findIndex(type => type == routeParams.supplyItemType);
+    const equipmentItemTypeIndex = EquipmentItemType.findIndex(type => type == routeParams.equipmentItemType);
+
+    setItemType         (itemTypeIndex          >= 0 ? [itemTypeIndex]          : [])
+    setSupplyItemType   (supplyItemTypeIndex    >= 0 ? [supplyItemTypeIndex]    : [])
     setEquipmentItemType(equipmentItemTypeIndex >= 0 ? [equipmentItemTypeIndex] : [])
-  }, [equipmentItemTypeIndex])
+
+  }, [routeParams])
 
   const handleItemTypeChange = (itemType: number[]) => {
     setItemType(itemType);
