@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { EffectType } from "../../types/enums";
 import { EffectModel } from "./effectModel";
-import { useGameContext } from "../../context/gameContext";
+
+import ExLink from "../../components/exLink/exLink";
 
 export class RepeatStatusEffectModel {
 
@@ -24,20 +24,12 @@ export class RepeatStatusEffectModel {
 
   descriptionComponent(stack: number): React.ReactNode {
 
-    const { gameModel } = useGameContext();
-
     const successChanceDescription = `${this.successChance < 100 ? `${this.successChance}% chance to ` : ''}`;
 
     const descriptionBody = EffectType[this.effectModel.type] == 'Status' ? (
       <>
-        {successChanceDescription ? 'apply ' : 'Apply '} 
-        <Link
-          className='link'
-          to={`/${gameModel.name}/effect/${this.effectModel.name}`} 
-          mask={`/${gameModel.name.replaceAll(' ', '_')}/effect/${this.effectModel.name.replaceAll(' ', '_')}`}
-          >
-            {this.effectModel.name}
-        </Link>
+        {successChanceDescription ? 'apply ' : 'Apply '}
+        <ExLink pageName={'effect'} name={this.effectModel.name} />
       </>
     ) : (
       this.effectModel.descriptionComponent(stack)

@@ -1,17 +1,15 @@
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 
-import { useGameContext } from '../../../context/gameContext';
 import { useItemContext } from '../itemContext';
 
 import { ClassModel } from '../../../data/models/classModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
 export default function ItemClassSegment() {
 
-  const { gameModel } = useGameContext();
   const itemModel = useItemContext();
 
   if (!itemModel) return;
@@ -22,13 +20,7 @@ export default function ItemClassSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <Link 
-          className='link'
-          to={`/${gameModel.name}/class/${row.name}`} 
-          mask={`/${gameModel.name.replaceAll(' ', '_')}/class/${row.name.replaceAll(' ', '_')}`}
-        >
-          {row.name}
-        </Link>
+        <ExLink pageName={'class'} name={row.name} />
       )
     }
   ], [itemModel]);

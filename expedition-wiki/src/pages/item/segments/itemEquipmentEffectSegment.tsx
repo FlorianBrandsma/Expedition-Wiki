@@ -1,18 +1,16 @@
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 
-import { useGameContext } from '../../../context/gameContext';
 import { useItemContext } from '../itemContext';
 
 import { EffectModel } from '../../../data/models/effectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import { Box } from '@mui/material';
 import ExIcon from '../../../components/exIcon/exIcon';
+import ExLink from '../../../components/exLink/exLink';
+import { Box } from '@mui/material';
 
 export default function ItemEquipmentEffectSegment() {
 
-  const { gameModel } = useGameContext();
   const { equipmentItemModel } = useItemContext();
 
   if (!equipmentItemModel?.armEquipmentItemModel) return;
@@ -25,13 +23,7 @@ export default function ItemEquipmentEffectSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.iconResourceName} size={20} />
-          <Link 
-            className='link'
-            to={`/${gameModel.name}/effect/${row.name}`} 
-            mask={`/${gameModel.name.replaceAll(' ', '_')}/effect/${row.name.replaceAll(' ', '_')}`}
-          >
-            {row.name}
-          </Link>
+          <ExLink pageName={'effect'} name={row.name} />
         </Box>
       )
     },

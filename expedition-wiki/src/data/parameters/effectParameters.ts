@@ -18,7 +18,9 @@ export class EffectParameters implements IParameters {
   gameId?: number[];
 
   effectType?: number[];
-  
+  resourceEffectType?: number[];
+  statusEffectType?: number[];
+
   name?: string;
 
   constructor(init?:Partial<EffectParameters>) {

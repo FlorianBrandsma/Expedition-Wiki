@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-import { useGameContext } from "../../context/gameContext";
+import ExLink from "../../components/exLink/exLink";
 
 export class StandingStatusEffectModel {
 
@@ -13,19 +11,9 @@ export class StandingStatusEffectModel {
   }
 
   descriptionComponent(stack: number): React.ReactNode {
-    
-  const { gameModel } = useGameContext();
 
     const faction = (
-      <>
-        <Link
-          className='link'
-          to={`/${gameModel.name}/faction/${this.factionName}`} 
-          mask={`/${gameModel.name.replaceAll(' ', '_')}/faction/${this.factionName.replaceAll(' ', '_')}`}
-          >
-            {this.factionName}
-        </Link>
-      </>
+      <ExLink pageName={'faction'} name={this.factionName} />
     );
 
     return (

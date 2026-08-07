@@ -53,7 +53,7 @@ export class EquipmentItemModel {
     return this.armEquipmentItemModel?.classModelList ?? this.gearEquipmentItemModel?.classModelList ?? [];
   }
 
-  typeDescription(): string {
+  get typeDescription(): string {
     return `${ EquipmentItemType[this.type] } Equipment`;
   }
 }

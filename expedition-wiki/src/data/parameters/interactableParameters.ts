@@ -20,6 +20,8 @@ export class InteractableParameters implements IParameters {
   factionId?: number[];
 
   interactableType?: number[];
+  agentInteractableType?: number[];
+  characterAgentInteractableType?: number[];
   
   name?: string;
 

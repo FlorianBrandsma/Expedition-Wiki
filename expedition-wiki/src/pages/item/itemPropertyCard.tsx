@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
 
-import { useGameContext } from '../../context/gameContext';
 import { useItemContext } from './itemContext';
 
 import { ItemModel } from '../../data/models/itemModel';
@@ -21,6 +19,7 @@ import ExIconLabel from '../../components/exIconLabel/exIconLabel';
 import ElementTable from '../../components/elementTable/elementTable';
 import { ElementType } from '../../types/enums';
 import ExCollapse from '../../components/exCollapse/exCollapse';
+import ExLink from '../../components/exLink/exLink';
 
 interface CurrencyTableProps {
   itemModelList: ItemModel[];
@@ -28,7 +27,6 @@ interface CurrencyTableProps {
 
 function CurrencyTable(props:CurrencyTableProps) {
 
-  const { gameModel } = useGameContext();
   const itemModel = useItemContext();
 
   return (
@@ -39,13 +37,7 @@ function CurrencyTable(props:CurrencyTableProps) {
             <TableCell>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 0.5 }}>
                 <ExIcon resourceName={row.assetIconResourceName} size={20} />
-                <Link 
-                  className='link'
-                  to={`/${gameModel.name}/item/${row.name}`} 
-                  mask={`/${gameModel.name.replaceAll(' ', '_')}/item/${row.name.replaceAll(' ', '_')}`}
-                >
-                  {row.name}
-                </Link>
+                <ExLink pageName={'item'} name={row.name} />
               </Box>
             </TableCell>
             <TableCell align='right'>

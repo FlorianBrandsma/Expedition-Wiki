@@ -21,7 +21,7 @@ export class SupplyItemModel {
     this.abilityModel = this.abilityModelList[0];
 	}
 
-  typeDescription(): string {
+  get typeDescription(): string {
     return `${ SupplyItemType[this.type] } Supply`;
   }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDebounce } from '../../hooks/useDebounce';
 
 import { useGameContext } from '../../context/gameContext';
@@ -9,13 +9,15 @@ import { ItemModel } from '../../data/models/itemModel';
 import { ItemRequestType, ItemParameters } from '../../data/parameters/itemParameters';
 import { getData } from '../../services/dataManager';
 
-import { ItemType, SupplyItemType, EquipmentItemType } from '../../types/enums'
+import { ItemType, SupplyItemType, EquipmentItemType, ElementType } from '../../types/enums'
 
 import { Box, Button, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
 import ExTextField from '../../components/exTextField/exTextField';
 import ExIcon from '../../components/exIcon/exIcon';
 import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
+import ExIconLabel from '../../components/exIconLabel/exIconLabel';
+import ExLink from '../../components/exLink/exLink';
 
 export default function ItemsPage() {
 
@@ -34,20 +36,23 @@ export default function ItemsPage() {
   
   const debouncedName = useDebounce<string>(nameInput, 500);
 
+  /* Save parameters from URL */
   const [routeParams, setRouteParams] = useState(() => 
     Object.fromEntries(searchParams)
   );
 
   useEffect(() => {
-
+    /* Reset parameters when the page has been opened */
     if (searchParams.size > 0) {
       setRouteParams(Object.fromEntries(searchParams));
 
+      /* Remove parameters from URL */
       const cleanPath = location.mask?.pathname ?? location.pathname;
       navigate(cleanPath, { replace: true, mask: cleanPath });
     }
   }, [searchParams, navigate, location.pathname]);
 
+  /* Set default filters */
   useEffect(() => {
 
     const itemTypeIndex          = ItemType         .findIndex(type => type == routeParams.itemType);
@@ -108,13 +113,7 @@ export default function ItemsPage() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.assetIconResourceName} size={20} />
-          <Link 
-            className='link'
-            to={`/${gameModel.name}/item/${row.name}`} 
-            mask={`/${gameModel.name.replaceAll(' ', '_')}/item/${row.name.replaceAll(' ', '_')}`}
-          >
-            {row.name}
-          </Link>
+          <ExLink pageName={'item'} name={row.name} />
         </Box>
       )
     },
@@ -122,6 +121,21 @@ export default function ItemsPage() {
       id: 'typeDescription',
       label: 'Type',
       align: 'left'
+    },
+    {
+      id: 'elementType',
+      label: 'Element',
+      align: 'left',
+      render: (row) => (
+        row.equipmentItemModel && (
+          <ExIconLabel 
+            label={ElementType[row.elementType]}
+            url={`/images/icons/elements/${ElementType[row.elementType]}.png`}
+            size={20}
+            alignment='flex-start'
+          />
+        )
+      )
     }
   ], [gameModel]);
 

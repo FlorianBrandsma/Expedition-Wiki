@@ -18,6 +18,8 @@ export class AbilityParameters implements IParameters {
   gameId?: number[];
 
   abilityType?: number[];
+  chargeAbilityType?: number[];
+  dischargeAbilityType?: number[];
   
   name?: string;
 

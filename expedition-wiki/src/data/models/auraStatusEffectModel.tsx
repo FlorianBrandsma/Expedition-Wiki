@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
-
-import { useGameContext } from "../../context/gameContext";
-
 import { StatusEffectModel } from "./statusEffectModel";
 import { AuraStatusEffectTargetType, CombatState } from "../../types/enums";
+
+import ExLink from "../../components/exLink/exLink";
 
 export class AuraStatusEffectModel {
 
@@ -25,18 +23,8 @@ export class AuraStatusEffectModel {
 
   descriptionComponent(stack: number): React.ReactNode {
 
-    const { gameModel } = useGameContext();
-
     const appliedEffect = (
-      <>
-        <Link
-          className='link'
-          to={`/${gameModel.name}/effect/${this.appliedStatusEffectModel.effectName}`} 
-          mask={`/${gameModel.name.replaceAll(' ', '_')}/effect/${this.appliedStatusEffectModel.effectName.replaceAll(' ', '_')}`}
-          >
-            {this.appliedStatusEffectModel.effectName}
-        </Link>
-      </>
+      <ExLink pageName={'effect'} name={this.appliedStatusEffectModel.effectName} />
     );
 
     return (

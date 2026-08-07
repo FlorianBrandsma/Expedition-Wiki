@@ -63,13 +63,13 @@ const DrawerOptions: DrawerOptions[] = [
       },
       {
         label: 'Event', 
-        page: 'event',
+        page: 'effect',
         state: { effectType: EffectType[1] }, 
         children: []
       },
       {
         label: 'Status', 
-        page: 'status',
+        page: 'effect',
         state: { effectType: EffectType[2] }, 
         children: [
           {

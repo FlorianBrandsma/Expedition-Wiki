@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
-
-import { useGameContext } from "../../context/gameContext";
-
 import { EffectModel } from "./effectModel";
 import { AbilityEffectTargetType } from "../../types/enums";
+
+import ExLink from "../../components/exLink/exLink";
 
 export class AbilityStatusEffectModel {
 
@@ -24,8 +22,6 @@ export class AbilityStatusEffectModel {
   }
 
   descriptionComponent(stack: number): React.ReactNode {
-    
-    const { gameModel } = useGameContext();
 
     const successChanceDescription = `${this.successChance < 100 ? `${this.successChance}% chance to ` : ''}`;
 
@@ -33,13 +29,7 @@ export class AbilityStatusEffectModel {
       <>
         {successChanceDescription ? 'apply ' : 'Apply '} 
         {`${stack} ${stack === 1 ? 'stack' : 'stacks'} of `}
-        <Link
-            className='link'
-            to={`/${gameModel.name}/effect/${this.effectModel.name}`} 
-            mask={`/${gameModel.name.replaceAll(' ', '_')}/effect/${this.effectModel.name.replaceAll(' ', '_')}`}
-            >
-              {this.effectModel.name}
-          </Link>
+        <ExLink pageName={'effect'} name={this.effectModel.name} />
       </>
     );
 

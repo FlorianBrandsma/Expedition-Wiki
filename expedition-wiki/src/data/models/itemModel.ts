@@ -60,12 +60,16 @@ export class ItemModel {
     return this.itemComponentModelList?.filter(x => ItemComponentType[x.type] == 'Scrap') ?? [];
   }
 
+  get elementType(): number {
+    return this.equipmentItemModel?.elementType ?? 0;
+  }
+
   get typeDescription(): string {
 
     switch (ItemType[this.type])
     {
-      case 'Supply':    return this.supplyItemModel   !.typeDescription();
-      case 'Equipment': return this.equipmentItemModel!.typeDescription();
+      case 'Supply':    return this.supplyItemModel   !.typeDescription;
+      case 'Equipment': return this.equipmentItemModel!.typeDescription;
       case 'Good':      return "Good";
       case 'Currency':  return "Currency";
     }

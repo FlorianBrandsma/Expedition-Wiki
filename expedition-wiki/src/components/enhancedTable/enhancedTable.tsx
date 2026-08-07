@@ -114,7 +114,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-export default function EnhancedTable<T extends { name: string } & Record<string, any>>(props: EnhancedTableProps<T>) {
+export default function EnhancedTable<T extends Record<string, any>>(props: EnhancedTableProps<T>) {
 
   const rowsPerPageOptions = [25, 50, 100];
 

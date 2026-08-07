@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 
-import { useGameContext } from '../../../context/gameContext';
 import { useItemContext } from '../itemContext';
 
 import { ItemComponentModel } from '../../../data/models/itemComponentModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
+import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
 interface ItemCraftSegmentProps {
@@ -16,7 +15,6 @@ interface ItemCraftSegmentProps {
 
 export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
 
-  const { gameModel } = useGameContext();
   const itemModel = useItemContext();
 
   if (!itemModel) return;
@@ -29,13 +27,7 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.componentItemAssetIconResourceName} size={20} />
-          <Link 
-            className='link'
-            to={`/${gameModel.name}/item/${row.name}`} 
-            mask={`/${gameModel.name.replaceAll(' ', '_')}/item/${row.name.replaceAll(' ', '_')}`}
-          >
-            {row.name}
-          </Link>
+          <ExLink pageName={'item'} name={row.componentItemName} />
         </Box>
       )
     },
