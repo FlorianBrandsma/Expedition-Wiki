@@ -174,7 +174,7 @@ export default function ItemPage() {
             )}
 
             {contentSegments.map((segment) => (
-              <Segment key={segment.id} segment={segment}/>     
+              <Segment key={segment.id} segment={segment}/>
             ))}
 
           </Box>

@@ -11,7 +11,7 @@ import { getData } from '../../services/dataManager';
 
 import { EffectType, ResourceEffectType, StatusEffectType } from '../../types/enums'
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
 import ExTextField from '../../components/exTextField/exTextField';
 import ExIcon from '../../components/exIcon/exIcon';
@@ -126,6 +126,7 @@ export default function EffectsPage() {
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column"}}>
 			<Typography variant="h5">Effects</Typography>
+      <Divider/>
       <Stack 
         spacing={2} 
         direction="column" 

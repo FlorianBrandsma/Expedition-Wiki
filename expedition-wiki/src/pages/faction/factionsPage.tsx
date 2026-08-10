@@ -8,7 +8,7 @@ import { FactionModel } from '../../data/models/factionModel';
 import { FactionRequestType, FactionParameters } from '../../data/parameters/factionParameters';
 import { getData } from '../../services/dataManager';
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 
 import ExTextField from '../../components/exTextField/exTextField';
 import ExIcon from '../../components/exIcon/exIcon';
@@ -60,6 +60,7 @@ export default function FactionsPage() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column"}}>
       <Typography variant="h5">Factions</Typography>
+      <Divider/>
       <Stack 
         spacing={2} 
         direction="column" 

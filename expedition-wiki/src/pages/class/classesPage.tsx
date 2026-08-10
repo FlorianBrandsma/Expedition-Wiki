@@ -8,7 +8,7 @@ import { ClassModel } from '../../data/models/classModel';
 import { ClassRequestType, ClassParameters } from '../../data/parameters/classParameters';
 import { getData } from '../../services/dataManager';
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 
 import ExTextField from '../../components/exTextField/exTextField';
 import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
@@ -25,7 +25,7 @@ export default function ClassesPage() {
   
   const debouncedName = useDebounce<string>(nameInput, 500);
 
-  /* Get classs of the selected game */
+  /* Get classes of the selected game */
   const parameters = new ClassParameters({
     requestType: ClassRequestType.GetFilterClasses,
     gameId: [gameModel.id],
@@ -58,6 +58,7 @@ export default function ClassesPage() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column"}}>
       <Typography variant="h5">Classes</Typography>
+      <Divider/>
       <Stack 
         spacing={2} 
         direction="column" 

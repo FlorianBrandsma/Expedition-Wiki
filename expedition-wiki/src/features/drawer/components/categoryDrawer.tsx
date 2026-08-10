@@ -3,403 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { useGameContext } from '../../../context/gameContext';
 
-import { EffectType, ResourceEffectType, StatusEffectType, 
-         AbilityType, ChargeAbilityType, DischargeAbilityType, 
-         ItemType, SupplyItemType, EquipmentItemType,
-         InteractableType, AgentInteractableType, CharacterAgentInteractableType 
-        } from '../../../types/enums';
+import { Categories, type Category } from '../../../services/categoryManager';
 
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Typography, Drawer, List, ListItem, ListItemText, Button, Collapse, ListSubheader } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
-interface DrawerOptions
-{
-    label: string,
-    page: string,
-    state?: {}
-    children: DrawerOptions[]
-}
-
-const DrawerOptions: DrawerOptions[] = [
-  /* Effects */
-  { 
-    label: 'Effects', 
-    page: 'effect',
-    children: [
-      {
-        label: 'Resource', 
-        page: 'effect',
-        state: { effectType: EffectType[0] }, 
-        children: [
-          {
-            label: 'Damage', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[0], 
-              resourceEffectType: ResourceEffectType[0] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Restore', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[0], 
-              resourceEffectType: ResourceEffectType[1] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Absorb', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[0], 
-              resourceEffectType: ResourceEffectType[2] 
-            }, 
-            children: []
-          }
-        ]
-      },
-      {
-        label: 'Event', 
-        page: 'effect',
-        state: { effectType: EffectType[1] }, 
-        children: []
-      },
-      {
-        label: 'Status', 
-        page: 'effect',
-        state: { effectType: EffectType[2] }, 
-        children: [
-          {
-            label: 'Basic', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[0] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Attribute', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[1] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Ability', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[2] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Aura', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[3] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Repeat', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[4] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Resist', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[5] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Disable', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[6] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Morph', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[7] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Size', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[8] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Sensor', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[9] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Standing', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[10] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Cluster', 
-            page: 'effect',
-            state: { 
-              effectType: EffectType[2], 
-              statusEffectType: StatusEffectType[11] 
-            }, 
-            children: []
-          }
-        ]
-      }  
-    ]
-  },
-  /* Abilities */
-  {
-    label: 'Abilities', 
-    page: 'ability',
-    children: [
-      {
-        label: 'Charge', 
-        page: 'ability',
-        state: { abilityType: AbilityType[0] }, 
-        children: [
-          {
-            label: 'Primary', 
-            page: 'ability',
-            state: { 
-              abilityType: AbilityType[0], 
-              chargeAbilityType: ChargeAbilityType[0] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Secondary', 
-            page: 'ability',
-            state: { 
-              abilityType: AbilityType[0], 
-              chargeAbilityType: ChargeAbilityType[1] 
-            }, 
-            children: []
-          }
-        ]
-      },
-      {
-        label: 'Discharge', 
-        page: 'ability',
-        state: { abilityType: AbilityType[1] }, 
-        children: [
-          {
-            label: 'Arm', 
-            page: 'ability',
-            state: { 
-              abilityType: AbilityType[1], 
-              dischargeAbilityType: DischargeAbilityType[0] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Spell', 
-            page: 'ability',
-            state: { 
-              abilityType: AbilityType[1], 
-              dischargeAbilityType: ChargeAbilityType[1] 
-            }, 
-            children: []
-          }
-        ]
-      }
-    ]
-  },
-  /* Items */
-  { 
-    label: 'Items',
-    page: 'item',
-    children: [
-      {
-        label: 'Supplies', 
-        page: 'item',
-        state: { itemType: ItemType[0] }, 
-        children: [
-          {
-            label: 'Usable', 
-            page: 'item',
-            state: { 
-              itemType: ItemType[0], 
-              supplyItemType: SupplyItemType[0] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Consumable', 
-            page: 'item',
-            state: { 
-              itemType: ItemType[0], 
-              supplyItemType: SupplyItemType[1] 
-            }, 
-            children: []
-          }
-        ]
-      },
-      {
-        label: 'Equipment', 
-        page: 'item',
-        state: { itemType: ItemType[1] }, 
-        children: [
-          {
-            label: 'Arm', 
-            page: 'item',
-            state: { 
-              itemType: ItemType[1], 
-              equipmentItemType: EquipmentItemType[0] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Gear', 
-            page: 'item',
-            state: { 
-              itemType: ItemType[1], 
-              equipmentItemType: EquipmentItemType[1] 
-            }, 
-            children: []
-          },
-          {
-            label: 'Trinket', 
-            page: 'item',
-            state: { 
-              itemType: ItemType[1], 
-              equipmentItemType: EquipmentItemType[2] 
-            }, 
-            children: []
-          }
-        ]
-      },
-      {
-        label: 'Goods', 
-        page: 'item',
-        state: { itemType: ItemType[2] }, 
-        children: []
-      },
-      {
-        label: 'Currencies', 
-        page: 'item',
-        state: { itemType: ItemType[3] }, 
-        children: []
-      }
-    ]
-  },
-  /* Interactables */
-  { 
-    label: 'Interactables', 
-    page: 'interactable',
-    children: [
-      {
-        label: 'Agents', 
-        page: 'interactable',
-        state: { interactableType: InteractableType[0] }, 
-        children: [
-          {
-            label: 'Characters', 
-            page: 'interactable',
-            state: { 
-              interactableType: InteractableType[0], 
-              agentInteractableType: AgentInteractableType[0] 
-            }, 
-            children: [
-              {
-                label: 'Non-playable', 
-                page: 'interactable',
-                state: { 
-                  interactableType: InteractableType[0], 
-                  agentInteractableType: AgentInteractableType[0],
-                  characterAgentInteractableType: CharacterAgentInteractableType[0]
-                }, 
-                children: []
-              },
-              {
-                label: 'Playable', 
-                page: 'interactable',
-                state: { 
-                  interactableType: InteractableType[0], 
-                  agentInteractableType: AgentInteractableType[0],
-                  characterAgentInteractableType: CharacterAgentInteractableType[1]
-                }, 
-                children: []
-              }
-            ]
-          },
-          {
-            label: 'Static', 
-            page: 'interactable',
-            state: { 
-              interactableType: InteractableType[0], 
-              agentInteractableType: AgentInteractableType[1] 
-            },
-            children: []
-          }
-        ]
-      },
-      {
-        label: 'Obstacles', 
-        page: 'interactable',
-        state: { interactableType: InteractableType[1] }, 
-        children: []
-      }
-    ]
-  },
-  /* Sets */
-  {
-    label: 'Sets', 
-    page: 'set',
-    children: []
-  },
-  /* Factions */
-  {
-    label: 'Factions', 
-    page: 'faction',
-    children: []
-  },
-  /* Classes */
-  {
-    label: 'Classes', 
-    page: 'class',
-    children: []
-  }
-]
-
-interface CategoryDrawerProps
-{
+interface CategoryDrawerProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -427,8 +37,8 @@ export default function CategoryDrawer(props: CategoryDrawerProps)
           </ListSubheader> 
         }
       >
-      {DrawerOptions.map(options => (
-        <CustomListItem key={options.label} depth={0} options={options} closeDrawer={closeDrawer} />
+      {Categories.map(category => (
+        <CustomListItem key={category.label} depth={0} category={category} closeDrawer={closeDrawer} />
       ))}
       </List>
     </Box>
@@ -451,13 +61,13 @@ const CustomButton = styled(Button)(({ theme }) => ({
 interface CustomListItemProps
 {
   depth: number,
-  options: DrawerOptions
+  category: Category
   closeDrawer: () => void
 }
 
 function CustomListItem(props: CustomListItemProps) {
 
-  const { depth, options, closeDrawer } = props;
+  const { depth, category, closeDrawer } = props;
 
   const [open, setOpen] = React.useState(false);
 
@@ -469,13 +79,13 @@ function CustomListItem(props: CustomListItemProps) {
 
   const location = useLocation();
 
-  const searchParams = options.state ? `?${new URLSearchParams(options.state).toString()}` : '';
-  const path         = `${ gameModel.name }/${ options.page }${searchParams}`;
-  const maskPath     =`/${ gameModel.name.replaceAll(' ', '_')}/${ options.page }${searchParams}`;
+  const searchParams = category.state ? `?${new URLSearchParams(category.state).toString()}` : '';
+  const path         = `${ gameModel.name }/${ category.page }${searchParams}`;
+  const maskPath     =`/${ gameModel.name.replaceAll(' ', '_')}/${ category.page }${searchParams}`;
   const replace      = maskPath.split('?')[0] === location.mask?.pathname;
 
   return (
-    <div key={options.label}>
+    <div key={category.label}>
       <ListItem disablePadding sx={{ display: 'flex', alignItems: 'stretch', height: '45px'}}>
         <CustomButton 
           component={Link}
@@ -485,20 +95,21 @@ function CustomListItem(props: CustomListItemProps) {
             replace: replace
           })}
           onClick={() => { closeDrawer(); }}
-          sx={{ flex: 1, pl: 2 + depth * 2 }} >
-          <ListItemText primary={options.label} />
+          sx={{ flex: 1, pl: 2 + depth * 2 }} 
+        >
+          <ListItemText primary={category.label} />
         </CustomButton>
-        { options.children.length > 0 && (
+        { category.children.length > 0 && (
           <CustomButton sx={{ minWidth: '45px' }} onClick={handleClick}>
             { open ? <ExpandLess /> : <ExpandMore />}
           </CustomButton>
         )}
       </ListItem>
-      { options.children.length > 0 && (
+      { category.children.length > 0 && (
         <Collapse in={open}>
           <List disablePadding>
-            {options.children.map(options => (
-              <CustomListItem key={options.label} depth={depth + 1} options={options} closeDrawer={closeDrawer} />
+            {category.children.map(childCategory => (
+              <CustomListItem key={childCategory.label} depth={depth + 1} category={childCategory} closeDrawer={closeDrawer} />
             ))}
           </List>
         </Collapse>

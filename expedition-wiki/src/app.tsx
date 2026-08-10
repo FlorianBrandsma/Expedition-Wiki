@@ -5,7 +5,7 @@ import { useAlert } from './context/alertContext';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 import HomePage from './pages/homePage';
-import GamePage from './pages/gamePage';
+import GamePage from './pages/game/gamePage';
 import EffectsPage from './pages/effect/effectsPage';
 import EffectPage from './pages/effect/effectPage';
 import AbilitiesPage from './pages/ability/abilitiesPage';

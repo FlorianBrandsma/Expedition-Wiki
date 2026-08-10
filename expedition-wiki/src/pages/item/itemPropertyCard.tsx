@@ -68,7 +68,6 @@ export default function ItemPropertyCard() {
   });
 
   return (
-  <>
     <ExCard sx={{ 
         float: 'right', 
         width: '250px',
@@ -268,8 +267,6 @@ export default function ItemPropertyCard() {
         </ExCardTable>
       </>
       )}
-
     </ExCard>
-  </>
   )
 }

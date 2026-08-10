@@ -15,7 +15,7 @@ export default function HomePage() {
   
   const navigate = useNavigate();
   
-  const [gameModel, setGameModel] = useState<GameModel>({ id: 0, name: "" });
+  const [gameModel, setGameModel] = useState<GameModel>({ id: 0, name: '', description: '' });
   
   const params = useParams<{ gameName: string }>();
 
@@ -57,7 +57,14 @@ export default function HomePage() {
 		<GameContext.Provider value={{ gameModel, setGameModel }}>
       <AppHeader/>
       <Paper square={true} sx={{
-        margin: '0px 50px 5px 50px',
+        boxSizing: 'border-box',
+        width: 'calc(100% - 10px)',
+        maxWidth: {
+          xs: '100%',
+          md: '1400px'
+        },
+        mx: 'auto',
+        mb: '5px',
         padding: '25px',
         backgroundColor: 'primary.main'
       }}>
