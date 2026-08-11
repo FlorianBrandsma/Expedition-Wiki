@@ -2,10 +2,10 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameContext } from '../../context/gameContext';
-import { ItemContext } from './itemContext';
+import { ItemPageContext } from './itemPageContext';
 
-import { ItemModel } from '../../data/models/itemModel';
-import { ItemParameters } from '../../data/parameters/itemParameters';
+import { ItemPageModel } from '../../data/models/pages/itemPageModel';
+import { ItemPageParameters } from '../../data/parameters/itemPageParameters';
 import { getData } from '../../services/dataManager';
 
 import { ItemComponentType } from '../../types/enums';
@@ -33,25 +33,21 @@ export default function ItemPage() {
 
   const contentSegments: ContentSegment[] = [];
 
-  const parameters = new ItemParameters({
-    includeDependencies: true,
-    includeItemComponents: true,
-    includeComponentItems: true,
-    includeClasses: true,
-    includeEffects: true,
-    includeAbilities: true,
-    includeEquipmentSets: true,
+  const parameters = new ItemPageParameters({
     gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
   });
 
-  const itemQuery = useQuery<ItemModel[]>({
-    queryKey: ["parameters", parameters],
-    queryFn: () => getData<ItemModel>(parameters, ItemModel),
+  const itemPageQuery = useQuery<ItemPageModel[]>({
+    queryKey: ['parameters', parameters],
+    queryFn: () => getData<ItemPageModel>(parameters, ItemPageModel),
     initialData: []
   });
 
-  const itemModel = itemQuery.data[0];
+  if (itemPageQuery.data?.length === 0) return;
+
+  const itemPageModel = itemPageQuery.data[0];
+  const { itemModel, classModelList, statusEffectModelList, dischargeAbilityModelList, equipmentSetModelList, itemComponentModelList, componentItemModelList } = itemPageModel;
 
   const classSegment = {
     label: 'Classes',
@@ -73,7 +69,7 @@ export default function ItemPage() {
       ]
     } as ContentSegment;
 
-    if (itemModel.classModelList.length > 0) 
+    if (classModelList.length > 0) 
       supplySegment.children!.push(classSegment);
     
     if (supplySegment.children?.length !== 0)
@@ -88,10 +84,10 @@ export default function ItemPage() {
       children: []
     } as ContentSegment;
 
-    if (itemModel.classModelList.length > 0) 
+    if (classModelList.length > 0) 
       equipmentSegment.children!.push(classSegment);
 
-    if (itemModel.equipmentItemModel.effectModelList.length > 0) {
+    if (statusEffectModelList.length > 0) {
       
       equipmentSegment.children!.push({
         label: 'Effects',
@@ -100,7 +96,7 @@ export default function ItemPage() {
       });
     }
 
-    if (itemModel.equipmentItemModel?.armEquipmentItemModel?.dischargeAbilityModelList.length > 0) {
+    if (dischargeAbilityModelList.length > 0) {
 
       equipmentSegment.children!.push({
         label: 'Abilities',
@@ -109,7 +105,7 @@ export default function ItemPage() {
       });
     }
 
-    if (itemModel.equipmentItemModel.equipmentSetModelList.length > 0) {
+    if (equipmentSetModelList.length > 0) {
 
       equipmentSegment.children!.push({
         label: 'Sets',
@@ -132,19 +128,19 @@ export default function ItemPage() {
 
     ItemComponentType.forEach((type) => {
       
-      const itemComponentModelList = itemModel.itemComponentModelList.filter(x => ItemComponentType[x.type] == type);
+      const list = itemComponentModelList.filter(x => ItemComponentType[x.type] == type);
 
-      if (itemComponentModelList.length > 0) {
+      if (list.length > 0) {
 
         craftSegment.children!.push({
           label: type,
           id: type,
-          component: <ItemCraftSegment itemComponentModelList={itemComponentModelList}/>
+          component: <ItemCraftSegment itemComponentModelList={list}/>
         })
       }
     })
 
-    if (itemModel.componentItemModelList.length > 0) {
+    if (componentItemModelList.length > 0) {
       craftSegment.children!.push({
         label: 'Component',
         id: 'Component',
@@ -159,10 +155,7 @@ export default function ItemPage() {
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
-      { !itemModel ? (
-        <Typography variant="h5">Loading...</Typography>
-      ) : (
-        <ItemContext.Provider value={ itemModel }>
+        <ItemPageContext.Provider value={ itemPageModel }>
           <Typography variant="h5">{itemModel.name}</Typography>
           <Divider/>
           <Box sx={{ mt: 1 }}>
@@ -178,8 +171,7 @@ export default function ItemPage() {
             ))}
 
           </Box>
-        </ItemContext.Provider>
-      )}
+        </ItemPageContext.Provider>
       </Box>
     </Box>
   )

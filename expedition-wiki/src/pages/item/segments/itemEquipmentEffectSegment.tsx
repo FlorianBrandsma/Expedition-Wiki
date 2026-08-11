@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { useItemContext } from '../itemContext';
+import { useItemPageContext } from '../itemPageContext';
 
-import { EffectModel } from '../../../data/models/effectModel';
+import { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
@@ -11,19 +11,18 @@ import { Box } from '@mui/material';
 
 export default function ItemEquipmentEffectSegment() {
 
-  const { equipmentItemModel } = useItemContext();
+  const itemPageModel = useItemPageContext();
+  const { statusEffectModelList } = itemPageModel;
 
-  if (!equipmentItemModel?.armEquipmentItemModel) return;
-
-  const headers = useMemo<HeadCell<EffectModel>[]>(() => [
+  const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => [
     { 
-      id: 'name', 
+      id: 'effectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExIcon resourceName={row.iconResourceName} size={20} />
-          <ExLink pageName={'effect'} name={row.name} />
+          <ExIcon resourceName={row.effectIconResourceName} size={20} />
+          <ExLink pageName={'effect'} name={row.effectName} />
         </Box>
       )
     },
@@ -52,11 +51,11 @@ export default function ItemEquipmentEffectSegment() {
         </>
       )
     }
-  ], [equipmentItemModel]);
+  ], [itemPageModel]);
 
   return (
     <Box sx={{ display: 'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey='id' rows={equipmentItemModel.effectModelList} headCells={headers} />
+      <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

@@ -15,6 +15,8 @@ import { ClusterStatusEffectModel } from "./clusterStatusEffectModel";
 
 export class StatusEffectModel {
   
+  id!: number;
+
   type!: number;
 
   duration!: number;
@@ -25,6 +27,7 @@ export class StatusEffectModel {
   stackLimit!: number;
 
   effectName!: string;
+  effectIconResourceName!: string;
 
   basicStatusEffectModelList!:     BasicStatusEffectModel[];
   attributeStatusEffectModelList!: AttributeStatusEffectModel[];
@@ -104,25 +107,27 @@ export class StatusEffectModel {
     return this.clusterStatusEffectModelList[0];
   }
 
-  typeDescription(): string {
+  get typeDescription(): string {
     return `${ StatusEffectType[this.type] } Status`;
   }
 
-  descriptionComponent(stack: number): React.ReactNode {
+  descriptionComponent(stack?: number): React.ReactNode {
   
+    console.log(this.effectName);
+    const currentStack = stack ?? this.stack;
     switch (StatusEffectType[this.type])
     {
       case 'Basic':     return this.basicStatusEffectModel    !.description;
-      case 'Attribute': return this.attributeStatusEffectModel!.description(stack);
-      case 'Ability':   return this.abilityStatusEffectModel  !.descriptionComponent(stack);
-      case 'Aura':      return this.auraStatusEffectModel     !.descriptionComponent(stack);
-      case 'Repeat':    return this.repeatStatusEffectModel   !.descriptionComponent(stack);
-      case 'Resist':    return this.resistStatusEffectModel   !.descriptionComponent(stack);
+      case 'Attribute': return this.attributeStatusEffectModel!.description(currentStack);
+      case 'Ability':   return this.abilityStatusEffectModel  !.descriptionComponent(currentStack);
+      case 'Aura':      return this.auraStatusEffectModel     !.descriptionComponent(currentStack);
+      case 'Repeat':    return this.repeatStatusEffectModel   !.descriptionComponent(currentStack);
+      case 'Resist':    return this.resistStatusEffectModel   !.descriptionComponent(currentStack);
       case 'Disable':   return this.disableStatusEffectModel  !.description();
       case 'Morph':     return this.morphStatusEffectModel    !.description();
-      case 'Size':      return this.sizeStatusEffectModel     !.description(stack);
-      case 'Sensor':    return this.sensorStatusEffectModel   !.description(stack);
-      case 'Standing':  return this.standingStatusEffectModel !.descriptionComponent(stack);
+      case 'Size':      return this.sizeStatusEffectModel     !.description(currentStack);
+      case 'Sensor':    return this.sensorStatusEffectModel   !.description(currentStack);
+      case 'Standing':  return this.standingStatusEffectModel !.descriptionComponent(currentStack);
       case 'Cluster':   return this.clusterStatusEffectModel  !.description;
     }
   }

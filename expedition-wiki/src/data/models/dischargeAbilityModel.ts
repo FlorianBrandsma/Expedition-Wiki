@@ -4,6 +4,8 @@ import { SpellDischargeAbilityModel } from "./spellDischargeAbilityModel";
 
 export class DischargeAbilityModel {
 
+  id!: number;
+
   type!: number;
 
   targetRelationshipType!: number;
@@ -11,6 +13,11 @@ export class DischargeAbilityModel {
 
   affectedRelationshipType!: number;
   affectedCombatState!: number;
+
+  abilityName!: string;
+  abilityDescription!: string;
+  
+  abilityIconResourceName!: string;
 
   armDischargeAbilityModelList!: ArmDischargeAbilityModel[];
   spellDischargeAbilityModelList!: SpellDischargeAbilityModel[];

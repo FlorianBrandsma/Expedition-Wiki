@@ -61,6 +61,19 @@ export const ElementType = [
 
 export type ElementType = typeof ElementType[number];
 
+export const TextReferenceType = [
+  'Effect',
+  'Ability',
+  'Item',
+  'Set',
+  'Faction',
+  'Class',
+  'Interactable',
+  'Region',
+  'Terrain',
+  'Waypoint'
+] as const;
+
 export const EffectType = [
   'Resource',
   'Event',

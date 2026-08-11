@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useItemContext } from '../itemContext';
+import { useItemPageContext } from '../itemPageContext';
 
 import { ClassModel } from '../../../data/models/classModel';
 
@@ -10,9 +10,8 @@ import { Box } from '@mui/material';
 
 export default function ItemClassSegment() {
 
-  const itemModel = useItemContext();
-
-  if (!itemModel) return;
+  const itemPageModel = useItemPageContext();
+  const { classModelList } = itemPageModel;
 
   const headers = useMemo<HeadCell<ClassModel>[]>(() => [
     { 
@@ -23,11 +22,11 @@ export default function ItemClassSegment() {
         <ExLink pageName={'class'} name={row.name} />
       )
     }
-  ], [itemModel]);
+  ], [itemPageModel]);
 
   return (
     <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey="id" rows={itemModel.classModelList} headCells={headers} />
+      <EnhancedTable rowKey="id" rows={classModelList} headCells={headers} />
     </Box>
   )
 }

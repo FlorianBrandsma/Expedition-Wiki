@@ -25,9 +25,6 @@ export class ItemModel {
   supplyItemModelList!:    SupplyItemModel[];
   equipmentItemModelList!: EquipmentItemModel[];
 
-  itemComponentModelList!: ItemComponentModel[];
-  componentItemModelList!: ItemModel[];
-
   constructor(init:Partial<ItemModel>) {  
     Object.assign(this, init);
 
@@ -35,9 +32,6 @@ export class ItemModel {
 
     this.supplyItemModelList    = this.supplyItemModelList   .map((model) => new SupplyItemModel   (model));
     this.equipmentItemModelList = this.equipmentItemModelList.map((model) => new EquipmentItemModel(model));
-
-    this.itemComponentModelList = this.itemComponentModelList.map((model) => new ItemComponentModel(model));
-    this.componentItemModelList = this.componentItemModelList.map((model) => new ItemModel         (model));
   }
 
   get supplyItemModel(): SupplyItemModel {  
@@ -46,18 +40,6 @@ export class ItemModel {
 
   get equipmentItemModel(): EquipmentItemModel {  
     return this.equipmentItemModelList[0];
-  }
-
-  get classModelList(): ClassModel[] {  
-    return this.supplyItemModel?.classModelList ?? this.equipmentItemModel?.classModelList ?? [];
-  }
-
-  get createItemComponentModelList(): ItemComponentModel[] {
-    return this.itemComponentModelList?.filter(x => ItemComponentType[x.type] == 'Create') ?? [];
-  }
-
-  get scrapItemComponentModelList(): ItemComponentModel[] {
-    return this.itemComponentModelList?.filter(x => ItemComponentType[x.type] == 'Scrap') ?? [];
   }
 
   get elementType(): number {

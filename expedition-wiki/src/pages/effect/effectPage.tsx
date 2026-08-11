@@ -8,6 +8,10 @@ import { EffectModel } from '../../data/models/effectModel';
 import { EffectParameters } from '../../data/parameters/effectParameters';
 import { getData } from '../../services/dataManager';
 
+import type { ContentSegment } from '../../components/contentTable/contentTable';
+import EffectPropertyCard from './effectPropertyCard';
+import ContentTable from '../../components/contentTable/contentTable';
+import Segment from '../../components/segment/segment';
 import { Divider, Box, Typography } from '@mui/material';
 
 export default function EffectPage() {
@@ -15,6 +19,8 @@ export default function EffectPage() {
   const params = useParams<{ name: string }>();
   
   const { gameModel } = useGameContext();
+
+  const contentSegments: ContentSegment[] = [];
 
   const parameters = new EffectParameters({
     includeDependencies: true,
@@ -39,6 +45,21 @@ export default function EffectPage() {
         <EffectContext.Provider value={ effectModel }>
           <Typography variant="h5">{effectModel.name}</Typography>
           <Divider/>
+          <Box sx={{ mt: 1 }}>
+            <EffectPropertyCard />
+            <Typography variant="body1">
+              {effectModel.descriptionComponent(1)}
+            </Typography>
+
+            {contentSegments.length > 0 && (
+              <ContentTable segments={contentSegments} />
+            )}
+
+            {contentSegments.map((segment) => (
+              <Segment key={segment.id} segment={segment}/>
+            ))}
+
+          </Box>
         </EffectContext.Provider>
       )}
       </Box>

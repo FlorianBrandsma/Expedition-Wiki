@@ -34,7 +34,7 @@ export class ResourceEffectModel {
     return this.absorbResourceEffectModelList[0];
   }
 
-  typeDescription(): string {
+  get typeDescription(): string {
     return `${ ResourceEffectType[this.type] } Resource`;
   }
 

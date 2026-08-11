@@ -1,10 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-
-import { useItemContext } from './itemContext';
-
-import { ItemModel } from '../../data/models/itemModel';
-import { ItemRequestType, ItemParameters } from '../../data/parameters/itemParameters';
-import { getData } from '../../services/dataManager';
+import { useItemPageContext } from './itemPageContext';
 
 import { CardContent, CardMedia, TableBody, TableRow, TableCell, Box } from '@mui/material';
 
@@ -20,28 +14,29 @@ import ElementTable from '../../components/elementTable/elementTable';
 import { ElementType } from '../../types/enums';
 import ExCollapse from '../../components/exCollapse/exCollapse';
 import ExLink from '../../components/exLink/exLink';
+import type { CurrencyItemModel } from '../../data/models/currencyItemModel';
 
 interface CurrencyTableProps {
-  itemModelList: ItemModel[];
+  currencyItemModelList: CurrencyItemModel[];
 }
 
-function CurrencyTable(props:CurrencyTableProps) {
+function CurrencyTable({ currencyItemModelList }: CurrencyTableProps) {
 
-  const itemModel = useItemContext();
+  const { itemModel } = useItemPageContext();
 
   return (
     <ExTable size='small'>
       <TableBody>
-        {props.itemModelList.map((row) => (
+        {currencyItemModelList.map((row) => (
           <TableRow key={row.id}>
             <TableCell>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 0.5 }}>
-                <ExIcon resourceName={row.assetIconResourceName} size={20} />
-                <ExLink pageName={'item'} name={row.name} />
+                <ExIcon resourceName={row.itemAssetIconResourceName} size={20} />
+                <ExLink pageName={'item'} name={row.itemName} />
               </Box>
             </TableCell>
             <TableCell align='right'>
-              {Number((itemModel.baseValue / row.baseValue).toFixed(2))}
+              {Number((itemModel.baseValue / row.itemBaseValue).toFixed(2))}
             </TableCell>
           </TableRow>
         ))}
@@ -52,20 +47,8 @@ function CurrencyTable(props:CurrencyTableProps) {
 
 export default function ItemPropertyCard() {
 
-  const itemModel = useItemContext();
-
+  const { itemModel, currencyItemModelList } = useItemPageContext();
   const { equipmentItemModel } = itemModel;
-
-  const parameters = new ItemParameters({
-    requestType: ItemRequestType.GetItemCurrencyItems,
-    id: [itemModel.id]
-  });
-
-  const itemQuery = useQuery<ItemModel[]>({
-    queryKey: ["parameters", parameters],
-    queryFn: () => getData<ItemModel>(parameters, ItemModel),
-    initialData: []
-  });
 
   return (
     <ExCard sx={{ 
@@ -144,13 +127,13 @@ export default function ItemPropertyCard() {
           label='Base' 
           value={itemModel.baseValue}
         />
-        {itemQuery.data.length > 0 && (
+        {currencyItemModelList.length > 0 && (
           <TableRow sx={{ '& > .MuiTableCell-root': { borderBottom: 'unset' } }}>
             <TableCell colSpan={2} sx={{ padding: 0 }}>
               <ExCollapse 
                 label='Currencies'
                 collapseComponent={
-                  <CurrencyTable itemModelList={itemQuery.data} />
+                  <CurrencyTable currencyItemModelList={currencyItemModelList} />
                 }/>
             </TableCell>
           </TableRow>

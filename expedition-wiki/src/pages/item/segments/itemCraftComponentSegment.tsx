@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useItemContext } from '../itemContext';
+import { useItemPageContext } from '../itemPageContext';
 
 import { ItemModel } from '../../../data/models/itemModel';
 
@@ -11,9 +11,8 @@ import { Box } from '@mui/material';
 
 export default function ItemCraftComponentSegment() {
 
-  const itemModel = useItemContext();
-
-  if (!itemModel) return;
+  const itemPageModel = useItemPageContext();
+  const { componentItemModelList } = itemPageModel;
 
   const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
@@ -32,11 +31,11 @@ export default function ItemCraftComponentSegment() {
       label: 'Quantity',
       align: 'right'
     }
-  ], [itemModel]);
+  ], [itemPageModel]);
 
   return (
     <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey="id" rows={itemModel.componentItemModelList} headCells={headers} />
+      <EnhancedTable rowKey="id" rows={componentItemModelList} headCells={headers} />
     </Box>
   )
 }

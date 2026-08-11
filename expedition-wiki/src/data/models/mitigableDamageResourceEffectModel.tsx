@@ -24,7 +24,7 @@ export class MitigableDamageResourceEffectModel {
     
     const element = ElementType[this.elementType] !== 'Normal' && (
       <Box 
-        sx={{ display: 'inline-flex', verticalAlign: 'bottom', mx: 0.5 }}
+        sx={{ display: 'inline-flex', verticalAlign: 'bottom', ml: 0.5 }}
       >
         <ExIconLabel 
           label={ElementType[this.elementType]}

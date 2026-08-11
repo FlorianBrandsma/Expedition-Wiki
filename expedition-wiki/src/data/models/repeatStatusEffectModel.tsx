@@ -18,24 +18,24 @@ export class RepeatStatusEffectModel {
     this.effectModelList = this.effectModelList.map((model) => new EffectModel(model));
   }
 
-  get effectModel(): EffectModel {
+  get repeatedEffectModel(): EffectModel {
     return this.effectModelList[0];
   }
 
   descriptionComponent(stack: number): React.ReactNode {
 
     const successChanceDescription = `${this.successChance < 100 ? `${this.successChance}% chance to ` : ''}`;
-
-    const descriptionBody = EffectType[this.effectModel.type] == 'Status' ? (
+    
+    const descriptionBody = EffectType[this.repeatedEffectModel.type] == 'Status' ? (
       <>
         {successChanceDescription ? 'apply ' : 'Apply '}
-        <ExLink pageName={'effect'} name={this.effectModel.name} />
+        <ExLink pageName={'effect'} name={this.repeatedEffectModel.name} />
       </>
     ) : (
-      this.effectModel.descriptionComponent(stack)
+      this.repeatedEffectModel.descriptionComponent(stack)
     );
 
-    const repeatedEffectDuration = this.effectModel.statusEffectModel?.duration ?? 0;
+    const repeatedEffectDuration = this.repeatedEffectModel.statusEffectModel?.duration ?? 0;
 
     const repeatedEffectDurationDescription = `${repeatedEffectDuration > 0 ? ` for ${repeatedEffectDuration} ${Math.abs(repeatedEffectDuration) !== 1 ? 'seconds' : 'second'}`: ''}`;
 

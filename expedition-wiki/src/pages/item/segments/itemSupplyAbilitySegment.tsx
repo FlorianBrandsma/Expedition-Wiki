@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { useItemContext } from '../itemContext';
+import { useItemPageContext } from '../itemPageContext';
 
-import { AbilityModel } from '../../../data/models/abilityModel';
+import type { SpellDischargeAbilityModel } from '../../../data/models/spellDischargeAbilityModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
@@ -11,32 +11,31 @@ import { Box } from '@mui/material';
 
 export default function ItemSupplyAbilitySegment() {
 
-  const { supplyItemModel } = useItemContext();
-
-  if (!supplyItemModel) return;
-
-  const headers = useMemo<HeadCell<AbilityModel>[]>(() => [
+  const itemPageModel = useItemPageContext();
+  const { spellDischargeAbilityModelList } = itemPageModel;
+  
+  const headers = useMemo<HeadCell<SpellDischargeAbilityModel>[]>(() => [
     { 
-      id: 'name', 
+      id: 'abilityName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExIcon resourceName={row.iconResourceName} size={20} />
-          <ExLink pageName={'ability'} name={row.name} />
+          <ExIcon resourceName={row.abilityIconResourceName} size={20} />
+          <ExLink pageName={'ability'} name={row.abilityName} />
         </Box>
       )
     },
     {
-      id: 'description',
+      id: 'abilityDescription',
       label: 'Description',
       align: 'left'
     }
-  ], [supplyItemModel]);
+  ], [itemPageModel]);
 
   return (
     <Box sx={{ display: 'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey='id' rows={supplyItemModel.abilityModelList} headCells={headers} />
+      <EnhancedTable rowKey='id' rows={spellDischargeAbilityModelList} headCells={headers} />
     </Box>
   )
 }

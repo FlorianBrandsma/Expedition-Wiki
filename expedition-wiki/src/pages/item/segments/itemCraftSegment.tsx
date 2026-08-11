@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 
-import { useItemContext } from '../itemContext';
-
 import { ItemComponentModel } from '../../../data/models/itemComponentModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
@@ -15,9 +13,7 @@ interface ItemCraftSegmentProps {
 
 export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
 
-  const itemModel = useItemContext();
-
-  if (!itemModel) return;
+  const { itemComponentModelList } = props;
 
   const headers = useMemo<HeadCell<ItemComponentModel>[]>(() => [
     { 
@@ -36,11 +32,11 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
       label: 'Quantity',
       align: 'right'
     }
-  ], [itemModel]);
+  ], [itemComponentModelList]);
 
   return (
     <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey="id" rows={props.itemComponentModelList} headCells={headers} />
+      <EnhancedTable rowKey="id" rows={itemComponentModelList} headCells={headers} />
     </Box>
   )
 }

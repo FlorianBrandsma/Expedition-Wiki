@@ -43,9 +43,9 @@ export class EffectModel {
   
     switch (EffectType[this.type])
     {
-      case 'Resource': return this.resourceEffectModel!.typeDescription();
-      case 'Event':    return this.eventEffectModel   !.typeDescription();
-      case 'Status':   return this.statusEffectModel  !.typeDescription();
+      case 'Resource': return this.resourceEffectModel!.typeDescription;
+      case 'Event':    return this.eventEffectModel   !.typeDescription;
+      case 'Status':   return this.statusEffectModel  !.typeDescription;
     }
   }
 
@@ -56,7 +56,7 @@ export class EffectModel {
     switch (EffectType[this.type])
     {
       case 'Resource': return this.resourceEffectModel!.description(currentStack);
-      case 'Event':    return this.eventEffectModel   !.description;
+      case 'Event':    return this.eventEffectModel   !.descriptionComponent();
       case 'Status':   return this.statusEffectModel  !.descriptionComponent(currentStack);
     }
   }

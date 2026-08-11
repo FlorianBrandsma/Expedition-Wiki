@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useItemContext } from '../itemContext';
+import { useItemPageContext } from '../itemPageContext';
 
 import { EquipmentSetModel } from '../../../data/models/equipmentSetModel';
 
@@ -11,9 +11,8 @@ import { Box } from '@mui/material';
 
 export default function ItemEquipmentSetSegment() {
 
-  const { equipmentItemModel } = useItemContext();
-
-  if (!equipmentItemModel) return;
+  const itemPageModel = useItemPageContext();
+  const { equipmentSetModelList } = itemPageModel;
 
   const headers = useMemo<HeadCell<EquipmentSetModel>[]>(() => [
     { 
@@ -27,11 +26,11 @@ export default function ItemEquipmentSetSegment() {
         </Box>
       )
     }
-  ], [equipmentItemModel]);
+  ], [itemPageModel]);
 
   return (
     <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey="id" rows={equipmentItemModel.equipmentSetModelList} headCells={headers} />
+      <EnhancedTable rowKey="id" rows={equipmentSetModelList} headCells={headers} />
     </Box>
   )
 }
