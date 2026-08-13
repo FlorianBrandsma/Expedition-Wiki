@@ -19,6 +19,8 @@ export class AbilityModel {
 
   iconResourceName!: string;
 
+  effectStack!: number;
+
   chargeAbilityModelList!:    ChargeAbilityModel[];
   dischargeAbilityModelList!: DischargeAbilityModel[];
 

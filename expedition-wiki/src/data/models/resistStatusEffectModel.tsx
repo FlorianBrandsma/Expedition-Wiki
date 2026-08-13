@@ -5,11 +5,16 @@ import ExLink from "../../components/exLink/exLink";
 
 export class ResistStatusEffectModel {
 
-  statusEffectModel!: StatusEffectModel;
+  id!: number;
+
+  statusEffectName!: string;
+  statusEffectIconResourceName!: string;
+
+  statusEffectModel?: StatusEffectModel;
 
   statusEffectModelList!: StatusEffectModel[];
 
-  constructor(init:Partial<ResistStatusEffectModel>, statusEffectModel: StatusEffectModel) {  
+  constructor(init:Partial<ResistStatusEffectModel>, statusEffectModel?: StatusEffectModel) {  
     Object.assign(this, init);
 
     this.statusEffectModel = statusEffectModel;
@@ -29,7 +34,7 @@ export class ResistStatusEffectModel {
 
     return (
       <>
-        {`${ StatusEffectState[this.statusEffectModel.state] === 'Active' ? 'Clear' : 'Resist' } ${stack} ${stack === 1 ? 'stack' : 'stacks'} of `}{resistedEffect}
+        {`${ StatusEffectState[this.statusEffectModel?.state ?? 0] === 'Active' ? 'Clear' : 'Resist' } ${stack} ${stack === 1 ? 'stack' : 'stacks'} of `}{resistedEffect}
       </>
     )
   }

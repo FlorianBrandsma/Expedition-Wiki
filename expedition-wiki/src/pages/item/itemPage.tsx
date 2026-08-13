@@ -47,7 +47,16 @@ export default function ItemPage() {
   if (itemPageQuery.data?.length === 0) return;
 
   const itemPageModel = itemPageQuery.data[0];
-  const { itemModel, classModelList, statusEffectModelList, dischargeAbilityModelList, equipmentSetModelList, itemComponentModelList, componentItemModelList } = itemPageModel;
+  
+  const { 
+    itemModel,       
+    classModelList, 
+    statusEffectModelList, 
+    dischargeAbilityModelList, 
+    equipmentSetModelList, 
+    itemComponentModelList, 
+    componentItemModelList
+  } = itemPageModel;
 
   const classSegment = {
     label: 'Classes',

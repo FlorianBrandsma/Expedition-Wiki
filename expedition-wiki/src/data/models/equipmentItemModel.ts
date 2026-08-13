@@ -5,6 +5,8 @@ import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
 
 export class EquipmentItemModel {
 
+  id!: number;
+
   type!: number;
 
   elementType!: number;
@@ -15,6 +17,11 @@ export class EquipmentItemModel {
   magicalAttack!: number;
   physicalDefence!: number;
   magicalDefence!: number;
+
+  itemName!: string;
+  itemAssetIconResourceName!: string;
+
+  statusEffectStack!: number;
 
   armEquipmentItemModelList!:     ArmEquipmentItemModel[];
   gearEquipmentItemModelList!:    GearEquipmentItemModel[];

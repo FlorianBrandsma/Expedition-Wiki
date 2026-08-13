@@ -2,8 +2,14 @@ import { EffectModel } from "./effectModel";
 
 export class ClusterStatusEffectModel {
 
+  id!: number;
+
   description!: string;
   
+  statusEffectName!: string;
+
+  statusEffectIconResourceName!: string;
+
   effectModelList!: EffectModel[];
 
   constructor(init:Partial<ClusterStatusEffectModel>) {  

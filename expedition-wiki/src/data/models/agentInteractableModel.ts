@@ -3,6 +3,8 @@ import { CharacterAgentInteractableModel } from "./characterAgentInteractableMod
 
 export class AgentInteractableModel {
 
+  id!: number;
+
   type!: number;
 
   elementType!: number;
@@ -13,6 +15,11 @@ export class AgentInteractableModel {
   magicalAttack!: number;
   physicalDefence!: number;
   magicalDefence!: number;
+
+  interactableName!: string;
+  interactableAssetIconResourceName!: string;
+
+  statusEffectStack!: number;
 
   characterAgentInteractableModelList!: CharacterAgentInteractableModel[];
 

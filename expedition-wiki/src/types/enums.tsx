@@ -272,3 +272,56 @@ export const CombatState = [
   'Active',
   'Defeated'
 ] as const;
+
+export const EventType = [
+  'Basic',
+  'Menu',
+  'Speech',
+  'Dialogue',
+  'Scenario',
+  'Transport',
+  'Rest',
+  'Party',
+  'Mailbox',
+  'Mail',
+  'Item',
+  'Effect',
+  'Ability',
+  'Companion',
+  'Reputation',
+  'Combat',
+  'Loot',
+  'Signal',
+  'Intel'
+] as const;
+
+export const ItemEventType = [
+  'Loot',
+  'Steal',
+  'Claim',
+  'Trade',
+  'Shop',
+  'Craft',
+  'Relinquish',
+  'Distribute'
+] as const;
+
+export const ItemEventItemType = [
+  'Unlimited',
+  'Limited'
+] as const;
+
+export const ShopItemEventActionType = [
+  'Buy',
+  'Sell'
+] as const;
+
+export const CraftItemEventItemType = [
+  'Free',
+  'Cost'
+] as const;
+
+export const CraftItemEventActionType = [
+  'Create',
+  'Scrap'
+] as const;

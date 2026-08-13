@@ -1,4 +1,4 @@
-import { useEffectContext } from './effectContext';
+import { useEffectPageContext } from './effectPageContext';
 
 import { CardContent, CardMedia } from '@mui/material';
 
@@ -9,7 +9,8 @@ import ExCardTable from '../../components/exCard/exCardTable';
 
 export default function EffectPropertyCard() {
 
-  const effectModel = useEffectContext();
+  const { effectModel } = useEffectPageContext();
+  const { statusEffectModel } = effectModel;
 
   return (
     <ExCard sx={{ 
@@ -43,6 +44,19 @@ export default function EffectPropertyCard() {
           label='Effect Type' 
           value={effectModel.typeDescription}
         />
+        {statusEffectModel && (
+          <>
+            <ExCardTableRow 
+              label='Duration' 
+              value={`${statusEffectModel.duration}s`}
+            />
+            <ExCardTableRow 
+              label='Limit' 
+              value={statusEffectModel.stackLimit}
+            />
+          </>
+        )}
+        
       </ExCardTable>
     </ExCard>
   )

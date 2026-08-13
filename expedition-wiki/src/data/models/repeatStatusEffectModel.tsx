@@ -43,7 +43,9 @@ export class RepeatStatusEffectModel {
 
     return (
       <>
-        {successChanceDescription}{descriptionBody}{durationDescription}
+        {successChanceDescription}
+        {descriptionBody}
+        {durationDescription}
       </>
     )
   }

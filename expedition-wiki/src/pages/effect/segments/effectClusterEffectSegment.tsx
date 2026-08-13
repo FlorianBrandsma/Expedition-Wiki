@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useItemPageContext } from '../itemPageContext';
+import { useEffectPageContext } from '../effectPageContext';
 
 import { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
@@ -9,10 +9,10 @@ import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function ItemEquipmentEffectSegment() {
+export default function EffectClusterEffectSegment() {
 
-  const itemPageModel = useItemPageContext();
-  const { statusEffectModelList } = itemPageModel;
+  const effectPageModel = useEffectPageContext();
+  const { statusEffectModelList } = effectPageModel;
 
   const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => [
     { 
@@ -20,7 +20,7 @@ export default function ItemEquipmentEffectSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', alignEffects: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.effectIconResourceName} size={20} />
           <ExLink pageName={'effect'} name={row.effectName} />
         </Box>
@@ -40,13 +40,8 @@ export default function ItemEquipmentEffectSegment() {
           {row.descriptionComponent()}
         </Box>
       )
-    },
-    {
-      id: 'stack',
-      label: 'Stack',
-      align: 'right'
     }
-  ], [itemPageModel]);
+  ], [effectPageModel]);
 
   return (
     <Box sx={{ display: 'inline-block', minWidth: '200px' }}>

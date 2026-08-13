@@ -1,8 +1,6 @@
-import { ItemType, ItemComponentType } from "../../types/enums";
+import { ItemType } from "../../types/enums";
 import { SupplyItemModel } from "./supplyItemModel";
 import { EquipmentItemModel } from './equipmentItemModel';
-import type { ClassModel } from "./classModel";
-import { ItemComponentModel } from "./itemComponentModel";
 
 export class ItemModel {
 

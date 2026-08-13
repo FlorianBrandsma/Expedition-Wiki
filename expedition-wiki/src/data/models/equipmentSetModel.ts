@@ -6,6 +6,8 @@ export class EquipmentSetModel {
 
   iconResourceName!: string;
 
+  statusEffectStack!: number;
+
   constructor(init:Partial<EquipmentSetModel>) {  
     Object.assign(this, init);
   }

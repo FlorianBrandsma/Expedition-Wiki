@@ -58,7 +58,7 @@ export default function ContentTable(props: ContentTableProps) {
   return (
     <Box sx={{
         display: 'inline-block',
-        minWidth: '200px',
+        minWidth: '150px',
         mt: 1.5
       }}>
       <ExCollapse 

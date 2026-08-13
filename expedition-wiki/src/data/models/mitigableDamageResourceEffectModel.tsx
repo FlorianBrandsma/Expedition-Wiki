@@ -24,6 +24,7 @@ export class MitigableDamageResourceEffectModel {
     
     const element = ElementType[this.elementType] !== 'Normal' && (
       <Box 
+        component='span'
         sx={{ display: 'inline-flex', verticalAlign: 'bottom', ml: 0.5 }}
       >
         <ExIconLabel 
@@ -36,7 +37,9 @@ export class MitigableDamageResourceEffectModel {
     )
 
     return (
-      <Box sx={{ display: 'inline'}}>
+      <Box 
+        component='span' 
+        sx={{ display: 'inline'}}>
         {`Deal ${amount} ${ResourceDamageType[this.damageType].toLowerCase()}`}{element}{` damage to ${ResourceType[this.damageResourceEffectModel.resourceEffectResourceType].toLowerCase()}`}
       </Box>
     )

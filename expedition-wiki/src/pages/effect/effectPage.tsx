@@ -2,10 +2,10 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameContext } from '../../context/gameContext';
-import { EffectContext } from './effectContext';
+import { EffectPageContext } from './effectPageContext';
 
-import { EffectModel } from '../../data/models/effectModel';
-import { EffectParameters } from '../../data/parameters/effectParameters';
+import { EffectPageModel } from '../../data/models/pages/effectPageModel';
+import { EffectPageParameters } from '../../data/parameters/effectPageParameters';
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
@@ -13,6 +13,16 @@ import EffectPropertyCard from './effectPropertyCard';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 import { Divider, Box, Typography } from '@mui/material';
+import EffectClusterEffectSegment from './segments/effectClusterEffectSegment';
+import EffectResistanceSegment from './segments/effectResistanceSegment';
+import EffectSourceEquipmentSegment from './segments/effectSourceEquipment';
+import EffectSourceClusterSegment from './segments/effectSourceClusterSegment';
+import EffectSourceAbilitySegment from './segments/effectSourceAbilitySegment';
+import EffectSourceSetSegment from './segments/effectSourceSetSegment';
+import EffectSourceAgentSegment from './segments/effectSourceAgentSegment';
+import EffectSourceAtmosphereSegment from './segments/effectSourceAtmosphereSegment';
+import EffectSourceEventSegment from './segments/effectSourceEventSegment';
+import EffectEventSegment from './segments/effectEventSegment';
 
 export default function EffectPage() {
 
@@ -22,33 +32,156 @@ export default function EffectPage() {
 
   const contentSegments: ContentSegment[] = [];
 
-  const parameters = new EffectParameters({
-    includeDependencies: true,
+  const parameters = new EffectPageParameters({
     gameId:[gameModel.id],
     name: params.name?.replaceAll('_', ' ')
   });
 
-  const effectQuery = useQuery<EffectModel[]>({
+  const effectPageQuery = useQuery<EffectPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<EffectModel>(parameters, EffectModel),
+    queryFn: () => getData<EffectPageModel>(parameters, EffectPageModel),
     initialData: []
   });
 
-  const effectModel = effectQuery.data[0];
+  if (effectPageQuery.data?.length === 0) return;
+
+  const effectPageModel = effectPageQuery.data[0];
+
+  const { 
+    effectModel,
+    eventModelList,
+    statusEffectModelList,
+    resistStatusEffectModelList,
+    abilityModelList,
+    equipmentItemModelList,
+    equipmentSetModelList,
+    agentInteractableModelList,
+    atmosphereModelList,
+    clusterStatusEffectModelList,
+    effectEventModelList
+  } = effectPageModel;
+
+  if (eventModelList.length > 0) {
+  
+    const eventSegment = {
+      label: 'Event',
+      id: 'Event',
+      component: <EffectEventSegment />
+    } as ContentSegment;
+
+    contentSegments.push(eventSegment);
+  }
+
+  if (statusEffectModelList.length > 0) {
+
+    const clusterSegment = {
+      label: 'Cluster',
+      id: 'Cluster',
+      children: [
+        {
+          label: 'Effects',
+          id: 'Effects',
+          component: <EffectClusterEffectSegment />
+        }
+      ]
+    } as ContentSegment;
+
+    contentSegments.push(clusterSegment);
+  }
+
+  if (resistStatusEffectModelList.length > 0) {
+  
+    const resistanceSegment = {
+      label: 'Resistance',
+      id: 'Resistance',
+      component: <EffectResistanceSegment />
+    } as ContentSegment;
+
+    contentSegments.push(resistanceSegment);
+  }
+
+  const sourceSegment = {
+    label: 'Source',
+    id: 'Source',
+    children: []
+  } as ContentSegment;
+
+  if (abilityModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Abilities',
+      id: 'Abilities',
+      component: <EffectSourceAbilitySegment />
+    });
+  }
+
+  if (equipmentItemModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Equipment',
+      id: 'Equipment',
+      component: <EffectSourceEquipmentSegment />
+    });
+  }
+
+  if (equipmentSetModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Sets',
+      id: 'Sets',
+      component: <EffectSourceSetSegment />
+    });
+  }
+
+  if (agentInteractableModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Agents',
+      id: 'Agents',
+      component: <EffectSourceAgentSegment />
+    });
+  }
+
+  if (atmosphereModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Atmospheres',
+      id: 'Atmospheres',
+      component: <EffectSourceAtmosphereSegment />
+    });
+  }
+
+  if (clusterStatusEffectModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Clusters',
+      id: 'Clusters',
+      component: <EffectSourceClusterSegment />
+    });
+  }
+
+  if (effectEventModelList.length > 0) {
+  
+    sourceSegment.children!.push({
+      label: 'Events',
+      id: 'Events',
+      component: <EffectSourceEventSegment />
+    });
+  }
+  
+  if (sourceSegment.children?.length !== 0)
+    contentSegments.push(sourceSegment);
 
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
-      { !effectModel ? (
-        <Typography variant="h5">Loading...</Typography>
-      ) : (
-        <EffectContext.Provider value={ effectModel }>
+        <EffectPageContext.Provider value={ effectPageModel }>
           <Typography variant="h5">{effectModel.name}</Typography>
           <Divider/>
           <Box sx={{ mt: 1 }}>
             <EffectPropertyCard />
             <Typography variant="body1">
-              {effectModel.descriptionComponent(1)}
+              {effectModel.descriptionComponent()}
             </Typography>
 
             {contentSegments.length > 0 && (
@@ -60,8 +193,7 @@ export default function EffectPage() {
             ))}
 
           </Box>
-        </EffectContext.Provider>
-      )}
+        </EffectPageContext.Provider>
       </Box>
     </Box>
   )

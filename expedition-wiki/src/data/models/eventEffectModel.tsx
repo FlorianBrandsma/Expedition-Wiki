@@ -1,6 +1,4 @@
 import { TextReferenceModel } from "./textReferenceModel";
-import ExLink from "../../components/exLink/exLink";
-import { TextReferenceType } from "../../types/enums";
 import ReferenceDescription from "../../services/textReferenceManager";
 
 export class EventEffectModel {
