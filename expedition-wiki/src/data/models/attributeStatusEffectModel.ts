@@ -32,4 +32,4 @@ export class AttributeStatusEffectModel {
         return `${descriptionHead} ${ElementType[this.elementType].toLowerCase()} ${EffectAttributeStatusEffectType[this.type].toLowerCase()} by ${Math.abs(this.amount) * stack}%`;
     }
   }
-};
+}

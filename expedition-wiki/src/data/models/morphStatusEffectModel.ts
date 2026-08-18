@@ -18,4 +18,4 @@ export class MorphStatusEffectModel {
   description(): string {
     return `Morph into ${AssetIndefiniteArticle[this.assetModel.indefiniteArticle].toLowerCase()} ${this.assetModel.name.toLowerCase()}`;
   }
-};
+}

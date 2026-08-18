@@ -17,6 +17,8 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function ClassesPage() {
 
+  document.title = 'Classes - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [name, setName] = useState<string>('');

@@ -5,4 +5,4 @@ export class BasicStatusEffectModel {
   constructor(init:Partial<BasicStatusEffectModel>) {  
     Object.assign(this, init);
   }
-};
+}

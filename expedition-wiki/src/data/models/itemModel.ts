@@ -1,4 +1,4 @@
-import { ItemType } from "../../types/enums";
+import { ItemComponentType, ItemType } from "../../types/enums";
 import { SupplyItemModel } from "./supplyItemModel";
 import { EquipmentItemModel } from './equipmentItemModel';
 
@@ -20,8 +20,12 @@ export class ItemModel {
 
   quantity!: number;
 
+  itemComponentType!: number;
+
   supplyItemModelList!:    SupplyItemModel[];
   equipmentItemModelList!: EquipmentItemModel[];
+
+  itemModelList!: ItemModel[]
 
   constructor(init:Partial<ItemModel>) {  
     Object.assign(this, init);
@@ -30,6 +34,8 @@ export class ItemModel {
 
     this.supplyItemModelList    = this.supplyItemModelList   .map((model) => new SupplyItemModel   (model));
     this.equipmentItemModelList = this.equipmentItemModelList.map((model) => new EquipmentItemModel(model));
+
+    this.itemModelList          = this.itemModelList         .map((model) => new ItemModel         (model));
   }
 
   get supplyItemModel(): SupplyItemModel {  
@@ -44,6 +50,10 @@ export class ItemModel {
     return this.equipmentItemModel?.elementType ?? 0;
   }
 
+  componentItemModelList(type: number): ItemModel[] {
+    return this.itemModelList?.filter(x => x.itemComponentType === type) ?? [];
+  }
+
   get typeDescription(): string {
 
     switch (ItemType[this.type])
@@ -54,4 +64,4 @@ export class ItemModel {
       case 'Currency':  return "Currency";
     }
   }
-};
+}

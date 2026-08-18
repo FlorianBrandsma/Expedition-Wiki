@@ -47,4 +47,4 @@ export class ResourceEffectModel {
       case 'Absorb':  return this.absorbResourceEffectModel !.descriptionComponent(stack);
     }
   }
-};
+}

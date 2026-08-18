@@ -15,4 +15,4 @@ export class SensorStatusEffectModel {
   description(stack: number): string {
     return `${ this.sensorRange >= 0 ? 'Increase' : 'Reduce'} ${SensorStatusEffectType[this.type].toLowerCase()} range by ${Math.abs(this.sensorRange) * stack}m`;
   }
-};
+}

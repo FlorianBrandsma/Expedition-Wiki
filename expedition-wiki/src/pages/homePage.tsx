@@ -13,6 +13,8 @@ import AppHeader from '../features/header/components/appHeader';
 
 export default function HomePage() {
   
+  document.title = 'Expedition Wiki';
+
   const navigate = useNavigate();
   
   const [gameModel, setGameModel] = useState<GameModel>({ id: 0, name: '', description: '' });

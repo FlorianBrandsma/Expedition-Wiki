@@ -8,4 +8,4 @@ export class GameModel {
   constructor(init:Partial<GameModel>) {  
     Object.assign(this, init);
 	}
-};
+}

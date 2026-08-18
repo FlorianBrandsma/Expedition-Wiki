@@ -25,4 +25,4 @@ export class AssetModel {
 
     this.scale = Number(init.scale!.toFixed(2));
   }
-};
+}

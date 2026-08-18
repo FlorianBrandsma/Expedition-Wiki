@@ -18,6 +18,8 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function FactionsPage() {
 
+  document.title = 'Factions - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [name, setName] = useState<string>('');

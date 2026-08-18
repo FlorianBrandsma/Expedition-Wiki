@@ -10,6 +10,8 @@ export default function GamePage() {
 
   const { gameModel } = useGameContext();
 
+  document.title = `${gameModel.name} - Expedition Wiki`;
+
   const contentSegments: ContentSegment[] = [
   {
     label: 'Categories',

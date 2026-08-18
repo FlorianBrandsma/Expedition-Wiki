@@ -13,4 +13,4 @@ export class FactionModel {
   constructor(init:Partial<FactionModel>) {  
     Object.assign(this, init);
   }
-};
+}

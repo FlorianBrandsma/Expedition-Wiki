@@ -20,4 +20,4 @@ export class UnmitigableDamageResourceEffectModel {
 
     return `Reduce ${ResourceType[this.damageResourceEffectModel.resourceEffectResourceType]} by ${amount}${amountTypeSymbol}`
   }
-};
+}

@@ -11,4 +11,4 @@ export class DisableStatusEffectModel {
   description(): string {
     return `Disable ${ DisableStatusEffectType[this.type].toLowerCase()} input`;
   }
-};
+}

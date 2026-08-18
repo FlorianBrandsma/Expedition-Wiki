@@ -60,4 +60,4 @@ export class EffectModel {
       case 'Status':   return this.statusEffectModel  !.descriptionComponent(currentStack);
     }
   }
-};
+}

@@ -21,6 +21,8 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function InteractablesPage() {
 
+  document.title = 'Interactables - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [searchParams] = useSearchParams();

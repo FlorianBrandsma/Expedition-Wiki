@@ -28,13 +28,16 @@ export default function EffectPage() {
 
   const params = useParams<{ name: string }>();
   
+  const effectName = params.name?.replaceAll('_', ' ');
+  document.title = `${effectName} - Expedition Wiki`;
+
   const { gameModel } = useGameContext();
 
   const contentSegments: ContentSegment[] = [];
-
+  
   const parameters = new EffectPageParameters({
     gameId:[gameModel.id],
-    name: params.name?.replaceAll('_', ' ')
+    name: effectName
   });
 
   const effectPageQuery = useQuery<EffectPageModel[]>({
@@ -60,6 +63,8 @@ export default function EffectPage() {
     clusterStatusEffectModelList,
     effectEventModelList
   } = effectPageModel;
+
+  
 
   if (eventModelList.length > 0) {
   

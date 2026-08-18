@@ -49,4 +49,4 @@ export class InteractableModel {
   get playableDescription(): string {
     return this.agentInteractableModel?.characterAgentInteractableModel?.playable ? 'Yes' : 'No';
   }
-};
+}

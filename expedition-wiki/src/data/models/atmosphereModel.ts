@@ -7,4 +7,4 @@ export class AtmosphereModel {
   constructor(init:Partial<AtmosphereModel>) {  
     Object.assign(this, init);
   }
-};
+}

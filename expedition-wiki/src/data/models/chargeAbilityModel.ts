@@ -17,4 +17,4 @@ export class ChargeAbilityModel {
   get armEquipmentItemTypeDescription(): string {
     return `${ ArmEquipmentItemType[this.armEquipmentItemType] }`;
   }
-};
+}

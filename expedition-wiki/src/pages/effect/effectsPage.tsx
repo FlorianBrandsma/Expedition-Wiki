@@ -20,6 +20,8 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function EffectsPage() {
 
+  document.title = 'Effects - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [searchParams] = useSearchParams();

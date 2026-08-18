@@ -8,4 +8,4 @@ export class ClassModel {
   constructor(init:Partial<ClassModel>) {  
     Object.assign(this, init);
   }
-};
+}

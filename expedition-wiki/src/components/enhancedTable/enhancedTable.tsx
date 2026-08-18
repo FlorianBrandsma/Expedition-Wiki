@@ -26,7 +26,7 @@ function EnhancedTableHead<T>(props: EnhancedTableHeadProps<T>) {
   
   const createSortHandler = (property: keyof T) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
-  };
+  }
 
   return (
     <TableHead>
@@ -129,16 +129,16 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
+  }
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
-  };
+  }
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
+  }
 
   const visibleRows = React.useMemo(() => {
 

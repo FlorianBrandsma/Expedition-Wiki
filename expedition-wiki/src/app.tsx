@@ -25,6 +25,8 @@ import MenuBG from './images/MenuBG.png'
 
 export default function App() {
 
+  document.title = 'Expedition Wiki';
+
   document.body.style.backgroundImage     = `linear-gradient( #FFFF001A), url(${ MenuBG })`;
   document.body.style.backgroundSize      = "cover";
   document.body.style.backgroundRepeat    = "no-repeat";

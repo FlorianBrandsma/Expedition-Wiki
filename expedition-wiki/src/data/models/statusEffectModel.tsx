@@ -131,4 +131,4 @@ export class StatusEffectModel {
       case 'Cluster':   return this.clusterStatusEffectModel  !.description;
     }
   }
-};
+}

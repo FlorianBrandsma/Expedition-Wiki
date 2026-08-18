@@ -21,6 +21,8 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function ItemsPage() {
 
+  document.title = 'Items - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [searchParams] = useSearchParams();

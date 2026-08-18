@@ -30,7 +30,7 @@ export default function ModelDialog(props: ModelDialogProps) {
 
     /* Reset component to stop active physics */
     setOrbitControlsKey((prev) => prev + 1);
-  };
+  }
 
   /* Can be updated with other pivot types when needed */
   const positionY: number = (() => {

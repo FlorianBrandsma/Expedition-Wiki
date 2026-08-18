@@ -12,4 +12,4 @@ export class ItemComponentModel {
   constructor(init:Partial<ItemComponentModel>) {  
     Object.assign(this, init);
   }
-};
+}

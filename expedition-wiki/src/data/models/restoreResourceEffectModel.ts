@@ -20,4 +20,4 @@ export class RestoreResourceEffectModel {
 
     return `Restore ${ResourceType[this.resourceEffectModel.resourceType].toLowerCase()} by ${amount}${amountTypeSymbol}`
   }
-};
+}

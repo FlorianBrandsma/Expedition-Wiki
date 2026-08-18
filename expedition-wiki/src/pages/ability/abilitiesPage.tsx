@@ -20,16 +20,18 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function AbilitiesPage() {
 
+  document.title = 'Abilities - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [name,               setName]               = useState<string>('');
-  const [abilityType,         setAbilityType]         = useState<number[]>([]);
-  const [chargeAbilityType, setChargeAbilityType] = useState<number[]>([]);
-  const [dischargeAbilityType,   setDischargeAbilityType]   = useState<number[]>([]);
+  const [name,                 setName]                 = useState<string>('');
+  const [abilityType,          setAbilityType]          = useState<number[]>([]);
+  const [chargeAbilityType,    setChargeAbilityType]    = useState<number[]>([]);
+  const [dischargeAbilityType, setDischargeAbilityType] = useState<number[]>([]);
 
   const [nameInput, setNameInput] = useState<string>('');
   

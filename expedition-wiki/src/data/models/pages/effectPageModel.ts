@@ -48,4 +48,4 @@ export class EffectPageModel {
 
     this.effectEventModelList         = this.effectEventModelList        .map((model) => new EffectEventModel        (model));
   }
-};
+}

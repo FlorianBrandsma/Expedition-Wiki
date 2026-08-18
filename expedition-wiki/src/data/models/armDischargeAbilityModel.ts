@@ -11,4 +11,4 @@ export class ArmDischargeAbilityModel {
   get armEquipmentItemTypeDescription(): string {
     return `${ ArmEquipmentItemType[this.armEquipmentItemType] }`;
   }
-};
+}

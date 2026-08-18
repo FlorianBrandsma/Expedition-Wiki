@@ -58,4 +58,4 @@ export class AbilityModel {
       case 'Discharge': return this.dischargeAbilityModel!.armEquipmentItemTypeDescription;
     }
   }
-};
+}

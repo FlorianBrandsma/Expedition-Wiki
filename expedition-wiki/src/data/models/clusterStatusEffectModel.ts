@@ -21,4 +21,4 @@ export class ClusterStatusEffectModel {
   get effectModel(): EffectModel {
     return this.effectModelList[0];
   }
-};
+}

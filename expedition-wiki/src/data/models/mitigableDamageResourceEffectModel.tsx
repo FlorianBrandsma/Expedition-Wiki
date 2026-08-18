@@ -44,4 +44,4 @@ export class MitigableDamageResourceEffectModel {
       </Box>
     )
   }
-};
+}

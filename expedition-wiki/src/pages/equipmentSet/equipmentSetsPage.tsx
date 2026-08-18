@@ -18,6 +18,8 @@ import ExLink from '../../components/exLink/exLink';
 
 export default function EquipmentSetsPage() {
 
+  document.title = 'Sets - Expedition Wiki';
+
   const { gameModel } = useGameContext();
 
   const [name, setName] = useState<string>('');

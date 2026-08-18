@@ -41,12 +41,12 @@ function BaseAutoComplete({...props}) {
     	  setOptions(refetchGameQuery.data);
 
     })();
-  };
+  }
 
   const handleClose = () => {
     setOpen(false);
     setOptions([]);
-  };
+  }
 
   const handleSelection = (option:GameModel) => {
 

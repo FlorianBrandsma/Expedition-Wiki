@@ -42,4 +42,4 @@ export class DamageResourceEffectModel {
       case 'Unmitigable': return this.unmitigableDamageResourceEffectModel!.description(stack);
     }
   }
-};
+}

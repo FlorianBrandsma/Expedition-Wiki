@@ -11,4 +11,4 @@ export class CurrencyItemModel {
   constructor(init:Partial<CurrencyItemModel>) {  
     Object.assign(this, init);
   }
-};
+}

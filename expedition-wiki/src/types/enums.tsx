@@ -61,6 +61,50 @@ export const ElementType = [
 
 export type ElementType = typeof ElementType[number];
 
+export const CaseConditionType = [
+  'Resource',
+  'Effect',
+  'Item',
+  'Faction',
+  'Character',
+  'Companion',
+  'Task',
+  'Combat',
+  'Loot'
+] as const;
+
+export const CaseConditionTargetType = [
+  'Self',
+  'Opponent'
+] as const;
+
+export const SpatialInequalityType = [
+  'Above',
+  'Below'
+] as const;
+
+export const QuantitativeInequalityType = [
+  'More than',
+  'Fewer than'
+] as const;
+
+export const AbsoluteInequalityType = [
+  'Highest',
+  'Lowest'
+] as const;
+
+export const CompanionCaseConditionPartyState = [
+  'Either',
+  'Active',
+  'Inactive'
+] as const;
+
+export const CombatCaseConditionEngagementType = [
+  'Either',
+  'Engaged',
+  'Unengaged'
+] as const;
+
 export const TextReferenceType = [
   'Effect',
   'Ability',
@@ -265,6 +309,15 @@ export const AgentInteractableType = [
 export const CharacterAgentInteractableType = [
   'Non-playable',
   'Playable'
+] as const;
+
+export const RarityType =
+[
+  'Always',
+  'Common',
+  'Uncommon',
+  'Rare',
+  'Very rare'
 ] as const;
 
 export const CombatState = [

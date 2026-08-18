@@ -13,4 +13,4 @@ export class EffectEventModel {
   get typeDescription(): string {
     return 'Effect Event';
   }
-};
+}

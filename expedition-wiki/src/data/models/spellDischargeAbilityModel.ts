@@ -12,4 +12,4 @@ export class SpellDischargeAbilityModel {
   constructor(init:Partial<SpellDischargeAbilityModel>) {  
     Object.assign(this, init);
   }
-};
+}

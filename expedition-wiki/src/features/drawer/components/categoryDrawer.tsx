@@ -75,7 +75,7 @@ function CustomListItem(props: CustomListItemProps) {
 
   const handleClick = () => {
     setOpen(!open);
-  };
+  }
 
   const location = useLocation();
 

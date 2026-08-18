@@ -5,19 +5,20 @@ import { useItemPageContext } from '../itemPageContext';
 import { ItemModel } from '../../../data/models/itemModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import RequiredItemTable from '../../../components/requiredItemTable/requiredItemTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function ItemCraftComponentSegment() {
+export default function ItemSourceScrapSegment() {
 
   const itemPageModel = useItemPageContext();
-  const { componentItemModelList } = itemPageModel;
+  const { scrapComponentItemModelList } = itemPageModel;
 
   const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
       id: 'name', 
-      label: 'Name', 
+      label: 'Item', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -27,15 +28,18 @@ export default function ItemCraftComponentSegment() {
       )
     },
     {
-      id: 'quantity',
-      label: 'Quantity',
-      align: 'right'
+      id: 'itemModelList',
+      label: 'Components',
+      align: 'left',
+      render: (row) => (
+        <RequiredItemTable itemModelList={row.componentItemModelList(row.itemComponentType)} />
+      )
     }
   ], [itemPageModel]);
 
   return (
     <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <EnhancedTable rowKey="id" rows={componentItemModelList} headCells={headers} />
+      <EnhancedTable rowKey="id" rows={scrapComponentItemModelList} headCells={headers} />
     </Box>
   )
 }

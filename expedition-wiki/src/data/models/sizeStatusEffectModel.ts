@@ -14,4 +14,4 @@ export class SizeStatusEffectModel {
 
     return `${percentageChange >= 0 ? 'Increase' : 'Reduce'} size by ${percentageChange >= 0 ? percentageChange : Math.abs(percentageChange) * stack}%`;
   }
-};
+}
