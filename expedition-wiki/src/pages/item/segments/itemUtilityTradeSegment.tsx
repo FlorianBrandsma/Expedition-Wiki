@@ -69,7 +69,7 @@ export default function ItemUtilityTradeSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ display:'inline-block', minWidth: '200px' }}>
+    <Box sx={{ minWidth: '200px' }}>
       <EnhancedTable rowKey="id" rows={tradeItemEventItemModelList} headCells={headers} />
     </Box>
   )

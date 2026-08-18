@@ -35,7 +35,7 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
   ], [itemComponentModelList]);
 
   return (
-    <Box sx={{ display:'inline-block', minWidth: '200px' }}>
+    <Box sx={{ minWidth: '200px' }}>
       <EnhancedTable rowKey="id" rows={itemComponentModelList} headCells={headers} />
     </Box>
   )

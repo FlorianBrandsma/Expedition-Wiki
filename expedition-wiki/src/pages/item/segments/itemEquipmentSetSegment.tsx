@@ -29,7 +29,7 @@ export default function ItemEquipmentSetSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ display:'inline-block', minWidth: '200px' }}>
+    <Box sx={{ minWidth: '200px' }}>
       <EnhancedTable rowKey="id" rows={equipmentSetModelList} headCells={headers} />
     </Box>
   )

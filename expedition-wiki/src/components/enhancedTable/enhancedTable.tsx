@@ -36,6 +36,7 @@ function EnhancedTableHead<T>(props: EnhancedTableHeadProps<T>) {
             key={String(headCell.id)}
             align={headCell.align}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{ whiteSpace: 'nowrap' }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -77,6 +78,7 @@ function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
           <TableCell
             key={String(headCell.id)}
             align={headCell.align}
+            sx={{ whiteSpace: 'nowrap' }}
           >
             <Typography
               sx={{
@@ -154,8 +156,14 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
   );
 
   return (
-    <Paper sx={{ borderRadius: 0, width: '100%' }} >
-      <TableContainer>
+    <Paper 
+      sx={{ 
+        display:'inline-block', 
+        borderRadius: 0, 
+        maxWidth: '100%'
+      }} 
+    >
+      <TableContainer sx={{ overflowX: 'auto', maxWidth: '100%' }}>
         <ExTable size={'small'}>
           {enableOrder ? (
             <EnhancedTableHead
@@ -184,6 +192,7 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
                           component={cellIndex === 0 ? 'th' : 'td'}
                           id={cellIndex === 0 ? labelId : undefined}
                           scope={cellIndex === 0 ? 'row' : undefined}
+                          sx={{ whiteSpace: 'nowrap' }}
                         >
                           {cell.render ? (
                             cell.render(row)

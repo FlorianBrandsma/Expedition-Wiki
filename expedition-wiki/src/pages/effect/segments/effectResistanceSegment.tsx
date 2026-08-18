@@ -39,7 +39,7 @@ export default function EffectResistanceSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ display: 'inline-block', minWidth: '200px' }}>
+    <Box sx={{ minWidth: '200px' }}>
       <EnhancedTable rowKey='id' rows={resistStatusEffectModelList} headCells={headers} />
     </Box>
   )

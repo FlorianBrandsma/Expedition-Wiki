@@ -47,7 +47,7 @@ export default function ItemSourceClaimSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ display:'inline-block', minWidth: '200px' }}>
+    <Box sx={{ minWidth: '200px' }}>
       <EnhancedTable rowKey="id" rows={sourceClaimItemEventItemModelList} headCells={headers} />
     </Box>
   )

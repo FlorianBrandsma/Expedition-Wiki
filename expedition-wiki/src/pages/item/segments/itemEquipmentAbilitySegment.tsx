@@ -34,7 +34,7 @@ export default function ItemEquipmentAbilitySegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ display: 'inline-block', minWidth: '200px' }}>
+    <Box sx={{ minWidth: '200px' }}>
       <EnhancedTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
     </Box>
   )
