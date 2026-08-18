@@ -33,6 +33,7 @@ export default function ItemUtilityRelinquishSegment() {
         id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
+        sx: { whiteSpace: 'normal' },
         render: (row) => (
           <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
         )

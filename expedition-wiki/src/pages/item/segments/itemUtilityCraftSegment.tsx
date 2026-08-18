@@ -46,6 +46,7 @@ export default function ItemUtilityCraftSegment() {
         id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
+        sx: { whiteSpace: 'normal' },
         render: (row) => (
           <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
         )

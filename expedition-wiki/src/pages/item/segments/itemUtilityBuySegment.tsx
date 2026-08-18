@@ -60,7 +60,8 @@ export default function ItemUtilityBuySegment() {
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
-        align: 'center'
+        align: 'center',
+        sx: { whiteSpace: 'normal' },
       })
     }
 
@@ -69,6 +70,7 @@ export default function ItemUtilityBuySegment() {
         id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
+        sx: { whiteSpace: 'normal' },
         render: (row) => (
           <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
         )

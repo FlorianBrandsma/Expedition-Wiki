@@ -30,8 +30,9 @@ export default function EffectResistanceSegment() {
       id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
+      sx: { whiteSpace: 'normal' },
       render: (row) => (
-        <Box sx={{ maxWidth:'200px'}}>
+        <Box sx={{ maxWidth: '200px' }}>
           {row.descriptionComponent(effectModel.stack)}
         </Box>
       )

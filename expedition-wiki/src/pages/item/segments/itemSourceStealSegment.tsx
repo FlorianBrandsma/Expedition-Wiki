@@ -32,7 +32,8 @@ export default function ItemSourceStealSegment() {
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
-        align: 'center'
+        align: 'center',
+        sx: { whiteSpace: 'normal' },
       })
     }
 
@@ -47,6 +48,7 @@ export default function ItemSourceStealSegment() {
         id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
+        sx: { whiteSpace: 'normal' },
         render: (row) => (
           <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
         )

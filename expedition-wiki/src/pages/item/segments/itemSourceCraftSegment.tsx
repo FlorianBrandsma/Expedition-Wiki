@@ -44,7 +44,8 @@ export default function ItemSourceCraftSegment() {
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
-        align: 'center'
+        align: 'center',
+        sx: { whiteSpace: 'normal' },
       })
     }
 
@@ -53,6 +54,7 @@ export default function ItemSourceCraftSegment() {
         id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
+        sx: { whiteSpace: 'normal' },
         render: (row) => (
           <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
         )

@@ -35,6 +35,7 @@ export default function EffectClusterEffectSegment() {
       id: 'type',
       label: 'Description',
       align: 'left',
+      sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'200px'}}>
           {row.descriptionComponent()}

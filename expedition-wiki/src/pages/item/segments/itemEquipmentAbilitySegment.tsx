@@ -29,7 +29,8 @@ export default function ItemEquipmentAbilitySegment() {
     {
       id: 'abilityDescription',
       label: 'Description',
-      align: 'left'
+      align: 'left',
+      sx: { whiteSpace: 'normal' }
     }
   ], [itemPageModel]);
 

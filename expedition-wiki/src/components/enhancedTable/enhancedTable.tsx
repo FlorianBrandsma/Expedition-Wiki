@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
+import { alpha, type SxProps, type Theme } from '@mui/material/styles';
 import { Paper, Typography, TableContainer, TableHead, TableBody, TableRow, TableCell, TableSortLabel, TablePagination } from '@mui/material';
 import ExTable from '../../components/exTable/exTable';
 
@@ -7,6 +7,7 @@ export interface HeadCell<T> {
   id: keyof T;
   label: string;
   align: 'right' | 'left' | 'center';
+  sx?: SxProps<Theme>
   render?: (row: T) => React.ReactNode;
 }
 
@@ -36,7 +37,7 @@ function EnhancedTableHead<T>(props: EnhancedTableHeadProps<T>) {
             key={String(headCell.id)}
             align={headCell.align}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ whiteSpace: 'nowrap' }}
+            sx={{ whiteSpace: 'nowrap', ...headCell.sx }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -78,7 +79,7 @@ function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
           <TableCell
             key={String(headCell.id)}
             align={headCell.align}
-            sx={{ whiteSpace: 'nowrap' }}
+            sx={{ whiteSpace: 'nowrap', ...headCell.sx }}
           >
             <Typography
               sx={{
@@ -192,7 +193,7 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
                           component={cellIndex === 0 ? 'th' : 'td'}
                           id={cellIndex === 0 ? labelId : undefined}
                           scope={cellIndex === 0 ? 'row' : undefined}
-                          sx={{ whiteSpace: 'nowrap' }}
+                          sx={{ whiteSpace: 'nowrap', ...cell.sx }}
                         >
                           {cell.render ? (
                             cell.render(row)
