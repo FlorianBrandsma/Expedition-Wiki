@@ -27,9 +27,14 @@ export default function EffectSourceAbilitySegment() {
       )
     },
     {
+      id: 'description',
+      label: 'Description',
+      align: 'left'
+    },
+    {
       id: 'effectStack',
       label: 'Stack',
-      align: 'right'
+      align: 'center'
     }
   ], [effectPageModel]);
 

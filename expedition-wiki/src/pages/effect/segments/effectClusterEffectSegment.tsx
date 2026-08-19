@@ -27,11 +27,6 @@ export default function EffectClusterEffectSegment() {
       )
     },
     {
-      id: 'typeDescription',
-      label: 'Type',
-      align: 'left'
-    },
-    {
       id: 'type',
       label: 'Description',
       align: 'left',

@@ -24,7 +24,7 @@ export default function EffectSourceAtmosphereSegment() {
     {
       id: 'statusEffectStack',
       label: 'Stack',
-      align: 'right'
+      align: 'center'
     }
   ], [effectPageModel]);
 

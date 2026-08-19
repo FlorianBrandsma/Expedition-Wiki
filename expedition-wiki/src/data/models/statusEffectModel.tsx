@@ -117,8 +117,6 @@ export class StatusEffectModel {
 
   descriptionComponent(stack?: number): React.ReactNode {
 
-    console.log(this.effectName);
-    
     const currentStack = stack ?? this.stack;
 
     switch (StatusEffectType[this.type])

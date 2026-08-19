@@ -29,7 +29,7 @@ export default function EffectSourceEquipmentSegment() {
     {
       id: 'statusEffectStack',
       label: 'Stack',
-      align: 'right'
+      align: 'center'
     }
   ], [effectPageModel]);
 

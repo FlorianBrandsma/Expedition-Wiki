@@ -21,7 +21,7 @@ export default function EffectSourceEventSegment() {
     {
       id: 'effectStack',
       label: 'Stack',
-      align: 'right'
+      align: 'center'
     }
   ], [effectPageModel]);
 
