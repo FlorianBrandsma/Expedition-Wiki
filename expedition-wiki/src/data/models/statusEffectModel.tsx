@@ -107,12 +107,18 @@ export class StatusEffectModel {
     return this.clusterStatusEffectModelList[0];
   }
 
+  get clusterStatusEffecStatusEffectModelList(): StatusEffectModel[] {  
+    return this.clusterStatusEffectModel?.statusEffectModelList ?? [];
+  }
+
   get typeDescription(): string {
     return `${ StatusEffectType[this.type] } Status`;
   }
 
   descriptionComponent(stack?: number): React.ReactNode {
 
+    console.log(this.effectName);
+    
     const currentStack = stack ?? this.stack;
 
     switch (StatusEffectType[this.type])

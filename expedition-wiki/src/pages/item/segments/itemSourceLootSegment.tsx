@@ -5,7 +5,7 @@ import { useItemPageContext } from '../itemPageContext';
 import type { AgentInteractableLootTableModel } from '../../../data/models/agentInteractableLootTableModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import CaseConditionTable from '../../../components/caseConditionTable/caseConditionTable';
+import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -53,7 +53,11 @@ export default function ItemSourceLootSegment() {
         align: 'left',
         sx: { whiteSpace: 'normal' },
         render: (row) => (
-          <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
+          <CellTable 
+            bulleted
+            list={row.caseConditionModelList} 
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+          />
         )
       })
     }

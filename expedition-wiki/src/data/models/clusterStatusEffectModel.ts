@@ -1,4 +1,4 @@
-import { EffectModel } from "./effectModel";
+import { StatusEffectModel } from "./statusEffectModel";
 
 export class ClusterStatusEffectModel {
 
@@ -10,15 +10,11 @@ export class ClusterStatusEffectModel {
 
   statusEffectIconResourceName!: string;
 
-  effectModelList!: EffectModel[];
+  statusEffectModelList!: StatusEffectModel[];
 
   constructor(init:Partial<ClusterStatusEffectModel>) {  
     Object.assign(this, init);
 
-    this.effectModelList = this.effectModelList.map((model) => new EffectModel(model));
-  }
-
-  get effectModel(): EffectModel {
-    return this.effectModelList[0];
+    this.statusEffectModelList = this.statusEffectModelList.map((model) => new StatusEffectModel(model));
   }
 }

@@ -5,8 +5,8 @@ import { useItemPageContext } from '../itemPageContext';
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import CellTable from '../../../components/cellTable/cellTable';
 import { Box, Typography } from '@mui/material';
-import CaseConditionTable from '../../../components/caseConditionTable/caseConditionTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 
@@ -61,7 +61,7 @@ export default function ItemUtilityBuySegment() {
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
         align: 'center',
-        sx: { whiteSpace: 'normal' },
+        sx: { whiteSpace: 'normal' }
       })
     }
 
@@ -72,7 +72,11 @@ export default function ItemUtilityBuySegment() {
         align: 'left',
         sx: { whiteSpace: 'normal' },
         render: (row) => (
-          <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
+          <CellTable 
+            bulleted
+            list={row.caseConditionModelList} 
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+          />
         )
       })
     }

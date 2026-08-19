@@ -5,7 +5,8 @@ import { useItemPageContext } from '../itemPageContext';
 import { ItemModel } from '../../../data/models/itemModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import RequiredItemTable from '../../../components/requiredItemTable/requiredItemTable';
+import CellTable from '../../../components/cellTable/cellTable';
+import RequiredItem from '../components/requiredItem';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -32,7 +33,10 @@ export default function ItemUtilityComponentSegment() {
       label: 'Components',
       align: 'left',
       render: (row) => (
-        <RequiredItemTable itemModelList={row.componentItemModelList(row.itemComponentType)} />
+        <CellTable 
+          list={row.componentItemModelList(row.itemComponentType)} 
+          component={(itemModel) => <RequiredItem itemModel={itemModel} />}
+        />
       )
     }
   ], [itemPageModel]);

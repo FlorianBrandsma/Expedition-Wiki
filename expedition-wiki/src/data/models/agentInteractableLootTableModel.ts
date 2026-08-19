@@ -25,7 +25,7 @@ export class AgentInteractableLootTableModel {
   }
 
   get quantityDescription(): string {
-    return `${this.itemMinimumQuantity}${(this.itemMaximumQuantity > 0 ? `-${this.itemMaximumQuantity}` : '')}`;
+    return `${this.itemMinimumQuantity}${(this.itemMaximumQuantity > this.itemMinimumQuantity ? `-${this.itemMaximumQuantity}` : '')}`;
   }
 
   get rarityDescription(): string {

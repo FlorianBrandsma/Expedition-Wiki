@@ -5,8 +5,8 @@ import { useItemPageContext } from '../itemPageContext';
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import RequiredItemTable from '../../../components/requiredItemTable/requiredItemTable';
-import CaseConditionTable from '../../../components/caseConditionTable/caseConditionTable';
+import CellTable from '../../../components/cellTable/cellTable';
+import RequiredItem from '../components/requiredItem';
 import { Box } from '@mui/material';
 
 export default function ItemSourceTradeSegment() {
@@ -30,7 +30,10 @@ export default function ItemSourceTradeSegment() {
         label: 'Relinquish',
         align: 'center',
         render: (row) => (
-          <RequiredItemTable itemModelList={row.tradeItemEventItemRelinquishItemModelList} />
+          <CellTable 
+            list={row.tradeItemEventItemRelinquishItemModelList} 
+            component={(itemModel) => <RequiredItem itemModel={itemModel} />}
+          />
         )
       })
     }
@@ -40,7 +43,7 @@ export default function ItemSourceTradeSegment() {
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
         align: 'center',
-        sx: { whiteSpace: 'normal' },
+        sx: { whiteSpace: 'normal' }
       })
     }
 
@@ -51,7 +54,11 @@ export default function ItemSourceTradeSegment() {
         align: 'left',
         sx: { whiteSpace: 'normal' },
         render: (row) => (
-          <CaseConditionTable caseConditionModelList={row.caseConditionModelList} />
+          <CellTable 
+            bulleted
+            list={row.caseConditionModelList} 
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+          />
         )
       })
     }
