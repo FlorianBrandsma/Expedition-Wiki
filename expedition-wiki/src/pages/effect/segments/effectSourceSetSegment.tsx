@@ -20,7 +20,7 @@ export default function EffectSourceSetSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <Box sx={{ display: 'flex', alignEffects: 'center', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.iconResourceName} size={20} />
           <ExLink pageName={'set'} name={row.name} />
         </Box>
@@ -34,7 +34,7 @@ export default function EffectSourceSetSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey='id' rows={equipmentSetModelList} headCells={headers} />
     </Box>
   )

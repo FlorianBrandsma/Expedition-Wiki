@@ -29,7 +29,7 @@ export default function ItemUtilityRestSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={restEventModelList} headCells={headers} />
     </Box>
   )

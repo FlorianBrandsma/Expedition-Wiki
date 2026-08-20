@@ -20,7 +20,7 @@ export default function EffectClusterEffectSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <Box sx={{ display: 'flex', alignEffects: 'center', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.effectIconResourceName} size={20} />
           <ExLink pageName={'effect'} name={row.effectName} />
         </Box>
@@ -40,7 +40,7 @@ export default function EffectClusterEffectSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )

@@ -5,7 +5,7 @@ import { useGameContext } from '../../context/gameContext';
 import { ItemPageContext } from './itemPageContext';
 
 import { ItemPageModel } from '../../data/models/pages/itemPageModel';
-import { ItemPageParameters } from '../../data/parameters/itemPageParameters';
+import { ItemPageParameters } from '../../data/parameters/pages/itemPageParameters';
 import { getData } from '../../services/dataManager';
 
 import { ItemComponentType } from '../../types/enums';
@@ -83,15 +83,15 @@ export default function ItemPage() {
     tradeItemEventItemModelList,
     shopItemEventItemModelList,
     craftItemEventItemModelList,
-    relinquishItemEventItemModelList: relinquishItemEventModelList,
+    relinquishItemEventItemModelList,
     agentInteractableLootTableModelList,
     mailEventModelList,
-    sourceStealItemEventItemModelList: sourceStealItemEventModelList,
-    sourceClaimItemEventItemModelList: sourceClaimItemEventModelList,
-    sourceTradeItemEventItemModelList: sourceTradeItemEventModelList,
-    sourceShopItemEventItemModelList: sourceShopItemEventModelList,
-    sourceCraftItemEventItemModelList: sourceCraftItemEventModelList,
-    sourceDistributeItemEventItemModelList: sourceDistributeItemEventModelList,
+    sourceStealItemEventItemModelList,
+    sourceClaimItemEventItemModelList,
+    sourceTradeItemEventItemModelList,
+    sourceShopItemEventItemModelList,
+    sourceCraftItemEventItemModelList,
+    sourceDistributeItemEventItemModelList,
     itemModelList
   } = itemPageModel;
 
@@ -246,7 +246,7 @@ export default function ItemPage() {
     })
   }
 
-  if (relinquishItemEventModelList.length > 0) {
+  if (relinquishItemEventItemModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Relinquish',
       id: 'Relinquish',
@@ -287,7 +287,7 @@ export default function ItemPage() {
     })
   }
 
-  if (sourceStealItemEventModelList.length > 0) {
+  if (sourceStealItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Steal',
       id: 'Steal',
@@ -295,7 +295,7 @@ export default function ItemPage() {
     })
   }
 
-  if (sourceClaimItemEventModelList.length > 0) {
+  if (sourceClaimItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Claim',
       id: 'Claim',
@@ -303,7 +303,7 @@ export default function ItemPage() {
     })
   }
 
-  if (sourceTradeItemEventModelList.length > 0) {
+  if (sourceTradeItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Trade',
       id: 'Trade',
@@ -311,7 +311,7 @@ export default function ItemPage() {
     })
   }
 
-  if (sourceShopItemEventModelList.length > 0) {
+  if (sourceShopItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Buy',
       id: 'Buy',
@@ -327,7 +327,7 @@ export default function ItemPage() {
     })
   }
 
-  if (sourceCraftItemEventModelList.length > 0) {
+  if (sourceCraftItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Craft',
       id: 'Craft',
@@ -335,7 +335,7 @@ export default function ItemPage() {
     })
   }
 
-  if (sourceDistributeItemEventModelList.length > 0) {
+  if (sourceDistributeItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Distribute',
       id: 'Distribute',

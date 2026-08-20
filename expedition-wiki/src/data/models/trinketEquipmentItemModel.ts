@@ -8,7 +8,7 @@ export class TrinketEquipmentItemModel {
     Object.assign(this, init);
   }
 
-  typeDescription(): string {
+  get typeDescription(): string {
     return TrinketEquipmentItemType[this.type];
   }
 }

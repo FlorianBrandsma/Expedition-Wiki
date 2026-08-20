@@ -160,7 +160,8 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
     <Paper 
       sx={{ 
         display:'inline-block', 
-        borderRadius: 0, 
+        borderRadius: 0,
+        minWidth: '150px',
         maxWidth: '100%'
       }} 
     >

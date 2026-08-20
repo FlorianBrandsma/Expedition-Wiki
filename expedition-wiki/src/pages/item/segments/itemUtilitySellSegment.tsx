@@ -44,7 +44,7 @@ export default function ItemUtilitySellSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={shopItemEventModelList} headCells={headers} />
     </Box>
   )

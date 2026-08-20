@@ -1,6 +1,8 @@
 import { AbilityType } from "../../types/enums";
+import { ActionDelayModel } from "./actionDelayModel";
 import { ChargeAbilityModel } from "./chargeAbilityModel";
 import { DischargeAbilityModel } from "./dischargeAbilityModel";
+import { EffectModel } from "./effectModel";
 
 export class AbilityModel {
   
@@ -24,6 +26,9 @@ export class AbilityModel {
   chargeAbilityModelList!:    ChargeAbilityModel[];
   dischargeAbilityModelList!: DischargeAbilityModel[];
 
+  effectModelList!: EffectModel[];
+  actionDelayModelList!: ActionDelayModel[];
+
   constructor(init:Partial<AbilityModel>) {  
     Object.assign(this, init);
 
@@ -31,6 +36,9 @@ export class AbilityModel {
 
     this.chargeAbilityModelList    = this.chargeAbilityModelList   .map((model) => new ChargeAbilityModel   (model));
     this.dischargeAbilityModelList = this.dischargeAbilityModelList.map((model) => new DischargeAbilityModel(model));
+
+    this.effectModelList           = this.effectModelList          .map((model) => new EffectModel          (model));
+    this.actionDelayModelList      = this.actionDelayModelList     .map((model) => new ActionDelayModel     (model));
   }
 
   get chargeAbilityModel(): ChargeAbilityModel {  
@@ -57,5 +65,22 @@ export class AbilityModel {
       case 'Charge':    return this.chargeAbilityModel   !.armEquipmentItemTypeDescription;
       case 'Discharge': return this.dischargeAbilityModel!.armEquipmentItemTypeDescription;
     }
+  }
+
+  get targetTypeDescription(): string {
+    return this.dischargeAbilityModel?.targetTypeDescription ?? ''; 
+  }
+
+  get affectedTypeDescription(): string {
+
+    switch (AbilityType[this.type])
+    {
+      case 'Charge':    return this.chargeAbilityModel   !.relationshipTypeDescription;
+      case 'Discharge': return this.dischargeAbilityModel!.relationshipTypeDescription;
+    }
+  }
+
+  get mana(): number {
+    return this.dischargeAbilityModel?.spellDischargeAbilityModel?.mana ?? 0;
   }
 }

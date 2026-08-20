@@ -10,7 +10,7 @@ import { Box } from '@mui/material';
 export default function EffectSourceAtmosphereSegment() {
 
   const effectPageModel = useEffectPageContext();
-  const { agentInteractableModelList } = effectPageModel;
+  const { atmosphereModelList } = effectPageModel;
 
   const headers = useMemo<HeadCell<AtmosphereModel>[]>(() => [
     { 
@@ -29,8 +29,8 @@ export default function EffectSourceAtmosphereSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
-      <EnhancedTable rowKey='id' rows={agentInteractableModelList} headCells={headers} />
+    <Box>
+      <EnhancedTable rowKey='id' rows={atmosphereModelList} headCells={headers} />
     </Box>
   )
 }

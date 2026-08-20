@@ -42,7 +42,7 @@ export default function ItemUtilityComponentSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={createComponentItemModelList} headCells={headers} />
     </Box>
   )

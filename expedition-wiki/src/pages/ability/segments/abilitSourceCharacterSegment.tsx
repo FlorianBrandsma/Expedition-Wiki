@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 
-import { useItemPageContext } from '../itemPageContext';
+import { useAbilityPageContext } from '../abilityPageContext';
 
 import type { CharacterAgentInteractableModel } from '../../../data/models/characterAgentInteractableModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
+import ExIcon from '../../../components/exIcon/exIcon';
 import { Box } from '@mui/material';
 
-export default function ItemEquipmentEquippedSegment() {
+export default function AbilitySourceCharacterSegment() {
 
-  const itemPageModel = useItemPageContext();
-  const { characterAgentInteractableModelList } = itemPageModel;
+  const abilityPageModel = useAbilityPageContext();
+  const { characterAgentInteractableModelList } = abilityPageModel;
 
   const headers = useMemo<HeadCell<CharacterAgentInteractableModel>[]>(() => [
     { 
@@ -25,13 +25,8 @@ export default function ItemEquipmentEquippedSegment() {
           <ExLink pageName={'interactable'} name={row.agentInteractableName} />
         </Box>
       )
-    },
-    {
-      id: 'equipmentSlotTypeDescription',
-      label: 'Slot',
-      align: 'left'
     }
-  ], [itemPageModel]);
+  ], [abilityPageModel]);
 
   return (
     <Box>

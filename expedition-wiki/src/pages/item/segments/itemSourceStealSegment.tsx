@@ -64,7 +64,7 @@ export default function ItemSourceStealSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={sourceStealItemEventItemModelList} headCells={headers} />
     </Box>
   )

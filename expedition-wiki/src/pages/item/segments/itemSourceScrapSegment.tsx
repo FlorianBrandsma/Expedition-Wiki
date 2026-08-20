@@ -42,7 +42,7 @@ export default function ItemSourceScrapSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={scrapComponentItemModelList} headCells={headers} />
     </Box>
   )

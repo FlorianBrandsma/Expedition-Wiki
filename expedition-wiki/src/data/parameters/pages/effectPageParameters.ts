@@ -1,4 +1,4 @@
-import type { IParameters } from "./interfaces";
+import type { IParameters } from "../interfaces";
 
 export class EffectPageParameters implements IParameters {
 

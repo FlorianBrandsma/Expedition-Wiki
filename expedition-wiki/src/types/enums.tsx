@@ -61,6 +61,11 @@ export const ElementType = [
 
 export type ElementType = typeof ElementType[number];
 
+export const ActionDelayType = [
+  'Cast',
+  'Channel'
+] as const;
+
 export const CaseConditionType = [
   'Resource',
   'Effect',
@@ -311,13 +316,28 @@ export const CharacterAgentInteractableType = [
   'Playable'
 ] as const;
 
-export const RarityType =
-[
+export const RarityType = [
   'Always',
   'Common',
   'Uncommon',
   'Rare',
   'Very rare'
+] as const;
+
+export const AffiliationType = [
+  'Faction',
+  'Ally',
+  'Opponent',
+  'Neutral'
+] as const;
+
+export const RelationshipType = [
+  'Any',
+  'Self',
+  'Party',
+  'Ally',
+  'Opponent',
+  'Neutral'
 ] as const;
 
 export const CombatState = [

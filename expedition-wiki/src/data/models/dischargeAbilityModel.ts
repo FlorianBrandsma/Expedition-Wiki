@@ -1,4 +1,4 @@
-import { DischargeAbilityType } from "../../types/enums";
+import { CombatState, DischargeAbilityType, RelationshipType } from "../../types/enums";
 import { ArmDischargeAbilityModel } from "./armDischargeAbilityModel";
 import { SpellDischargeAbilityModel } from "./spellDischargeAbilityModel";
 
@@ -43,5 +43,13 @@ export class DischargeAbilityModel {
 
   get armEquipmentItemTypeDescription(): string {
     return this.armDischargeAbilityModel?.armEquipmentItemTypeDescription ?? '';
+  }
+
+  get targetTypeDescription(): string {
+    return `${RelationshipType[this.targetRelationshipType]}, ${CombatState[this.targetCombatState].toLowerCase()}`;
+  }
+
+  get relationshipTypeDescription(): string {
+    return `${RelationshipType[this.affectedRelationshipType]}, ${CombatState[this.affectedCombatState].toLowerCase()}`;
   }
 }

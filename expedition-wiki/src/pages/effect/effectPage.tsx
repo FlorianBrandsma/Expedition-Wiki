@@ -5,7 +5,7 @@ import { useGameContext } from '../../context/gameContext';
 import { EffectPageContext } from './effectPageContext';
 
 import { EffectPageModel } from '../../data/models/pages/effectPageModel';
-import { EffectPageParameters } from '../../data/parameters/effectPageParameters';
+import { EffectPageParameters } from '../../data/parameters/pages/effectPageParameters';
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
@@ -63,8 +63,6 @@ export default function EffectPage() {
     clusterStatusEffectModelList,
     effectEventModelList
   } = effectPageModel;
-
-  
 
   if (eventModelList.length > 0) {
   

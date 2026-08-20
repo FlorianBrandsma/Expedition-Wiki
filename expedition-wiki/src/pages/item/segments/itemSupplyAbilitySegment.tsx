@@ -35,7 +35,7 @@ export default function ItemSupplyAbilitySegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey='id' rows={spellDischargeAbilityModelList} headCells={headers} />
     </Box>
   )

@@ -20,7 +20,7 @@ export default function EffectResistanceSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <Box sx={{ display: 'flex', alignEffects: 'center', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.statusEffectIconResourceName} size={20} />
           <ExLink pageName={'effect'} name={row.statusEffectName} />
         </Box>
@@ -40,7 +40,7 @@ export default function EffectResistanceSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box sx={{ mt: 1 }}>
       <EnhancedTable rowKey='id' rows={resistStatusEffectModelList} headCells={headers} />
     </Box>
   )

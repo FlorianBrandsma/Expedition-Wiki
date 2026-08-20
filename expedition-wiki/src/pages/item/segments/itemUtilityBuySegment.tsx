@@ -86,7 +86,7 @@ export default function ItemUtilityBuySegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={shopItemEventItemModelList} headCells={headers} />
     </Box>
   )

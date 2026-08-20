@@ -49,7 +49,7 @@ export default function ItemUtilityRelinquishSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={relinquishItemEventItemModelList} headCells={headers} />
     </Box>
   )

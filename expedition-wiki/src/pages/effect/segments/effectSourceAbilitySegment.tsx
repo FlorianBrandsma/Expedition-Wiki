@@ -20,7 +20,7 @@ export default function EffectSourceAbilitySegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <Box sx={{ display: 'flex', alignEffects: 'center', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.iconResourceName} size={20} />
           <ExLink pageName={'ability'} name={row.name} />
         </Box>
@@ -39,7 +39,7 @@ export default function EffectSourceAbilitySegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey='id' rows={abilityModelList} headCells={headers} />
     </Box>
   )

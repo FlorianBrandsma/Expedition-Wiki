@@ -67,7 +67,7 @@ export default function ItemSourceLootSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={agentInteractableLootTableModelList} headCells={headers} />
     </Box>
   )

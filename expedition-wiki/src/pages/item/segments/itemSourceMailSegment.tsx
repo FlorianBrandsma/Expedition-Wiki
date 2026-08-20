@@ -26,7 +26,7 @@ export default function ItemSourceMailSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={mailEventModelList} headCells={headers} />
     </Box>
   )

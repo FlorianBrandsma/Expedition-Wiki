@@ -1,4 +1,4 @@
-import { EffectType } from "../../types/enums";
+import { AbilityEffectTargetType, EffectType } from "../../types/enums";
 import { ResourceEffectModel } from "./resourceEffectModel";
 import { EventEffectModel } from "./eventEffectModel";
 import { StatusEffectModel } from "./statusEffectModel";
@@ -14,6 +14,10 @@ export class EffectModel {
 
   stack!: number;
   stackLimit!: number;
+
+  successChance!: number;
+
+  targetType!: number;
 
   resourceEffectModelList!: ResourceEffectModel[];
   eventEffectModelList!:    EventEffectModel[];
@@ -47,6 +51,14 @@ export class EffectModel {
       case 'Event':    return this.eventEffectModel   !.typeDescription;
       case 'Status':   return this.statusEffectModel  !.typeDescription;
     }
+  }
+
+  get targetTypeDescription(): string {
+    return `${AbilityEffectTargetType[this.targetType]}`;
+  }
+
+  get successChanceDescription(): string {
+    return `${this.successChance}%`;
   }
 
   descriptionComponent(stack?: number): React.ReactNode {

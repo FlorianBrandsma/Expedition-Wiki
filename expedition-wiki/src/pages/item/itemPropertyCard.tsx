@@ -86,19 +86,19 @@ export default function ItemPropertyCard() {
         {equipmentItemModel?.armEquipmentItemModel && (
           <ExCardTableRow 
             label='Arm Type' 
-            value={`${equipmentItemModel.armEquipmentItemModel.typeDescription()}, ${equipmentItemModel.armEquipmentItemModel.gripTypeDescription()}`}
+            value={`${equipmentItemModel.armEquipmentItemModel.typeDescription}, ${equipmentItemModel.armEquipmentItemModel.gripTypeDescription}`}
           />
         )}
         {equipmentItemModel?.gearEquipmentItemModel &&( 
           <ExCardTableRow 
             label='Gear Type' 
-            value={`${equipmentItemModel.gearEquipmentItemModel.materialTypeDescription()}, ${equipmentItemModel.gearEquipmentItemModel.typeDescription()}`}
+            value={`${equipmentItemModel.gearEquipmentItemModel.materialTypeDescription}, ${equipmentItemModel.gearEquipmentItemModel.typeDescription}`}
           />
         )}
         {equipmentItemModel?.trinketEquipmentItemModel && (
           <ExCardTableRow 
             label='Trinket Type' 
-            value={equipmentItemModel.trinketEquipmentItemModel.typeDescription()}
+            value={equipmentItemModel.trinketEquipmentItemModel.typeDescription}
           />
         )}
         {equipmentItemModel && (
@@ -149,7 +149,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Health'
-                url= '/images/icons/general/ResourceBox_Health.png'
+                url='/images/icons/general/ResourceBox_Health.png'
                 size={20}
                 alignment='flex-end'
               />
@@ -160,7 +160,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Mana'
-                url= '/images/icons/general/ResourceBox_Mana.png'
+                url='/images/icons/general/ResourceBox_Mana.png'
                 size={20}
                 alignment='flex-end'
               />

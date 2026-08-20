@@ -9,11 +9,11 @@ export class GearEquipmentItemModel {
     Object.assign(this, init);
   }
 
-  typeDescription(): string {
+  get typeDescription(): string {
     return GearEquipmentItemType[this.type];
   }
 
-  materialTypeDescription(): string {
+  get materialTypeDescription(): string {
     return GearEquipmentItemMaterialType[this.materialType];
   }
 }

@@ -21,7 +21,7 @@ export default function EffectEventSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box sx={{ mt: 1  }}>
       <EnhancedTable rowKey='id' rows={eventModelList} headCells={headers} />
     </Box>
   )

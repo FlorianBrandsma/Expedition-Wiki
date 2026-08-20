@@ -58,7 +58,7 @@ export default function ItemSourceDistributeSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box sx={{ minWidth: '200px' }}>
+    <Box>
       <EnhancedTable rowKey="id" rows={sourceDistributeItemEventItemModelList} headCells={headers} />
     </Box>
   )
