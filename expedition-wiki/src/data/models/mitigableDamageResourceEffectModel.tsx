@@ -39,7 +39,8 @@ export class MitigableDamageResourceEffectModel {
     return (
       <Box 
         component='span' 
-        sx={{ display: 'inline'}}>
+        sx={{ display: 'inline'}}
+      >
         {`Deal ${amount} ${ResourceDamageType[this.damageType].toLowerCase()}`}{element}{` damage to ${ResourceType[this.damageResourceEffectModel.resourceEffectResourceType].toLowerCase()}`}
       </Box>
     )

@@ -16,13 +16,19 @@ import { Divider, Box, Typography } from '@mui/material';
 import EffectClusterEffectSegment from './segments/effectClusterEffectSegment';
 import EffectResistanceSegment from './segments/effectResistanceSegment';
 import EffectSourceEquipmentSegment from './segments/effectSourceEquipment';
-import EffectSourceClusterSegment from './segments/effectSourceClusterSegment';
-import EffectSourceAbilitySegment from './segments/effectSourceAbilitySegment';
+import EffectSourceEffectClusterSegment from './segments/effectSourceEffectClusterSegment';
+import EffectSourceEffectAbilitySegment from './segments/effectSourceEffectAbilitySegment';
 import EffectSourceSetSegment from './segments/effectSourceSetSegment';
 import EffectSourceAgentSegment from './segments/effectSourceAgentSegment';
 import EffectSourceAtmosphereSegment from './segments/effectSourceAtmosphereSegment';
 import EffectSourceEventSegment from './segments/effectSourceEventSegment';
 import EffectEventSegment from './segments/effectEventSegment';
+import EffectRepeatSegment from './segments/effectRepeatSegment';
+import EffectAbsorbSegment from './segments/effectAbsorbSegment';
+import EffectSourceAbilitySegment from './segments/effectSourceAbilitySegment';
+import EffectSourceEffectAbsorbSegment from './segments/effectSourceEffectAbsorbSegment';
+import EffectSourceEffectAuraSegment from './segments/effectSourceEffectAuraSegment';
+import EffectSourceEffectRepeatSegment from './segments/effectSourceEffectRepeatSegment';
 
 export default function EffectPage() {
 
@@ -60,24 +66,44 @@ export default function EffectPage() {
     equipmentSetModelList,
     agentInteractableModelList,
     atmosphereModelList,
+    absorbResourceEffectModelList,
+    abilityStatusEffectModelList,
+    auraStatusEffectModelList,
+    repeatStatusEffectModelList,
     clusterStatusEffectModelList,
     effectEventModelList
   } = effectPageModel;
 
+  if (effectModel.resourceEffectModel?.absorbResourceEffectModel?.damageResourceEffectModel) {
+
+    contentSegments.push({
+      label: 'Absorbs',
+      id: 'Absorbs',
+      component: <EffectAbsorbSegment />
+    });
+  }
+
+  if (effectModel.statusEffectModel?.repeatStatusEffectModel?.repeatedEffectModel) {
+
+    contentSegments.push({
+      label: 'Repeats',
+      id: 'Repeats',
+      component: <EffectRepeatSegment />
+    });
+  }
+
   if (eventModelList.length > 0) {
   
-    const eventSegment = {
+    contentSegments.push({
       label: 'Event',
       id: 'Event',
       component: <EffectEventSegment />
-    } as ContentSegment;
-
-    contentSegments.push(eventSegment);
+    });
   }
 
   if (statusEffectModelList.length > 0) {
 
-    const clusterSegment = {
+    contentSegments.push({
       label: 'Cluster',
       id: 'Cluster',
       children: [
@@ -87,20 +113,16 @@ export default function EffectPage() {
           component: <EffectClusterEffectSegment />
         }
       ]
-    } as ContentSegment;
-
-    contentSegments.push(clusterSegment);
+    });
   }
 
   if (resistStatusEffectModelList.length > 0) {
   
-    const resistanceSegment = {
+    contentSegments.push({
       label: 'Resistance',
       id: 'Resistance',
       component: <EffectResistanceSegment />
-    } as ContentSegment;
-
-    contentSegments.push(resistanceSegment);
+    });
   }
 
   const sourceSegment = {
@@ -108,6 +130,61 @@ export default function EffectPage() {
     id: 'Source',
     children: []
   } as ContentSegment;
+
+  
+  const effectSegment = {
+    label: 'Effects',
+    id: 'Effects',
+    children: []
+  } as ContentSegment;
+
+  if (absorbResourceEffectModelList.length > 0) {
+  
+    effectSegment.children!.push({
+      label: 'Absorb',
+      id: 'Absorb',
+      component: <EffectSourceEffectAbsorbSegment />
+    });
+  }
+  
+  if (abilityStatusEffectModelList.length > 0) {
+  
+    effectSegment.children!.push({
+      label: 'Ability',
+      id: 'Ability',
+      component: <EffectSourceEffectAbilitySegment />
+    });
+  }
+
+  if (auraStatusEffectModelList.length > 0) {
+  
+    effectSegment.children!.push({
+      label: 'Aura',
+      id: 'Aura',
+      component: <EffectSourceEffectAuraSegment />
+    });
+  }
+
+  if (repeatStatusEffectModelList.length > 0) {
+  
+    effectSegment.children!.push({
+      label: 'Repeat',
+      id: 'Repeat',
+      component: <EffectSourceEffectRepeatSegment />
+    });
+  }
+
+  if (clusterStatusEffectModelList.length > 0) {
+  
+    effectSegment.children!.push({
+      label: 'Cluster',
+      id: 'Cluster',
+      component: <EffectSourceEffectClusterSegment />
+    });
+  }
+
+  if (effectSegment.children?.length !== 0)
+    sourceSegment.children!.push(effectSegment);
 
   if (abilityModelList.length > 0) {
   
@@ -154,15 +231,6 @@ export default function EffectPage() {
     });
   }
 
-  if (clusterStatusEffectModelList.length > 0) {
-  
-    sourceSegment.children!.push({
-      label: 'Clusters',
-      id: 'Clusters',
-      component: <EffectSourceClusterSegment />
-    });
-  }
-
   if (effectEventModelList.length > 0) {
   
     sourceSegment.children!.push({
@@ -183,7 +251,7 @@ export default function EffectPage() {
           <Divider/>
           <Box sx={{ mt: 1 }}>
             <EffectPropertyCard />
-            <Typography variant="body1">
+            <Typography variant="body1" component='div'>
               {effectModel.descriptionComponent()}
             </Typography>
 

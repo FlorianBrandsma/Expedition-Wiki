@@ -28,15 +28,15 @@ export default function EquipmentSetsPage() {
   
   const debouncedName = useDebounce<string>(nameInput, 500);
 
-  /* Get equipmentsets of the selected game */
+  /* Get equipment sets of the selected game */
 	const parameters = new EquipmentSetParameters({
     requestType: EquipmentSetRequestType.GetFilterEquipmentSets,
 		gameId: [gameModel.id],
-    includeItems: true,
+    includeDependencies: true,
     name: name
 	});
 
-	const equipmentsetQuery = useQuery<EquipmentSetModel[]>({
+	const equipmentSetQuery = useQuery<EquipmentSetModel[]>({
 		queryKey: ["parameters", parameters],
 		queryFn: () => getData(parameters, EquipmentSetModel),
 		initialData: []
@@ -46,7 +46,7 @@ export default function EquipmentSetsPage() {
     setName(debouncedName);
   }, [debouncedName])
 
-  const equipmentsetHeaders = useMemo<HeadCell<EquipmentSetModel>[]>(() => [
+  const equipmentSetHeaders = useMemo<HeadCell<EquipmentSetModel>[]>(() => [
     { 
       id: 'name', 
       label: 'Name', 
@@ -75,14 +75,14 @@ export default function EquipmentSetsPage() {
         />
         
       </Stack>
-			{ equipmentsetQuery.isLoading ? (
+			{ equipmentSetQuery.isLoading ? (
 				<Typography variant="h5">Loading...</Typography>
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
-          <EnhancedTable rowKey="id" rows={equipmentsetQuery.data} headCells={equipmentsetHeaders} enableOrder enablePagination />
+          <EnhancedTable rowKey="id" rows={equipmentSetQuery.data} headCells={equipmentSetHeaders} enableOrder enablePagination />
 					<Button 
 						variant="contained" 
-						onClick={() => equipmentsetQuery.refetch()}
+						onClick={() => equipmentSetQuery.refetch()}
 					>
 						Reload
 					</Button>

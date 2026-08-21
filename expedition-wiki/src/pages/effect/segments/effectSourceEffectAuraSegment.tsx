@@ -2,27 +2,27 @@ import { useMemo } from 'react';
 
 import { useEffectPageContext } from '../effectPageContext';
 
-import { StatusEffectModel } from '../../../data/models/statusEffectModel';
+import type { AuraStatusEffectModel } from '../../../data/models/auraStatusEffectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function EffectClusterEffectSegment() {
+export default function EffectSourceEffectAuraSegment() {
 
   const effectPageModel = useEffectPageContext();
-  const { statusEffectModelList } = effectPageModel;
+  const { effectModel, auraStatusEffectModelList } = effectPageModel;
 
-  const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => [
+  const headers = useMemo<HeadCell<AuraStatusEffectModel>[]>(() => [
     { 
-      id: 'effectName', 
+      id: 'statusEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExIcon resourceName={row.effectIconResourceName} size={20} />
-          <ExLink pageName={'effect'} name={row.effectName} />
+          <ExIcon resourceName={row.statusEffectIconResourceName} size={20} />
+          <ExLink pageName={'effect'} name={row.statusEffectName} />
         </Box>
       )
     },
@@ -33,7 +33,7 @@ export default function EffectClusterEffectSegment() {
       sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'200px'}}>
-          {row.descriptionComponent()}
+          {row.descriptionComponent(effectModel.stack)}
         </Box>
       )
     }
@@ -41,7 +41,7 @@ export default function EffectClusterEffectSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
+      <EnhancedTable rowKey='id' rows={auraStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

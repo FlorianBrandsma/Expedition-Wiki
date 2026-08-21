@@ -12,8 +12,6 @@ export class EquipmentSetParameters implements IParameters {
   requestType?: (typeof EquipmentSetRequestType)[keyof typeof EquipmentSetRequestType];
 
   includeDependencies?: boolean;
-  includeEffects?: boolean;
-  includeItems?: boolean;
 
   id?: number[];
   excludeId?: number[];

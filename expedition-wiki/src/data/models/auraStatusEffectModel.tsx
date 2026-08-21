@@ -5,10 +5,15 @@ import ExLink from "../../components/exLink/exLink";
 
 export class AuraStatusEffectModel {
 
+  id!: number;
+
   targetType!: number;
   combatState!: number;
   auraRange!: number;
   
+  statusEffectName!: string;
+  statusEffectIconResourceName!: string;
+
   statusEffectModelList!: StatusEffectModel[];
 
   constructor(init:Partial<AuraStatusEffectModel>) {  
@@ -18,8 +23,8 @@ export class AuraStatusEffectModel {
   }
 
   get appliedStatusEffectModel(): StatusEffectModel {
-      return this.statusEffectModelList[0];
-    }
+    return this.statusEffectModelList[0];
+  }
 
   descriptionComponent(stack: number): React.ReactNode {
 

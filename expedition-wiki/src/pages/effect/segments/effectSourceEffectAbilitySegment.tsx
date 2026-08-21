@@ -2,20 +2,19 @@ import { useMemo } from 'react';
 
 import { useEffectPageContext } from '../effectPageContext';
 
-import type { ClusterStatusEffectModel } from '../../../data/models/clusterStatusEffectModel';
+import type { AbilityStatusEffectModel } from '../../../data/models/abilityStatusEffectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
-import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function EffectSourceClusterSegment() {
+export default function EffectSourceEffectAbilitySegment() {
 
   const effectPageModel = useEffectPageContext();
-  const { clusterStatusEffectModelList } = effectPageModel;
+  const { abilityStatusEffectModelList } = effectPageModel;
 
-  const headers = useMemo<HeadCell<ClusterStatusEffectModel>[]>(() => [
+  const headers = useMemo<HeadCell<AbilityStatusEffectModel>[]>(() => [
     { 
       id: 'statusEffectName', 
       label: 'Name', 
@@ -28,22 +27,13 @@ export default function EffectSourceClusterSegment() {
       )
     },
     {
-      id: 'description',
+      id: 'descriptionComponent',
       label: 'Description',
-      align: 'left'
-    },
-    {
-      id: 'statusEffectModelList',
-      label: 'Cluster',
       align: 'left',
       sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'200px'}}>
-          <CellTable 
-            list={row.statusEffectModelList} 
-            component={(statusEffectModel) => statusEffectModel.descriptionComponent()}
-            bulleted
-          />
+          {row.descriptionComponent(1)}
         </Box>
       )
     }
@@ -51,7 +41,7 @@ export default function EffectSourceClusterSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={clusterStatusEffectModelList} headCells={headers} />
+      <EnhancedTable rowKey='id' rows={abilityStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

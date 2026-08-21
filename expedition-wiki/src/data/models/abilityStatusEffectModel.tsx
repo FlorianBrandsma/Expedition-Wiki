@@ -5,10 +5,15 @@ import ExLink from "../../components/exLink/exLink";
 
 export class AbilityStatusEffectModel {
 
-  targetType!: number;
-  stack!: number;
+  id!: number;
+
   successChance!: number;
   
+  targetType!: number;
+  
+  statusEffectName!: string;
+  statusEffectIconResourceName!: string;
+
   effectModelList!: EffectModel[];
 
   constructor(init:Partial<AbilityStatusEffectModel>) {  

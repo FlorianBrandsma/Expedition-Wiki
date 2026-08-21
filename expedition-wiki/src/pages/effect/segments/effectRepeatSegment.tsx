@@ -2,27 +2,29 @@ import { useMemo } from 'react';
 
 import { useEffectPageContext } from '../effectPageContext';
 
-import { StatusEffectModel } from '../../../data/models/statusEffectModel';
+import type { EffectModel } from '../../../data/models/effectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function EffectClusterEffectSegment() {
+export default function EffectRepeatSegment() {
 
   const effectPageModel = useEffectPageContext();
-  const { statusEffectModelList } = effectPageModel;
+  const { effectModel } = effectPageModel;
 
-  const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => [
+  const effectModelList = effectModel.statusEffectModel.repeatStatusEffectModel.effectModelList;
+
+  const headers = useMemo<HeadCell<EffectModel>[]>(() => [
     { 
-      id: 'effectName', 
+      id: 'name', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExIcon resourceName={row.effectIconResourceName} size={20} />
-          <ExLink pageName={'effect'} name={row.effectName} />
+          <ExIcon resourceName={row.iconResourceName} size={20} />
+          <ExLink pageName={'effect'} name={row.name} />
         </Box>
       )
     },
@@ -40,8 +42,8 @@ export default function EffectClusterEffectSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
+    <Box sx={{ mt: 1 }}>
+      <EnhancedTable rowKey='id' rows={effectModelList} headCells={headers} />
     </Box>
   )
 }

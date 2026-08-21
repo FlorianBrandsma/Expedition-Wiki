@@ -5,11 +5,14 @@ import { ResourceType } from "../../types/enums";
 
 export class AbsorbResourceEffectModel {
 
-  resourceEffectModel!: ResourceEffectModel;
+  id!: number;
+
+  resourceEffectName!: string;
+  resourceEffectIconResourceName!: string;
+
+  resourceEffectModel: ResourceEffectModel;
 
   damageResourceEffectModelList!: DamageResourceEffectModel[];
-
-  damageResourceEffectModel?: DamageResourceEffectModel;
 
   constructor(init:Partial<AbsorbResourceEffectModel>, resourceEffectModel: ResourceEffectModel) {  
     Object.assign(this, init);
@@ -17,8 +20,10 @@ export class AbsorbResourceEffectModel {
     this.resourceEffectModel = resourceEffectModel;
 
     this.damageResourceEffectModelList = this.damageResourceEffectModelList.map((model) => new DamageResourceEffectModel(model));
+  }
 
-    this.damageResourceEffectModel  = this.damageResourceEffectModelList[0];
+  get damageResourceEffectModel(): DamageResourceEffectModel {  
+    return this.damageResourceEffectModelList[0];
   }
 
   descriptionComponent(stack: number): React.ReactNode {
@@ -28,7 +33,10 @@ export class AbsorbResourceEffectModel {
     const damageResourceEffectDescription = this.damageResourceEffectModel?.descriptionComponent(stack);
 
     return (
-      <Box sx={{ display: 'inline'}}>
+      <Box 
+        component='span' 
+        sx={{ display: 'inline'}}
+      >
         {damageResourceEffectDescription}{`${damageResourceEffectDescription ? ' and restore' : 'Restore'} user's ${ResourceType[this.resourceEffectModel.resourceType].toLowerCase()} by ${amount}% of damage dealt`}
       </Box>
     )

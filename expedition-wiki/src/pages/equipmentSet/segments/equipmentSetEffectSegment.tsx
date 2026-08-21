@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 
-import { useEffectPageContext } from '../effectPageContext';
+import { useEquipmentSetPageContext } from '../equipmentSetPageContext';
 
-import { StatusEffectModel } from '../../../data/models/statusEffectModel';
+import type { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function EffectClusterEffectSegment() {
+export default function EquipmentSetEffectSegment() {
 
-  const effectPageModel = useEffectPageContext();
-  const { statusEffectModelList } = effectPageModel;
+  const equipmentSetPageModel = useEquipmentSetPageContext();
+  const { statusEffectModelList } = equipmentSetPageModel;
 
   const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => [
     { 
@@ -36,11 +36,16 @@ export default function EffectClusterEffectSegment() {
           {row.descriptionComponent()}
         </Box>
       )
+    },
+    {
+      id: 'stack',
+      label: 'Stack',
+      align: 'center'
     }
-  ], [effectPageModel]);
+  ], [equipmentSetPageModel]);
 
   return (
-    <Box>
+    <Box sx={{ mt: 1 }}>
       <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )

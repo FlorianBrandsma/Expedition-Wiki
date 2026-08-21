@@ -6,10 +6,14 @@ import { ResistStatusEffectModel } from "../resistStatusEffectModel";
 import { EquipmentItemModel } from "../equipmentItemModel";
 import { AgentInteractableModel } from "../agentInteractableModel";
 import { EquipmentSetModel } from "../equipmentSetModel";
+import { AbilityStatusEffectModel } from "../abilityStatusEffectModel";
 import { ClusterStatusEffectModel } from "../clusterStatusEffectModel";
 import { EventModel } from "../eventModel";
 import { EffectEventModel } from "../effectEventModel";
 import { AtmosphereModel } from "../atmosphereModel";
+import { RepeatStatusEffectModel } from "../repeatStatusEffectModel";
+import { AuraStatusEffectModel } from "../auraStatusEffectModel";
+import { AbsorbResourceEffectModel } from "../absorbResourceEffectModel";
 
 export class EffectPageModel {
 
@@ -25,6 +29,11 @@ export class EffectPageModel {
   equipmentSetModelList!: EquipmentSetModel[];
   agentInteractableModelList!: AgentInteractableModel[];
   atmosphereModelList!: AtmosphereModel[];
+
+  absorbResourceEffectModelList!: AbsorbResourceEffectModel[];
+  abilityStatusEffectModelList!: AbilityStatusEffectModel[];
+  auraStatusEffectModelList!: AuraStatusEffectModel[];
+  repeatStatusEffectModelList!: RepeatStatusEffectModel[];
   clusterStatusEffectModelList!: ClusterStatusEffectModel[];
   
   effectEventModelList!: EffectEventModel[];
@@ -34,18 +43,23 @@ export class EffectPageModel {
 
     this.effectModel = new EffectModel(this.effectModel);
 
-    this.eventModelList               = this.eventModelList              .map((model) => new EventModel              (model));
-    this.statusEffectModelList        = this.statusEffectModelList       .map((model) => new StatusEffectModel       (model));
-    this.resistStatusEffectModelList  = this.resistStatusEffectModelList .map((model) => new ResistStatusEffectModel (model));
+    this.eventModelList                = this.eventModelList               .map((model) => new EventModel               (model));
+    this.statusEffectModelList         = this.statusEffectModelList        .map((model) => new StatusEffectModel        (model));
+    this.resistStatusEffectModelList   = this.resistStatusEffectModelList  .map((model) => new ResistStatusEffectModel  (model));
 
-    this.abilityModelList             = this.abilityModelList            .map((model) => new AbilityModel            (model));
+    this.abilityModelList              = this.abilityModelList             .map((model) => new AbilityModel             (model));
 
-    this.equipmentItemModelList       = this.equipmentItemModelList      .map((model) => new EquipmentItemModel      (model));
-    this.equipmentSetModelList        = this.equipmentSetModelList       .map((model) => new EquipmentSetModel       (model));
-    this.agentInteractableModelList   = this.agentInteractableModelList  .map((model) => new AgentInteractableModel  (model));
-    this.atmosphereModelList          = this.atmosphereModelList         .map((model) => new AtmosphereModel         (model));
-    this.clusterStatusEffectModelList = this.clusterStatusEffectModelList.map((model) => new ClusterStatusEffectModel(model));
+    this.equipmentItemModelList        = this.equipmentItemModelList       .map((model) => new EquipmentItemModel       (model));
+    this.equipmentSetModelList         = this.equipmentSetModelList        .map((model) => new EquipmentSetModel        (model));
+    this.agentInteractableModelList    = this.agentInteractableModelList   .map((model) => new AgentInteractableModel   (model));
+    this.atmosphereModelList           = this.atmosphereModelList          .map((model) => new AtmosphereModel          (model));
+    
+    this.absorbResourceEffectModelList = this.absorbResourceEffectModelList.map((model) => new AbsorbResourceEffectModel(model, this.effectModel.resourceEffectModel));
+    this.abilityStatusEffectModelList  = this.abilityStatusEffectModelList .map((model) => new AbilityStatusEffectModel (model));
+    this.auraStatusEffectModelList     = this.auraStatusEffectModelList    .map((model) => new AuraStatusEffectModel    (model));
+    this.repeatStatusEffectModelList   = this.repeatStatusEffectModelList  .map((model) => new RepeatStatusEffectModel  (model));
+    this.clusterStatusEffectModelList  = this.clusterStatusEffectModelList .map((model) => new ClusterStatusEffectModel (model));
 
-    this.effectEventModelList         = this.effectEventModelList        .map((model) => new EffectEventModel        (model));
+    this.effectEventModelList          = this.effectEventModelList         .map((model) => new EffectEventModel         (model));
   }
 }

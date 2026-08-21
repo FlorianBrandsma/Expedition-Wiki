@@ -168,10 +168,10 @@ export const StatusEffectState = [
 ] as const;
 
 export const AuraStatusEffectTargetType = [
-  'Any',
-  'Party',
-  'Ally',
-  'Opponent'
+  'Agents',
+  'Party members',
+  'Allies',
+  'Opponents'
 ] as const;
 
 export const DisableStatusEffectType = [

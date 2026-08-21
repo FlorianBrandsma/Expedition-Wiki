@@ -1,4 +1,4 @@
-import { EquipmentItemType } from "../../types/enums";
+import { EquipmentItemType, EquipmentSlotType } from "../../types/enums";
 import { ArmEquipmentItemModel } from './armEquipmentItemModel';
 import { GearEquipmentItemModel } from './gearEquipmentItemModel';
 import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
@@ -17,6 +17,8 @@ export class EquipmentItemModel {
   magicalAttack!: number;
   physicalDefence!: number;
   magicalDefence!: number;
+
+  equipmentSlotType!: number;
 
   itemName!: string;
   itemAssetIconResourceName!: string;
@@ -48,6 +50,10 @@ export class EquipmentItemModel {
   }
 
   get typeDescription(): string {
-    return `${ EquipmentItemType[this.type] } Equipment`;
+    return `${EquipmentItemType[this.type]} Equipment`;
+  }
+
+  get equipmentSlotTypeDescription(): string {
+    return `${EquipmentSlotType[this.equipmentSlotType]}`;
   }
 }
