@@ -9,7 +9,7 @@ import { ItemModel } from '../../data/models/itemModel';
 import { ItemRequestType, ItemParameters } from '../../data/parameters/itemParameters';
 import { getData } from '../../services/dataManager';
 
-import { ItemType, SupplyItemType, EquipmentItemType, ElementType } from '../../types/enums'
+import { ItemType, SupplyItemType, EquipmentItemType, ElementType, ArmEquipmentItemType, GearEquipmentItemMaterialType, TrinketEquipmentItemType } from '../../types/enums'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
@@ -29,10 +29,13 @@ export default function ItemsPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [name,              setName]              = useState<string>('');
-  const [itemType,          setItemType]          = useState<number[]>([]);
-  const [supplyItemType,    setSupplyItemType]    = useState<number[]>([]);
-  const [equipmentItemType, setEquipmentItemType] = useState<number[]>([]);
+  const [name,                          setName]                          = useState<string>('');
+  const [itemType,                      setItemType]                      = useState<number[]>([]);
+  const [supplyItemType,                setSupplyItemType]                = useState<number[]>([]);
+  const [equipmentItemType,             setEquipmentItemType]             = useState<number[]>([]);
+  const [armEquipmentItemType,          setArmEquipmentItemType]          = useState<number[]>([]);
+  const [gearEquipmentItemMaterialType, setGearEquipmentItemMaterialType] = useState<number[]>([]);
+  const [trinketEquipmentItemType,      setTrinketEquipmentItemType]      = useState<number[]>([]);
 
   const [nameInput, setNameInput] = useState<string>('');
   
@@ -71,11 +74,11 @@ export default function ItemsPage() {
     setItemType(itemType);
 
     if (!itemType.includes(ItemType.indexOf('Supply'))) {
-      setSupplyItemType([]);
+      handleSupplyItemTypeChange([]);
     }
 
     if (!itemType.includes(ItemType.indexOf('Equipment'))) {
-      setEquipmentItemType([]);
+      handleEquipmentItemTypeChange([]);
     }
   }
 
@@ -85,6 +88,30 @@ export default function ItemsPage() {
 
   const handleEquipmentItemTypeChange = (equipmentItemType: number[]) => {
     setEquipmentItemType(equipmentItemType);
+
+    if (!equipmentItemType.includes(EquipmentItemType.indexOf('Arm'))) {
+      handleArmEquipmentItemTypeChange([]);
+    }
+
+    if (!equipmentItemType.includes(EquipmentItemType.indexOf('Gear'))) {
+      handleGearEquipmentItemMaterialTypeChange([]);
+    }
+
+    if (!equipmentItemType.includes(EquipmentItemType.indexOf('Trinket'))) {
+      handleTrinketEquipmentItemTypeChange([]);
+    }
+  }
+
+  const handleArmEquipmentItemTypeChange = (armEquipmentItemType: number[]) => {
+    setArmEquipmentItemType(armEquipmentItemType);
+  }
+
+  const handleGearEquipmentItemMaterialTypeChange = (gearEquipmentItemMaterialType: number[]) => {
+    setGearEquipmentItemMaterialType(gearEquipmentItemMaterialType);
+  }
+
+  const handleTrinketEquipmentItemTypeChange = (trinketEquipmentItemType: number[]) => {
+    setTrinketEquipmentItemType(trinketEquipmentItemType);
   }
 
   /* Get items of the selected game */
@@ -94,6 +121,9 @@ export default function ItemsPage() {
     itemType: itemType,
     supplyItemType: supplyItemType,
     equipmentItemType: equipmentItemType,
+    armEquipmentItemType: armEquipmentItemType,
+    gearEquipmentItemMaterialType: gearEquipmentItemMaterialType,
+    trinketEquipmentItemType: trinketEquipmentItemType,
     name: name
 	});
 
@@ -122,6 +152,11 @@ export default function ItemsPage() {
     {
       id: 'typeDescription',
       label: 'Type',
+      align: 'left'
+    },
+    {
+      id: 'equipmentTypeDescription',
+      label: 'Equipment',
       align: 'left'
     },
     {
@@ -160,7 +195,7 @@ export default function ItemsPage() {
           type={itemType}
           setType={handleItemTypeChange} 
         />
-        { itemType.includes(ItemType.indexOf('Supply')) && (
+        {itemType.includes(ItemType.indexOf('Supply')) && (
           <ExFilterSelection 
             label={"Supply Type"}
             types={SupplyItemType} 
@@ -168,12 +203,36 @@ export default function ItemsPage() {
             setType={handleSupplyItemTypeChange}
           />
         )}
-        { itemType.includes(ItemType.indexOf('Equipment')) && (
+        {itemType.includes(ItemType.indexOf('Equipment')) && (
           <ExFilterSelection 
             label={"Equipment Type"}
             types={EquipmentItemType} 
             type={equipmentItemType}
             setType={handleEquipmentItemTypeChange}
+          />
+        )}
+        {equipmentItemType.includes(EquipmentItemType.indexOf('Arm')) && (
+          <ExFilterSelection 
+            label={"Arm Equipment Type"}
+            types={ArmEquipmentItemType} 
+            type={armEquipmentItemType}
+            setType={handleArmEquipmentItemTypeChange}
+          />
+        )}
+        {equipmentItemType.includes(EquipmentItemType.indexOf('Gear')) && (
+          <ExFilterSelection 
+            label={"Gear Equipment Material Type"}
+            types={GearEquipmentItemMaterialType} 
+            type={gearEquipmentItemMaterialType}
+            setType={handleGearEquipmentItemMaterialTypeChange}
+          />
+        )}
+        {equipmentItemType.includes(EquipmentItemType.indexOf('Trinket')) && (
+          <ExFilterSelection 
+            label={"Trinket Equipment Type"}
+            types={TrinketEquipmentItemType} 
+            type={trinketEquipmentItemType}
+            setType={handleTrinketEquipmentItemTypeChange}
           />
         )}
       </Stack>

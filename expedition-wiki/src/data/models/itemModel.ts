@@ -64,4 +64,8 @@ export class ItemModel {
       case 'Currency':  return "Currency";
     }
   }
+
+  get equipmentTypeDescription(): string {
+    return this.equipmentItemModel?.equipmentTypeDescription ?? '';
+  }
 }

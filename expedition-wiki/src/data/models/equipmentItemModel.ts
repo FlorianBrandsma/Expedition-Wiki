@@ -56,4 +56,14 @@ export class EquipmentItemModel {
   get equipmentSlotTypeDescription(): string {
     return `${EquipmentSlotType[this.equipmentSlotType]}`;
   }
+
+  get equipmentTypeDescription(): string {
+
+    switch (EquipmentItemType[this.type])
+    {
+      case 'Arm':     return this.armEquipmentItemModel!.typeDescription;
+      case 'Gear':    return this.gearEquipmentItemModel!.materialTypeDescription;
+      case 'Trinket': return this.trinketEquipmentItemModel!.typeDescription;
+    }
+  }
 }
