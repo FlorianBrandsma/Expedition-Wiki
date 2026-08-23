@@ -42,7 +42,7 @@ export default function EquipmentSetPage() {
   const equipmentSetPageModel = equipmentSetPageQuery.data[0];
 
   const { 
-    equipmentSetModel: equipmentSetModel,
+    equipmentSetModel,
     statusEffectModelList
   } = equipmentSetPageModel;
 

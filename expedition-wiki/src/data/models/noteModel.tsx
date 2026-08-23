@@ -1,26 +1,24 @@
 import { TextReferenceModel } from "./textReferenceModel";
 import ReferenceDescription from "../../services/textReferenceManager";
 
-export class EventEffectModel {
+export class NoteModel {
 
-  description!: string;
+  id!: string;
+
+  text!: string;
 
   textReferenceModelList!: TextReferenceModel[];
 
-  constructor(init:Partial<EventEffectModel>) {  
+  constructor(init:Partial<NoteModel>) {  
     Object.assign(this, init);
 
     this.textReferenceModelList = this.textReferenceModelList.map((model) => new TextReferenceModel(model));
   }
 
-  get typeDescription(): string {
-    return 'Event';
-  }
-
-  descriptionComponent(): React.ReactNode {
-    
-    return (
-      <>{ReferenceDescription(this.description, this.textReferenceModelList)}</>
-    )
-  }
+  textComponent(): React.ReactNode {
+      
+      return (
+        <>{ReferenceDescription(this.text, this.textReferenceModelList)}</>
+      )
+    }
 }

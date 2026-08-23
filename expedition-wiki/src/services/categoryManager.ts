@@ -8,8 +8,8 @@ export interface Category
 {
     label: string,
     page: string,
-    state?: {}
-    children: Category[]
+    state?: Record<string, string>
+    children?: Category[]
 }
 
 export const Categories: Category[] = [

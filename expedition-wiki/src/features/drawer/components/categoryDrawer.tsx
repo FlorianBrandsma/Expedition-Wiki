@@ -99,13 +99,13 @@ function CustomListItem(props: CustomListItemProps) {
         >
           <ListItemText primary={category.label} />
         </CustomButton>
-        { category.children.length > 0 && (
+        {category.children && category.children.length > 0 && (
           <CustomButton sx={{ minWidth: '45px' }} onClick={handleClick}>
             { open ? <ExpandLess /> : <ExpandMore />}
           </CustomButton>
         )}
       </ListItem>
-      { category.children.length > 0 && (
+      {category.children && category.children!.length > 0 && (
         <Collapse in={open}>
           <List disablePadding>
             {category.children.map(childCategory => (

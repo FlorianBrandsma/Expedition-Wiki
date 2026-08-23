@@ -166,7 +166,7 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
       }} 
     >
       <TableContainer sx={{ overflowX: 'auto', maxWidth: '100%' }}>
-        <ExTable size={'small'}>
+        <ExTable size='small'>
           {enableOrder ? (
             <EnhancedTableHead
               order={order}

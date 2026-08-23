@@ -60,13 +60,19 @@ export default function ItemsPage() {
   /* Set default filters */
   useEffect(() => {
 
-    const itemTypeIndex          = ItemType         .findIndex(type => type == routeParams.itemType);
-    const supplyItemTypeIndex    = SupplyItemType   .findIndex(type => type == routeParams.supplyItemType);
-    const equipmentItemTypeIndex = EquipmentItemType.findIndex(type => type == routeParams.equipmentItemType);
+    const itemTypeIndex                      = ItemType                     .findIndex(type => type == routeParams.itemType);
+    const supplyItemTypeIndex                = SupplyItemType               .findIndex(type => type == routeParams.supplyItemType);
+    const equipmentItemTypeIndex             = EquipmentItemType            .findIndex(type => type == routeParams.equipmentItemType);
+    const armEquipmentItemTypeIndex          = ArmEquipmentItemType         .findIndex(type => type == routeParams.armEquipmentItemType);
+    const gearEquipmentItemMaterialTypeIndex = GearEquipmentItemMaterialType.findIndex(type => type == routeParams.gearEquipmentItemMaterialType);
+    const trinketEquipmentItemTypeIndex      = TrinketEquipmentItemType     .findIndex(type => type == routeParams.trinketEquipmentItemType);
 
-    setItemType         (itemTypeIndex          >= 0 ? [itemTypeIndex]          : [])
-    setSupplyItemType   (supplyItemTypeIndex    >= 0 ? [supplyItemTypeIndex]    : [])
-    setEquipmentItemType(equipmentItemTypeIndex >= 0 ? [equipmentItemTypeIndex] : [])
+    setItemType                     (itemTypeIndex                      >= 0 ? [itemTypeIndex]                      : [])
+    setSupplyItemType               (supplyItemTypeIndex                >= 0 ? [supplyItemTypeIndex]                : [])
+    setEquipmentItemType            (equipmentItemTypeIndex             >= 0 ? [equipmentItemTypeIndex]             : [])
+    setArmEquipmentItemType         (armEquipmentItemTypeIndex          >= 0 ? [armEquipmentItemTypeIndex]          : [])
+    setGearEquipmentItemMaterialType(gearEquipmentItemMaterialTypeIndex >= 0 ? [gearEquipmentItemMaterialTypeIndex] : [])
+    setTrinketEquipmentItemType     (trinketEquipmentItemTypeIndex      >= 0 ? [trinketEquipmentItemTypeIndex]      : [])
 
   }, [routeParams])
 
