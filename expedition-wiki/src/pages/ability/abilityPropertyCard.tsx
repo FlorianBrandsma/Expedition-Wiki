@@ -12,7 +12,6 @@ import { ActionDelayType } from '../../types/enums';
 export default function AbilityPropertyCard() {
 
   const { abilityModel } = useAbilityPageContext();
-  //const { chargeAbilityModel, dischargeAbilityModel } = abilityModel;
 
   return (
     <ExCard sx={{ 

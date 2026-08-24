@@ -281,8 +281,6 @@ export const GearEquipmentItemMaterialType = [
   'Heavy',
 ] as const;
 
-export type GearEquipmentItemMaterialType = typeof GearEquipmentItemMaterialType[number];
-
 export const TrinketEquipmentItemType = [
   'Amulet',
   'Ring'
