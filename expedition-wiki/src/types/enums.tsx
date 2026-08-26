@@ -324,6 +324,11 @@ export const RarityType = [
   'Very rare'
 ] as const;
 
+export const AtmosphereStatusEffectType = [
+  'Active',
+  'Passive'
+] as const;
+
 export const AffiliationType = [
   'Faction',
   'Ally',

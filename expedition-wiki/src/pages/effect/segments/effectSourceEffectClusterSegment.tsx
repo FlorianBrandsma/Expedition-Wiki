@@ -40,9 +40,9 @@ export default function EffectSourceEffectClusterSegment() {
       render: (row) => (
         <Box sx={{ maxWidth:'200px'}}>
           <CellTable 
+            bulleted
             list={row.statusEffectModelList} 
             component={(statusEffectModel) => statusEffectModel.descriptionComponent()}
-            bulleted
           />
         </Box>
       )

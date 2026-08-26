@@ -10,13 +10,13 @@ export class FactionModel {
 
   iconResourceName!: string;
   
-  rank!: number;
+  factionRank!: number;
 
   constructor(init:Partial<FactionModel>) {  
     Object.assign(this, init);
   }
 
   get attitudeDescription(): string {
-    return this.rank >= this.allyRank ? 'Friendly' : 'Hostile';
+    return this.factionRank >= this.allyRank ? 'Friendly' : 'Hostile';
   }
 }

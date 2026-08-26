@@ -32,10 +32,10 @@ export class FactionPageModel {
   }
 
   get friendlyFactionModelList(): FactionModel[] {
-    return this.standingFactionModelList.filter(x => x.rank >= this.factionModel.allyRank);
+    return this.standingFactionModelList.filter(x => x.factionRank >= this.factionModel.allyRank);
   }
 
   get hostileFactionModelList(): FactionModel[] {
-    return this.standingFactionModelList.filter(x => x.rank < this.factionModel.allyRank);
+    return this.standingFactionModelList.filter(x => x.factionRank < this.factionModel.allyRank);
   }
 }

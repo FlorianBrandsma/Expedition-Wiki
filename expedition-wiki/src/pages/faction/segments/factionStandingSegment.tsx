@@ -27,7 +27,7 @@ export default function FactionStandingSegment() {
       )
     },
     {
-      id: 'rank',
+      id: 'factionRank',
       label: 'Rank',
       align: 'center'
     },

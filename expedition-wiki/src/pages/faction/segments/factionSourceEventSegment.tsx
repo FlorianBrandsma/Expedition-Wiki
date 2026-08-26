@@ -15,7 +15,7 @@ export default function FactionSourceEventSegment() {
   const headers = useMemo<HeadCell<ReputationEventModel>[]>(() => [
     { 
       id: 'eventName', 
-      label: 'Event', 
+      label: 'Name', 
       align: 'left'
     },
     {

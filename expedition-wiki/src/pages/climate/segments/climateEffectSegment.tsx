@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import { useItemPageContext } from '../itemPageContext';
+import { useClimatePageContext } from '../climatePageContext';
 
 import { StatusEffectType } from '../../../types/enums';
 
-import { StatusEffectModel } from '../../../data/models/statusEffectModel';
+import type { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
 import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
 import CellTable from '../../../components/cellTable/cellTable';
@@ -12,14 +12,24 @@ import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function ItemEquipmentEffectSegment() {
+export default function ClimateEffectSegment() {
 
-  const itemPageModel = useItemPageContext();
-  const { statusEffectModelList } = itemPageModel;
+  const climatePageModel = useClimatePageContext();
+  const { statusEffectModelList } = climatePageModel;
 
   const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => {
-  
-    const headers: HeadCell<StatusEffectModel>[] = [
+
+    const headers: HeadCell<StatusEffectModel>[] =[
+      {
+        id: 'atmosphereTimeDescription',
+        label: 'Time',
+        align: 'center'
+      },
+      {
+        id: 'atmosphereStatusEffectTypeDescription',
+        label: 'Type',
+        align: 'left'
+      },
       { 
         id: 'effectName', 
         label: 'Name', 
@@ -32,7 +42,7 @@ export default function ItemEquipmentEffectSegment() {
         )
       },
       {
-        id: 'type',
+        id: 'descriptionComponent',
         label: 'Description',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -68,13 +78,21 @@ export default function ItemEquipmentEffectSegment() {
       align: 'center'
     })
 
+    if (statusEffectModelList.some(model => model.activeAtmosphereStatusEffectRepetitionTime > 0)) {
+      headers.push({
+        id: 'activeAtmosphereStatusEffectRepetitionTimeDescription',
+        label: 'Repetition',
+        align: 'center'
+      })
+    }
+
     return headers;
 
-  }, [itemPageModel]);
+  }, [climatePageModel]);
 
   return (
-    <Box>
-      <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
+    <Box sx={{ mt: 1 }}>
+      <EnhancedTable rowKey='atmosphereStatusEffectId' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

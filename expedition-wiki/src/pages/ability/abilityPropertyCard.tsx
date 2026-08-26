@@ -1,5 +1,7 @@
 import { useAbilityPageContext } from './abilityPageContext';
 
+import { ActionDelayType } from '../../types/enums';
+
 import { CardContent, CardMedia } from '@mui/material';
 
 import ExCard from '../../components/exCard/exCard';
@@ -7,7 +9,6 @@ import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
 import ExIconLabel from '../../components/exIconLabel/exIconLabel';
-import { ActionDelayType } from '../../types/enums';
 
 export default function AbilityPropertyCard() {
 

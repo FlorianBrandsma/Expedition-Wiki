@@ -1,5 +1,9 @@
 import { useItemPageContext } from './itemPageContext';
 
+import { ElementType } from '../../types/enums';
+
+import type { CurrencyItemModel } from '../../data/models/currencyItemModel';
+
 import { CardContent, CardMedia, TableBody, TableRow, TableCell, Box } from '@mui/material';
 
 import ModelButton from '../../features/modelViewer/components/modelButton';
@@ -11,10 +15,8 @@ import ExCardTable from '../../components/exCard/exCardTable';
 import ExIcon from '../../components/exIcon/exIcon';
 import ExIconLabel from '../../components/exIconLabel/exIconLabel';
 import ElementTable from '../../components/elementTable/elementTable';
-import { ElementType } from '../../types/enums';
 import ExCollapse from '../../components/exCollapse/exCollapse';
 import ExLink from '../../components/exLink/exLink';
-import type { CurrencyItemModel } from '../../data/models/currencyItemModel';
 
 interface CurrencyTableProps {
   currencyItemModelList: CurrencyItemModel[];

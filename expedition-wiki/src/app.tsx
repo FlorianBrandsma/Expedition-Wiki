@@ -22,6 +22,9 @@ import ClassesPage from './pages/class/classesPage';
 import ClassPage from './pages/class/classPage';
 
 import MenuBG from './images/MenuBG.png'
+import TerrainsPage from './pages/terrain/terrainsPage';
+import TerrainPage from './pages/terrain/terrainPage';
+import ClimatePage from './pages/climate/climatePage';
 
 export default function App() {
 
@@ -97,6 +100,18 @@ export default function App() {
           {
             path:'/:gameName',
             element: <GamePage />
+          },
+          {
+            path:'/:gameName/terrain',
+            element: <TerrainsPage />
+          },
+          {
+            path: ':gameName/terrain/:regionName/:terrainName',
+            element: <TerrainPage />
+          },
+          {
+            path: ':gameName/climate/:regionName/:terrainName/:climateName',
+            element: <ClimatePage />
           },
           {
             path:'/:gameName/effect',

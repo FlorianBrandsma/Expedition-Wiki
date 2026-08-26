@@ -4,19 +4,26 @@ import { useGameContext } from "../../context/gameContext";
 interface ExLinkProps {
   pageName: string;
   name: string;
+  params?: string[];
 }
 
 export default function ExLink(props: ExLinkProps) {
 
   const { gameModel } = useGameContext();
 
-  const { pageName, name } = props;
+  const { pageName, name, params } = props;
+
+  const gameName = gameModel.name.replaceAll(' ', '_');
+
+  const rawParams = params ?? [name];
+  const urlParams = rawParams.map(x => `/${x.replaceAll(' ', '_')}`).join('');
+
+  const path = `/${gameName}/${pageName}${urlParams}`;
 
   return (
     <Link 
       className='link'
-      to={`/${gameModel.name}/${pageName}/${name}`} 
-      mask={`/${gameModel.name.replaceAll(' ', '_')}/${pageName}/${name.replaceAll(' ', '_')}`}
+      to={path}
     >
       {name}
     </Link>

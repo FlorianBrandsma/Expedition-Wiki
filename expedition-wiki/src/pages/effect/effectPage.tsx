@@ -20,7 +20,7 @@ import EffectSourceEffectClusterSegment from './segments/effectSourceEffectClust
 import EffectSourceEffectAbilitySegment from './segments/effectSourceEffectAbilitySegment';
 import EffectSourceSetSegment from './segments/effectSourceSetSegment';
 import EffectSourceAgentSegment from './segments/effectSourceAgentSegment';
-import EffectSourceAtmosphereSegment from './segments/effectSourceAtmosphereSegment';
+import EffectSourceClimateSegment from './segments/effectSourceClimateSegment';
 import EffectSourceEventSegment from './segments/effectSourceEventSegment';
 import EffectEventSegment from './segments/effectEventSegment';
 import EffectRepeatSegment from './segments/effectRepeatSegment';
@@ -225,9 +225,9 @@ export default function EffectPage() {
   if (atmosphereModelList.length > 0) {
   
     sourceSegment.children!.push({
-      label: 'Atmospheres',
-      id: 'Atmospheres',
-      component: <EffectSourceAtmosphereSegment />
+      label: 'Climates',
+      id: 'Climates',
+      component: <EffectSourceClimateSegment />
     });
   }
 

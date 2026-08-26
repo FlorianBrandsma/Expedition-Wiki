@@ -1,4 +1,4 @@
-import { StatusEffectType } from "../../types/enums";
+import { AtmosphereStatusEffectType, StatusEffectType } from "../../types/enums";
 
 import { BasicStatusEffectModel } from "./basicStatusEffectModel";
 import { AttributeStatusEffectModel } from "./attributeStatusEffectModel";
@@ -12,6 +12,7 @@ import { SizeStatusEffectModel } from "./sizeStatusEffectModel";
 import { SensorStatusEffectModel } from "./sensorStatusEffectModel";
 import { StandingStatusEffectModel } from "./standingStatusEffectModel";
 import { ClusterStatusEffectModel } from "./clusterStatusEffectModel";
+import { AtmosphereModel } from "./atmosphereModel";
 
 export class StatusEffectModel {
   
@@ -29,6 +30,13 @@ export class StatusEffectModel {
   effectName!: string;
   effectIconResourceName!: string;
 
+  atmosphereModel!: AtmosphereModel;
+
+  atmosphereStatusEffectId!: number;
+  atmosphereStatusEffectType!: number;
+
+  activeAtmosphereStatusEffectRepetitionTime!: number;
+
   basicStatusEffectModelList!:     BasicStatusEffectModel[];
   attributeStatusEffectModelList!: AttributeStatusEffectModel[];
   abilityStatusEffectModelList!:   AbilityStatusEffectModel[];
@@ -44,6 +52,10 @@ export class StatusEffectModel {
 
   constructor(init:Partial<StatusEffectModel>) {  
     Object.assign(this, init);
+
+    this.atmosphereModel = new AtmosphereModel(this.atmosphereModel);
+
+    this.activeAtmosphereStatusEffectRepetitionTime = Number(init.activeAtmosphereStatusEffectRepetitionTime!.toFixed(2));
 
     this.basicStatusEffectModelList     = this.basicStatusEffectModelList    .map((model) => new BasicStatusEffectModel    (model));
     this.attributeStatusEffectModelList = this.attributeStatusEffectModelList.map((model) => new AttributeStatusEffectModel(model));
@@ -113,6 +125,18 @@ export class StatusEffectModel {
 
   get typeDescription(): string {
     return `${ StatusEffectType[this.type] } Status`;
+  }
+
+  get atmosphereTimeDescription(): string {
+    return this.atmosphereModel.timeDescription;
+  }
+
+  get atmosphereStatusEffectTypeDescription(): string {
+    return AtmosphereStatusEffectType[this.atmosphereStatusEffectType];
+  }
+
+  get activeAtmosphereStatusEffectRepetitionTimeDescription(): string {
+    return this.activeAtmosphereStatusEffectRepetitionTime > 0 ? `${this.activeAtmosphereStatusEffectRepetitionTime.toFixed(2)}s` : '';
   }
 
   descriptionComponent(stack?: number): React.ReactNode {

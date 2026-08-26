@@ -13,6 +13,14 @@ export interface Category
 }
 
 export const Categories: Category[] = [
+  {
+    label: 'Quests',
+    page: 'quest'
+  },
+  {
+    label: 'Terrains',
+    page: 'terrain'
+  },
   /* Effects */
   { 
     label: 'Effects', 

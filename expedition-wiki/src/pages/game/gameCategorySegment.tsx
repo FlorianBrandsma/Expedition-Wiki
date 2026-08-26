@@ -20,7 +20,7 @@ function CategoryCard({ category, index }: CategoryCardProps) {
     <Grid key={index} size={1}>
       <ExCard key={index}>
         <CardContent sx={{ height: '100%', padding: 1, '&:last-child': { paddingBottom: 1 } }}>
-          <Typography align='center' noWrap sx={{width: '100%'}}>
+          <Typography align='center' noWrap sx={{ width: '100%' }}>
             <Link 
               className='link'
               to={`/${ gameModel.name }/${ category.page }`}
@@ -45,8 +45,7 @@ export default function GameCategorySegment() {
         columns={{ 
           xs: 2, 
           sm: Math.ceil(Categories.length / 3), 
-          md: Math.ceil(Categories.length / 2), 
-          lg: Categories.length 
+          lg: Math.ceil(Categories.length / 2) 
         }}
         sx={{
           width: '100%',
