@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ShopItemEventModel } from '../../../data/models/shopItemEventModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box, Typography } from '@mui/material';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -21,7 +21,6 @@ export default function ItemUtilitySellSegment() {
       align: 'left'
     },
     {
-      id: 'currencyItemBaseValue',
       label: 'Value',
       align: 'left',
       render: (row) => {
@@ -45,7 +44,7 @@ export default function ItemUtilitySellSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={shopItemEventModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={shopItemEventModelList} headCells={headers} />
     </Box>
   )
 }

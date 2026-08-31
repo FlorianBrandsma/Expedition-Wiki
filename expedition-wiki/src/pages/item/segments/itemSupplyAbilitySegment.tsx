@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { SpellDischargeAbilityModel } from '../../../data/models/spellDischargeAbilityModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function ItemSupplyAbilitySegment() {
   
   const headers = useMemo<HeadCell<SpellDischargeAbilityModel>[]>(() => [
     { 
-      id: 'abilityName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,16 +26,20 @@ export default function ItemSupplyAbilitySegment() {
       )
     },
     {
-      id: 'abilityDescription',
       label: 'Description',
       align: 'left',
-      sx: { whiteSpace: 'normal' }
+      sx: { whiteSpace: 'normal' },
+      render: (row) => (
+        <Box sx={{ maxWidth:'200px' }}>
+          {row.abilityDescription}
+        </Box>
+      )
     }
   ], [itemPageModel]);
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={spellDischargeAbilityModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={spellDischargeAbilityModelList} headCells={headers} />
     </Box>
   )
 }

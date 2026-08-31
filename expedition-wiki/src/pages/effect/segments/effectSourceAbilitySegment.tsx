@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { AbilityModel } from '../../../data/models/abilityModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectSourceAbilitySegment() {
 
   const headers = useMemo<HeadCell<AbilityModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -40,7 +39,7 @@ export default function EffectSourceAbilitySegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={abilityModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={abilityModelList} headCells={headers} />
     </Box>
   )
 }

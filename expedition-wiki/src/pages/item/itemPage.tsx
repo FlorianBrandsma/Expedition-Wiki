@@ -41,6 +41,12 @@ import ItemSourceDistributeSegment from './segments/itemSourceDistributeSegment'
 import ItemSourceScrapSegment from './segments/itemSourceScrapSegment';
 import ItemUtilitySellSegment from './segments/itemUtilitySellSegment';
 import ItemSourceSellSegment from './segments/itemSourceSellSegment';
+import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
+import GeneralUtilityConditionEventSegment from '../general/segments/utility/condition/generalUtilityConditionEventSegment';
+import GeneralUtilityConditionItemSegment from '../general/segments/utility/condition/generalUtilityConditionItemSegment';
+import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
+import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
+import GeneralUtilityConditionTriggerSegment from '../general/segments/utility/condition/generalUtilityConditionTriggerSegment';
 
 export default function ItemPage() {
 
@@ -84,6 +90,7 @@ export default function ItemPage() {
     shopItemEventItemModelList,
     craftItemEventItemModelList,
     relinquishItemEventItemModelList,
+    caseConditionModelList,
     agentInteractableLootTableModelList,
     mailEventModelList,
     sourceStealItemEventItemModelList,
@@ -252,6 +259,90 @@ export default function ItemPage() {
       id: 'Relinquish',
       component: <ItemUtilityRelinquishSegment />
     })
+  }
+
+  if (caseConditionModelList.length > 0) {
+
+    const conditionSegment = {
+      label: 'Conditions',
+      id: 'Conditions',
+      children: []
+    } as ContentSegment;
+
+    /* Abilities */
+    const chargeAbilityCaseConditionModelList = caseConditionModelList.filter(x => x.chargeAbilityModel);
+
+    if (chargeAbilityCaseConditionModelList.length > 0) {
+
+      conditionSegment.children!.push({
+        label: 'Abilities',
+        id: 'Abilities',
+        component: <GeneralUtilityConditionAbilitySegment caseConditionModelList={chargeAbilityCaseConditionModelList} />
+      });
+    }
+
+    /* Reactions */
+    const agentInteractableReactionCaseConditionModelList = caseConditionModelList.filter(x => x.agentInteractableReactionModel);
+
+    if (agentInteractableReactionCaseConditionModelList.length > 0) {
+
+      conditionSegment.children!.push({
+        label: 'Reactions',
+        id: 'Reactions',
+        component: <GeneralUtilityConditionReactionSegment caseConditionModelList={agentInteractableReactionCaseConditionModelList} />
+      });
+    }
+    
+    /* Loot */
+    const agentInteractableLootTableCaseConditionModelList = caseConditionModelList.filter(x => x.agentInteractableLootTableModel);
+
+    if (agentInteractableLootTableCaseConditionModelList.length > 0) {
+
+      conditionSegment.children!.push({
+        label: 'Loot',
+        id: 'Loot',
+        component: <GeneralUtilityConditionLootSegment caseConditionModelList={agentInteractableLootTableCaseConditionModelList} />
+      });
+    }
+
+    /* Triggers */
+    const interactionTriggerCaseConditionModelList = caseConditionModelList.filter(x => x.interactionTriggerModel);
+
+    if (interactionTriggerCaseConditionModelList.length > 0) {
+
+      conditionSegment.children!.push({
+        label: 'Triggers',
+        id: 'Triggers',
+        component: <GeneralUtilityConditionTriggerSegment caseConditionModelList={interactionTriggerCaseConditionModelList} />
+      });
+    }
+
+    /* Events */
+    const eventContinuationCaseConditionModelList = caseConditionModelList.filter(x => x.eventContinuationModel);
+
+    if (eventContinuationCaseConditionModelList.length > 0) {
+
+      conditionSegment.children!.push({
+        label: 'Events',
+        id: 'Events',
+        component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
+      });
+    }
+
+    /* Items */
+    const itemEventItemCaseConditionModelList = caseConditionModelList.filter(x => x.itemEventItemModel);
+
+    if (itemEventItemCaseConditionModelList.length > 0) {
+
+      conditionSegment.children!.push({
+        label: 'Items',
+        id: 'Events',
+        component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
+      });
+    }
+
+    if (conditionSegment.children?.length !== 0)
+      utilitySegment.children!.push(conditionSegment);
   }
 
   if (utilitySegment.children?.length !== 0)

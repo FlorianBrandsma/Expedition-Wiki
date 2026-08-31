@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { ResistStatusEffectModel } from '../../../data/models/resistStatusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectResistanceSegment() {
   
   const headers = useMemo<HeadCell<ResistStatusEffectModel>[]>(() => [
     { 
-      id: 'statusEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function EffectResistanceSegment() {
       )
     },
     {
-      id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -41,7 +39,7 @@ export default function EffectResistanceSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='id' rows={resistStatusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={resistStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

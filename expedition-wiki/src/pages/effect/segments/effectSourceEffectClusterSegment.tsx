@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { ClusterStatusEffectModel } from '../../../data/models/clusterStatusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -17,7 +17,6 @@ export default function EffectSourceEffectClusterSegment() {
 
   const headers = useMemo<HeadCell<ClusterStatusEffectModel>[]>(() => [
     { 
-      id: 'statusEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -33,7 +32,6 @@ export default function EffectSourceEffectClusterSegment() {
       align: 'left'
     },
     {
-      id: 'statusEffectModelList',
       label: 'Cluster',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -51,7 +49,7 @@ export default function EffectSourceEffectClusterSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={clusterStatusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={clusterStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

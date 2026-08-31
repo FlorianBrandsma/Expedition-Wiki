@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { RepeatStatusEffectModel } from '../../../data/models/repeatStatusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectSourceEffectRepeatSegment() {
 
   const headers = useMemo<HeadCell<RepeatStatusEffectModel>[]>(() => [
     { 
-      id: 'statusEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function EffectSourceEffectRepeatSegment() {
       )
     },
     {
-      id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -41,7 +39,7 @@ export default function EffectSourceEffectRepeatSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={repeatStatusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={repeatStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -24,7 +24,6 @@ export default function ItemSourceBuySegment() {
         align: 'left'
       },
       {
-        id: 'shopItemEventItemValue',
         label: 'Cost',
         align: 'left',
         render: (row) => (
@@ -36,7 +35,6 @@ export default function ItemSourceBuySegment() {
         )
       },
       {
-        id: 'shopItemEventItemRate',
         label: 'Rate',
         align: 'center',
         render: (row) => (
@@ -56,7 +54,6 @@ export default function ItemSourceBuySegment() {
 
     if (sourceShopItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -64,7 +61,7 @@ export default function ItemSourceBuySegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -76,7 +73,7 @@ export default function ItemSourceBuySegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={sourceShopItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={sourceShopItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

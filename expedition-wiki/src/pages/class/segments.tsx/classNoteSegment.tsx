@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useClassPageContext } from '../classPageContext';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 import type { NoteModel } from '../../../data/models/noteModel';
 
@@ -13,7 +13,6 @@ export default function ClassNoteSegment() {
 
   const headers = useMemo<HeadCell<NoteModel>[]>(() => [
     {
-      id: 'textComponent',
       label: 'Text',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -27,7 +26,7 @@ export default function ClassNoteSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='id' rows={noteModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={noteModelList} headCells={headers} />
     </Box>
   )
 }

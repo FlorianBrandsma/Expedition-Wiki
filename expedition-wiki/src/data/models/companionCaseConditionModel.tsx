@@ -12,7 +12,7 @@ export class CompanionCaseConditionModel {
     Object.assign(this, init);
   }
 
-  descriptionComponent(): React.ReactNode {
+  get descriptionComponent(): React.ReactNode {
           
     const interactable = (
       <ExLink pageName={'interactable'} name={this.playableCharacterAgentInteractableName} />

@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { CharacterAgentInteractableModel } from '../../../data/models/characterAgentInteractableModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function ItemEquipmentEquippedSegment() {
 
   const headers = useMemo<HeadCell<CharacterAgentInteractableModel>[]>(() => [
     { 
-      id: 'agentInteractableName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -35,7 +34,7 @@ export default function ItemEquipmentEquippedSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={characterAgentInteractableModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={characterAgentInteractableModelList} headCells={headers} />
     </Box>
   )
 }

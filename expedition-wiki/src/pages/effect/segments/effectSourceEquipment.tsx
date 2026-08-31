@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { EquipmentItemModel } from '../../../data/models/equipmentItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectSourceEquipmentSegment() {
 
   const headers = useMemo<HeadCell<EquipmentItemModel>[]>(() => [
     { 
-      id: 'itemName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -35,7 +34,7 @@ export default function EffectSourceEquipmentSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={equipmentItemModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={equipmentItemModelList} headCells={headers} />
     </Box>
   )
 }

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { ItemComponentModel } from '../../../data/models/itemComponentModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -17,7 +17,6 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
 
   const headers = useMemo<HeadCell<ItemComponentModel>[]>(() => [
     { 
-      id: 'componentItemName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -36,7 +35,7 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={itemComponentModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={itemComponentModelList} headCells={headers} />
     </Box>
   )
 }

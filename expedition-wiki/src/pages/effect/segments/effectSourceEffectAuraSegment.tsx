@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { AuraStatusEffectModel } from '../../../data/models/auraStatusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectSourceEffectAuraSegment() {
 
   const headers = useMemo<HeadCell<AuraStatusEffectModel>[]>(() => [
     { 
-      id: 'statusEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function EffectSourceEffectAuraSegment() {
       )
     },
     {
-      id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -41,7 +39,7 @@ export default function EffectSourceEffectAuraSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={auraStatusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={auraStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

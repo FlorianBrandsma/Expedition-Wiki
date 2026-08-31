@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectClusterEffectSegment() {
 
   const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => [
     { 
-      id: 'effectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function EffectClusterEffectSegment() {
       )
     },
     {
-      id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -41,7 +39,7 @@ export default function EffectClusterEffectSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

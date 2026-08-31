@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { RestEventModel } from '../../../data/models/restEventModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 
 export default function ItemUtilityRestSegment() {
@@ -30,7 +30,7 @@ export default function ItemUtilityRestSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={restEventModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={restEventModelList} headCells={headers} />
     </Box>
   )
 }

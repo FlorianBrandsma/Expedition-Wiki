@@ -4,7 +4,7 @@ import { useAbilityPageContext } from '../abilityPageContext';
 
 import type { AbilityEventModel } from '../../../data/models/abilityEventModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 
 export default function AbilitySourceEventSegment() {
@@ -22,7 +22,7 @@ export default function AbilitySourceEventSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={abilityEventModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={abilityEventModelList} headCells={headers} />
     </Box>
   )
 }

@@ -14,7 +14,7 @@ export class ResourceCaseConditionModel {
     Object.assign(this, init);
   }
 
-  description(): string {
+  get description(): string {
 
     const amountTypeSymbol = (ResourceAmountType[this.amountType] === 'Percent' ? "%" : "");
 

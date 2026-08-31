@@ -4,7 +4,7 @@ import { useFactionPageContext } from '../factionPageContext';
 
 import type { InteractableModel } from '../../../data/models/interactableModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function FactionMemberSegment() {
 
   const headers = useMemo<HeadCell<InteractableModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Interactable', 
       align: 'left',
       render: (row) => (
@@ -30,7 +29,7 @@ export default function FactionMemberSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey="id" rows={interactableModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={interactableModelList} headCells={headers} />
     </Box>
   )
 }

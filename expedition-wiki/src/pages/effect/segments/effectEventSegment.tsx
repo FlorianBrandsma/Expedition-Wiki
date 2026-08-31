@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { EventModel } from '../../../data/models/eventModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 
 export default function EffectEventSegment() {
@@ -22,7 +22,7 @@ export default function EffectEventSegment() {
 
   return (
     <Box sx={{ mt: 1  }}>
-      <EnhancedTable rowKey='id' rows={eventModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={eventModelList} headCells={headers} />
     </Box>
   )
 }

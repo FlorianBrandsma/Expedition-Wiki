@@ -11,7 +11,7 @@ export class TaskCaseConditionModel {
     Object.assign(this, init);
   }
 
-  description(): string {
+  get description(): string {
 
     let list: string[] = [];
 

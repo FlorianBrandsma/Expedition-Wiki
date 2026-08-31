@@ -16,7 +16,7 @@ export class EffectCaseConditionModel {
     Object.assign(this, init);
   }
 
-  descriptionComponent(): React.ReactNode {
+  get descriptionComponent(): React.ReactNode {
   
     const effect = (
       <ExLink pageName={'effect'} name={this.statusEffectName} />

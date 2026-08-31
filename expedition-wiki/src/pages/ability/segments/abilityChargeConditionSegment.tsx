@@ -3,8 +3,7 @@ import { useMemo } from 'react';
 import { useAbilityPageContext } from '../abilityPageContext';
 
 import type { CaseConditionModel } from '../../../data/models/caseConditionModel';
-
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 
 export default function AbilityChargeConditionSegment() {
@@ -16,13 +15,12 @@ export default function AbilityChargeConditionSegment() {
 
   const headers = useMemo<HeadCell<CaseConditionModel>[]>(() => [
     { 
-      id: 'descriptionComponent', 
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'200px'}}>
-          {row.descriptionComponent()}
+          {row.descriptionComponent}
         </Box>
       )
     }
@@ -30,7 +28,7 @@ export default function AbilityChargeConditionSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={caseConditionModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={caseConditionModelList} headCells={headers} />
     </Box>
   )
 }

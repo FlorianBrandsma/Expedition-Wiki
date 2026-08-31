@@ -14,6 +14,7 @@ import { AtmosphereModel } from "../atmosphereModel";
 import { RepeatStatusEffectModel } from "../repeatStatusEffectModel";
 import { AuraStatusEffectModel } from "../auraStatusEffectModel";
 import { AbsorbResourceEffectModel } from "../absorbResourceEffectModel";
+import { CaseConditionModel } from "../caseConditionModel";
 
 export class EffectPageModel {
 
@@ -38,6 +39,8 @@ export class EffectPageModel {
   
   effectEventModelList!: EffectEventModel[];
 
+  caseConditionModelList!: CaseConditionModel[];
+
   constructor(init:Partial<EffectPageModel>) {  
     Object.assign(this, init);
 
@@ -61,5 +64,7 @@ export class EffectPageModel {
     this.clusterStatusEffectModelList  = this.clusterStatusEffectModelList .map((model) => new ClusterStatusEffectModel (model));
 
     this.effectEventModelList          = this.effectEventModelList         .map((model) => new EffectEventModel         (model));
+
+    this.caseConditionModelList        = this.caseConditionModelList       .map((model) => new CaseConditionModel       (model));
   }
 }

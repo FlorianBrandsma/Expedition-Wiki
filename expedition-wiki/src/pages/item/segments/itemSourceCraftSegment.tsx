@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -26,8 +26,8 @@ export default function ItemSourceCraftSegment() {
     ];
 
     if (sourceCraftItemEventItemModelList.some(model => model.craftItemEventItemModel.costCraftItemEventItemModel)) {
+
       headers.push({
-        id: 'costCraftItemEventItemQuantity',
         label: 'Cost',
         align: 'left',
         render: (row) => (
@@ -41,6 +41,7 @@ export default function ItemSourceCraftSegment() {
     }
 
     if (sourceCraftItemEventItemModelList.some(model => model.limitedItemEventItemModel)) {
+      
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
@@ -50,8 +51,8 @@ export default function ItemSourceCraftSegment() {
     }
 
     if (sourceCraftItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
+
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -59,7 +60,7 @@ export default function ItemSourceCraftSegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -80,7 +81,7 @@ export default function ItemSourceCraftSegment() {
           {'Create'}
         </Link>
       </Typography>
-      <EnhancedTable rowKey="id" rows={sourceCraftItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={sourceCraftItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

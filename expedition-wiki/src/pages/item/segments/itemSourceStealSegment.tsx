@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import { Box } from '@mui/material';
 
@@ -29,6 +29,7 @@ export default function ItemSourceStealSegment() {
     ];
 
     if (sourceStealItemEventItemModelList.some(model => model.limitedItemEventItemModel)) {
+
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
@@ -40,12 +41,12 @@ export default function ItemSourceStealSegment() {
     headers.push({
       id: 'stealItemEventItemSuccessChanceDescription',
       label: 'Success',
-      align: 'right'
+      align: 'center'
     })
 
     if (sourceStealItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
+      
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -53,7 +54,7 @@ export default function ItemSourceStealSegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -65,7 +66,7 @@ export default function ItemSourceStealSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={sourceStealItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={sourceStealItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

@@ -14,7 +14,7 @@ export class ItemCaseConditionModel {
     Object.assign(this, init);
   }
 
-  descriptionComponent(): React.ReactNode {
+  get descriptionComponent(): React.ReactNode {
     
     const item = (
       <ExLink pageName={'item'} name={this.itemName} />

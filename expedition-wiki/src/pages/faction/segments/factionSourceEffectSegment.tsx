@@ -4,7 +4,7 @@ import { useFactionPageContext } from '../factionPageContext';
 
 import type { StandingStatusEffectModel } from '../../../data/models/standingStatusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function FactionSourceEffectSegment() {
 
   const headers = useMemo<HeadCell<StandingStatusEffectModel>[]>(() => [
     { 
-      id: 'statusEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function FactionSourceEffectSegment() {
       )
     },
     {
-      id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -41,7 +39,7 @@ export default function FactionSourceEffectSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={standingStatusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={standingStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

@@ -1,3 +1,4 @@
+import { CaseConditionModel } from "../caseConditionModel";
 import { FactionModel } from "../factionModel";
 import { InteractableModel } from "../interactableModel";
 import { ReputationEventModel } from "../reputationEventModel";
@@ -16,6 +17,8 @@ export class FactionPageModel {
 
   reputationEventModelList!: ReputationEventModel[];
 
+  caseConditionModelList!: CaseConditionModel[];
+
   constructor(init:Partial<FactionPageModel>) {  
     Object.assign(this, init);
 
@@ -29,6 +32,8 @@ export class FactionPageModel {
     this.standingStatusEffectModelList = this.standingStatusEffectModelList.map((model) => new StandingStatusEffectModel(model));
 
     this.reputationEventModelList      = this.reputationEventModelList     .map((model) => new ReputationEventModel     (model));
+
+    this.caseConditionModelList        = this.caseConditionModelList       .map((model) => new CaseConditionModel       (model));
   }
 
   get friendlyFactionModelList(): FactionModel[] {

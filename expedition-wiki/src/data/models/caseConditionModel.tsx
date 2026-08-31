@@ -1,3 +1,4 @@
+import type React from "react";
 import { ResourceCaseConditionModel } from "./resourceCaseConditionModel";
 import { EffectCaseConditionModel } from "./effectCaseConditionModel";
 import { ItemCaseConditionModel } from "./itemCaseConditionModel";
@@ -8,6 +9,12 @@ import { TaskCaseConditionModel } from "./taskCaseConditionModel";
 import { CombatCaseConditionModel } from "./combatCaseConditionModel";
 import { LootCaseConditionModel } from "./lootCaseConditionModel";
 import { CaseConditionType } from "../../types/enums";
+import { ChargeAbilityModel } from "./chargeAbilityModel";
+import { AgentInteractableReactionModel } from "./agentInteractableReactionModel";
+import { AgentInteractableLootTableModel } from "./agentInteractableLootTableModel";
+import { InteractionTriggerModel } from "./interactionTriggerModel";
+import { EventContinuationModel } from "./eventContinuationModel";
+import { ItemEventItemModel } from "./itemEventItemModel";
 
 export class CaseConditionModel {
 
@@ -15,18 +22,32 @@ export class CaseConditionModel {
 
   type!: number;
 
-  resourceCaseConditionModelList!: ResourceCaseConditionModel[];
-  effectCaseConditionModelList!: EffectCaseConditionModel[];
-  itemCaseConditionModelList!: ItemCaseConditionModel[];
-  factionCaseConditionModelList!: FactionCaseConditionModel[];
+  chargeAbilityModel!:              ChargeAbilityModel;
+  agentInteractableReactionModel!:  AgentInteractableReactionModel;
+  agentInteractableLootTableModel!: AgentInteractableLootTableModel;
+  interactionTriggerModel!:         InteractionTriggerModel;
+  eventContinuationModel!:          EventContinuationModel;
+  itemEventItemModel!:              ItemEventItemModel;
+
+  resourceCaseConditionModelList!:  ResourceCaseConditionModel[];
+  effectCaseConditionModelList!:    EffectCaseConditionModel[];
+  itemCaseConditionModelList!:      ItemCaseConditionModel[];
+  factionCaseConditionModelList!:   FactionCaseConditionModel[];
   characterCaseConditionModelList!: CharacterCaseConditionModel[];
   companionCaseConditionModelList!: CompanionCaseConditionModel[];
-  taskCaseConditionModelList!: TaskCaseConditionModel[];
-  combatCaseConditionModelList!: CombatCaseConditionModel[];
-  lootCaseConditionModelList!: LootCaseConditionModel[];
+  taskCaseConditionModelList!:      TaskCaseConditionModel[];
+  combatCaseConditionModelList!:    CombatCaseConditionModel[];
+  lootCaseConditionModelList!:      LootCaseConditionModel[];
 
   constructor(init:Partial<CaseConditionModel>) {  
     Object.assign(this, init);
+
+    if (this.chargeAbilityModel)              this.chargeAbilityModel               = new ChargeAbilityModel             (this.chargeAbilityModel);
+    if (this.agentInteractableReactionModel)  this.agentInteractableReactionModel   = new AgentInteractableReactionModel (this.agentInteractableReactionModel);
+    if (this.agentInteractableLootTableModel) this.agentInteractableLootTableModel  = new AgentInteractableLootTableModel(this.agentInteractableLootTableModel);
+    if (this.interactionTriggerModel)         this.interactionTriggerModel          = new InteractionTriggerModel        (this.interactionTriggerModel);
+    if (this.eventContinuationModel)          this.eventContinuationModel           = new EventContinuationModel         (this.eventContinuationModel);
+    if (this.itemEventItemModel)              this.itemEventItemModel               = new ItemEventItemModel             (this.itemEventItemModel);
 
     this.resourceCaseConditionModelList  = this.resourceCaseConditionModelList .map((model) => new ResourceCaseConditionModel (model));
     this.effectCaseConditionModelList    = this.effectCaseConditionModelList   .map((model) => new EffectCaseConditionModel   (model));
@@ -75,19 +96,19 @@ export class CaseConditionModel {
     return this.lootCaseConditionModelList[0];
   }
 
-  descriptionComponent(): React.ReactNode {
+  get descriptionComponent(): React.ReactNode {
 
-      switch (CaseConditionType[this.type])
-      {
-        case 'Resource':  return this.resourceCaseConditionModel! .description();
-        case 'Effect':    return this.effectCaseConditionModel!   .descriptionComponent();
-        case 'Item':      return this.itemCaseConditionModel!     .descriptionComponent();
-        case 'Faction':   return this.factionCaseConditionModel!  .descriptionComponent();
-        case 'Character': return this.characterCaseConditionModel!.descriptionComponent();
-        case 'Companion': return this.companionCaseConditionModel!.descriptionComponent();
-        case 'Task':      return this.taskCaseConditionModel!     .description();
-        case 'Combat':    return this.combatCaseConditionModel!   .description();
-        case 'Loot':      return this.lootCaseConditionModel!     .description();
-      }
+    switch (CaseConditionType[this.type])
+    {
+      case 'Resource':  return this.resourceCaseConditionModel! .description;
+      case 'Effect':    return this.effectCaseConditionModel!   .descriptionComponent;
+      case 'Item':      return this.itemCaseConditionModel!     .descriptionComponent;
+      case 'Faction':   return this.factionCaseConditionModel!  .descriptionComponent;
+      case 'Character': return this.characterCaseConditionModel!.descriptionComponent;
+      case 'Companion': return this.companionCaseConditionModel!.descriptionComponent;
+      case 'Task':      return this.taskCaseConditionModel!     .description;
+      case 'Combat':    return this.combatCaseConditionModel!   .description;
+      case 'Loot':      return this.lootCaseConditionModel!     .description;
     }
+  }
 }

@@ -4,7 +4,7 @@ import { useAbilityPageContext } from '../abilityPageContext';
 
 import type { ArmEquipmentItemModel } from '../../../data/models/armEquipmentItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
 import ExIcon from '../../../components/exIcon/exIcon';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function AbilitySourceArmSegment() {
 
   const headers = useMemo<HeadCell<ArmEquipmentItemModel>[]>(() => [
     { 
-      id: 'equipmentItemName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -35,7 +34,7 @@ export default function AbilitySourceArmSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={armEquipmentItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={armEquipmentItemModelList} headCells={headers} />
     </Box>
   )
 }

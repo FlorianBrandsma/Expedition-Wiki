@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemModel } from '../../../data/models/itemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box, Typography } from '@mui/material';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -16,7 +16,6 @@ export default function ItemSourceSellSegment() {
 
   const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Item', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function ItemSourceSellSegment() {
       )
     },
     {
-      id: 'baseValue',
       label: 'Quantity',
       align: 'right',
       render: (row) => {
@@ -42,7 +40,7 @@ export default function ItemSourceSellSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={itemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={itemModelList} headCells={headers} />
     </Box>
   )
 }

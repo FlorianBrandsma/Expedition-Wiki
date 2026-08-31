@@ -4,7 +4,7 @@ import { useEquipmentSetPageContext } from '../equipmentSetPageContext';
 
 import type { EquipmentItemModel } from '../../../data/models/equipmentItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EquipmentSetEquipmentSegment() {
 
   const headers = useMemo<HeadCell<EquipmentItemModel>[]>(() => [
     { 
-      id: 'itemName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -35,7 +34,7 @@ export default function EquipmentSetEquipmentSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='equipmentSlotType' rows={equipmentItemModelList} headCells={headers} />
+      <BasicTable rowKey='equipmentSlotType' rows={equipmentItemModelList} headCells={headers} />
     </Box>
   )
 }

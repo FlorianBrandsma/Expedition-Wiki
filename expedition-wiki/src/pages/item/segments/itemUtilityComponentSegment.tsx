@@ -4,21 +4,19 @@ import { useItemPageContext } from '../itemPageContext';
 
 import { ItemModel } from '../../../data/models/itemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
-import RequiredItem from '../components/requiredItem';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export default function ItemUtilityComponentSegment() {
 
   const itemPageModel = useItemPageContext();
-  const { createComponentItemModelList } = itemPageModel;
-
+  const { createComponentItemModelList, itemModel: itemPageItemModel } = itemPageModel;
+  
   const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Item', 
       align: 'left',
       render: (row) => (
@@ -29,13 +27,19 @@ export default function ItemUtilityComponentSegment() {
       )
     },
     {
-      id: 'itemModelList',
       label: 'Components',
       align: 'left',
       render: (row) => (
         <CellTable 
+          highlited={(itemModel) => itemModel.id === itemPageItemModel.id}
           list={row.componentItemModelList(row.itemComponentType)} 
-          component={(itemModel) => <RequiredItem itemModel={itemModel} />}
+          component={(itemModel) => (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              <Typography variant='body2'>{itemModel.quantity} x</Typography>
+              <ExIcon resourceName={itemModel.assetIconResourceName} size={20} />
+              <ExLink pageName={'item'} name={itemModel.name} />
+            </Box>
+          )}
         />
       )
     }
@@ -43,7 +47,7 @@ export default function ItemUtilityComponentSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={createComponentItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={createComponentItemModelList} headCells={headers} />
     </Box>
   )
 }

@@ -10,7 +10,7 @@ export class CombatCaseConditionModel {
     Object.assign(this, init);
   }
 
-  description(): string {
+  get description(): string {
     return `Combat state: ${CombatState[this.combatState].toLowerCase()}${(CombatCaseConditionEngagementType[this.engagementType] !== 'Either' ? `, ${CombatCaseConditionEngagementType[this.engagementType].toLowerCase()}`: '')}`;
   }
 }

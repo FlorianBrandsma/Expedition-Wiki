@@ -4,12 +4,11 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
-import RequiredItem from '../components/requiredItem';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export default function ItemUtilityTradeSegment() {
 
@@ -20,7 +19,6 @@ export default function ItemUtilityTradeSegment() {
 
     const headers: HeadCell<ItemEventItemModel>[] = [
       { 
-        id: 'itemName', 
         label: 'Item', 
         align: 'left',
         render: (row) => (
@@ -36,19 +34,25 @@ export default function ItemUtilityTradeSegment() {
         align: 'left'
       },
       {
-        id: 'tradeItemEventItemRelinquishItemModelList',
         label: 'Relinquish',
         align: 'left',
         render: (row) => (
           <CellTable 
             list={row.tradeItemEventItemRelinquishItemModelList} 
-            component={(itemModel) => <RequiredItem itemModel={itemModel} />}
+            component={(itemModel) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <Typography variant='body2'>{itemModel.quantity} x</Typography>
+                <ExIcon resourceName={itemModel.assetIconResourceName} size={20} />
+                <ExLink pageName={'item'} name={itemModel.name} />
+              </Box>
+            )}
           />
         )
       }
     ]
 
     if (tradeItemEventItemModelList.some(model => model.limitedItemEventItemModel)) {
+
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
@@ -58,8 +62,8 @@ export default function ItemUtilityTradeSegment() {
     }
 
     if (tradeItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
+
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -67,7 +71,7 @@ export default function ItemUtilityTradeSegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -79,7 +83,7 @@ export default function ItemUtilityTradeSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={tradeItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={tradeItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { AtmosphereModel } from '../../../data/models/atmosphereModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -16,7 +16,6 @@ export default function EffectSourceClimateSegment() {
 
   const headers = useMemo<HeadCell<AtmosphereModel>[]>(() => [
     { 
-      id: 'climateName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -27,7 +26,6 @@ export default function EffectSourceClimateSegment() {
       )
     },
     { 
-      id: 'terrainName', 
       label: 'Terrain', 
       align: 'left',
       render: (row) => (
@@ -48,7 +46,7 @@ export default function EffectSourceClimateSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={atmosphereModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={atmosphereModelList} headCells={headers} />
     </Box>
   )
 }

@@ -9,12 +9,12 @@ import { DischargeAbilityModel } from "../dischargeAbilityModel";
 import { SpellDischargeAbilityModel } from "../spellDischargeAbilityModel";
 import { ClassModel } from "../classModel";
 import { AgentInteractableLootTableModel } from "../agentInteractableLootTableModel";
-import { ItemEventModel } from "../itemEventModel";
 import { MailEventModel } from "../mailEventModel";
 import { RestEventModel } from "../restEventModel";
 import { ShopItemEventModel } from "../shopItemEventModel";
 import { CharacterAgentInteractableModel } from "../characterAgentInteractableModel";
 import { ItemEventItemModel } from "../itemEventItemModel";
+import { CaseConditionModel } from "../caseConditionModel";
 
 export class ItemPageModel {
 
@@ -45,6 +45,8 @@ export class ItemPageModel {
   mailEventModelList!: MailEventModel[];
   itemEventItemModelList!: ItemEventItemModel[];
   itemModelList!: ItemModel[];
+  
+  caseConditionModelList!: CaseConditionModel[];
 
   constructor(init:Partial<ItemPageModel>) {  
     Object.assign(this, init);
@@ -76,6 +78,8 @@ export class ItemPageModel {
     this.mailEventModelList                  = this.mailEventModelList                 .map((model) => new MailEventModel                 (model));
     this.itemEventItemModelList              = this.itemEventItemModelList             .map((model) => new ItemEventItemModel             (model));
     this.itemModelList                       = this.itemModelList                      .map((model) => new ItemModel                      (model));
+
+    this.caseConditionModelList              = this.caseConditionModelList             .map((model) => new CaseConditionModel             (model));
   }
 
   get createComponentItemModelList(): ItemModel[] {

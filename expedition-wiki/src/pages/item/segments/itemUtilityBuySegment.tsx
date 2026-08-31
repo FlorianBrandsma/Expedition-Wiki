@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import { Box, Typography } from '@mui/material';
 import ExIcon from '../../../components/exIcon/exIcon';
@@ -24,7 +24,6 @@ export default function ItemUtilityBuySegment() {
         align: 'left'
       },
       { 
-        id: 'itemName', 
         label: 'Item', 
         align: 'left',
         render: (row) => (
@@ -35,7 +34,6 @@ export default function ItemUtilityBuySegment() {
         )
       },
       {
-        id: 'shopItemEventItemValue',
         label: 'Cost',
         align: 'left',
         render: (row) => (
@@ -47,16 +45,16 @@ export default function ItemUtilityBuySegment() {
         )
       },
       {
-        id: 'shopItemEventItemRate',
         label: 'Rate',
         align: 'center',
         render: (row) => (
-          <>{row.shopItemEventItemRate.toFixed(2)}</>
+          row.shopItemEventItemRate.toFixed(2)
         )
       }
     ]
 
     if (shopItemEventItemModelList.some(model => model.limitedItemEventItemModel)) {
+
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
@@ -66,8 +64,8 @@ export default function ItemUtilityBuySegment() {
     }
 
     if (shopItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
+
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -75,7 +73,7 @@ export default function ItemUtilityBuySegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -87,7 +85,7 @@ export default function ItemUtilityBuySegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={shopItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={shopItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

@@ -4,7 +4,7 @@ import { useFactionPageContext } from '../factionPageContext';
 
 import type { ReputationEventModel } from '../../../data/models/reputationEventModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 
 export default function FactionSourceEventSegment() {
@@ -27,7 +27,7 @@ export default function FactionSourceEventSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={reputationEventModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={reputationEventModelList} headCells={headers} />
     </Box>
   )
 }

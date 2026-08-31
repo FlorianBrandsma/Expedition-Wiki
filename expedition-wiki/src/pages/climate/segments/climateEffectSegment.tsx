@@ -6,7 +6,7 @@ import { StatusEffectType } from '../../../types/enums';
 
 import type { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -19,7 +19,7 @@ export default function ClimateEffectSegment() {
 
   const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => {
 
-    const headers: HeadCell<StatusEffectModel>[] =[
+    const headers: HeadCell<StatusEffectModel>[] = [
       {
         id: 'atmosphereTimeDescription',
         label: 'Time',
@@ -31,7 +31,6 @@ export default function ClimateEffectSegment() {
         align: 'left'
       },
       { 
-        id: 'effectName', 
         label: 'Name', 
         align: 'left',
         render: (row) => (
@@ -42,7 +41,6 @@ export default function ClimateEffectSegment() {
         )
       },
       {
-        id: 'descriptionComponent',
         label: 'Description',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -56,7 +54,6 @@ export default function ClimateEffectSegment() {
 
     if (statusEffectModelList.some(model => StatusEffectType[model.type] === 'Cluster')) {
       headers.push({
-        id: 'clusterStatusEffecStatusEffectModelList',
         label: 'Cluster',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -92,7 +89,7 @@ export default function ClimateEffectSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='atmosphereStatusEffectId' rows={statusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='atmosphereStatusEffectId' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

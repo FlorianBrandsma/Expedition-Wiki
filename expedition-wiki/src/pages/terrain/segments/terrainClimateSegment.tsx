@@ -4,7 +4,7 @@ import { useTerrainPageContext } from '../terrainPageContext';
 
 import type { ClimateModel } from '../../../data/models/climateModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 import CellTable from '../../../components/cellTable/cellTable';
@@ -17,9 +17,8 @@ export default function TerrainClimateSegment() {
 
   const headers = useMemo<HeadCell<ClimateModel>[]>(() => {
 
-    const headers: HeadCell<ClimateModel>[] =[
+    const headers: HeadCell<ClimateModel>[] = [
       { 
-        id: 'name', 
         label: 'Name', 
         align: 'left',
         render: (row) => (
@@ -32,8 +31,8 @@ export default function TerrainClimateSegment() {
     ]
 
     if (climateModelList.some(model => model.chunkModelList?.length > 0)) {
+      
         headers.push({
-          id: 'chunkModelList',
           label: 'Chunks',
           align: 'left',
           sx: { whiteSpace: 'normal' },
@@ -55,7 +54,7 @@ export default function TerrainClimateSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='id' rows={climateModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={climateModelList} headCells={headers} />
     </Box>
   )
 }

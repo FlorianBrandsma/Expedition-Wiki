@@ -4,7 +4,7 @@ import { useAbilityPageContext } from '../abilityPageContext';
 
 import { ClassModel } from '../../../data/models/classModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
@@ -15,7 +15,6 @@ export default function AbilityClassSegment() {
 
   const headers = useMemo<HeadCell<ClassModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -26,7 +25,7 @@ export default function AbilityClassSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey="id" rows={classModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={classModelList} headCells={headers} />
     </Box>
   )
 }

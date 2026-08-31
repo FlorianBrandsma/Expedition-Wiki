@@ -4,7 +4,7 @@ import { useAbilityPageContext } from '../abilityPageContext';
 
 import type { EffectModel } from '../../../data/models/effectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,9 +16,8 @@ export default function AbilityEffectSegment() {
 
   const headers = useMemo<HeadCell<EffectModel>[]>(() => {
 
-    const headers: HeadCell<EffectModel>[] =[
+    const headers: HeadCell<EffectModel>[] = [
       { 
-        id: 'name', 
         label: 'Name', 
         align: 'left',
         render: (row) => (
@@ -34,7 +33,6 @@ export default function AbilityEffectSegment() {
         align: 'left'
       },
       {
-        id: 'descriptionComponent',
         label: 'Description',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -55,7 +53,7 @@ export default function AbilityEffectSegment() {
         headers.push({
           id: 'successChanceDescription',
           label: 'Success',
-          align: 'right'
+          align: 'center'
         })
       }
 
@@ -65,7 +63,7 @@ export default function AbilityEffectSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='id' rows={abilityModel.effectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={abilityModel.effectModelList} headCells={headers} />
     </Box>
   )
 }

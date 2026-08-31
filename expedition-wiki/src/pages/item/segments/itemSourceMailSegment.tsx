@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { MailEventModel } from '../../../data/models/mailEventModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
 
 export default function ItemSourceMailSegment() {
@@ -27,7 +27,7 @@ export default function ItemSourceMailSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={mailEventModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={mailEventModelList} headCells={headers} />
     </Box>
   )
 }

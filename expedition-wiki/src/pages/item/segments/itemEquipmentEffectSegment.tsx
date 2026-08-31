@@ -6,7 +6,7 @@ import { StatusEffectType } from '../../../types/enums';
 
 import { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -21,7 +21,6 @@ export default function ItemEquipmentEffectSegment() {
   
     const headers: HeadCell<StatusEffectModel>[] = [
       { 
-        id: 'effectName', 
         label: 'Name', 
         align: 'left',
         render: (row) => (
@@ -32,7 +31,6 @@ export default function ItemEquipmentEffectSegment() {
         )
       },
       {
-        id: 'type',
         label: 'Description',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -46,7 +44,6 @@ export default function ItemEquipmentEffectSegment() {
 
     if (statusEffectModelList.some(model => StatusEffectType[model.type] === 'Cluster')) {
       headers.push({
-        id: 'clusterStatusEffecStatusEffectModelList',
         label: 'Cluster',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -74,7 +71,7 @@ export default function ItemEquipmentEffectSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

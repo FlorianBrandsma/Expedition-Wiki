@@ -4,7 +4,7 @@ import { useFactionPageContext } from '../factionPageContext';
 
 import type { FactionModel } from '../../../data/models/factionModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -19,7 +19,6 @@ export default function FactionAttitudeSegment({ factionModelList }: FactionAtti
 
   const headers = useMemo<HeadCell<FactionModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Faction', 
       align: 'left',
       render: (row) => (
@@ -33,7 +32,7 @@ export default function FactionAttitudeSegment({ factionModelList }: FactionAtti
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={factionModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={factionModelList} headCells={headers} />
     </Box>
   )
 }

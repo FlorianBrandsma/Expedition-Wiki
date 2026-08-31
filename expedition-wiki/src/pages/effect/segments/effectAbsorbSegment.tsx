@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { DamageResourceEffectModel } from '../../../data/models/damageResourceEffectModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -18,7 +18,6 @@ export default function EffectAbsorbSegment() {
 
   const headers = useMemo<HeadCell<DamageResourceEffectModel>[]>(() => [
     { 
-      id: 'resourceEffectName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -29,7 +28,6 @@ export default function EffectAbsorbSegment() {
       )
     },
     {
-      id: 'descriptionComponent',
       label: 'Description',
       align: 'left',
       sx: { whiteSpace: 'normal' },
@@ -43,7 +41,7 @@ export default function EffectAbsorbSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='id' rows={damageResourceEffectModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={damageResourceEffectModelList} headCells={headers} />
     </Box>
   )
 }

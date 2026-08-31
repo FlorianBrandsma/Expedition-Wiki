@@ -186,7 +186,7 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
                 <TableRow key={String(row[rowKey])}>
                   {
                     headCells.map((cell, cellIndex) => {
-                      const value = row[cell.id];
+                      
                       return (
                         <TableCell
                           key={String(cell.id)}
@@ -199,7 +199,10 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
                           {cell.render ? (
                             cell.render(row)
                           ) : (
-                            typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
+                            (() => {
+                              const value = row[cell.id];
+                              return typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
+                            })()
                           )}
                         </TableCell>
                       )

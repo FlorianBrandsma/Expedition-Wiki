@@ -14,7 +14,7 @@ export class FactionCaseConditionModel {
     Object.assign(this, init);
   }
 
-  descriptionComponent(): React.ReactNode {
+  get descriptionComponent(): React.ReactNode {
       
     const faction = (
       <ExLink pageName={'faction'} name={this.factionName} />

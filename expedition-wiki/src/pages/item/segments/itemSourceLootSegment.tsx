@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { AgentInteractableLootTableModel } from '../../../data/models/agentInteractableLootTableModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -19,7 +19,6 @@ export default function ItemSourceLootSegment() {
 
     const headers: HeadCell<AgentInteractableLootTableModel>[] = [
       { 
-        id: 'agentInteractableName', 
         label: 'Agent', 
         align: 'left',
         render: (row) => (
@@ -47,8 +46,8 @@ export default function ItemSourceLootSegment() {
     ]
 
     if (agentInteractableLootTableModelList.some(model => model.caseConditionModelList.length > 0)) {
+      
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -56,7 +55,7 @@ export default function ItemSourceLootSegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -68,7 +67,7 @@ export default function ItemSourceLootSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={agentInteractableLootTableModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={agentInteractableLootTableModelList} headCells={headers} />
     </Box>
   )
 }

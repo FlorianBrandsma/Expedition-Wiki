@@ -4,10 +4,11 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
-import RequiredItem from '../components/requiredItem';
-import { Box } from '@mui/material';
+import ExIcon from '../../../components/exIcon/exIcon';
+import ExLink from '../../../components/exLink/exLink';
+import { Box, Typography } from '@mui/material';
 
 export default function ItemSourceTradeSegment() {
 
@@ -25,20 +26,27 @@ export default function ItemSourceTradeSegment() {
     ];
 
     if (sourceTradeItemEventItemModelList.some(model => model.tradeItemEventItemRelinquishItemModelList.length > 0)) {
+
       headers.push({
-        id: 'tradeItemEventItemRelinquishItemModelList',
         label: 'Relinquish',
         align: 'center',
         render: (row) => (
           <CellTable 
             list={row.tradeItemEventItemRelinquishItemModelList} 
-            component={(itemModel) => <RequiredItem itemModel={itemModel} />}
+            component={(itemModel) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <Typography variant='body2'>{itemModel.quantity} x</Typography>
+                <ExIcon resourceName={itemModel.assetIconResourceName} size={20} />
+                <ExLink pageName={'item'} name={itemModel.name} />
+              </Box>
+            )}
           />
         )
       })
     }
 
     if (sourceTradeItemEventItemModelList.some(model => model.limitedItemEventItemModel)) {
+
       headers.push({
         id: 'limitedItemEventItemQuantityDescription',
         label: 'Limit',
@@ -48,8 +56,8 @@ export default function ItemSourceTradeSegment() {
     }
 
     if (sourceTradeItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
+      
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -57,7 +65,7 @@ export default function ItemSourceTradeSegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -69,7 +77,7 @@ export default function ItemSourceTradeSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={sourceTradeItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={sourceTradeItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

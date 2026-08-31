@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { DischargeAbilityModel } from '../../../data/models/dischargeAbilityModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function ItemEquipmentAbilitySegment() {
 
   const headers = useMemo<HeadCell<DischargeAbilityModel>[]>(() => [
     { 
-      id: 'abilityName', 
       label: 'Name',
       align: 'left',
       render: (row) => (
@@ -27,16 +26,20 @@ export default function ItemEquipmentAbilitySegment() {
       )
     },
     {
-      id: 'abilityDescription',
       label: 'Description',
       align: 'left',
-      sx: { whiteSpace: 'normal' }
+      sx: { whiteSpace: 'normal' },
+      render: (row) => (
+        <Box sx={{ maxWidth:'200px' }}>
+          {row.abilityDescription}
+        </Box>
+      )
     }
   ], [itemPageModel]);
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
     </Box>
   )
 }

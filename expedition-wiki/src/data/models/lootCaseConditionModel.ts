@@ -6,7 +6,7 @@ export class LootCaseConditionModel {
     Object.assign(this, init);
   }
 
-  description(): string {
+  get description(): string {
     return `${(this.containsLoot ? 'Contains loot' : 'Contains no loot')}`;
   }
 }

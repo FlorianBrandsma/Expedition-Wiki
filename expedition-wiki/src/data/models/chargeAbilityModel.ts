@@ -8,6 +8,11 @@ export class ChargeAbilityModel {
   
   armEquipmentItemType!: number;
 
+  abilityName!: string;
+  abilityDescription!: string;
+
+  abilityIconResourceName!: string;
+
   caseConditionModelList!: CaseConditionModel[];
 
   constructor(init:Partial<ChargeAbilityModel>) {  

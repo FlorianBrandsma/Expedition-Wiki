@@ -4,7 +4,7 @@ import { useClassPageContext } from '../classPageContext';
 
 import type { DischargeAbilityModel } from '../../../data/models/dischargeAbilityModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function ClassAbilitySegment() {
 
   const headers = useMemo<HeadCell<DischargeAbilityModel>[]>(() => [
     { 
-      id: 'abilityName', 
       label: 'Name',
       align: 'left',
       render: (row) => (
@@ -27,16 +26,20 @@ export default function ClassAbilitySegment() {
       )
     },
     {
-      id: 'abilityDescription',
       label: 'Description',
       align: 'left',
-      sx: { whiteSpace: 'normal' }
+      sx: { whiteSpace: 'normal' },
+      render: (row) => (
+        <Box sx={{ maxWidth:'200px' }}>
+          {row.abilityDescription}
+        </Box>
+      )
     }
   ], [classPageModel]);
 
   return (
     <Box sx={{ mt: 1 }}>
-      <EnhancedTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
     </Box>
   )
 }

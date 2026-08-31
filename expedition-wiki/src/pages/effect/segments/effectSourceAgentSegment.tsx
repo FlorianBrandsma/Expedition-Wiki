@@ -4,7 +4,7 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { AgentInteractableModel } from '../../../data/models/agentInteractableModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
@@ -16,7 +16,6 @@ export default function EffectSourceAgentSegment() {
 
   const headers = useMemo<HeadCell<AgentInteractableModel>[]>(() => [
     { 
-      id: 'interactableName', 
       label: 'Name', 
       align: 'left',
       render: (row) => (
@@ -35,7 +34,7 @@ export default function EffectSourceAgentSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey='id' rows={agentInteractableModelList} headCells={headers} />
+      <BasicTable rowKey='id' rows={agentInteractableModelList} headCells={headers} />
     </Box>
   )
 }

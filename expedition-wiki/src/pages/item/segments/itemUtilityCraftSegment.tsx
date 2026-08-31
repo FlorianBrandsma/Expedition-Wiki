@@ -4,7 +4,7 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
@@ -19,7 +19,6 @@ export default function ItemUtilityCraftSegment() {
 
     const headers: HeadCell<ItemEventItemModel>[] = [
       { 
-        id: 'itemName', 
         label: 'Item', 
         align: 'left',
         render: (row) => (
@@ -42,8 +41,8 @@ export default function ItemUtilityCraftSegment() {
     ]
   
     if (craftItemEventItemModelList.some(model => model.caseConditionModelList.length > 0)) {
+
       headers.push({
-        id: 'caseConditionModelList',
         label: 'Conditions',
         align: 'left',
         sx: { whiteSpace: 'normal' },
@@ -51,7 +50,7 @@ export default function ItemUtilityCraftSegment() {
           <CellTable 
             bulleted
             list={row.caseConditionModelList} 
-            component={(caseConditionModel) => caseConditionModel.descriptionComponent()}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
           />
         )
       })
@@ -63,7 +62,7 @@ export default function ItemUtilityCraftSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={craftItemEventItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={craftItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

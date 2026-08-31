@@ -4,12 +4,11 @@ import { useItemPageContext } from '../itemPageContext';
 
 import { ItemModel } from '../../../data/models/itemModel';
 
-import EnhancedTable, { type HeadCell } from '../../../components/enhancedTable/enhancedTable';
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
-import RequiredItem from '../components/requiredItem';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export default function ItemSourceScrapSegment() {
 
@@ -18,7 +17,6 @@ export default function ItemSourceScrapSegment() {
 
   const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
-      id: 'name', 
       label: 'Item', 
       align: 'left',
       render: (row) => (
@@ -29,13 +27,18 @@ export default function ItemSourceScrapSegment() {
       )
     },
     {
-      id: 'itemModelList',
       label: 'Components',
       align: 'left',
       render: (row) => (
         <CellTable 
           list={row.componentItemModelList(row.itemComponentType)} 
-          component={(itemModel) => <RequiredItem itemModel={itemModel} />}
+          component={(itemModel) => (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              <Typography variant='body2'>{itemModel.quantity} x</Typography>
+              <ExIcon resourceName={itemModel.assetIconResourceName} size={20} />
+              <ExLink pageName={'item'} name={itemModel.name} />
+            </Box>
+          )}
         />
       )
     }
@@ -43,7 +46,7 @@ export default function ItemSourceScrapSegment() {
 
   return (
     <Box>
-      <EnhancedTable rowKey="id" rows={scrapComponentItemModelList} headCells={headers} />
+      <BasicTable rowKey="id" rows={scrapComponentItemModelList} headCells={headers} />
     </Box>
   )
 }

@@ -2,11 +2,12 @@ import { Box, Table, TableBody, TableCell, TableRow } from "@mui/material";
 
 interface CellTableProps<T> {
   bulleted?: boolean;
+  highlited?: (model: T) => boolean;
   list: T[];
   component: (model: T) => React.ReactNode;
 }
 
-export default function CellTable<T extends { id: number }>({ bulleted, list, component }: CellTableProps<T>) {
+export default function CellTable<T extends { id: number }>({ bulleted, highlited, list, component }: CellTableProps<T>) {
 
   if (!list.length) return null;
 
@@ -44,7 +45,12 @@ export default function CellTable<T extends { id: number }>({ bulleted, list, co
                         }}
                       />
                     )}
-                    <Box>
+                    <Box 
+                      sx={{ 
+                        padding: '1px', 
+                        backgroundColor: highlited?.(model) ? 'primary.main' : 'none' 
+                      }}
+                    >
                       {component(model)}
                     </Box>
                   </Box>   
