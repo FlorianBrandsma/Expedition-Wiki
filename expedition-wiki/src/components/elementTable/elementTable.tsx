@@ -5,32 +5,35 @@ import ExIconLabel from '../../components/exIconLabel/exIconLabel';
 
 import { NormalAttributeType, ElementType } from '../../types/enums';
 
-import { AttackValue, DefenceValue } from '../../services/attributeManager';
+import { AttackValue, DefenceValue, type AttributeProperty } from '../../services/attributeManager';
 import type { EquipmentItemModel } from '../../data/models/equipmentItemModel';
 import { AgentInteractableModel } from '../../data/models/agentInteractableModel';
 
 interface ElementTableProps {
   normalAttributeType: NormalAttributeType;
   model: EquipmentItemModel | AgentInteractableModel;
+  equipmentItemModelList?: EquipmentItemModel[];
 }
 
-export default function ElementTable(props:ElementTableProps) {
+export default function ElementTable(props: ElementTableProps) {
 
-  const { normalAttributeType, model } = props;
+  const { normalAttributeType, model, equipmentItemModelList } = props;
 
   const elementType = ElementType[model.elementType];
 
-  const physicalValue = {
-    'Attack':  model.physicalAttack,
-    'Defence': model.physicalDefence
-  }[normalAttributeType];
+  const physicalKeys: Record<string, keyof AttributeProperty> = { 'Attack': 'physicalAttack', 'Defence': 'physicalDefence' };
+  const magicalKeys:  Record<string, keyof AttributeProperty> = { 'Attack': 'magicalAttack',  'Defence': 'magicalDefence'  };
 
-  const magicalValue = {
-    'Attack':  model.magicalAttack,
-    'Defence': model.magicalDefence
-  }[normalAttributeType];
+  const physicalKey = physicalKeys[normalAttributeType];
+  const magicalKey  = magicalKeys [normalAttributeType];
 
-  const totalValue = physicalValue + magicalValue;
+  const physicalValue = model[physicalKey];
+  const magicalValue  = model[magicalKey];
+
+  const totalPhysicalValue = physicalValue + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + equipmentItemModel[physicalKey], 0) ?? 0);
+  const totalMagicalValue  = magicalValue  + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + equipmentItemModel[magicalKey],  0) ?? 0);
+
+  const totalValue = totalPhysicalValue + totalMagicalValue;
 
   return (
     <ExTable size='small'>
@@ -38,8 +41,8 @@ export default function ElementTable(props:ElementTableProps) {
         {ElementType.map((type) => { 
 
           const value = {
-            'Attack':  AttackValue (type, elementType, physicalValue, magicalValue),
-            'Defence': DefenceValue(type, elementType, physicalValue, magicalValue)
+            'Attack':  AttackValue (type, elementType, physicalValue, magicalValue) + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + AttackValue(type, ElementType[equipmentItemModel.elementType], equipmentItemModel.physicalAttack,  equipmentItemModel.magicalAttack),  0) ?? 0),
+            'Defence': DefenceValue(type, elementType, physicalValue, magicalValue) + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + AttackValue(type, ElementType[equipmentItemModel.elementType], equipmentItemModel.physicalDefence, equipmentItemModel.magicalDefence), 0) ?? 0)
           }[normalAttributeType];
 
           const percentageValue = value !== 0 ? Math.round((value / totalValue) * 100) : 0;

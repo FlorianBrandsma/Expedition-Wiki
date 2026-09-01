@@ -306,9 +306,64 @@ export const InteractableType = [
   'Obstacle'
 ] as const;
 
+export const TriggerShapeType = [
+  'Box',
+  'Capsule',
+  'Sphere'
+] as const;
+
 export const AgentInteractableType = [
   'Character',
   'Static'
+] as const;
+
+export const BehaviourConditionType = [
+  'Target',
+  'Group',
+  'Distance',
+  'Enmity',
+  'Resource',
+  'Attribute',
+  'Effect',
+  'Item'
+] as const;
+
+export const TargetBehaviourConditionType = [
+  'Any',
+  'Leader\'s target',
+  'Targeting self',
+  'Targeting leader',
+  'Targeting ally'
+] as const;
+
+export const GroupBehaviourConditionType = [
+  'Any',
+  'Party',
+  'Ally',
+  'Opponent'
+] as const;
+
+export const DistanceBehaviourConditionType = [
+  'Farthest',
+  'Nearest'
+] as const;
+
+export const ResourceBehaviourConditionType = [
+  'Quantifiable',
+  'Absolute'
+] as const;
+
+export const ResourceBehaviourConditionInequalityType = [
+  'Above',
+  'Below',
+  'Highest',
+  'Lowest'
+] as const;
+
+export const BehaviourCommandType = [
+  'Engage',
+  'Ability',
+  'Item'
 ] as const;
 
 export const CharacterAgentInteractableType = [

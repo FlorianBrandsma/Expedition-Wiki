@@ -1,5 +1,6 @@
 import { RarityType } from "../../types/enums";
 
+import { ItemModel } from "./itemModel";
 import { CaseConditionModel } from "./caseConditionModel";
 
 export class AgentInteractableLootTableModel {
@@ -16,10 +17,14 @@ export class AgentInteractableLootTableModel {
 
   itemRarityType!: number;
 
+  itemModelList!: ItemModel[];
+
   caseConditionModelList!: CaseConditionModel[];
 
   constructor(init:Partial<AgentInteractableLootTableModel>) {  
     Object.assign(this, init);
+
+    this.itemModelList          = this.itemModelList         .map((model) => new ItemModel         (model));
 
     this.caseConditionModelList = this.caseConditionModelList.map((model) => new CaseConditionModel(model));
   }

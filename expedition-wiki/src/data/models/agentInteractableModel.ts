@@ -34,7 +34,6 @@ export class AgentInteractableModel {
   }
 
   get typeDescription(): string {
-  
     return `${AgentInteractableType[this.type]} Agent`;
   }
 }

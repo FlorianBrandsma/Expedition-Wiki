@@ -7,59 +7,58 @@ interface CellTableProps<T> {
   component: (model: T) => React.ReactNode;
 }
 
-export default function CellTable<T extends { id: number }>({ bulleted, highlited, list, component }: CellTableProps<T>) {
+export default function CellTable<T>({ bulleted, highlited, list, component }: CellTableProps<T>) {
 
-  if (!list.length) return null;
+  if (!list || !list.length) return null;
 
   return (
-    <>
-      {list.length > 0 && (
-        <Table 
-          size='small' 
-          sx={{
-            borderCollapse: 'separate',
-            borderSpacing: '0 2px',
-            '& .MuiTableCell-root': { border: 'none' }
-          }}
-        >
-          <TableBody>
-            {list.map((model) => (
-              <TableRow key={model.id}>
-                <TableCell sx={{ padding: 0 }}>
+    <Table 
+      size='small' 
+      sx={{
+        borderCollapse: 'separate',
+        borderSpacing: '0 2px',
+        '& td.MuiTableCell-root': { 
+          border: 'none'
+        }
+      }}
+    >
+      <TableBody>
+        {list.map((model, index) => (
+          <TableRow key={index}>
+            <TableCell sx={{ padding: 0 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'baseline', 
+                  gap: 1,
+                  maxWidth: '200px' 
+                }}
+              >
+                {bulleted && (
                   <Box 
-                    sx={{ 
-                      display: 'flex', 
-                      alignItems: 'baseline', 
-                      gap: 1,
-                      maxWidth: '200px' 
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      backgroundColor: 'primary.dark',
+                      flexShrink: 0
                     }}
-                  >
-                    {bulleted && (
-                      <Box 
-                        sx={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: '50%',
-                          backgroundColor: 'primary.dark',
-                          flexShrink: 0
-                        }}
-                      />
-                    )}
-                    <Box 
-                      sx={{ 
-                        padding: '1px', 
-                        backgroundColor: highlited?.(model) ? 'primary.main' : 'none' 
-                      }}
-                    >
-                      {component(model)}
-                    </Box>
-                  </Box>   
-                </TableCell>        
-              </TableRow>
-            ))} 
-          </TableBody>
-        </Table>
-      )}
-    </>
+                  />
+                )}
+                <Box 
+                  sx={{ 
+                    width: '100%',
+                    padding:         highlited?.(model) ? '1px' : '0px', 
+                    backgroundColor: highlited?.(model) ? 'primary.main' : 'none'
+                  }}
+                >
+                  {component(model)}
+                </Box>
+              </Box>   
+            </TableCell>        
+          </TableRow>
+        ))} 
+      </TableBody>
+    </Table>
   )
 }

@@ -17,6 +17,10 @@ export class CharacterAgentInteractableModel {
     Object.assign(this, init);
   }
 
+  get typeDescription(): string {
+    return CharacterAgentInteractableType[this.type];
+  }
+
   get equipmentSlotTypeDescription(): string {
     return EquipmentSlotType[this.equipmentSlotType];
   }

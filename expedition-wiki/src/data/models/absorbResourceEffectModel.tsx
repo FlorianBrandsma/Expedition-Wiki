@@ -1,7 +1,9 @@
+import { ResourceType } from "../../types/enums";
+
 import { ResourceEffectModel } from "./resourceEffectModel";
 import { DamageResourceEffectModel } from "./damageResourceEffectModel";
+
 import { Box } from "@mui/material";
-import { ResourceType } from "../../types/enums";
 
 export class AbsorbResourceEffectModel {
 

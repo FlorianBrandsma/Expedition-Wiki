@@ -54,13 +54,17 @@ export default function AbilityPage() {
     abilityEventModelList
   } = abilityPageModel;
 
-  contentSegments.push({
-    label: 'Effects',
-    id: 'Effects',
-    component: <AbilityEffectSegment />
-  });
+  if (abilityModel.effectModelList.length > 0) {
 
+    contentSegments.push({
+      label: 'Effects',
+      id: 'Effects',
+      component: <AbilityEffectSegment />
+    });
+  }
+  
   if (classModelList.length > 0) {
+    
     contentSegments.push({
       label: 'Classes',
       id: 'Classes',

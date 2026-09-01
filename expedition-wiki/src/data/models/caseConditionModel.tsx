@@ -97,7 +97,7 @@ export class CaseConditionModel {
   }
 
   get descriptionComponent(): React.ReactNode {
-
+    
     switch (CaseConditionType[this.type])
     {
       case 'Resource':  return this.resourceCaseConditionModel! .description;

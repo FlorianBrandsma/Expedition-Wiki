@@ -1,4 +1,4 @@
-import { ItemType } from "../../types/enums";
+import { ItemType, RarityType } from "../../types/enums";
 import { SupplyItemModel } from "./supplyItemModel";
 import { EquipmentItemModel } from './equipmentItemModel';
 
@@ -18,9 +18,13 @@ export class ItemModel {
   assetResourceName!: string;
   assetIconResourceName!: string;
 
+  itemEventItemMinimumQuantity!: number;
+  itemEventItemMaximumQuantity!: number;
+
   quantity!: number;
 
   itemComponentType!: number;
+  rarityType!: number;
 
   supplyItemModelList!:    SupplyItemModel[];
   equipmentItemModelList!: EquipmentItemModel[];
@@ -67,5 +71,13 @@ export class ItemModel {
 
   get equipmentTypeDescription(): string {
     return this.equipmentItemModel?.equipmentTypeDescription ?? '';
+  }
+
+  get quantityDescription(): string {
+    return `${this.itemEventItemMinimumQuantity}${(this.itemEventItemMaximumQuantity > this.itemEventItemMinimumQuantity ? `-${this.itemEventItemMaximumQuantity}` : '')}`;
+  }
+
+  get rarityDescription(): string {
+    return `${RarityType[this.rarityType]}`;
   }
 }

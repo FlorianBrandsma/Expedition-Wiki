@@ -18,4 +18,8 @@ export class AgentInteractableReactionModel {
 
     this.caseConditionModelList = this.caseConditionModelList.map((model) => new CaseConditionModel(model));
   }
+
+  get successChanceDescription(): string {
+    return `${this.successChance}%`;
+  }
 }

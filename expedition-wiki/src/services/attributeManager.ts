@@ -1,4 +1,13 @@
+
+import type { EquipmentItemModel } from '../data/models/equipmentItemModel';
 import { ElementType } from '../types/enums';
+
+export type AttributeProperty = { 
+  physicalAttack: number; 
+  physicalDefence: number; 
+  magicalAttack: number; 
+  magicalDefence: number;
+}
 
 interface Element {
   elementType: ElementType,
@@ -80,7 +89,7 @@ export function DefenceValue(elementType: ElementType, entityElementType: Elemen
   const totalDefence = physicalDefence + magicalDefence;
 
   const result = element?.strength.includes(entityElementType) ? -totalDefence :
-                 element?.weakness.includes(entityElementType) ? totalDefence  : 0;
+                 element?.weakness.includes(entityElementType) ?  totalDefence : 0;
 
   return result;
 }
