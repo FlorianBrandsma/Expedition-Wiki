@@ -41,12 +41,12 @@ export default function ElementTable(props: ElementTableProps) {
         {ElementType.map((type) => { 
 
           const value = {
-            'Attack':  AttackValue (type, elementType, physicalValue, magicalValue) + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + AttackValue(type, ElementType[equipmentItemModel.elementType], equipmentItemModel.physicalAttack,  equipmentItemModel.magicalAttack),  0) ?? 0),
-            'Defence': DefenceValue(type, elementType, physicalValue, magicalValue) + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + AttackValue(type, ElementType[equipmentItemModel.elementType], equipmentItemModel.physicalDefence, equipmentItemModel.magicalDefence), 0) ?? 0)
+            'Attack':  AttackValue (type, elementType, physicalValue, magicalValue) + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + AttackValue (type, ElementType[equipmentItemModel.elementType], equipmentItemModel.physicalAttack,  equipmentItemModel.magicalAttack),  0) ?? 0),
+            'Defence': DefenceValue(type, elementType, physicalValue, magicalValue) + (equipmentItemModelList?.reduce((accumlator, equipmentItemModel) => accumlator + DefenceValue(type, ElementType[equipmentItemModel.elementType], equipmentItemModel.physicalDefence, equipmentItemModel.magicalDefence), 0) ?? 0)
           }[normalAttributeType];
 
           const percentageValue = value !== 0 ? Math.round((value / totalValue) * 100) : 0;
-
+          
           return (
             <TableRow key={type}>
               <TableCell>

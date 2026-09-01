@@ -2,7 +2,7 @@ import { useInteractablePageContext } from './interactablePageContext';
 
 import { ElementType } from '../../types/enums';
 
-import { CardContent, CardMedia, TableRow, TableCell, Box, Stack } from '@mui/material';
+import { CardContent, CardMedia, TableRow, TableCell, Box } from '@mui/material';
 
 import ModelButton from '../../features/modelViewer/components/modelButton';
 import ExCard from '../../components/exCard/exCard';
