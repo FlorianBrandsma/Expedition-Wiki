@@ -56,8 +56,6 @@ export default function GeneralUtilityConditionItemSegment({ caseConditionModelL
   }, [caseConditionModelList]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={caseConditionModelList} headCells={headers} />
-    </Box>
+    <BasicTable rowKey='id' rows={caseConditionModelList} headCells={headers} />
   )
 }

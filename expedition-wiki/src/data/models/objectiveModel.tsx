@@ -1,23 +1,27 @@
 import { TextReferenceModel } from "./textReferenceModel";
 import ReferenceDescription from "../../services/textReferenceManager";
 
-export class NoteModel {
+export class ObjectiveModel {
 
   id!: string;
 
-  text!: string;
+  name!: string;
+
+  description!: string;
+
+  questName!: string;
 
   textReferenceModelList!: TextReferenceModel[];
 
-  constructor(init:Partial<NoteModel>) {  
+  constructor(init:Partial<ObjectiveModel>) {  
     Object.assign(this, init);
 
     this.textReferenceModelList = this.textReferenceModelList.map((model) => new TextReferenceModel(model));
   }
 
-  textComponent(): React.ReactNode {
+  descriptionComponent(): React.ReactNode {
     return (
-      <>{ReferenceDescription(this.text, this.textReferenceModelList)}</>
+      <>{ReferenceDescription(this.description, this.textReferenceModelList)}</>
     )
   }
 }

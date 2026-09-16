@@ -25,6 +25,8 @@ import MenuBG from './images/MenuBG.png'
 import TerrainsPage from './pages/terrain/terrainsPage';
 import TerrainPage from './pages/terrain/terrainPage';
 import ClimatePage from './pages/climate/climatePage';
+import QuestsPage from './pages/quest/questsPage';
+import QuestPage from './pages/quest/questPage';
 
 export default function App() {
 
@@ -168,6 +170,14 @@ export default function App() {
           {
             path:'/:gameName/class/:name',
             element: <ClassPage />,
+          },
+          {
+            path:'/:gameName/quest',
+            element: <QuestsPage />
+          },
+          {
+            path:'/:gameName/quest/:name',
+            element: <QuestPage />
           }
         ]
       },

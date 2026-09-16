@@ -1,5 +1,4 @@
 
-import type { EquipmentItemModel } from '../data/models/equipmentItemModel';
 import { ElementType } from '../types/enums';
 
 export type AttributeProperty = { 

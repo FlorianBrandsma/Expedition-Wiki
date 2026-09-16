@@ -406,6 +406,11 @@ export const CombatState = [
   'Defeated'
 ] as const;
 
+export const QuestType = [
+  'Main',
+  'Side'
+] as const;
+
 export const EventType = [
   'Basic',
   'Menu',
