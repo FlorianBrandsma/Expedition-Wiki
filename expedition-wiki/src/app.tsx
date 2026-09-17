@@ -27,6 +27,7 @@ import TerrainPage from './pages/terrain/terrainPage';
 import ClimatePage from './pages/climate/climatePage';
 import QuestsPage from './pages/quest/questsPage';
 import QuestPage from './pages/quest/questPage';
+import ObjectivePage from './pages/objective/objectivePage';
 
 export default function App() {
 
@@ -178,6 +179,14 @@ export default function App() {
           {
             path:'/:gameName/quest/:name',
             element: <QuestPage />
+          },
+          {
+            path:'/:gameName/objective/:questName/:objectiveName',
+            element: <ObjectivePage />
+          },
+          {
+            path:'/:gameName/interactable/:parentType/:questName/:objectiveName/:interactableName',
+            element: <></>
           }
         ]
       },

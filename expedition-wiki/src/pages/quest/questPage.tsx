@@ -20,7 +20,7 @@ import QuestUtilityQuestSegment from './segments/questUtilityQuestSegment';
 
 export default function QuestPage() {
 
-  const params = useParams<{ regionName: string, name: string }>();
+  const params = useParams<{ name: string }>();
   
   const name = params.name?.replaceAll('_', ' ');
   document.title = `${name} - Expedition Wiki`;

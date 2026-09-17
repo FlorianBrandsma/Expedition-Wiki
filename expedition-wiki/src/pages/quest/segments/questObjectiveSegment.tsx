@@ -27,7 +27,7 @@ export default function QuestObjectiveSegment() {
       sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'300px'}}>
-          {row.descriptionComponent()}
+          {row.descriptionComponent}
         </Box>
       )
     }

@@ -384,6 +384,12 @@ export const AtmosphereStatusEffectType = [
   'Passive'
 ] as const;
 
+export const WorldInteractableType = [
+  'Entity',
+  'Trigger',
+  'Party'
+] as const;
+
 export const AffiliationType = [
   'Faction',
   'Ally',

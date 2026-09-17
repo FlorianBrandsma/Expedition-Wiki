@@ -5,6 +5,8 @@ export class ObjectiveModel {
 
   id!: string;
 
+  orderNumber!: number;
+
   name!: string;
 
   description!: string;
@@ -19,7 +21,7 @@ export class ObjectiveModel {
     this.textReferenceModelList = this.textReferenceModelList.map((model) => new TextReferenceModel(model));
   }
 
-  descriptionComponent(): React.ReactNode {
+  get descriptionComponent(): React.ReactNode {
     return (
       <>{ReferenceDescription(this.description, this.textReferenceModelList)}</>
     )
