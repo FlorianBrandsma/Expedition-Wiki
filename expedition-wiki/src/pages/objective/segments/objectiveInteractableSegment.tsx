@@ -14,32 +14,59 @@ export default function ObjectiveInteractableSegment() {
   const objectivePageModel = useObjectivePageContext();
   const { objectiveModel, worldInteractableModelList } = objectivePageModel;
 
-  const headers = useMemo<HeadCell<WorldInteractableModel>[]>(() => [
-    {
-      label: 'Progress',
-      align: 'left',
-      render: (row) => (
-        <></>
-      )
-    },
-    {
-      label: 'Name', 
-      align: 'left',
-      render: (row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          {row.iconResourceName && (
-            <ExIcon resourceName={row.iconResourceName} size={20} />
-          )}
-          <ExLink pageName={`interactable/${ row.parentTypeDescription }`} name={row.name} params={[objectiveModel.questName, objectiveModel.name, row.name]} />
-        </Box>
-      )
-    },
-    {
-      id: 'typeDescription',
-      label: 'Type', 
-      align: 'left'
+  const headers = useMemo<HeadCell<WorldInteractableModel>[]>(() => {
+    
+    const headers: HeadCell<WorldInteractableModel>[] = [
+      {
+        label: 'Name', 
+        align: 'left',
+        render: (row) => (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            {row.iconResourceName && (
+              <ExIcon resourceName={row.iconResourceName} size={20} />
+            )}
+            <ExLink pageName={`interactable/${ row.parentTypeDescription.toLowerCase() }`} name={row.name} params={[objectiveModel.questName, objectiveModel.name, row.name]} />
+          </Box>
+        )
+      },
+      {
+        id: 'parentTypeDescription',
+        label: 'Origin', 
+        align: 'left',
+        render: (row) => {
+          switch (row.parentTypeDescription)
+          {
+            case 'Terrain':   return <ExLink pageName='terrain' name='Terrain' params={[row.regionName, row.terrainName]} />
+            case 'Quest':     return <ExLink pageName='quest'   name='Quest'   params={[objectiveModel.questName]} />
+            case 'Objective': return row.parentTypeDescription
+          }
+        }
+      }
+    ]
+
+    if (worldInteractableModelList.some(worldInteractableModel => worldInteractableModel.taskModelList.some(taskModel => taskModel.completeObjective))) {
+      headers.unshift({
+        label: 'Progress',
+        align: 'center',
+        sx: { padding: 0 },
+        render: (row) => (
+          row.taskModelList.some(x => x.completeObjective) && (
+            <Box
+              component="img"
+              src={'/images/icons/general/Progress_Icon.png'}
+              sx={{ 
+                height: '2rem',
+                verticalAlign: 'middle' 
+              }}
+            />
+          )
+        )
+      })
     }
-  ], [objectivePageModel]);
+
+    return headers;
+
+  }, [objectivePageModel]);
 
   return (
     <Box sx={{ mt: 1 }}>

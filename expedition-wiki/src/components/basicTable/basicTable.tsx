@@ -34,7 +34,6 @@ function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
           <TableCell
             key={String(headCell.id ?? index)}
             align={headCell.align}
-            sx={{ whiteSpace: 'nowrap', ...headCell.sx }}
           >
             <Typography
               sx={{
