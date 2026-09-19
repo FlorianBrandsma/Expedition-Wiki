@@ -14,50 +14,44 @@ interface UtilityConditionAbilitySegmentProps {
 
 export default function GeneralUtilityConditionAbilitySegment({ caseConditionModelList }: UtilityConditionAbilitySegmentProps) {
 
-  const headers = useMemo<HeadCell<CaseConditionModel>[]>(() => {
-
-    const headers: HeadCell<CaseConditionModel>[] = [
-      {
-        label: 'Name',
-        align: 'left',
-        sx: { whiteSpace: 'normal' },
-        render: (row) => (
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <ExIcon resourceName={row.chargeAbilityModel.abilityIconResourceName} size={20} />
-            <ExLink pageName={'ability'} name={row.chargeAbilityModel.abilityName} />
-          </Box>
-        )
-      },
-      {
-        label: 'Description',
-        align: 'left',
-        sx: { whiteSpace: 'normal' },
-        render: (row) => (
-          <Box sx={{ maxWidth:'200px' }}>
-            {row.chargeAbilityModel.abilityDescription}
-          </Box>
-        )
-      },
-      {
-        label: 'Conditions',
-        align: 'left',
-        sx: { whiteSpace: 'normal' },
-        render: (row) => (
-          <Box sx={{ maxWidth:'200px'}}>
-            <CellTable 
-              bulleted
-              list={row.chargeAbilityModel.caseConditionModelList} 
-              highlited={(caseConditionModel) => caseConditionModel.id === row.id}
-              component={(caseConditionModel) => caseConditionModel.descriptionComponent}
-            />
-          </Box>
-        )
-      }
-    ]
-
-    return headers;
-
-  }, [caseConditionModelList]);
+  const headers = useMemo<HeadCell<CaseConditionModel>[]>(() => [
+    {
+      label: 'Name',
+      align: 'left',
+      sx: { whiteSpace: 'normal' },
+      render: (row) => (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <ExIcon resourceName={row.chargeAbilityModel.abilityIconResourceName} size={20} />
+          <ExLink pageName={'ability'} name={row.chargeAbilityModel.abilityName} />
+        </Box>
+      )
+    },
+    {
+      label: 'Description',
+      align: 'left',
+      sx: { whiteSpace: 'normal' },
+      render: (row) => (
+        <Box sx={{ maxWidth:'200px' }}>
+          {row.chargeAbilityModel.abilityDescription}
+        </Box>
+      )
+    },
+    {
+      label: 'Conditions',
+      align: 'left',
+      sx: { whiteSpace: 'normal' },
+      render: (row) => (
+        <Box sx={{ maxWidth:'200px'}}>
+          <CellTable 
+            bulleted
+            list={row.chargeAbilityModel.caseConditionModelList} 
+            highlited={(caseConditionModel) => caseConditionModel.id === row.id}
+            component={(caseConditionModel) => caseConditionModel.descriptionComponent}
+          />
+        </Box>
+      )
+    }
+  ], [caseConditionModelList]);
 
   return (
     <BasicTable rowKey='id' rows={caseConditionModelList} headCells={headers} />

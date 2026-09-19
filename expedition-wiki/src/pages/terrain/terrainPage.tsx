@@ -14,6 +14,7 @@ import Segment from '../../components/segment/segment';
 import { Divider, Box, Typography } from '@mui/material';
 import TerrainPropertyCard from './terrainPropertyCard';
 import TerrainClimateSegment from './segments/terrainClimateSegment';
+import TerrainInteractableSegment from './segments/terrainInteractableSegment';
 
 export default function TerrainPage() {
 
@@ -44,7 +45,8 @@ export default function TerrainPage() {
   const terrainPageModel = terrainPageQuery.data[0];
 
   const { 
-    terrainModel
+    terrainModel,
+    worldInteractableModelList
   } = terrainPageModel;
 
   contentSegments.push({
@@ -52,6 +54,14 @@ export default function TerrainPage() {
     id: 'Climates',
     component: <TerrainClimateSegment />
   })
+
+  if (worldInteractableModelList.length > 0) {
+    contentSegments.push({
+      label: 'Interactables',
+      id: 'Interactables',
+      component: <TerrainInteractableSegment />
+    })
+  }
 
   return (
     <Box sx={{ justifyContent: "left"}}>

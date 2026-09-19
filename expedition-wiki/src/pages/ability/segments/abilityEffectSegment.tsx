@@ -50,12 +50,12 @@ export default function AbilityEffectSegment() {
     ]
 
     if (abilityModel.effectModelList.some(model => model.successChance < 100)) {
-        headers.push({
-          id: 'successChanceDescription',
-          label: 'Success',
-          align: 'center'
-        })
-      }
+      headers.push({
+        id: 'successChanceDescription',
+        label: 'Success',
+        align: 'center'
+      })
+    }
 
     return headers;
 

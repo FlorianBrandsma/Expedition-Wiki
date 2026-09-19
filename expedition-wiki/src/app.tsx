@@ -28,6 +28,7 @@ import ClimatePage from './pages/climate/climatePage';
 import QuestsPage from './pages/quest/questsPage';
 import QuestPage from './pages/quest/questPage';
 import ObjectivePage from './pages/objective/objectivePage';
+import WorldInteractablePage from './pages/worldInteractable/worldInteractablePage';
 
 export default function App() {
 
@@ -185,8 +186,12 @@ export default function App() {
             element: <ObjectivePage />
           },
           {
-            path:'/:gameName/interactable/:parentType/:questName/:objectiveName/:interactableName',
-            element: <></>
+            path:'/:gameName/objective/:questName/:objectiveName/interactable/:type/:parentType/:worldInteractableName',
+            element: <WorldInteractablePage />
+          },
+          {
+            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:type/:parentType/:worldInteractableName',
+            element: <WorldInteractablePage />
           }
         ]
       },

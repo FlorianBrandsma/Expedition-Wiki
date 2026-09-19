@@ -29,9 +29,9 @@ export default function ObjectivePage() {
   const contentSegments: ContentSegment[] = [];
   
   const parameters = new ObjectivePageParameters({
-    gameId:[gameModel.id],
+    gameId:        [gameModel.id],
     objectiveName: objectiveName,
-    questName: questName
+    questName:     questName
   });
 
   const objectivePageQuery = useQuery<ObjectivePageModel[]>({

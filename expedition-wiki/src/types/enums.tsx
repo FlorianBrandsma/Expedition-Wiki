@@ -390,6 +390,17 @@ export const WorldInteractableType = [
   'Party'
 ] as const;
 
+export type WorldInteractableType = typeof WorldInteractableType[number];
+
+export const WorldInteractableParentType = [
+  'Game',
+  'Terrain',
+  'Quest',
+  'Objective'
+] as const;
+
+export type WorldInteractableParentType = typeof WorldInteractableParentType[number];
+
 export const AffiliationType = [
   'Faction',
   'Ally',

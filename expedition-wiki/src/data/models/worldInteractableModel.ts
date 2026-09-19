@@ -1,34 +1,49 @@
-import { WorldInteractableType } from "../../types/enums";
+import { WorldInteractableParentType, WorldInteractableType } from "../../types/enums";
+
+import { EntityWorldInteractableModel } from "./entityWorldInteractableModel";
+import { WorldInteractableReflectionModel } from "./worldInteractableReflectionModel";
 import { TaskModel } from "./taskModel";
 
 export class WorldInteractableModel {
 
   id!: string;
 
-  terrainId!: number;
-  questId!: number;
-
   type!: number;
 
   terrainName!: string;
   regionName!: string;
 
+  questName!: string;
+  objectiveName!: string;
+
   name!: string;
 
   iconResourceName!: string;
+
+  worldInteractableParentType!: number;
+
+  entityWorldInteractableModelList!: EntityWorldInteractableModel[];
+
+  worldInteractableReflectionModelList!: WorldInteractableReflectionModel[];
 
   taskModelList!: TaskModel[];
 
   constructor(init:Partial<WorldInteractableModel>) {  
     Object.assign(this, init);
 
-    this.taskModelList = this.taskModelList.map((model) => new TaskModel(model));
+    this.entityWorldInteractableModelList     = this.entityWorldInteractableModelList    .map((model) => new EntityWorldInteractableModel    (model));
+
+    this.worldInteractableReflectionModelList = this.worldInteractableReflectionModelList.map((model) => new WorldInteractableReflectionModel(model));
+
+    this.taskModelList                        = this.taskModelList                       .map((model) => new TaskModel                       (model));
   }
 
-  get parentTypeDescription(): string {
-    return this.terrainId > 0 ? 'Terrain' :
-           this.questId   > 0 ? 'Quest'   :
-                                'Objective';
+  get entityWorldInteractableModel(): EntityWorldInteractableModel {  
+    return this.entityWorldInteractableModelList[0];
+  }
+
+  get parentTypeDescription(): WorldInteractableParentType {
+    return WorldInteractableParentType[this.worldInteractableParentType];
   }
 
   get typeDescription(): string {
