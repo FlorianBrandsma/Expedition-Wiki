@@ -11,6 +11,6 @@ export class MailEventModel {
   }
 
   get typeDescription(): string {
-    return 'Mail Event';
+    return 'Mail';
   }
 }

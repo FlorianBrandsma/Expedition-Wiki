@@ -51,7 +51,7 @@ export default function ClassesPage() {
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExLink pageName={'class'} name={row.name} />
+          <ExLink name={row.name} params={['class', row.name]} />
         </Box>
       )
     }

@@ -53,7 +53,7 @@ export default function FactionsPage() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.iconResourceName} size={20} />
-          <ExLink pageName={'faction'} name={row.name} />
+          <ExLink name={row.name} params={['faction', row.name]} />
         </Box>
       )
     }

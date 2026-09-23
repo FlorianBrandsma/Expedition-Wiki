@@ -19,7 +19,7 @@ export default function QuestUtilityQuestSegment() {
         label: 'Name',
         align: 'left',
         render: (row) => (
-          <ExLink pageName={'quest'} name={row.questName} />
+          <ExLink name={row.questName} params={['quest', row.questName]} />
         )
       },
       {
@@ -33,7 +33,7 @@ export default function QuestUtilityQuestSegment() {
               list={row.mainQuestModelList} 
               highlited={(mainQuestModel) => mainQuestModel.id === questModel.mainQuestModel.id}
               component={(mainQuestModel) => (
-                <ExLink pageName={'quest'} name={mainQuestModel.questName} />
+                <ExLink name={mainQuestModel.questName} params={['quest', mainQuestModel.questName]} />
               )}
             />
           </Box>

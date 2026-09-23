@@ -22,7 +22,7 @@ export default function EffectSourceEffectClusterSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.statusEffectIconResourceName} size={20} />
-          <ExLink pageName={'effect'} name={row.statusEffectName} />
+          <ExLink name={row.statusEffectName} params={['effect', row.statusEffectName]} />
         </Box>
       )
     },

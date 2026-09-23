@@ -19,20 +19,21 @@ export class InteractablePageModel {
   interactableProximityAreaModel!: InteractableProximityAreaModel;
   classModel!:                     ClassModel;
 
-  noteModelList!:                       NoteModel[];
+  noteModelList!:                          NoteModel[];
 
-  agentInteractableBehaviourModelList!: AgentInteractableBehaviourModel[];
-  agentInteractableReactionModelList!:  AgentInteractableReactionModel[];
-  agentInteractableLootTableModelList!: AgentInteractableLootTableModel[];
+  agentInteractableBehaviourModelList!:    AgentInteractableBehaviourModel[];
+  agentInteractableReactionModelList!:     AgentInteractableReactionModel[];
+  agentInteractableLootTableModelList!:    AgentInteractableLootTableModel[];
 
-  statusEffectModelList!:               StatusEffectModel[];
+  agentInteractableStatusEffectModelList!: StatusEffectModel[];
+  interactionStatusEffectModelList!:       StatusEffectModel[];
 
-  equipmentItemModelList!:              EquipmentItemModel[];
-  dischargeAbilityModelList!:           DischargeAbilityModel[];
+  equipmentItemModelList!:                 EquipmentItemModel[];
+  dischargeAbilityModelList!:              DischargeAbilityModel[];
 
-  caseConditionModelList!:              CaseConditionModel[];
+  caseConditionModelList!:                 CaseConditionModel[];
 
-  companionEventModelList!:             CompanionEventModel[];
+  companionEventModelList!:                CompanionEventModel[];
 
   constructor(init:Partial<InteractablePageModel>) {  
     Object.assign(this, init);
@@ -42,19 +43,20 @@ export class InteractablePageModel {
     if (this.interactableProximityAreaModel) this.interactableProximityAreaModel = new InteractableProximityAreaModel(this.interactableProximityAreaModel);
     if (this.classModel)                     this.classModel                     = new ClassModel                    (this.classModel);
 
-    this.noteModelList                       = this.noteModelList                      .map((model) => new NoteModel                      (model));
+    this.noteModelList                          = this.noteModelList                         .map((model) => new NoteModel                      (model));
 
-    this.agentInteractableBehaviourModelList = this.agentInteractableBehaviourModelList.map((model) => new AgentInteractableBehaviourModel(model));
-    this.agentInteractableReactionModelList  = this.agentInteractableReactionModelList .map((model) => new AgentInteractableReactionModel (model));
-    this.agentInteractableLootTableModelList = this.agentInteractableLootTableModelList.map((model) => new AgentInteractableLootTableModel(model));
+    this.agentInteractableBehaviourModelList    = this.agentInteractableBehaviourModelList   .map((model) => new AgentInteractableBehaviourModel(model));
+    this.agentInteractableReactionModelList     = this.agentInteractableReactionModelList    .map((model) => new AgentInteractableReactionModel (model));
+    this.agentInteractableLootTableModelList    = this.agentInteractableLootTableModelList   .map((model) => new AgentInteractableLootTableModel(model));
 
-    this.statusEffectModelList               = this.statusEffectModelList              .map((model) => new StatusEffectModel              (model));
+    this.agentInteractableStatusEffectModelList = this.agentInteractableStatusEffectModelList.map((model) => new StatusEffectModel              (model));
+    this.interactionStatusEffectModelList       = this.interactionStatusEffectModelList      .map((model) => new StatusEffectModel              (model));
 
-    this.equipmentItemModelList              = this.equipmentItemModelList             .map((model) => new EquipmentItemModel             (model));
-    this.dischargeAbilityModelList           = this.dischargeAbilityModelList          .map((model) => new DischargeAbilityModel          (model));
+    this.equipmentItemModelList                 = this.equipmentItemModelList                .map((model) => new EquipmentItemModel             (model));
+    this.dischargeAbilityModelList              = this.dischargeAbilityModelList             .map((model) => new DischargeAbilityModel          (model));
 
-    this.caseConditionModelList              = this.caseConditionModelList             .map((model) => new CaseConditionModel             (model));
+    this.caseConditionModelList                 = this.caseConditionModelList                .map((model) => new CaseConditionModel             (model));
 
-    this.companionEventModelList             = this.companionEventModelList            .map((model) => new CompanionEventModel            (model));
+    this.companionEventModelList                = this.companionEventModelList               .map((model) => new CompanionEventModel            (model));
   }
 }

@@ -18,7 +18,7 @@ export default function AbilityClassSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'class'} name={row.name} />
+        <ExLink name={row.name} params={['class', row.name]} />
       )
     }
   ], [abilityPageModel]);

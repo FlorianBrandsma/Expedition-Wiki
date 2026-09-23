@@ -20,7 +20,7 @@ export default function InteractableLootTableItemSegment({ itemModelList }: Inte
       render: (row) => (
         <Box sx={{ display: 'flex', alignInteractables: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.assetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.name} />
+          <ExLink name={row.name} params={['item', row.name]} />
         </Box>
       )
     },

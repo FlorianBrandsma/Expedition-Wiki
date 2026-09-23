@@ -18,7 +18,7 @@ export default function QuestObjectiveSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'objective'} name={row.name} params={[row.questName, row.name]} />
+        <ExLink name={row.name} params={['objective', row.questName, row.name]} />
       )
     },
     {

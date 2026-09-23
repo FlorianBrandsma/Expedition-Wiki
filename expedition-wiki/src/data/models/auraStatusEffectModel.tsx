@@ -29,7 +29,7 @@ export class AuraStatusEffectModel {
   descriptionComponent(stack: number): React.ReactNode {
 
     const appliedEffect = (
-      <ExLink pageName={'effect'} name={this.appliedStatusEffectModel.effectName} />
+      <ExLink name={this.appliedStatusEffectModel.effectName} params={['effect', this.appliedStatusEffectModel.effectName]} />
     );
 
     return (

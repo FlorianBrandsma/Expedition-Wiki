@@ -29,7 +29,7 @@ export class ResistStatusEffectModel {
   descriptionComponent(stack: number): React.ReactNode {
 
     const resistedEffect = (
-      <ExLink pageName={'effect'} name={this.resistedStatusEffectModel.effectName} />
+      <ExLink name={this.resistedStatusEffectModel.effectName} params={['effect', this.resistedStatusEffectModel.effectName]} />
     );
 
     return (

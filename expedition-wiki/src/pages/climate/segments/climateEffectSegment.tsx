@@ -21,22 +21,22 @@ export default function ClimateEffectSegment() {
 
     const headers: HeadCell<StatusEffectModel>[] = [
       {
-        id: 'atmosphereTimeDescription',
+        id: 'timeDescription',
         label: 'Time',
         align: 'center'
       },
       {
-        id: 'atmosphereStatusEffectTypeDescription',
-        label: 'Type',
+        id: 'stateDescription',
+        label: 'State',
         align: 'left'
       },
       { 
-        label: 'Name', 
+        label: 'Effect', 
         align: 'left',
         render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <ExIcon resourceName={row.effectIconResourceName} size={20} />
-            <ExLink pageName={'effect'} name={row.effectName} />
+            <ExLink name={row.effectName} params={['effect', row.effectName]} />
           </Box>
         )
       },
@@ -75,9 +75,9 @@ export default function ClimateEffectSegment() {
       align: 'center'
     })
 
-    if (statusEffectModelList.some(model => model.activeAtmosphereStatusEffectRepetitionTime > 0)) {
+    if (statusEffectModelList.some(model => model.activeStatusEffectRepetitionTime > 0)) {
       headers.push({
-        id: 'activeAtmosphereStatusEffectRepetitionTimeDescription',
+        id: 'activeStatusEffectRepetitionTimeDescription',
         label: 'Repetition',
         align: 'center'
       })

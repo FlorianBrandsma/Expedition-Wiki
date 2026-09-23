@@ -25,11 +25,10 @@ export default function ObjectiveInteractableSegment() {
             {row.iconResourceName && (
               <ExIcon resourceName={row.iconResourceName} size={20} />
             )}
-            {/* <ExLink pageName={`interactable/${row.typeDescription.toLowerCase()}/${row.parentTypeDescription.toLowerCase()}`} name={row.name} params={[objectiveModel.questName, objectiveModel.name, row.name]} /> */}
             <ExLink 
-              pageName={'objective'} 
               name={row.name} 
               params={[
+                'objective',
                 objectiveModel.questName, 
                 objectiveModel.name, 
                 'interactable', 
@@ -52,8 +51,8 @@ export default function ObjectiveInteractableSegment() {
         render: (row) => {
           switch (row.parentTypeDescription)
           {
-            case 'Terrain':   return <ExLink pageName={row.parentTypeDescription.toLowerCase()} name={row.parentTypeDescription} params={[row.regionName, row.terrainName]} />
-            case 'Quest':     return <ExLink pageName={row.parentTypeDescription.toLowerCase()} name={row.parentTypeDescription} params={[objectiveModel.questName]} />
+            case 'Terrain':   return <ExLink name={row.parentTypeDescription} params={[row.parentTypeDescription.toLowerCase(), row.regionName, row.terrainName]} />
+            case 'Quest':     return <ExLink name={row.parentTypeDescription} params={[row.parentTypeDescription.toLowerCase(), objectiveModel.questName]} />
             case 'Objective': return row.parentTypeDescription
           }
         }

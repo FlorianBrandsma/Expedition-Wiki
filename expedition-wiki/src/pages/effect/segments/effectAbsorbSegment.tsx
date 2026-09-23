@@ -23,7 +23,7 @@ export default function EffectAbsorbSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.resourceEffectIconResourceName} size={20} />
-          <ExLink pageName={'effect'} name={row.resourceEffectName} />
+          <ExLink name={row.resourceEffectName} params={['effect', row.resourceEffectName]} />
         </Box>
       )
     },

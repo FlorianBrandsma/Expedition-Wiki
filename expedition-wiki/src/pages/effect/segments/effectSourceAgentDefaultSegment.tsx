@@ -9,7 +9,7 @@ import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
 import { Box } from '@mui/material';
 
-export default function EffectSourceAgentSegment() {
+export default function EffectSourceAgentDefaultSegment() {
 
   const effectPageModel = useEffectPageContext();
   const { agentInteractableModelList } = effectPageModel;
@@ -21,7 +21,7 @@ export default function EffectSourceAgentSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.interactableAssetIconResourceName} size={20} />
-          <ExLink pageName={'interactable'} name={row.interactableName} />
+          <ExLink name={row.interactableName} params={['interactable', row.interactableName]} />
         </Box>
       )
     },

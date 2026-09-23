@@ -34,7 +34,7 @@ export default function ItemSourceCraftSegment() {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Typography variant='body2'>{ row.costCraftItemEventItemQuantity } x</Typography>
             <ExIcon resourceName={row.costCraftItemEventItemIconResourceName} size={20} />
-            <ExLink pageName={'item'} name={row.costCraftItemEventItemName} />
+            <ExLink name={row.costCraftItemEventItemName} params={['item', row.costCraftItemEventItemName]} />
           </Box>
         )
       })

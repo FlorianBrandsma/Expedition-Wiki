@@ -116,7 +116,7 @@ export default function InteractablesPage() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.assetIconResourceName} size={20} />
-          <ExLink pageName={'interactable'} name={row.name} />
+          <ExLink name={row.name} params={['interactable', row.name]} />
         </Box>
       )
     },
@@ -145,7 +145,7 @@ export default function InteractablesPage() {
       label: 'Class',
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'class'} name={row.className} />
+        <ExLink name={row.className} params={['class', row.className]} />
       )
     },
     {

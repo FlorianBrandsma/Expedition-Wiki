@@ -21,7 +21,7 @@ export default function GeneralUtilityConditionReactionSegment({ caseConditionMo
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.agentInteractableReactionModel.agentInteractableAssetIconResourceName} size={20} />
-          <ExLink pageName={'interactable'} name={row.agentInteractableReactionModel.agentInteractableName} />
+          <ExLink name={row.agentInteractableReactionModel.agentInteractableName} params={['interactable', row.agentInteractableReactionModel.agentInteractableName]} />
         </Box>
       )
     },

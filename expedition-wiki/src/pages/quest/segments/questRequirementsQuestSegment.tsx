@@ -17,7 +17,7 @@ export default function QuestRequirementQuestSegment() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'quest'} name={row.questName} />
+        <ExLink name={row.questName} params={['quest', row.questName]} />
       )
     }
   ], [questPageModel]);

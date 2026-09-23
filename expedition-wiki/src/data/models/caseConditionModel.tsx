@@ -106,7 +106,7 @@ export class CaseConditionModel {
       case 'Faction':   return this.factionCaseConditionModel!  .descriptionComponent;
       case 'Character': return this.characterCaseConditionModel!.descriptionComponent;
       case 'Companion': return this.companionCaseConditionModel!.descriptionComponent;
-      case 'Task':      return this.taskCaseConditionModel!     .description;
+      case 'Task':      return this.taskCaseConditionModel!     .descriptionComponent;
       case 'Combat':    return this.combatCaseConditionModel!   .description;
       case 'Loot':      return this.lootCaseConditionModel!     .description;
     }

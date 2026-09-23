@@ -17,7 +17,7 @@ export class EffectAgentInteractableBehaviourConditionModel {
   get descriptionComponent(): React.ReactNode {
 
     const effect = (
-      <ExLink pageName={'effect'} name={this.effectName} />
+      <ExLink name={this.effectName} params={['effect', this.effectName]} />
     );
 
     return (

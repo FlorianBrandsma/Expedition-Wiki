@@ -22,7 +22,7 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.componentItemAssetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.componentItemName} />
+          <ExLink name={row.componentItemName} params={['item', row.componentItemName]} />
         </Box>
       )
     },

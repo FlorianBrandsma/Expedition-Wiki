@@ -24,7 +24,7 @@ export default function TerrainClimateSegment() {
         render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             {row.iconResourceName && <ExIcon resourceName={row.iconResourceName} size={20} />}
-            <ExLink pageName={'climate'} name={row.name} params={[terrainModel.regionName, terrainModel.name, row.name]}/>
+            <ExLink name={row.name} params={['climate', terrainModel.regionName, terrainModel.name, row.name]}/>
           </Box>
         )
       }

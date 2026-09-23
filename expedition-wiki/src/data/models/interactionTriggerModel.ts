@@ -1,4 +1,7 @@
+import { InteractionModel } from "./interactionModel";
+import { InputInteractionTriggerModel } from "./inputInteractionTriggerModel";
 import { CaseConditionModel } from "./caseConditionModel";
+import { InteractionTriggerActivationType, InteractionTriggerTargetType, InteractionTriggerType } from "../../types/enums";
 
 export class InteractionTriggerModel {
 
@@ -10,11 +13,39 @@ export class InteractionTriggerModel {
 
   eventName!: string;
 
+  interactionModel!: InteractionModel;
+
+  inputInteractionTriggerModelList!: InputInteractionTriggerModel[];
+
   caseConditionModelList!: CaseConditionModel[];
 
   constructor(init:Partial<InteractionTriggerModel>) {  
     Object.assign(this, init);
 
-    this.caseConditionModelList = this.caseConditionModelList.map((model) => new CaseConditionModel(model));
+    if (this.interactionModel) this.interactionModel = new InteractionModel(this.interactionModel);
+
+    this.inputInteractionTriggerModelList = this.inputInteractionTriggerModelList.map((model) => new InputInteractionTriggerModel(model));
+
+    this.caseConditionModelList           = this.caseConditionModelList          .map((model) => new CaseConditionModel          (model));
+  }
+
+  get inputInteractionTriggerModel(): InputInteractionTriggerModel {
+    return this.inputInteractionTriggerModelList[0];
+  }
+
+  get typeDescription(): string {
+    return InteractionTriggerType[this.type];
+  }
+
+  get targetTypeDescription(): string {
+    return InteractionTriggerTargetType[this.targetType];
+  }
+
+  get activationTypeDescription(): string {
+    return InteractionTriggerActivationType[this.activationType];
+  }
+
+  get interactionTimeDescription(): string {
+    return this.interactionModel.timeDescription;
   }
 }

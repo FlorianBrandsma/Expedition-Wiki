@@ -21,7 +21,7 @@ export default function EffectResistanceSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.statusEffectIconResourceName} size={20} />
-          <ExLink pageName={'effect'} name={row.statusEffectName} />
+          <ExLink name={row.statusEffectName} params={['effect', row.statusEffectName]} />
         </Box>
       )
     },

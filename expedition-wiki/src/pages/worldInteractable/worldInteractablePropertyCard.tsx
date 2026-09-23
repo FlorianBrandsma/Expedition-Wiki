@@ -1,6 +1,8 @@
 import { useWorldInteractablePageContext } from './worldInteractablePageContext';
 
-import { CardContent, CardMedia } from '@mui/material';
+import { WorldInteractableParentType } from '../../types/enums';
+
+import { Box, CardContent, CardMedia } from '@mui/material';
 
 import ModelButton from '../../features/modelViewer/components/modelButton';
 import ExCard from '../../components/exCard/exCard';
@@ -8,7 +10,8 @@ import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
 import ExLink from '../../components/exLink/exLink';
-import { WorldInteractableParentType } from '../../types/enums';
+import ExIcon from '../../components/exIcon/exIcon';
+
 
 interface WorldInteractablePropertyCardProps {
   questName?: string;
@@ -59,19 +62,24 @@ export default function WorldInteractablePropertyCard({ questName, objectiveName
         {entityWorldInteractableModel && (
           <ExCardTableRow 
             label='Interactable' 
-            value={<ExLink pageName={'interactable'} name={entityWorldInteractableModel.interactableName} />}
+            value={
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <ExIcon resourceName={entityWorldInteractableModel.interactableIconResourceName} size={20} />
+                <ExLink name={entityWorldInteractableModel.interactableName} params={['interactable', entityWorldInteractableModel.interactableName]} />
+              </Box>
+            }
           />
         )}
         {questName && objectiveName && (
           <ExCardTableRow 
             label='Objective'
-            value={<ExLink pageName={'objective'} name={objectiveName} params={[questName, objectiveName]} />}
+            value={<ExLink name={objectiveName} params={['objective', questName, objectiveName]} />}
           />
         )}
         {worldInteractableModel.worldInteractableParentType === WorldInteractableParentType.indexOf('Terrain') && (
           <ExCardTableRow 
             label='Terrain'
-            value={<ExLink pageName={'terrain'} name={worldInteractableModel.terrainName} params={[worldInteractableModel.regionName, worldInteractableModel.terrainName]} />}
+            value={<ExLink name={worldInteractableModel.terrainName} params={['terrain', worldInteractableModel.regionName, worldInteractableModel.terrainName]} />}
           />
         )}
       </ExCardTable>

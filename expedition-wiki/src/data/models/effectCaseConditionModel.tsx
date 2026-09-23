@@ -19,7 +19,7 @@ export class EffectCaseConditionModel {
   get descriptionComponent(): React.ReactNode {
   
     const effect = (
-      <ExLink pageName={'effect'} name={this.statusEffectName} />
+      <ExLink name={this.statusEffectName} params={['effect', this.statusEffectName]} />
     );
 
     return (

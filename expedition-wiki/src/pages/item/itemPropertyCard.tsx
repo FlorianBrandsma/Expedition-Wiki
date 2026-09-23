@@ -34,7 +34,7 @@ function CurrencyTable({ currencyItemModelList }: CurrencyTableProps) {
             <TableCell>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 0.5 }}>
                 <ExIcon resourceName={row.itemAssetIconResourceName} size={20} />
-                <ExLink pageName={'item'} name={row.itemName} />
+                <ExLink name={row.itemName} params={['item', row.itemName]} />
               </Box>
             </TableCell>
             <TableCell align='right'>

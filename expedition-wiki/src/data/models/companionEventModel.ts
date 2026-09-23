@@ -9,6 +9,6 @@ export class CompanionEventModel {
   }
 
   get typeDescription(): string {
-    return 'Companion Event';
+    return 'Companion';
   }
 }

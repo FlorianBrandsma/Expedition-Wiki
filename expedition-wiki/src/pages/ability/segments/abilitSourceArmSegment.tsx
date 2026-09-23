@@ -21,7 +21,7 @@ export default function AbilitySourceArmSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.equipmentItemAssetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.equipmentItemName} />
+          <ExLink name={row.equipmentItemName} params={['item', row.equipmentItemName]} />
         </Box>
       )
     },

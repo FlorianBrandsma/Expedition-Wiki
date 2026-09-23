@@ -14,35 +14,54 @@ export default function EffectSourceClimateSegment() {
   const effectPageModel = useEffectPageContext();
   const { atmosphereModelList } = effectPageModel;
 
-  const headers = useMemo<HeadCell<AtmosphereModel>[]>(() => [
-    { 
-      label: 'Name', 
-      align: 'left',
-      render: (row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          {row.iconResourceName && <ExIcon resourceName={row.iconResourceName} size={20} />}
-          <ExLink pageName={'climate'} name={row.climateName} params={[row.regionName, row.terrainName, row.climateName]}/>
-        </Box>
-      )
-    },
-    { 
-      label: 'Terrain', 
-      align: 'left',
-      render: (row) => (
-        <ExLink pageName={'terrain'} name={row.terrainName} params={[row.regionName, row.terrainName]} />
-      )
-    },
-    { 
-      id: 'timeDescription', 
-      label: 'Time', 
-      align: 'left'
-    },
-    {
-      id: 'statusEffectStack',
-      label: 'Stack',
-      align: 'center'
+  const headers = useMemo<HeadCell<AtmosphereModel>[]>(() => {
+
+    const headers: HeadCell<AtmosphereModel>[] = [
+      { 
+        label: 'Climate', 
+        align: 'left',
+        render: (row) => (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            {row.iconResourceName && <ExIcon resourceName={row.iconResourceName} size={20} />}
+            <ExLink name={row.climateName} params={['climate', row.regionName, row.terrainName, row.climateName]}/>
+          </Box>
+        )
+      },
+      { 
+        label: 'Terrain', 
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.terrainName} params={['terrain', row.regionName, row.terrainName]} />
+        )
+      },
+      { 
+        id: 'timeDescription', 
+        label: 'Time', 
+        align: 'left'
+      },
+      {
+        id: 'statusEffectStateDescription',
+        label: 'State',
+        align: 'left'
+      },
+      {
+        id: 'statusEffectStack',
+        label: 'Stack',
+        align: 'center'
+      }
+    ]
+
+    if (atmosphereModelList.some(model => model.activeStatusEffectRepetitionTime > 0)) {
+      headers.push({
+        id: 'activeStatusEffectRepetitionTimeDescription',
+        label: 'Repetition',
+        align: 'center'
+      })
     }
-  ], [effectPageModel]);
+
+    return headers;
+
+  }, [effectPageModel]);
 
   return (
     <Box>

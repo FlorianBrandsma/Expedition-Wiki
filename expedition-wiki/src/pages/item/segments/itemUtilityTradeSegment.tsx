@@ -24,7 +24,7 @@ export default function ItemUtilityTradeSegment() {
         render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <ExIcon resourceName={row.itemAssetIconResourceName} size={20} />
-            <ExLink pageName={'item'} name={row.itemName} />
+            <ExLink name={row.itemName} params={['item', row.itemName]} />
           </Box>
         )
       },
@@ -43,7 +43,7 @@ export default function ItemUtilityTradeSegment() {
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 <Typography variant='body2'>{itemModel.quantity} x</Typography>
                 <ExIcon resourceName={itemModel.assetIconResourceName} size={20} />
-                <ExLink pageName={'item'} name={itemModel.name} />
+                <ExLink name={itemModel.name} params={['item', itemModel.name]} />
               </Box>
             )}
           />

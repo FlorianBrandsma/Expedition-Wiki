@@ -21,7 +21,7 @@ export default function GeneralUtilityConditionLootSegment({ caseConditionModelL
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.agentInteractableLootTableModel.agentInteractableAssetIconResourceName} size={20} />
-          <ExLink pageName={'interactable'} name={row.agentInteractableLootTableModel.agentInteractableName} />
+          <ExLink name={row.agentInteractableLootTableModel.agentInteractableName} params={['interactable', row.agentInteractableLootTableModel.agentInteractableName]} />
         </Box>
       )
     },
@@ -29,7 +29,7 @@ export default function GeneralUtilityConditionLootSegment({ caseConditionModelL
       label: 'Table',
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'interactable'} name={row.agentInteractableLootTableModel.name} params={[row.agentInteractableLootTableModel.agentInteractableName]} />
+        <ExLink name={row.agentInteractableLootTableModel.name} params={['interactable', row.agentInteractableLootTableModel.agentInteractableName, row.agentInteractableLootTableModel.name]} />
       )
     },
     {

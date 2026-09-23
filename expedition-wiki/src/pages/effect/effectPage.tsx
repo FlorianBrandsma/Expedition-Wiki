@@ -19,7 +19,7 @@ import EffectSourceEquipmentSegment from './segments/effectSourceEquipment';
 import EffectSourceEffectClusterSegment from './segments/effectSourceEffectClusterSegment';
 import EffectSourceEffectAbilitySegment from './segments/effectSourceEffectAbilitySegment';
 import EffectSourceSetSegment from './segments/effectSourceSetSegment';
-import EffectSourceAgentSegment from './segments/effectSourceAgentSegment';
+import EffectSourceAgentDefaultSegment from './segments/effectSourceAgentDefaultSegment';
 import EffectSourceClimateSegment from './segments/effectSourceClimateSegment';
 import EffectSourceEventSegment from './segments/effectSourceEventSegment';
 import EffectEventSegment from './segments/effectEventSegment';
@@ -35,6 +35,7 @@ import GeneralUtilityConditionItemSegment from '../general/segments/utility/cond
 import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
 import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
 import GeneralUtilityConditionTriggerSegment from '../general/segments/utility/condition/generalUtilityConditionTriggerSegment';
+import EffectSourceAgentTaskSegment from './segments/effectSourceAgentTaskSegment';
 
 export default function EffectPage() {
 
@@ -72,6 +73,7 @@ export default function EffectPage() {
     equipmentSetModelList,
     agentInteractableModelList,
     atmosphereModelList,
+    interactionModelList,
     absorbResourceEffectModelList,
     abilityStatusEffectModelList,
     auraStatusEffectModelList,
@@ -82,7 +84,6 @@ export default function EffectPage() {
   } = effectPageModel;
 
   if (effectModel.resourceEffectModel?.absorbResourceEffectModel?.damageResourceEffectModel) {
-
     contentSegments.push({
       label: 'Absorbs',
       id: 'Absorbs',
@@ -91,7 +92,6 @@ export default function EffectPage() {
   }
 
   if (effectModel.statusEffectModel?.repeatStatusEffectModel?.repeatedEffectModel) {
-
     contentSegments.push({
       label: 'Repeats',
       id: 'Repeats',
@@ -100,7 +100,6 @@ export default function EffectPage() {
   }
 
   if (eventModelList.length > 0) {
-  
     contentSegments.push({
       label: 'Event',
       id: 'Event',
@@ -109,7 +108,6 @@ export default function EffectPage() {
   }
 
   if (statusEffectModelList.length > 0) {
-
     contentSegments.push({
       label: 'Cluster',
       id: 'Cluster',
@@ -124,7 +122,6 @@ export default function EffectPage() {
   }
 
   if (resistStatusEffectModelList.length > 0) {
-  
     contentSegments.push({
       label: 'Resistance',
       id: 'Resistance',
@@ -238,7 +235,6 @@ export default function EffectPage() {
   } as ContentSegment;
 
   if (absorbResourceEffectModelList.length > 0) {
-  
     effectSegment.children!.push({
       label: 'Absorb',
       id: 'Absorb',
@@ -247,7 +243,6 @@ export default function EffectPage() {
   }
   
   if (abilityStatusEffectModelList.length > 0) {
-  
     effectSegment.children!.push({
       label: 'Ability',
       id: 'Ability',
@@ -256,7 +251,6 @@ export default function EffectPage() {
   }
 
   if (auraStatusEffectModelList.length > 0) {
-  
     effectSegment.children!.push({
       label: 'Aura',
       id: 'Aura',
@@ -265,7 +259,6 @@ export default function EffectPage() {
   }
 
   if (repeatStatusEffectModelList.length > 0) {
-  
     effectSegment.children!.push({
       label: 'Repeat',
       id: 'Repeat',
@@ -274,7 +267,6 @@ export default function EffectPage() {
   }
 
   if (clusterStatusEffectModelList.length > 0) {
-  
     effectSegment.children!.push({
       label: 'Cluster',
       id: 'Cluster',
@@ -286,7 +278,6 @@ export default function EffectPage() {
     sourceSegment.children!.push(effectSegment);
 
   if (abilityModelList.length > 0) {
-  
     sourceSegment.children!.push({
       label: 'Abilities',
       id: 'Abilities',
@@ -295,7 +286,6 @@ export default function EffectPage() {
   }
 
   if (equipmentItemModelList.length > 0) {
-  
     sourceSegment.children!.push({
       label: 'Equipment',
       id: 'Equipment',
@@ -304,7 +294,6 @@ export default function EffectPage() {
   }
 
   if (equipmentSetModelList.length > 0) {
-  
     sourceSegment.children!.push({
       label: 'Sets',
       id: 'Sets',
@@ -312,17 +301,32 @@ export default function EffectPage() {
     });
   }
 
+  const agentSegment = {
+    label: 'Agents',
+    id: 'Agents',
+    children: []
+  } as ContentSegment;
+
   if (agentInteractableModelList.length > 0) {
-  
-    sourceSegment.children!.push({
-      label: 'Agents',
-      id: 'Agents',
-      component: <EffectSourceAgentSegment />
+    agentSegment.children!.push({
+      label: 'Default',
+      id: 'Default',
+      component: <EffectSourceAgentDefaultSegment />
     });
   }
 
+  if (interactionModelList.length > 0) {
+    agentSegment.children!.push({
+      label: 'Tasks',
+      id: 'Tasks',
+      component: <EffectSourceAgentTaskSegment />
+    });
+  }
+
+  if (agentSegment.children?.length !== 0)
+    sourceSegment.children!.push(agentSegment);
+
   if (atmosphereModelList.length > 0) {
-  
     sourceSegment.children!.push({
       label: 'Climates',
       id: 'Climates',
@@ -331,7 +335,6 @@ export default function EffectPage() {
   }
 
   if (effectEventModelList.length > 0) {
-  
     sourceSegment.children!.push({
       label: 'Events',
       id: 'Events',

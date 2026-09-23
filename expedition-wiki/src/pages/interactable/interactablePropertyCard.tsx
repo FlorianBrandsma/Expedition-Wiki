@@ -73,7 +73,7 @@ export default function InteractablePropertyCard() {
             value={
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 <ExIcon resourceName={factionModel.iconResourceName} size={20} />
-                <ExLink pageName={'faction'} name={factionModel.name} />
+                <ExLink name={factionModel.name} params={['faction', factionModel.name]} />
               </Box>
             }
           />
@@ -95,7 +95,7 @@ export default function InteractablePropertyCard() {
           <ExCardTableRow 
             label='Class' 
             value={
-              <ExLink pageName={'class'} name={classModel.name} />
+              <ExLink name={classModel.name} params={['class', classModel.name]} />
             }
           />
         )}

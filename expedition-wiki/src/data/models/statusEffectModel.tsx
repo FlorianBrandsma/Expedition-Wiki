@@ -1,4 +1,4 @@
-import { AtmosphereStatusEffectType, StatusEffectType } from "../../types/enums";
+import { StatusEffectState, StatusEffectType } from "../../types/enums";
 
 import { BasicStatusEffectModel } from "./basicStatusEffectModel";
 import { AttributeStatusEffectModel } from "./attributeStatusEffectModel";
@@ -13,6 +13,7 @@ import { SensorStatusEffectModel } from "./sensorStatusEffectModel";
 import { StandingStatusEffectModel } from "./standingStatusEffectModel";
 import { ClusterStatusEffectModel } from "./clusterStatusEffectModel";
 import { AtmosphereModel } from "./atmosphereModel";
+import { InteractionModel } from "./interactionModel";
 
 export class StatusEffectModel {
   
@@ -31,11 +32,13 @@ export class StatusEffectModel {
   effectIconResourceName!: string;
 
   atmosphereModel!: AtmosphereModel;
+  interactionModel!: InteractionModel;
 
   atmosphereStatusEffectId!: number;
-  atmosphereStatusEffectType!: number;
+  interactionStatusEffectId!: number;
 
-  activeAtmosphereStatusEffectRepetitionTime!: number;
+  statusEffectState!: number;
+  activeStatusEffectRepetitionTime!: number;
 
   basicStatusEffectModelList!:     BasicStatusEffectModel[];
   attributeStatusEffectModelList!: AttributeStatusEffectModel[];
@@ -53,9 +56,10 @@ export class StatusEffectModel {
   constructor(init:Partial<StatusEffectModel>) {  
     Object.assign(this, init);
 
-    this.atmosphereModel = new AtmosphereModel(this.atmosphereModel);
+    if (this.atmosphereModel  !== null) this.atmosphereModel  = new AtmosphereModel (this.atmosphereModel);
+    if (this.interactionModel !== null) this.interactionModel = new InteractionModel(this.interactionModel);
 
-    this.activeAtmosphereStatusEffectRepetitionTime = Number(init.activeAtmosphereStatusEffectRepetitionTime!.toFixed(2));
+    this.activeStatusEffectRepetitionTime = Number(init.activeStatusEffectRepetitionTime!.toFixed(2));
 
     this.basicStatusEffectModelList     = this.basicStatusEffectModelList    .map((model) => new BasicStatusEffectModel    (model));
     this.attributeStatusEffectModelList = this.attributeStatusEffectModelList.map((model) => new AttributeStatusEffectModel(model));
@@ -127,16 +131,18 @@ export class StatusEffectModel {
     return `${ StatusEffectType[this.type] } Status`;
   }
 
-  get atmosphereTimeDescription(): string {
-    return this.atmosphereModel.timeDescription;
+  get timeDescription(): string {
+
+    return this.atmosphereModel ?.timeDescription ??
+           this.interactionModel?.timeDescription;
   }
 
-  get atmosphereStatusEffectTypeDescription(): string {
-    return AtmosphereStatusEffectType[this.atmosphereStatusEffectType];
+  get stateDescription(): string {
+    return StatusEffectState[this.state];
   }
 
-  get activeAtmosphereStatusEffectRepetitionTimeDescription(): string {
-    return this.activeAtmosphereStatusEffectRepetitionTime > 0 ? `${this.activeAtmosphereStatusEffectRepetitionTime.toFixed(2)}s` : '';
+  get activeStatusEffectRepetitionTimeDescription(): string {
+    return this.activeStatusEffectRepetitionTime > 0 ? `${this.activeStatusEffectRepetitionTime.toFixed(2)}s` : '';
   }
 
   descriptionComponent(stack?: number): React.ReactNode {

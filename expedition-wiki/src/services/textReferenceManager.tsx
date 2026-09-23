@@ -18,8 +18,8 @@ export default function ReferenceDescription(description: string, textReferenceM
       return part.startsWith('@') ? (
         <ExLink
           key={index}
-          pageName={TextReferenceType[referenceDictionary[part].type].toLowerCase()}
           name={referenceDictionary[part].name}
+          params={[TextReferenceType[referenceDictionary[part].type].toLowerCase(), referenceDictionary[part].name]} 
         />
       ) : (
         <span key={index}>{part}</span>

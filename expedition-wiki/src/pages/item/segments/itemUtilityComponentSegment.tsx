@@ -22,7 +22,7 @@ export default function ItemUtilityComponentSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.assetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.name} />
+          <ExLink name={row.name} params={['item', row.name]} />
         </Box>
       )
     },
@@ -37,7 +37,7 @@ export default function ItemUtilityComponentSegment() {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Typography variant='body2'>{itemModel.quantity} x</Typography>
               <ExIcon resourceName={itemModel.assetIconResourceName} size={20} />
-              <ExLink pageName={'item'} name={itemModel.name} />
+              <ExLink name={itemModel.name} params={['item', itemModel.name]} />
             </Box>
           )}
         />

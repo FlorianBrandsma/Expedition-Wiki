@@ -30,7 +30,7 @@ export default function ItemSourceBuySegment() {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Typography variant='body2'>{ row.shopItemEventItemValue } x</Typography>
             <ExIcon resourceName={row.shopItemEventItemCurrencyItemIconResourceName} size={20} />
-            <ExLink pageName={'item'} name={row.shopItemEventItemCurrencyItemName} />
+            <ExLink name={row.shopItemEventItemCurrencyItemName} params={['item', row.shopItemEventItemCurrencyItemName]} />
           </Box>
         )
       },

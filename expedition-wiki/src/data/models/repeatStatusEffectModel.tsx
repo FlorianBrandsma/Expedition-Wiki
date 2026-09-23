@@ -34,7 +34,7 @@ export class RepeatStatusEffectModel {
     const descriptionBody = EffectType[this.repeatedEffectModel.type] == 'Status' ? (
       <>
         {successChanceDescription ? 'apply ' : 'Apply '}
-        <ExLink pageName={'effect'} name={this.repeatedEffectModel.name} />
+        <ExLink name={this.repeatedEffectModel.name} params={['effect', this.repeatedEffectModel.name]} />
       </>
     ) : (
       this.repeatedEffectModel.descriptionComponent(stack)

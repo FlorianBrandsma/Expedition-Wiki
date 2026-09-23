@@ -25,7 +25,7 @@ export default function ObjectivePropertyCard() {
       <ExCardTable>
         <ExCardTableRow 
           label='Quest' 
-          value={<ExLink pageName={'quest'} name={objectiveModel.questName} />}
+          value={<ExLink name={objectiveModel.questName} params={['quest', objectiveModel.questName]} />}
         />
       </ExCardTable>
 
@@ -37,13 +37,13 @@ export default function ObjectivePropertyCard() {
             {previousObjectiveModel && (
               <ExCardTableRow 
                 label='Previous' 
-                value={<ExLink pageName={'objective'} name={previousObjectiveModel.name} params={[previousObjectiveModel.questName, previousObjectiveModel.name]} />}
+                value={<ExLink name={previousObjectiveModel.name} params={['objective', previousObjectiveModel.questName, previousObjectiveModel.name]} />}
               />
             )}
             {nextObjectiveModel && (
               <ExCardTableRow 
                 label='Next' 
-                value={<ExLink pageName={'objective'} name={nextObjectiveModel.name} params={[nextObjectiveModel.questName, nextObjectiveModel.name]}/>}
+                value={<ExLink name={nextObjectiveModel.name} params={['objective', nextObjectiveModel.questName, nextObjectiveModel.name]}/>}
               />
             )}
           </ExCardTable>

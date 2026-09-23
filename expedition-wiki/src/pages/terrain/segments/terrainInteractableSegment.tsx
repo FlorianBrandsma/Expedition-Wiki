@@ -26,9 +26,9 @@ export default function TerrainInteractableSegment() {
               <ExIcon resourceName={row.iconResourceName} size={20} />
             )}
             <ExLink 
-              pageName={'terrain'} 
               name={row.name} 
               params={[
+                'terrain',
                 terrainModel.regionName, 
                 terrainModel.name, 
                 'interactable', 

@@ -22,7 +22,7 @@ export default function GeneralUtilityConditionAbilitySegment({ caseConditionMod
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.chargeAbilityModel.abilityIconResourceName} size={20} />
-          <ExLink pageName={'ability'} name={row.chargeAbilityModel.abilityName} />
+          <ExLink name={row.chargeAbilityModel.abilityName} params={['ability', row.chargeAbilityModel.abilityName]} />
         </Box>
       )
     },

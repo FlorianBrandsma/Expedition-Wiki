@@ -29,6 +29,7 @@ import QuestsPage from './pages/quest/questsPage';
 import QuestPage from './pages/quest/questPage';
 import ObjectivePage from './pages/objective/objectivePage';
 import WorldInteractablePage from './pages/worldInteractable/worldInteractablePage';
+import TaskPage from './pages/task/taskPage';
 
 export default function App() {
 
@@ -186,13 +187,21 @@ export default function App() {
             element: <ObjectivePage />
           },
           {
+            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:type/:parentType/:worldInteractableName',
+            element: <WorldInteractablePage />
+          },
+          {
             path:'/:gameName/objective/:questName/:objectiveName/interactable/:type/:parentType/:worldInteractableName',
             element: <WorldInteractablePage />
           },
           {
-            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:type/:parentType/:worldInteractableName',
-            element: <WorldInteractablePage />
-          }
+            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:type/:parentType/:worldInteractableName/task/:taskName',
+            element: <TaskPage />
+          },
+          {
+            path:'/:gameName/objective/:questName/:objectiveName/interactable/:type/:parentType/:worldInteractableName/task/:taskName',
+            element: <TaskPage />
+          },
         ]
       },
     ]

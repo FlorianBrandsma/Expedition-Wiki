@@ -16,7 +16,7 @@ export class ItemEventModel {
   constructor(init:Partial<ItemEventModel>) {  
     Object.assign(this, init);
 
-    this.itemEventItemModel = new ItemEventItemModel(this.itemEventItemModel);
+    if (this.itemEventItemModel) this.itemEventItemModel = new ItemEventItemModel(this.itemEventItemModel);
 
     this.shopItemEventModelList = this.shopItemEventModelList.map((model) => new ShopItemEventModel(model));
   }
@@ -26,6 +26,6 @@ export class ItemEventModel {
   }
 
   get typeDescription(): string {
-    return 'Item Event';
+    return 'Item';
   }
 }

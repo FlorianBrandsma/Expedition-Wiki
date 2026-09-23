@@ -31,7 +31,7 @@ export default function ItemUtilitySellSegment() {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <Typography variant='body2'>{ value } x</Typography>
           <ExIcon resourceName={row.currencyItemAssetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.currencyItemName} />
+          <ExLink name={row.currencyItemName} params={['item', row.currencyItemName]} />
         </Box>
       )}
     },

@@ -379,11 +379,6 @@ export const RarityType = [
   'Very rare'
 ] as const;
 
-export const AtmosphereStatusEffectType = [
-  'Active',
-  'Passive'
-] as const;
-
 export const WorldInteractableType = [
   'Entity',
   'Trigger',
@@ -426,6 +421,35 @@ export const CombatState = [
 export const QuestType = [
   'Main',
   'Side'
+] as const;
+
+export const InteractionType = [
+  'Behaviour',
+  'Supplement',
+  'Hidden'
+] as const;
+
+export const InteractionTriggerType = [
+  'Default',
+  'Input',
+  'Cancel',
+  'Sight',
+  'Sound',
+  'Sonar',
+  'Proximity',
+  'Hit'
+] as const;
+
+export const InteractionTriggerTargetType = [
+  'Active party member',
+  'Inactive party member',
+  'Non-player character'
+] as const;
+
+export const InteractionTriggerActivationType = [
+  'Always',
+  'Stationed',
+  'Traversing'
 ] as const;
 
 export const EventType = [

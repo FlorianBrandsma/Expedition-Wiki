@@ -11,6 +11,6 @@ export class ReputationEventModel {
   }
 
   get typeDescription(): string {
-    return 'Reputation Event';
+    return 'Reputation';
   }
 }

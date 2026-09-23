@@ -11,6 +11,7 @@ import { ClusterStatusEffectModel } from "../clusterStatusEffectModel";
 import { EventModel } from "../eventModel";
 import { EffectEventModel } from "../effectEventModel";
 import { AtmosphereModel } from "../atmosphereModel";
+import { InteractionModel } from "../interactionModel";
 import { RepeatStatusEffectModel } from "../repeatStatusEffectModel";
 import { AuraStatusEffectModel } from "../auraStatusEffectModel";
 import { AbsorbResourceEffectModel } from "../absorbResourceEffectModel";
@@ -30,6 +31,7 @@ export class EffectPageModel {
   equipmentSetModelList!: EquipmentSetModel[];
   agentInteractableModelList!: AgentInteractableModel[];
   atmosphereModelList!: AtmosphereModel[];
+  interactionModelList!: InteractionModel[];
 
   absorbResourceEffectModelList!: AbsorbResourceEffectModel[];
   abilityStatusEffectModelList!: AbilityStatusEffectModel[];
@@ -56,6 +58,7 @@ export class EffectPageModel {
     this.equipmentSetModelList         = this.equipmentSetModelList        .map((model) => new EquipmentSetModel        (model));
     this.agentInteractableModelList    = this.agentInteractableModelList   .map((model) => new AgentInteractableModel   (model));
     this.atmosphereModelList           = this.atmosphereModelList          .map((model) => new AtmosphereModel          (model));
+    this.interactionModelList          = this.interactionModelList         .map((model) => new InteractionModel         (model));
     
     this.absorbResourceEffectModelList = this.absorbResourceEffectModelList.map((model) => new AbsorbResourceEffectModel(model, this.effectModel.resourceEffectModel));
     this.abilityStatusEffectModelList  = this.abilityStatusEffectModelList .map((model) => new AbilityStatusEffectModel (model));

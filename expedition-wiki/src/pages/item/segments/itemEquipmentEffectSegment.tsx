@@ -26,7 +26,7 @@ export default function ItemEquipmentEffectSegment() {
         render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <ExIcon resourceName={row.effectIconResourceName} size={20} />
-            <ExLink pageName={'effect'} name={row.effectName} />
+            <ExLink name={row.effectName} params={['effect', row.effectName]} />
           </Box>
         )
       },

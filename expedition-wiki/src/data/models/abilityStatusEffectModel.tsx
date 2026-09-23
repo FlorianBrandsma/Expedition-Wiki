@@ -34,7 +34,7 @@ export class AbilityStatusEffectModel {
       <>
         {successChanceDescription ? 'apply ' : 'Apply '} 
         {`${stack} ${stack === 1 ? 'stack' : 'stacks'} of `}
-        <ExLink pageName={'effect'} name={this.effectModel.name} />
+        <ExLink name={this.effectModel.name} params={['effect', this.effectModel.name]} />
       </>
     );
 

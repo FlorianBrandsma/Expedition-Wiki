@@ -15,7 +15,7 @@ import InteractablePropertyCard from './interactablePropertyCard';
 import type { ContentSegment } from '../../components/contentTable/contentTable';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import InteractableEffectSegment from './segments/interactableEffectSegment';
+import InteractableEffectDefaultSegment from './segments/interactableEffectDefaultSegment';
 import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
 import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
 import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
@@ -30,6 +30,7 @@ import InteractableReactionSegment from './segments/interactableReactionSegment'
 import InteractableLootTableConditionSegment from './segments/interactableLootTableConditionSegment';
 import InteractableLootTableItemSegment from './segments/interactableLootTableItemSegment';
 import InteractableSourceEventSegment from './segments/interactableSourceEventSegment';
+import InteractableEffectTaskSegment from './segments/interactableEffectTaskSegment';
 
 export default function InteractablePage() {
 
@@ -63,7 +64,8 @@ export default function InteractablePage() {
     agentInteractableBehaviourModelList,
     agentInteractableReactionModelList,
     agentInteractableLootTableModelList,
-    statusEffectModelList,
+    agentInteractableStatusEffectModelList,
+    interactionStatusEffectModelList,
     equipmentItemModelList,
     dischargeAbilityModelList,
     caseConditionModelList,
@@ -86,13 +88,30 @@ export default function InteractablePage() {
     });
   }
 
-  if (statusEffectModelList.length > 0) {
-    contentSegments!.push({
-      label: 'Effects',
-      id: 'Effects',
-      component: <InteractableEffectSegment />
+  const effectSegment = {
+    label: 'Effects',
+    id: 'Effects',
+    children: []
+  } as ContentSegment;
+
+  if (agentInteractableStatusEffectModelList.length > 0) {
+    effectSegment.children!.push({
+      label: 'Default',
+      id: 'Default',
+      component: <InteractableEffectDefaultSegment />
     });
   }
+
+  if (interactionStatusEffectModelList.length > 0) {
+    effectSegment.children!.push({
+      label: 'Tasks',
+      id: 'Tasks',
+      component: <InteractableEffectTaskSegment />
+    });
+  }
+
+  if (effectSegment.children?.length !== 0)
+    contentSegments.push(effectSegment);
 
   if (dischargeAbilityModelList.length > 0) {
     contentSegments!.push({

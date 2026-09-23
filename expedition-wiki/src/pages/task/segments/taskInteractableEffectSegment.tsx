@@ -1,32 +1,43 @@
 import { useMemo } from 'react';
 
-import { useInteractablePageContext } from '../interactablePageContext';
+import { useTaskPageContext } from '../taskPageContext';
 
 import { StatusEffectType } from '../../../types/enums';
 
-import { StatusEffectModel } from '../../../data/models/statusEffectModel';
+import type { StatusEffectModel } from '../../../data/models/statusEffectModel';
+
+import { Box } from '@mui/material';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
 
-export default function InteractableEffectSegment() {
+export default function TaskInteractableEffectSegment() {
 
-  const interactablePageModel = useInteractablePageContext();
-  const { statusEffectModelList } = interactablePageModel;
+  const taskPageModel = useTaskPageContext();
+  const { statusEffectModelList } = taskPageModel;
 
   const headers = useMemo<HeadCell<StatusEffectModel>[]>(() => {
-  
+
     const headers: HeadCell<StatusEffectModel>[] = [
+      {
+        id: 'timeDescription',
+        label: 'Time',
+        align: 'center'
+      },
+      {
+        id: 'stateDescription',
+        label: 'State',
+        align: 'left'
+      },
       { 
-        label: 'Name', 
+        label: 'Effect', 
         align: 'left',
         render: (row) => (
-          <Box sx={{ display: 'flex', alignInteractables: 'center', gap: 0.5 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <ExIcon resourceName={row.effectIconResourceName} size={20} />
-            <ExLink pageName={'effect'} name={row.effectName} />
+            <ExLink name={row.effectName} params={['effect', row.effectName]} />
           </Box>
         )
       },
@@ -43,7 +54,6 @@ export default function InteractableEffectSegment() {
     ]
 
     if (statusEffectModelList.some(model => StatusEffectType[model.type] === 'Cluster')) {
-      
       headers.push({
         label: 'Cluster',
         align: 'left',
@@ -66,13 +76,19 @@ export default function InteractableEffectSegment() {
       align: 'center'
     })
 
+    if (statusEffectModelList.some(model => model.activeStatusEffectRepetitionTime > 0)) {
+      headers.push({
+        id: 'activeStatusEffectRepetitionTimeDescription',
+        label: 'Repetition',
+        align: 'center'
+      })
+    }
+
     return headers;
 
-  }, [interactablePageModel]);
+  }, [taskPageModel]);
 
   return (
-    <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rowKey='interactionStatusEffectId' rows={statusEffectModelList} headCells={headers} />
   )
 }

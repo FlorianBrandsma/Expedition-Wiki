@@ -48,7 +48,7 @@ export default function QuestsPage() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'quest'} name={row.name} />
+        <ExLink name={row.name} params={['quest', row.name]} />
       )
     },
     {

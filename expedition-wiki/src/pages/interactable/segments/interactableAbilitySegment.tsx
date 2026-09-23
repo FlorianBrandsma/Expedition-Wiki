@@ -21,7 +21,7 @@ export default function InteractableAbilitySegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignInteractables: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.abilityIconResourceName} size={20} />
-          <ExLink pageName={'ability'} name={row.abilityName} />
+          <ExLink name={row.abilityName} params={['ability', row.abilityName]} />
         </Box>
       )
     },

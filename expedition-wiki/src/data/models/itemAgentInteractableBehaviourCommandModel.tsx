@@ -16,7 +16,7 @@ export class ItemAgentInteractableBehaviourCommandModel {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
         <ExIcon resourceName={this.itemAssetIconResourceName} size={20} />
-        <ExLink pageName={'item'} name={this.itemName} />
+        <ExLink name={this.itemName} params={['item', this.itemName]} />
       </Box>
     )
   }

@@ -23,7 +23,7 @@ export default function AbilityEffectSegment() {
         render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <ExIcon resourceName={row.iconResourceName} size={20} />
-            <ExLink pageName={'effect'} name={row.name} />
+            <ExLink name={row.name} params={['effect', row.name]} />
           </Box>
         )
       },

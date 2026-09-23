@@ -28,7 +28,7 @@ export default function GeneralUtilityConditionItemSegment({ caseConditionModelL
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.itemEventItemModel.itemAssetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.itemEventItemModel.itemName} />
+          <ExLink name={row.itemEventItemModel.itemName} params={['item', row.itemEventItemModel.itemName]} />
         </Box>
       )
     },

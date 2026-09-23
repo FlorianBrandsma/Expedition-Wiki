@@ -9,6 +9,6 @@ export class AbilityEventModel {
   }
 
   get typeDescription(): string {
-    return 'Ability Event';
+    return 'Ability';
   }
 }

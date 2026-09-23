@@ -12,7 +12,7 @@ export class CharacterCaseConditionModel {
   get descriptionComponent(): React.ReactNode {
         
     const interactable = (
-      <ExLink pageName={'interactable'} name={this.characterAgentInteractableName} />
+      <ExLink name={this.characterAgentInteractableName} params={['interactable', this.characterAgentInteractableName]} />
     );
 
     return (

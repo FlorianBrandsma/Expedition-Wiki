@@ -19,7 +19,7 @@ export class StandingStatusEffectModel {
   descriptionComponent(stack: number): React.ReactNode {
 
     const faction = (
-      <ExLink pageName={'faction'} name={this.factionName} />
+      <ExLink name={this.factionName} params={['faction', this.factionName]} />
     );
 
     return (

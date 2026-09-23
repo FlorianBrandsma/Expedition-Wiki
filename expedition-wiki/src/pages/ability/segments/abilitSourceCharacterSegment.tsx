@@ -21,7 +21,7 @@ export default function AbilitySourceCharacterSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.agentInteractableAssetIconResourceName} size={20} />
-          <ExLink pageName={'interactable'} name={row.agentInteractableName} />
+          <ExLink name={row.agentInteractableName} params={['interactable', row.agentInteractableName]} />
         </Box>
       )
     }

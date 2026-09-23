@@ -48,7 +48,7 @@ export default function TerrainsPage() {
       label: 'Name', 
       align: 'left',
       render: (row) => (
-        <ExLink pageName={'terrain'} name={row.name} params={[row.regionName, row.name]} />
+        <ExLink name={row.name} params={['terrain', row.regionName, row.name]} />
       )
     },
     {

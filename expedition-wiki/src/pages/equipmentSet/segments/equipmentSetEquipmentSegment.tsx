@@ -21,7 +21,7 @@ export default function EquipmentSetEquipmentSegment() {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <ExIcon resourceName={row.itemAssetIconResourceName} size={20} />
-          <ExLink pageName={'item'} name={row.itemName} />
+          <ExLink name={row.itemName} params={['item', row.itemName]} />
         </Box>
       )
     },

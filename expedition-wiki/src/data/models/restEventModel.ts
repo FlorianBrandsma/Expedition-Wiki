@@ -11,6 +11,6 @@ export class RestEventModel {
   }
 
   get typeDescription(): string {
-    return 'Rest Event';
+    return 'Rest';
   }
 }

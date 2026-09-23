@@ -72,7 +72,7 @@ export default function ClimatePropertyCard() {
       <ExCardTable>
         <ExCardTableRow 
           label='Terrain' 
-          value={<ExLink pageName={'terrain'} name={climateModel.terrainName} params={[climateModel.regionName, climateModel.terrainName]} />}
+          value={<ExLink name={climateModel.terrainName} params={['terrain', climateModel.regionName, climateModel.terrainName]} />}
         />
 
         {/* Chunks */}
