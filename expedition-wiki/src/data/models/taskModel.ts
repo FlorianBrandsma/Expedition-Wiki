@@ -1,3 +1,5 @@
+import { WorldInteractableParentType, WorldInteractableType } from "../../types/enums";
+
 export class TaskModel {
 
   id!: string;
@@ -14,13 +16,39 @@ export class TaskModel {
 
   worldInteractableIconResourceName!: string;
 
-  regionName!: string;
-  terrainName!: string;
+  worldInteractableRegionName!: string;
+  worldInteractableTerrainName!: string;
 
   questName!: string;
   objectiveName!: string;
 
   constructor(init:Partial<TaskModel>) {  
     Object.assign(this, init);
+  }
+
+  get originType(): string {
+    return this.objectiveName                ? 'objective' :
+           this.worldInteractableTerrainName ? 'terrain'   : '';
+  }
+
+  get parentParams(): string[] {
+    return this.originType === 'objective' ? [this.questName,                   this.objectiveName]                  :
+           this.originType === 'terrain'   ? [this.worldInteractableRegionName, this.worldInteractableTerrainName ] : [];
+  }
+
+  get params(): string[] {
+
+    const params = [
+      this.originType,
+      ...this.parentParams,
+      'interactable',
+      WorldInteractableType      [this.worldInteractableType]      .toLowerCase(),
+      WorldInteractableParentType[this.worldInteractableParentType].toLowerCase(),
+      this.worldInteractableName,
+      'task',
+      this.name
+    ]
+
+    return params;
   }
 }

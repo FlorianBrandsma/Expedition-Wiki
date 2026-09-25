@@ -15,12 +15,6 @@ export default function TaskPropertyCard() {
 
   const { taskModel } = useTaskPageContext();
 
-  const originType = taskModel.objectiveName ? 'objective' :
-                     taskModel.terrainName   ? 'terrain'   : '';
-
-  const parentParams = originType === 'objective' ? [taskModel.questName,  taskModel.objectiveName] :
-                       originType === 'terrain'   ? [taskModel.regionName, taskModel.terrainName  ] : [];
-
   return (
     <ExCard sx={{ 
         float: 'right', 
@@ -39,8 +33,8 @@ export default function TaskPropertyCard() {
               <ExLink 
                 name={taskModel.worldInteractableName} 
                 params={[
-                  originType,
-                  ...parentParams,
+                  taskModel.originType,
+                  ...taskModel.parentParams,
                   'interactable',
                   WorldInteractableType      [taskModel.worldInteractableType]      .toLowerCase(),
                   WorldInteractableParentType[taskModel.worldInteractableParentType].toLowerCase(),
@@ -50,7 +44,7 @@ export default function TaskPropertyCard() {
             </Box>
           }
         />
-        {originType === 'objective' && (
+        {taskModel.originType === 'objective' && (
           <>
             <ExCardTableRow 
               label='Quest'

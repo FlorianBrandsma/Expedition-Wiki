@@ -5,6 +5,7 @@ import type { CaseConditionModel } from '../../../../../data/models/caseConditio
 import BasicTable, { type HeadCell } from '../../../../../components/basicTable/basicTable';
 import CellTable from '../../../../../components/cellTable/cellTable';
 import { Box } from '@mui/material';
+import ExLink from '../../../../../components/exLink/exLink';
 
 interface UtilityConditionEventSegmentProps {
   caseConditionModelList: CaseConditionModel[];
@@ -17,14 +18,14 @@ export default function GeneralUtilityConditionEventSegment({ caseConditionModel
       label: 'Event',
       align: 'left',
       render: (row) => (
-        row.eventContinuationModel.eventName
+        <ExLink name={row.eventContinuationModel.eventModel.name} params={row.eventContinuationModel.eventModel.params}/>
       )
     },
     {
       label: 'Continuation',
       align: 'left',
       render: (row) => (
-        row.eventContinuationModel.continuationEventName
+        <ExLink name={row.eventContinuationModel.continuationEventModel.name} params={row.eventContinuationModel.continuationEventModel.params}/>
       )
     },
     {

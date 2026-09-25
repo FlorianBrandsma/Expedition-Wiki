@@ -379,14 +379,6 @@ export const RarityType = [
   'Very rare'
 ] as const;
 
-export const WorldInteractableType = [
-  'Entity',
-  'Trigger',
-  'Party'
-] as const;
-
-export type WorldInteractableType = typeof WorldInteractableType[number];
-
 export const WorldInteractableParentType = [
   'Game',
   'Terrain',
@@ -395,6 +387,14 @@ export const WorldInteractableParentType = [
 ] as const;
 
 export type WorldInteractableParentType = typeof WorldInteractableParentType[number];
+
+export const WorldInteractableType = [
+  'Entity',
+  'Trigger',
+  'Party'
+] as const;
+
+export type WorldInteractableType = typeof WorldInteractableType[number];
 
 export const AffiliationType = [
   'Faction',
@@ -451,6 +451,14 @@ export const InteractionTriggerActivationType = [
   'Stationed',
   'Traversing'
 ] as const;
+
+export const EventParentType = [
+  'Game',
+  'Interactable',
+  'Interaction'
+] as const;
+
+export type EventParentType = typeof EventParentType[number];
 
 export const EventType = [
   'Basic',

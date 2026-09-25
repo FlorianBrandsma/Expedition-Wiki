@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function TaskTriggerSegment() {
 
@@ -23,9 +24,11 @@ export default function TaskTriggerSegment() {
         align: 'center'
       },
       {
-        id: 'eventName',
         label: 'Event',
-        align: 'left'
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.eventModel.name} params={row.eventModel.params}/>
+        )
       },
       {
         id: 'typeDescription',

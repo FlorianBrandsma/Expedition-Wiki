@@ -1,8 +1,12 @@
+import { ItemEventModel } from "./itemEventModel";
+
 export class ShopItemEventModel {
 
   id!: string;
 
   eventName!: string;
+
+  itemEventModel!: ItemEventModel;
 
   currencyItemName!: string;
   
@@ -12,6 +16,8 @@ export class ShopItemEventModel {
 
   constructor(init:Partial<ShopItemEventModel>) {  
     Object.assign(this, init);
+
+    if (this.itemEventModel) this.itemEventModel = new ItemEventModel(this.itemEventModel);
   }
 
   get rate(): number {

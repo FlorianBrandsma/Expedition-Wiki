@@ -29,7 +29,7 @@ export default function GeneralUtilityConditionReactionSegment({ caseConditionMo
       label: 'Event',
       align: 'left',
       render: (row) => (
-        row.agentInteractableReactionModel.eventName
+        <ExLink name={row.agentInteractableReactionModel.eventModel.name} params={row.agentInteractableReactionModel.eventModel.params}/>
       )
     },
     {

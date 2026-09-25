@@ -29,9 +29,11 @@ export default function ItemUtilityCraftSegment() {
         )
       },
       { 
-        id: 'itemEventName', 
         label: 'Event', 
-        align: 'left'
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.itemEventModel.eventModel.name} params={row.itemEventModel.eventModel.params}/>
+        )
       },
       {
         id: 'costCraftItemEventItemQuantity',

@@ -4,9 +4,11 @@ import { useInteractablePageContext } from '../interactablePageContext';
 
 import type { AgentInteractableReactionModel } from '../../../data/models/agentInteractableReactionModel';
 
+import { Box } from '@mui/material';
+
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
-import { Box } from '@mui/material';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function InteractableReactionSegment() {
 
@@ -17,9 +19,11 @@ export default function InteractableReactionSegment() {
 
     const headers: HeadCell<AgentInteractableReactionModel>[] = [
       { 
-        id: 'eventName',
         label: 'Event',
-        align: 'left'
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.eventModel.name} params={row.eventModel.params}/>
+        )
       }
     ];
     

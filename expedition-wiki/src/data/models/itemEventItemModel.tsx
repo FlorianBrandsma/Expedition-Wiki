@@ -6,7 +6,8 @@ import { RelinquishItemEventItemModel } from "./relinquishItemEventItemModel";
 import { DistributeItemEventItemModel } from "./distributeItemEventItemModel";
 import { LimitedItemEventItemModel } from "./limitedItemEventItemModelList";
 import { CaseConditionModel } from "./caseConditionModel";
-import type { ItemModel } from "./itemModel";
+import { ItemModel } from "./itemModel";
+import { ItemEventModel } from "./itemEventModel";
 
 export class ItemEventItemModel {
 
@@ -17,6 +18,8 @@ export class ItemEventItemModel {
   type!: number;
 
   itemEventName!: string;
+
+  itemEventModel!: ItemEventModel;
 
   itemName!: string;
   
@@ -35,6 +38,8 @@ export class ItemEventItemModel {
 
   constructor(init:Partial<ItemEventItemModel>) {  
     Object.assign(this, init);
+
+    if (this.itemEventModel) this.itemEventModel = new ItemEventModel(this.itemEventModel);
 
     this.stealItemEventItemModelList      = this.stealItemEventItemModelList     .map((model) => new StealItemEventItemModel     (model));
     this.tradeItemEventItemModelList      = this.tradeItemEventItemModelList     .map((model) => new TradeItemEventItemModel     (model));

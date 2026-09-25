@@ -2,8 +2,6 @@ import { useMemo } from 'react';
 
 import { useWorldInteractablePageContext } from '../worldInteractablePageContext';
 
-import { WorldInteractableType, WorldInteractableParentType } from '../../../types/enums';
-
 import type { TaskModel } from '../../../data/models/taskModel';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
@@ -21,30 +19,9 @@ export default function WorldInteractableTaskSegment() {
       { 
         label: 'Name', 
         align: 'left',
-        render: (row) => {
-        
-          const originType = row.objectiveName ? 'objective' :
-                             row.terrainName   ? 'terrain'   : '';
-
-          const parentParams = originType === 'objective' ? [row.questName,  row.objectiveName] :
-                               originType === 'terrain'   ? [row.regionName, row.terrainName  ] : [];
-
-          return (
-            <ExLink 
-              name={row.name} 
-              params={[
-                originType,
-                ...parentParams,
-                'interactable',
-                WorldInteractableType      [row.worldInteractableType]      .toLowerCase(),
-                WorldInteractableParentType[row.worldInteractableParentType].toLowerCase(),
-                row.worldInteractableName,
-                'task',
-                row.name
-              ]}
-            />
-          )
-        }
+        render: row => (
+          <ExLink name={row.name} params={row.params} />
+        )
       }
     ]
 

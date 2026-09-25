@@ -49,4 +49,14 @@ export class InteractionModel {
   get activeStatusEffectRepetitionTimeDescription(): string {
     return this.activeStatusEffectRepetitionTime > 0 ? `${this.activeStatusEffectRepetitionTime.toFixed(2)}s` : '';
   }
+
+  get params(): string[] {
+  
+    const params = [
+      ...this.taskModel.params,
+      this.timeDescription
+    ]
+
+    return params;
+  }
 }

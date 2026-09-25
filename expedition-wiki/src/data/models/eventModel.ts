@@ -1,4 +1,4 @@
-import { EventType } from "../../types/enums";
+import { EventParentType, EventType } from "../../types/enums";
 import { EffectEventModel } from "./effectEventModel";
 import { InteractionModel } from "./interactionModel";
 import { InteractableModel } from "./interactableModel";
@@ -29,6 +29,8 @@ export class EventModel {
   name!: string;
 
   completeTask!: boolean;
+
+  eventParentType!: number;
 
   interactableModel!: InteractableModel;
   interactionModel!:  InteractionModel;
@@ -180,4 +182,21 @@ export class EventModel {
   get interactionTimeDescription(): string {
     return this.interactionModel.timeDescription;
   }
+
+  get parentParams(): string[] {
+    return this.interactionModel ?.params ?? 
+           this.interactableModel?.params ?? [];
+  }
+
+  get params(): string[] {
+  
+      const params = [
+        ...this.parentParams,
+        'event',
+        EventParentType[this.eventParentType].toLowerCase(),
+        this.name
+      ]
+
+      return params;
+    }
 }

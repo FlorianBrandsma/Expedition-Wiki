@@ -1,7 +1,9 @@
+import { InteractionTriggerActivationType, InteractionTriggerTargetType, InteractionTriggerType } from "../../types/enums";
+
 import { InteractionModel } from "./interactionModel";
 import { InputInteractionTriggerModel } from "./inputInteractionTriggerModel";
 import { CaseConditionModel } from "./caseConditionModel";
-import { InteractionTriggerActivationType, InteractionTriggerTargetType, InteractionTriggerType } from "../../types/enums";
+import { EventModel } from "./eventModel";
 
 export class InteractionTriggerModel {
 
@@ -15,6 +17,8 @@ export class InteractionTriggerModel {
 
   interactionModel!: InteractionModel;
 
+  eventModel!: EventModel;
+
   inputInteractionTriggerModelList!: InputInteractionTriggerModel[];
 
   caseConditionModelList!: CaseConditionModel[];
@@ -23,6 +27,8 @@ export class InteractionTriggerModel {
     Object.assign(this, init);
 
     if (this.interactionModel) this.interactionModel = new InteractionModel(this.interactionModel);
+
+    if (this.eventModel)       this.eventModel       = new EventModel      (this.eventModel);
 
     this.inputInteractionTriggerModelList = this.inputInteractionTriggerModelList.map((model) => new InputInteractionTriggerModel(model));
 

@@ -12,7 +12,7 @@ export class WorldInteractablePageParameters implements IParameters {
   questName?: string;
   objectiveName?: string;
   
-  worldInteractableName?: string;
+  interactableName?: string;
 
   worldInteractableType?: number;
   worldInteractableParentType?: number;

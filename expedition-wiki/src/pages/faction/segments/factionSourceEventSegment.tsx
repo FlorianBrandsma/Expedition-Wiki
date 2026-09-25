@@ -4,8 +4,10 @@ import { useFactionPageContext } from '../factionPageContext';
 
 import type { ReputationEventModel } from '../../../data/models/reputationEventModel';
 
-import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
+
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function FactionSourceEventSegment() {
 
@@ -14,9 +16,11 @@ export default function FactionSourceEventSegment() {
 
   const headers = useMemo<HeadCell<ReputationEventModel>[]>(() => [
     { 
-      id: 'eventName', 
-      label: 'Name', 
-      align: 'left'
+      label: 'Event', 
+      align: 'left',
+      render: (row) => (
+        <ExLink name={row.eventModel.name} params={row.eventModel.params}/>
+      )
     },
     {
       id: 'factionReputation',

@@ -4,8 +4,10 @@ import { useInteractablePageContext } from '../interactablePageContext';
 
 import type { CompanionEventModel } from '../../../data/models/companionEventModel';
 
-import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
+
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function InteractableSourceEventSegment() {
 
@@ -14,9 +16,11 @@ export default function InteractableSourceEventSegment() {
 
   const headers = useMemo<HeadCell<CompanionEventModel>[]>(() => [
     { 
-      id: 'eventName', 
-      label: 'Name', 
-      align: 'left'
+      label: 'Event', 
+      align: 'left',
+      render: (row) => (
+        <ExLink name={row.eventModel.name} params={row.eventModel.params}/>
+      )
     }
   ], [interactablePageModel]);
 

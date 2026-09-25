@@ -19,7 +19,7 @@ export default function GeneralUtilityConditionItemSegment({ caseConditionModelL
       label: 'Event',
       align: 'left',
       render: (row) => (
-        row.itemEventItemModel.itemEventName
+        <ExLink name={row.itemEventItemModel.itemEventModel.eventModel.name} params={row.itemEventItemModel.itemEventModel.eventModel.params}/>
       )
     },
     {

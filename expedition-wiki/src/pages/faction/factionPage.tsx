@@ -172,7 +172,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Events',
-        id: 'Events',
+        id: 'ConditionEvents',
         component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
       });
     }
@@ -184,7 +184,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Items',
-        id: 'Events',
+        id: 'Items',
         component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
       });
     }
@@ -213,7 +213,7 @@ export default function FactionPage() {
   if (reputationEventModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Events',
-      id: 'Events',
+      id: 'SourceEvents',
       component: <FactionSourceEventSegment />
     });
   }

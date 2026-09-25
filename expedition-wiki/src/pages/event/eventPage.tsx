@@ -2,10 +2,12 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameContext } from '../../context/gameContext';
-import { WorldInteractablePageContext } from './worldInteractablePageContext';
+import { EventPageContext } from './eventPageContext';
 
-import { WorldInteractablePageModel } from '../../data/models/pages/worldInteractablePageModel';
-import { WorldInteractablePageParameters } from '../../data/parameters/pages/worldInteractablePageParameters';
+import { WorldInteractableType, WorldInteractableParentType, EventParentType } from '../../types/enums';
+
+import { EventPageModel } from '../../data/models/pages/eventPageModel';
+import { EventPageParameters } from '../../data/parameters/pages/eventPageParameters';
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
@@ -13,74 +15,85 @@ import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 import { Divider, Box, Typography } from '@mui/material';
 
-import WorldInteractablePropertyCard from './worldInteractablePropertyCard';
-import { WorldInteractableType, WorldInteractableParentType } from '../../types/enums';
-import WorldInteractableTaskSegment from './segments/worldInteractableTaskSegment';
+import EventPropertyCard from './eventPropertyCard';
+import { ConvertTime } from '../../services/timeManager';
 
-export default function WorldInteractablePage() {
+export default function EventPage() {
 
   const params = useParams<{ 
     worldInteractableParentType: WorldInteractableParentType,
-    worldInteractableType: WorldInteractableType, 
+    worldInteractableType:       WorldInteractableType, 
+    eventParentType:             EventParentType,
     regionName: string,
     terrainName: string,
     questName: string, 
-    objectiveName: string, 
-    interactableName: string 
+    objectiveName: string,
+    interactableName: string,
+    taskName: string,
+    time: string,
+    eventName: string 
   }>();
 
   const worldInteractableType       = WorldInteractableType      .findIndex(type => type.toLowerCase() === params.worldInteractableType      ?.toLowerCase());
   const worldInteractableParentType = WorldInteractableParentType.findIndex(type => type.toLowerCase() === params.worldInteractableParentType?.toLowerCase());
+  const eventParentType             = EventParentType            .findIndex(type => type.toLowerCase() === params.eventParentType            ?.toLowerCase());
   const regionName                  = params.regionName           ?.replaceAll('_', ' ');
   const terrainName                 = params.terrainName          ?.replaceAll('_', ' ');
   const questName                   = params.questName            ?.replaceAll('_', ' ');
   const objectiveName               = params.objectiveName        ?.replaceAll('_', ' ');
   const interactableName            = params.interactableName     ?.replaceAll('_', ' ');
-  document.title = `${interactableName} - Expedition Wiki`;
+  const taskName                    = params.taskName             ?.replaceAll('_', ' ');
+  const interactionIsDefault        = params.time === 'Default'
+  const interactionStartTime        = params.time ? ConvertTime(params.time).start : undefined
+  const interactionEndTime          = params.time ? ConvertTime(params.time).end   : undefined
+  const eventName                   = params.eventName            ?.replaceAll('_', ' ');
+  document.title = `${eventName} - Expedition Wiki`;
 
   const { gameModel } = useGameContext();
 
   const contentSegments: ContentSegment[] = [];
   
-  const parameters = new WorldInteractablePageParameters({
+  const parameters = new EventPageParameters({
     gameId:                     [gameModel.id],
     regionName:                  regionName,
     terrainName:                 terrainName,
     questName:                   questName,
     objectiveName:               objectiveName,
-    interactableName:            interactableName,
+    worldInteractableParentType: worldInteractableParentType,
     worldInteractableType:       worldInteractableType,
-    worldInteractableParentType: worldInteractableParentType
+    interactableName:            interactableName,
+    taskName:                    taskName,
+    interactionIsDefault:        interactionIsDefault,
+    interactionStartTime:        interactionStartTime,
+    interactionEndTime:          interactionEndTime,
+    eventName:                   eventName,
+    eventParentType:             eventParentType
   });
 
-  const worldInteractablePageQuery = useQuery<WorldInteractablePageModel[]>({
+  const eventPageQuery = useQuery<EventPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<WorldInteractablePageModel>(parameters, WorldInteractablePageModel),
+    queryFn: () => getData<EventPageModel>(parameters, EventPageModel),
     initialData: []
   });
 
-  if (worldInteractablePageQuery.data?.length === 0) return;
+  if (eventPageQuery.data?.length === 0) return;
 
-  const worldInteractablePageModel = worldInteractablePageQuery.data[0];
+  const eventPageModel = eventPageQuery.data[0];
 
   const { 
-    worldInteractableModel
-  } = worldInteractablePageModel;
+    eventModel
+  } = eventPageModel;
 
-  contentSegments.push({
-    label: 'Tasks',
-    id: 'Tasks',
-    component: <WorldInteractableTaskSegment />
-  })
+  if (!eventModel) return;
 
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
-        <WorldInteractablePageContext.Provider value={worldInteractablePageModel} >
-          <Typography variant="h5">{worldInteractableModel.name}</Typography>
+        <EventPageContext.Provider value={eventPageModel} >
+          <Typography variant="h5">{eventModel.name}</Typography>
           <Divider/>
           <Box sx={{ mt: 1 }}>
-            <WorldInteractablePropertyCard questName={questName} objectiveName={objectiveName} />
+            <EventPropertyCard />
 
             {contentSegments.length > 0 && (
               <ContentTable segments={contentSegments} />
@@ -91,7 +104,7 @@ export default function WorldInteractablePage() {
             ))}
 
           </Box>
-        </WorldInteractablePageContext.Provider>
+        </EventPageContext.Provider>
       </Box>
     </Box>
   )

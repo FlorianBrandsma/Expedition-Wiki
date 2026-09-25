@@ -30,6 +30,7 @@ import QuestPage from './pages/quest/questPage';
 import ObjectivePage from './pages/objective/objectivePage';
 import WorldInteractablePage from './pages/worldInteractable/worldInteractablePage';
 import TaskPage from './pages/task/taskPage';
+import EventPage from './pages/event/eventPage';
 
 export default function App() {
 
@@ -187,20 +188,48 @@ export default function App() {
             element: <ObjectivePage />
           },
           {
-            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:type/:parentType/:worldInteractableName',
+            path:'/:gameName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName',
             element: <WorldInteractablePage />
           },
           {
-            path:'/:gameName/objective/:questName/:objectiveName/interactable/:type/:parentType/:worldInteractableName',
+            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName',
             element: <WorldInteractablePage />
           },
           {
-            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:type/:parentType/:worldInteractableName/task/:taskName',
+            path:'/:gameName/objective/:questName/:objectiveName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName',
+            element: <WorldInteractablePage />
+          },
+          {
+            path:'/:gameName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName/task/:taskName',
             element: <TaskPage />
           },
           {
-            path:'/:gameName/objective/:questName/:objectiveName/interactable/:type/:parentType/:worldInteractableName/task/:taskName',
+            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName/task/:taskName',
             element: <TaskPage />
+          },
+          {
+            path:'/:gameName/objective/:questName/:objectiveName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName/task/:taskName',
+            element: <TaskPage />
+          },
+          {
+            path:'/:gameName/event/:eventParentType/:eventName',
+            element: <EventPage />
+          },
+          {
+            path:'/:gameName/interactable/:interactableName/event/:eventParentType/:eventName',
+            element: <EventPage />
+          },
+          {
+            path:'/:gameName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName/task/:taskName/:time/event/:eventParentType/:eventName',
+            element: <EventPage />
+          },
+          {
+            path:'/:gameName/terrain/:regionName/:terrainName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName/task/:taskName/:time/event/:eventParentType/:eventName',
+            element: <EventPage />
+          },
+          {
+            path:'/:gameName/objective/:questName/:objectiveName/interactable/:worldInteractableType/:worldInteractableParentType/:interactableName/task/:taskName/:time/event/:eventParentType/:eventName',
+            element: <EventPage />
           },
         ]
       },

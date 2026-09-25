@@ -31,23 +31,23 @@ import TaskEventSegment from './segments/taskEventSegment';
 export default function TaskPage() {
 
   const params = useParams<{ 
-    type: WorldInteractableType, 
-    parentType: WorldInteractableParentType,
+    worldInteractableType: WorldInteractableType, 
+    worldInteractableParentType: WorldInteractableParentType,
     regionName: string,
     terrainName: string,
     questName: string, 
     objectiveName: string,
-    worldInteractableName: string,
+    interactableName: string,
     taskName: string 
   }>();
 
-  const worldInteractableType       = WorldInteractableType      .findIndex(type => type.toLowerCase() === params.type      ?.toLowerCase());
-  const worldInteractableParentType = WorldInteractableParentType.findIndex(type => type.toLowerCase() === params.parentType?.toLowerCase());
+  const worldInteractableType       = WorldInteractableType      .findIndex(type => type.toLowerCase() === params.worldInteractableType      ?.toLowerCase());
+  const worldInteractableParentType = WorldInteractableParentType.findIndex(type => type.toLowerCase() === params.worldInteractableParentType?.toLowerCase());
   const regionName                  = params.regionName           ?.replaceAll('_', ' ');
   const terrainName                 = params.terrainName          ?.replaceAll('_', ' ');
   const questName                   = params.questName            ?.replaceAll('_', ' ');
   const objectiveName               = params.objectiveName        ?.replaceAll('_', ' ');
-  const worldInteractableName       = params.worldInteractableName?.replaceAll('_', ' ');
+  const interactableName            = params.interactableName     ?.replaceAll('_', ' ');
   const taskName                    = params.taskName             ?.replaceAll('_', ' ');
   document.title = `${taskName} - Expedition Wiki`;
 
@@ -61,7 +61,7 @@ export default function TaskPage() {
     terrainName:                 terrainName,
     questName:                   questName,
     objectiveName:               objectiveName,
-    worldInteractableName:       worldInteractableName,
+    interactableName:            interactableName,
     taskName:                    taskName,
     worldInteractableType:       worldInteractableType,
     worldInteractableParentType: worldInteractableParentType

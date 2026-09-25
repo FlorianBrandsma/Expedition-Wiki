@@ -12,7 +12,7 @@ export class TaskPageParameters implements IParameters {
   questName?: string;
   objectiveName?: string;
   
-  worldInteractableName?: string;
+  interactableName?: string;
 
   taskName?: string;
 

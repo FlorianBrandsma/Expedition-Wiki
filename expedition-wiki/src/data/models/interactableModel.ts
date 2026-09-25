@@ -49,4 +49,14 @@ export class InteractableModel {
   get playableDescription(): string {
     return this.agentInteractableModel?.characterAgentInteractableModel?.playable ? 'Yes' : 'No';
   }
+
+  get params(): string[] {
+  
+    const params = [
+      'interactable',
+      this.name
+    ]
+
+    return params;
+  }
 }

@@ -1,4 +1,4 @@
-import { ItemEventItemModel } from "./itemEventItemModel";
+import { EventModel } from "./eventModel";
 import { ShopItemEventModel } from "./shopItemEventModel";
 
 export class ItemEventModel {
@@ -9,14 +9,14 @@ export class ItemEventModel {
 
   eventName!: string;
 
-  itemEventItemModel!: ItemEventItemModel;
+  eventModel!: EventModel;
 
   shopItemEventModelList!: ShopItemEventModel[];
 
   constructor(init:Partial<ItemEventModel>) {  
     Object.assign(this, init);
 
-    if (this.itemEventItemModel) this.itemEventItemModel = new ItemEventItemModel(this.itemEventItemModel);
+    if (this.eventModel) this.eventModel = new EventModel(this.eventModel);
 
     this.shopItemEventModelList = this.shopItemEventModelList.map((model) => new ShopItemEventModel(model));
   }

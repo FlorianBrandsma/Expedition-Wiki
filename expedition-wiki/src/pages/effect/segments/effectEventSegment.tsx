@@ -4,8 +4,10 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { EventModel } from '../../../data/models/eventModel';
 
-import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
+
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function EffectEventSegment() {
 
@@ -15,8 +17,11 @@ export default function EffectEventSegment() {
   const headers = useMemo<HeadCell<EventModel>[]>(() => [
     { 
       id: 'name', 
-      label: 'Name', 
-      align: 'left'
+      label: 'Event', 
+      align: 'left',
+      render: (row) => (
+        <ExLink name={row.name} params={row.params}/>
+      )
     }
   ], [effectPageModel]);
 

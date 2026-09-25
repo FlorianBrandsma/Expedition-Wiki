@@ -4,11 +4,12 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
+import { Box, Typography } from '@mui/material';
+
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box, Typography } from '@mui/material';
 
 export default function ItemSourceBuySegment() {
 
@@ -19,9 +20,11 @@ export default function ItemSourceBuySegment() {
   
     const headers: HeadCell<ItemEventItemModel>[] = [
       { 
-        id: 'itemEventName', 
         label: 'Event', 
-        align: 'left'
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.itemEventModel.eventModel.name} params={row.itemEventModel.eventModel.params}/>
+        )
       },
       {
         label: 'Cost',

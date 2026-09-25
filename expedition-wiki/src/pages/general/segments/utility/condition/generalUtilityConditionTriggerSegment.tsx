@@ -2,9 +2,11 @@ import { useMemo } from 'react';
 
 import type { CaseConditionModel } from '../../../../../data/models/caseConditionModel';
 
+import { Box } from '@mui/material';
+
 import BasicTable, { type HeadCell } from '../../../../../components/basicTable/basicTable';
 import CellTable from '../../../../../components/cellTable/cellTable';
-import { Box } from '@mui/material';
+import ExLink from '../../../../../components/exLink/exLink';
 
 interface UtilityConditionTriggerSegmentProps {
   caseConditionModelList: CaseConditionModel[];
@@ -12,12 +14,12 @@ interface UtilityConditionTriggerSegmentProps {
 
 export default function GeneralUtilityConditionTriggerSegment({ caseConditionModelList }: UtilityConditionTriggerSegmentProps) {
 
-  const headers = useMemo<HeadCell<CaseConditionModel>[]>(() => [      
+  const headers = useMemo<HeadCell<CaseConditionModel>[]>(() => [
     {
       label: 'Event',
       align: 'left',
       render: (row) => (
-        row.interactionTriggerModel.eventName
+        <ExLink name={row.interactionTriggerModel.eventModel.name} params={row.interactionTriggerModel.eventModel.params}/>
       )
     },
     {

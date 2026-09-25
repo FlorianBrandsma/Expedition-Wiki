@@ -4,9 +4,11 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
+import { Box } from '@mui/material';
+
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
-import { Box } from '@mui/material';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function ItemSourceStealSegment() {
 
@@ -17,9 +19,11 @@ export default function ItemSourceStealSegment() {
   
     const headers: HeadCell<ItemEventItemModel>[] = [
       { 
-        id: 'itemEventName', 
         label: 'Event', 
-        align: 'left'
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.itemEventModel.eventModel.name} params={row.itemEventModel.eventModel.params}/>
+        )
       },
       {
         id: 'stealItemEventItemQuantityDescription',

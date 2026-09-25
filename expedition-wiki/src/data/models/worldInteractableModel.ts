@@ -13,9 +13,6 @@ export class WorldInteractableModel {
   terrainName!: string;
   regionName!: string;
 
-  questName!: string;
-  objectiveName!: string;
-
   name!: string;
 
   iconResourceName!: string;

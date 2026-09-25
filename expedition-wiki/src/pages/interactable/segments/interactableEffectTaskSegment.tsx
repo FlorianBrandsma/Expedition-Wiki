@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useInteractablePageContext } from '../interactablePageContext';
 
-import { StatusEffectType, WorldInteractableParentType, WorldInteractableType } from '../../../types/enums';
+import { StatusEffectType } from '../../../types/enums';
 
 import type { StatusEffectModel } from '../../../data/models/statusEffectModel';
 
@@ -24,30 +24,9 @@ export default function InteractableEffectTaskSegment() {
       {
         label: 'Task', 
         align: 'left',
-        render: (row) => {
-
-          const originType = row.interactionModel.taskModel.objectiveName ? 'objective' :
-                             row.interactionModel.taskModel.terrainName   ? 'terrain'   : '';
-
-          const parentParams = originType === 'objective' ? [row.interactionModel.taskModel.questName,  row.interactionModel.taskModel.objectiveName] :
-                               originType === 'terrain'   ? [row.interactionModel.taskModel.regionName, row.interactionModel.taskModel.terrainName  ] : [];
-
-          return (
-            <ExLink 
-              name={row.interactionModel.taskModel.name} 
-              params={[
-                originType,
-                  ...parentParams,
-                  'interactable',
-                  WorldInteractableType      [row.interactionModel.taskModel.worldInteractableType]      .toLowerCase(),
-                  WorldInteractableParentType[row.interactionModel.taskModel.worldInteractableParentType].toLowerCase(),
-                  row.interactionModel.taskModel.worldInteractableName,
-                  'task',
-                  row.interactionModel.taskModel.name
-              ]} 
-            />
-          )
-        }
+        render: (row) => (
+          <ExLink name={row.interactionModel.taskModel.name} params={row.interactionModel.taskModel.params} />
+        )
       },
       {
         label: 'Time',

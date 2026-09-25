@@ -2,8 +2,6 @@ import { useMemo } from 'react';
 
 import { useEffectPageContext } from '../effectPageContext';
 
-import { WorldInteractableParentType, WorldInteractableType } from '../../../types/enums';
-
 import type { InteractionModel } from '../../../data/models/interactionModel';
 
 import { Box } from '@mui/material';
@@ -36,30 +34,9 @@ export default function EffectSourceAgentTaskSegment() {
       { 
         label: 'Task', 
         align: 'left',
-        render: (row) => {
-
-          const originType = row.taskModel.objectiveName ? 'objective' :
-                             row.taskModel.terrainName   ? 'terrain'   : '';
-
-          const parentParams = originType === 'objective' ? [row.taskModel.questName,  row.taskModel.objectiveName] :
-                               originType === 'terrain'   ? [row.taskModel.regionName, row.taskModel.terrainName  ] : [];
-
-          return (
-            <ExLink 
-              name={row.taskModel.name} 
-              params={[
-                originType,
-                  ...parentParams,
-                  'interactable',
-                  WorldInteractableType      [row.taskModel.worldInteractableType]      .toLowerCase(),
-                  WorldInteractableParentType[row.taskModel.worldInteractableParentType].toLowerCase(),
-                  row.taskModel.worldInteractableName,
-                  'task',
-                  row.taskModel.name
-              ]} 
-            />
-          )
-        }
+        render: (row) => (
+          <ExLink name={row.taskModel.name} params={row.taskModel.params} />
+        )
       },
       { 
         id: 'timeDescription', 

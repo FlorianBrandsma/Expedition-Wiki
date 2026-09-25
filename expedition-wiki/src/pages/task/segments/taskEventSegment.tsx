@@ -7,6 +7,7 @@ import type { EventModel } from '../../../data/models/eventModel';
 import { Box } from '@mui/material';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function TaskEventSegment() {
 
@@ -22,9 +23,11 @@ export default function TaskEventSegment() {
         align: 'center'
       },
       {
-        id: 'name',
         label: 'Event',
-        align: 'left'
+        align: 'left',
+        render: (row) => (
+          <ExLink name={row.name} params={row.params} />
+        )
       },
       {
         id: 'typeDescription',

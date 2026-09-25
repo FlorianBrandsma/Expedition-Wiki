@@ -6,6 +6,7 @@ import type { MailEventModel } from '../../../data/models/mailEventModel';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function ItemSourceMailSegment() {
 
@@ -14,9 +15,11 @@ export default function ItemSourceMailSegment() {
 
   const headers = useMemo<HeadCell<MailEventModel>[]>(() => [
     { 
-      id: 'eventName', 
       label: 'Event', 
-      align: 'left'
+      align: 'left',
+      render: (row) => (
+        <ExLink name={row.eventModel.name} params={row.eventModel.params}/>
+      )
     },
     {
       id: 'itemQuantity',

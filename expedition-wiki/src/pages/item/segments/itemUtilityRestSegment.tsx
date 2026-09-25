@@ -6,6 +6,7 @@ import type { RestEventModel } from '../../../data/models/restEventModel';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import { Box } from '@mui/material';
+import ExLink from '../../../components/exLink/exLink';
 
 export default function ItemUtilityRestSegment() {
 
@@ -14,9 +15,11 @@ export default function ItemUtilityRestSegment() {
 
   const headers = useMemo<HeadCell<RestEventModel>[]>(() => [
     { 
-      id: 'eventName', 
       label: 'Event', 
-      align: 'left'
+      align: 'left',
+      render: (row) => (
+        <ExLink name={row.eventModel.name} params={row.eventModel.params}/>
+      )
     },
     {
       id: 'quantity',

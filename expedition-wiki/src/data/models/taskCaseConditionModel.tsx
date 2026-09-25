@@ -1,5 +1,4 @@
 import ExLink from "../../components/exLink/exLink";
-import { WorldInteractableParentType, WorldInteractableType } from "../../types/enums";
 import { TaskModel } from "./taskModel";
 
 export class TaskCaseConditionModel {
@@ -18,27 +17,6 @@ export class TaskCaseConditionModel {
 
   get descriptionComponent(): React.ReactNode {
 
-    const originType = this.taskModel.objectiveName ? 'objective' :
-                       this.taskModel.terrainName   ? 'terrain'   : '';
-
-    const parentParams = originType === 'objective' ? [this.taskModel.questName,  this.taskModel.objectiveName] :
-                         originType === 'terrain'   ? [this.taskModel.regionName, this.taskModel.terrainName  ] : [];
-
-    const task = (
-      <ExLink 
-        name={this.taskModel.name} 
-        params={[
-          originType,
-          ...parentParams,
-          'interactable',
-          WorldInteractableType      [this.taskModel.worldInteractableType]      .toLowerCase(),
-          WorldInteractableParentType[this.taskModel.worldInteractableParentType].toLowerCase(),
-          this.taskModel.worldInteractableName,
-          'task',
-          this.taskModel.name
-        ]} />
-    );
-
     let list: string[] = [];
 
     if (this.taskInactive)
@@ -52,7 +30,7 @@ export class TaskCaseConditionModel {
 
     return (
       <>
-        {task}{` ${list.join(' or ')}`}
+        {<ExLink name={this.taskModel.name} params={this.taskModel.params} />}{` ${list.join(' or ')}`}
       </>
     );
   }
