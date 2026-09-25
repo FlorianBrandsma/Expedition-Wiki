@@ -31,6 +31,9 @@ import InteractableLootTableConditionSegment from './segments/interactableLootTa
 import InteractableLootTableItemSegment from './segments/interactableLootTableItemSegment';
 import InteractableSourceEventSegment from './segments/interactableSourceEventSegment';
 import InteractableEffectTaskSegment from './segments/interactableEffectTaskSegment';
+import InteractableEventSegment from './segments/interactableEventSegment';
+import InteractableWorldSegment from './segments/interactableWorldEntitySegment';
+import { WorldInteractableParentType } from '../../types/enums';
 
 export default function InteractablePage() {
 
@@ -68,6 +71,8 @@ export default function InteractablePage() {
     interactionStatusEffectModelList,
     equipmentItemModelList,
     dischargeAbilityModelList,
+    worldInteractableModelList,
+    eventModelList,
     caseConditionModelList,
     companionEventModelList
   } = interactablePageModel;
@@ -78,6 +83,58 @@ export default function InteractablePage() {
       id: 'Notes',
       component: <InteractableNoteSegment />
     });
+  }
+
+  if (worldInteractableModelList.length > 0) {
+
+    const entitySegment = {
+      label: 'Entities',
+      id: 'Entities',
+      children: []
+    } as ContentSegment;
+
+    const gameWorldInteractableModelList = worldInteractableModelList.filter(x => WorldInteractableParentType[x.worldInteractableParentType] === 'Game')
+
+    if (gameWorldInteractableModelList.length > 0) {
+      entitySegment.children!.push({
+        label: 'Game',
+        id: 'Game',
+        component: <InteractableWorldSegment worldInteractableModelList={gameWorldInteractableModelList} />
+      })
+    }
+
+    const terrainWorldInteractableModelList = worldInteractableModelList.filter(x => WorldInteractableParentType[x.worldInteractableParentType] === 'Terrain')
+
+    if (terrainWorldInteractableModelList.length > 0) {
+      entitySegment.children!.push({
+        label: 'Terrains',
+        id: 'Terrains',
+        component: <InteractableWorldSegment worldInteractableModelList={terrainWorldInteractableModelList} />
+      })
+    }
+
+    const questWorldInteractableModelList = worldInteractableModelList.filter(x => WorldInteractableParentType[x.worldInteractableParentType] === 'Quest')
+
+    if (questWorldInteractableModelList.length > 0) {
+      entitySegment.children!.push({
+        label: 'Quests',
+        id: 'Quests',
+        component: <InteractableWorldSegment worldInteractableModelList={questWorldInteractableModelList} />
+      })
+    }
+
+    const objectiveWorldInteractableModelList = worldInteractableModelList.filter(x => WorldInteractableParentType[x.worldInteractableParentType] === 'Objective')
+
+    if (objectiveWorldInteractableModelList.length > 0) {
+      entitySegment.children!.push({
+        label: 'Objectives',
+        id: 'Objectives',
+        component: <InteractableWorldSegment worldInteractableModelList={objectiveWorldInteractableModelList} />
+      })
+    }
+
+    if (entitySegment.children?.length !== 0)
+      contentSegments.push(entitySegment);
   }
 
   if (equipmentItemModelList.length > 0) {
@@ -134,6 +191,14 @@ export default function InteractablePage() {
       label: 'Reactions',
       id: 'Reactions',
       component: <InteractableReactionSegment />
+    });
+  }
+
+  if (eventModelList.length > 0) {
+    contentSegments!.push({
+      label: 'Events',
+      id: 'Events',
+      component: <InteractableEventSegment />
     });
   }
 

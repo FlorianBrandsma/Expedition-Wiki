@@ -20,10 +20,10 @@ import QuestUtilityQuestSegment from './segments/questUtilityQuestSegment';
 
 export default function QuestPage() {
 
-  const params = useParams<{ name: string }>();
+  const params = useParams<{ questName: string }>();
   
-  const name = params.name?.replaceAll('_', ' ');
-  document.title = `${name} - Expedition Wiki`;
+  const questName = params.questName?.replaceAll('_', ' ');
+  document.title = `${questName} - Expedition Wiki`;
 
   const { gameModel } = useGameContext();
 
@@ -31,7 +31,7 @@ export default function QuestPage() {
   
   const parameters = new QuestPageParameters({
     gameId:[gameModel.id],
-    name: name
+    questName: questName
   });
 
   const questPageQuery = useQuery<QuestPageModel[]>({

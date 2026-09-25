@@ -12,7 +12,7 @@ import ExIcon from '../../../components/exIcon/exIcon';
 export default function TerrainInteractableSegment() {
 
   const terrainPageModel = useTerrainPageContext();
-  const { terrainModel, worldInteractableModelList } = terrainPageModel;
+  const { worldInteractableModelList } = terrainPageModel;
 
   const headers = useMemo<HeadCell<WorldInteractableModel>[]>(() => {
     
@@ -27,15 +27,7 @@ export default function TerrainInteractableSegment() {
             )}
             <ExLink 
               name={row.name} 
-              params={[
-                'terrain',
-                terrainModel.regionName, 
-                terrainModel.name, 
-                'interactable', 
-                row.typeDescription.toLowerCase(), 
-                row.parentTypeDescription.toLowerCase(), 
-                row.name
-              ]} 
+              params={row.params}
             />
           </Box>
         )

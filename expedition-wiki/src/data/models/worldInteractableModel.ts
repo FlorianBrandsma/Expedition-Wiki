@@ -13,6 +13,9 @@ export class WorldInteractableModel {
   terrainName!: string;
   regionName!: string;
 
+  questName!: string;
+  objectiveName!: string;
+
   name!: string;
 
   iconResourceName!: string;
@@ -45,5 +48,29 @@ export class WorldInteractableModel {
 
   get typeDescription(): string {
     return WorldInteractableType[this.type];
+  }
+
+  get originType(): string {
+    return this.objectiveName ? 'objective' :
+           this.terrainName   ? 'terrain'   : '';
+  }
+
+  get parentParams(): string[] {
+    return this.originType === 'objective' ? [this.questName,  this.objectiveName] :
+           this.originType === 'terrain'   ? [this.regionName, this.terrainName]   : [];
+  }
+
+  get params(): string[] {
+    console.log(this);
+    const params = [
+      this.originType,
+      ...this.parentParams,
+      'interactable',
+      WorldInteractableType      [this.type]                       .toLowerCase(),
+      WorldInteractableParentType[this.worldInteractableParentType].toLowerCase(),
+      this.name
+    ]
+
+    return params;
   }
 }

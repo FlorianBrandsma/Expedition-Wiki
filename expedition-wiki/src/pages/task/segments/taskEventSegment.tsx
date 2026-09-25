@@ -38,7 +38,7 @@ export default function TaskEventSegment() {
 
     if (eventModelList.some(eventModel => eventModel.completeTask)) {
       headers.unshift({
-        label: 'Progress',
+        label: 'Completion',
         align: 'center',
         sx: { padding: 0 },
         render: (row) => (

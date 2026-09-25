@@ -180,7 +180,7 @@ export default function App() {
             element: <QuestsPage />
           },
           {
-            path:'/:gameName/quest/:name',
+            path:'/:gameName/quest/:questName',
             element: <QuestPage />
           },
           {

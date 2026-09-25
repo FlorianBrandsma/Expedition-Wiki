@@ -4,6 +4,8 @@ export class TaskModel {
 
   id!: string;
 
+  orderNumber!: number;
+
   name!: string;
 
   completeObjective!: boolean;
@@ -20,6 +22,9 @@ export class TaskModel {
   worldInteractableTerrainName!: string;
 
   questName!: string;
+
+  objectiveOrderNumber!: number;
+
   objectiveName!: string;
 
   constructor(init:Partial<TaskModel>) {  
@@ -32,7 +37,7 @@ export class TaskModel {
   }
 
   get parentParams(): string[] {
-    return this.originType === 'objective' ? [this.questName,                   this.objectiveName]                  :
+    return this.originType === 'objective' ? [this.questName,                   this.objectiveName]                 :
            this.originType === 'terrain'   ? [this.worldInteractableRegionName, this.worldInteractableTerrainName ] : [];
   }
 

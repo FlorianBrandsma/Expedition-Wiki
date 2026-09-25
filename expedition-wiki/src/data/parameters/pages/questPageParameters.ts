@@ -6,7 +6,7 @@ export class QuestPageParameters implements IParameters {
 
   gameId?: number[];
   
-  name?: string;
+  questName?: string;
 
   constructor(init?:Partial<QuestPageParameters>) {
     Object.assign(this, init);

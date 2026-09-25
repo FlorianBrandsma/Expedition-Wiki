@@ -26,4 +26,15 @@ export class ObjectiveModel {
       <>{ReferenceDescription(this.description, this.textReferenceModelList)}</>
     )
   }
+
+  get params(): string[] {
+  
+      const params = [
+        'objective',
+        this.questName,
+        this.name
+      ]
+  
+      return params;
+    }
 }

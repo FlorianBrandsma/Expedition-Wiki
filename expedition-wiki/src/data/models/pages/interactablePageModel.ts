@@ -11,6 +11,8 @@ import { EquipmentItemModel } from "../equipmentItemModel";
 import { DischargeAbilityModel } from "../dischargeAbilityModel";
 import { CaseConditionModel } from "../caseConditionModel";
 import { CompanionEventModel } from "../companionEventModel";
+import { WorldInteractableModel } from "../worldInteractableModel";
+import { EventModel } from "../eventModel";
 
 export class InteractablePageModel {
 
@@ -30,6 +32,10 @@ export class InteractablePageModel {
 
   equipmentItemModelList!:                 EquipmentItemModel[];
   dischargeAbilityModelList!:              DischargeAbilityModel[];
+
+  worldInteractableModelList!:             WorldInteractableModel[];
+
+  eventModelList!:                         EventModel[];
 
   caseConditionModelList!:                 CaseConditionModel[];
 
@@ -54,6 +60,10 @@ export class InteractablePageModel {
 
     this.equipmentItemModelList                 = this.equipmentItemModelList                .map((model) => new EquipmentItemModel             (model));
     this.dischargeAbilityModelList              = this.dischargeAbilityModelList             .map((model) => new DischargeAbilityModel          (model));
+
+    this.worldInteractableModelList             = this.worldInteractableModelList            .map((model) => new WorldInteractableModel         (model));
+
+    this.eventModelList                         = this.eventModelList                        .map((model) => new EventModel                     (model));
 
     this.caseConditionModelList                 = this.caseConditionModelList                .map((model) => new CaseConditionModel             (model));
 

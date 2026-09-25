@@ -13,7 +13,13 @@ import ExIcon from '../../components/exIcon/exIcon';
 
 export default function TaskPropertyCard() {
 
-  const { taskModel } = useTaskPageContext();
+  const { taskModel, taskModelList, objectiveModelList } = useTaskPageContext();
+
+  const currentObjectiveModel = objectiveModelList.find(x => x.orderNumber === (taskModel.objectiveOrderNumber));
+  const nextObjectiveModel    = objectiveModelList.find(x => x.orderNumber === (taskModel.objectiveOrderNumber + 1));
+
+  const previousTaskModel = taskModelList.find(x => x.orderNumber === (taskModel.orderNumber - 1));
+  const nextTaskModel     = taskModelList.find(x => x.orderNumber === (taskModel.orderNumber + 1));
 
   return (
     <ExCard sx={{ 
@@ -29,7 +35,9 @@ export default function TaskPropertyCard() {
           label='Interactable' 
           value={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <ExIcon resourceName={taskModel.worldInteractableIconResourceName} size={20} />
+              {taskModel.worldInteractableIconResourceName && (
+                <ExIcon resourceName={taskModel.worldInteractableIconResourceName} size={20} />
+              )}
               <ExLink 
                 name={taskModel.worldInteractableName} 
                 params={[
@@ -58,26 +66,53 @@ export default function TaskPropertyCard() {
                 />
               }
             />
-            <ExCardTableRow 
-              label='Objective'
-              value={
-                <ExLink 
-                  name={taskModel.objectiveName} 
-                  params={[
-                    'objective', 
-                    taskModel.questName, 
-                    taskModel.objectiveName
-                  ]} 
-                />
-              }
-            />
           </>
         )}
-        <ExCardTableRow 
-          label='Progression'
-          value={taskModel.completeObjective ? 'Yes' : 'No' }
-        />
       </ExCardTable>
+      {/* Objectives */}
+      {objectiveModelList.length > 0 && (
+        <>
+          <ExCardHeader title='Objectives' /> 
+          <ExCardTable>
+            <ExCardTableRow 
+              label='Completion'
+              value={taskModel.completeObjective ? 'Yes' : 'No' }
+            />
+            {currentObjectiveModel && (
+              <ExCardTableRow 
+                label='Current' 
+                value={<ExLink name={currentObjectiveModel.name} params={currentObjectiveModel.params} />}
+              />
+            )}
+            {taskModel.completeObjective && nextObjectiveModel && (
+              <ExCardTableRow 
+                label='Next' 
+                value={<ExLink name={nextObjectiveModel.name} params={nextObjectiveModel.params}/>}
+              />
+            )}
+          </ExCardTable>
+        </>
+      )}
+      {/* Tasks */}
+      {taskModelList.length > 0 && (
+        <>
+          <ExCardHeader title='Tasks' /> 
+          <ExCardTable>
+            {previousTaskModel && (
+              <ExCardTableRow 
+                label='Previous' 
+                value={<ExLink name={previousTaskModel.name} params={previousTaskModel.params} />}
+              />
+            )}
+            {nextTaskModel && (
+              <ExCardTableRow 
+                label='Next' 
+                value={<ExLink name={nextTaskModel.name} params={nextTaskModel.params}/>}
+              />
+            )}
+          </ExCardTable>
+        </>
+      )}
     </ExCard>
   )
 }

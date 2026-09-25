@@ -16,6 +16,7 @@ import { Divider, Box, Typography } from '@mui/material';
 import WorldInteractablePropertyCard from './worldInteractablePropertyCard';
 import { WorldInteractableType, WorldInteractableParentType } from '../../types/enums';
 import WorldInteractableTaskSegment from './segments/worldInteractableTaskSegment';
+import WorldInteractableObjectiveSegment from './segments/worldInteractableObjectiveSegment';
 
 export default function WorldInteractablePage() {
 
@@ -64,14 +65,26 @@ export default function WorldInteractablePage() {
   const worldInteractablePageModel = worldInteractablePageQuery.data[0];
 
   const { 
-    worldInteractableModel
+    worldInteractableModel,
+    taskModelList,
+    worldInteractableModelList
   } = worldInteractablePageModel;
 
-  contentSegments.push({
-    label: 'Tasks',
-    id: 'Tasks',
-    component: <WorldInteractableTaskSegment />
-  })
+  if (taskModelList.length > 0) {
+    contentSegments.push({
+      label: 'Tasks',
+      id: 'Tasks',
+      component: <WorldInteractableTaskSegment />
+    })
+  }
+  
+  if (worldInteractableModelList.length > 0) {
+    contentSegments.push({
+      label: 'Objectives',
+      id: 'Objectives',
+      component: <WorldInteractableObjectiveSegment />
+    })
+  }
 
   return (
     <Box sx={{ justifyContent: "left"}}>

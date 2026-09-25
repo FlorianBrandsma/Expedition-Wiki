@@ -27,15 +27,7 @@ export default function ObjectiveInteractableSegment() {
             )}
             <ExLink 
               name={row.name} 
-              params={[
-                'objective',
-                objectiveModel.questName, 
-                objectiveModel.name, 
-                'interactable', 
-                row.typeDescription      .toLowerCase(), 
-                row.parentTypeDescription.toLowerCase(), 
-                row.name
-              ]} 
+              params={row.params}
             />
           </Box>
         )
@@ -61,7 +53,7 @@ export default function ObjectiveInteractableSegment() {
 
     if (worldInteractableModelList.some(worldInteractableModel => worldInteractableModel.taskModelList.some(taskModel => taskModel.completeObjective))) {
       headers.unshift({
-        label: 'Progress',
+        label: 'Completion',
         align: 'center',
         sx: { padding: 0 },
         render: (row) => (

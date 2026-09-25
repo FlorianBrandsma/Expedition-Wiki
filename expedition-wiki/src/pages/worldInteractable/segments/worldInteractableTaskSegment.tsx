@@ -27,7 +27,7 @@ export default function WorldInteractableTaskSegment() {
 
     if (taskModelList.some(taskModel => taskModel.completeObjective)) {
       headers.unshift({
-        label: 'Progress',
+        label: 'Completion',
         align: 'center',
         sx: { padding: 0 },
         render: (row) => (
