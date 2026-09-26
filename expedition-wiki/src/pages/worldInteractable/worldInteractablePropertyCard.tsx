@@ -59,6 +59,10 @@ export default function WorldInteractablePropertyCard({ questName, objectiveName
       {/* Properties */}
       <ExCardHeader title='Properties' /> 
       <ExCardTable>
+        <ExCardTableRow 
+          label='Type' 
+          value={worldInteractableModel.typeDescription}
+        />
         {entityWorldInteractableModel && (
           <ExCardTableRow 
             label='Interactable' 
