@@ -6,14 +6,18 @@ export class ReputationEventModel {
 
   eventName!: string;
   
-  eventModel!: EventModel;
-
   factionReputation!: number;
+  
+  eventModelList!: EventModel[];
 
   constructor(init:Partial<ReputationEventModel>) {  
     Object.assign(this, init);
 
-    if (this.eventModel) this.eventModel = new EventModel(this.eventModel);
+    this.eventModelList = this.eventModelList.map((model) => new EventModel(model));
+  }
+
+  get eventModel(): EventModel {
+    return this.eventModelList[0];
   }
 
   get typeDescription(): string {

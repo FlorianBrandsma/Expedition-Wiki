@@ -27,13 +27,14 @@ import InteractableAbilitySegment from './segments/interactableAbilitySegment';
 import InteractableNoteSegment from './segments/interactableNoteSegment';
 import InteractableBehaviourSegment from './segments/interactableBehaviourSegment';
 import InteractableReactionSegment from './segments/interactableReactionSegment';
-import InteractableLootTableConditionSegment from './segments/interactableLootTableConditionSegment';
-import InteractableLootTableItemSegment from './segments/interactableLootTableItemSegment';
+import GeneralLootTableConditionSegment from '../general/segments/lootTable/generalLootTableConditionSegment';
+import GeneralLootTableItemSegment from '../general/segments/lootTable/generalLootTableItemSegment';
 import InteractableSourceEventSegment from './segments/interactableSourceEventSegment';
 import InteractableEffectTaskSegment from './segments/interactableEffectTaskSegment';
 import InteractableEventSegment from './segments/interactableEventSegment';
 import InteractableWorldSegment from './segments/interactableWorldEntitySegment';
 import { WorldInteractableParentType } from '../../types/enums';
+import InteractableFeaturedMailSegment from './segments/interactableFeaturedMailSegment';
 
 export default function InteractablePage() {
 
@@ -73,6 +74,7 @@ export default function InteractablePage() {
     dischargeAbilityModelList,
     worldInteractableModelList,
     eventModelList,
+    mailEventModelList,
     caseConditionModelList,
     companionEventModelList
   } = interactablePageModel;
@@ -216,7 +218,7 @@ export default function InteractablePage() {
           children.push({
             label: 'Conditions',
             id: 'Conditions',
-            component: <InteractableLootTableConditionSegment caseConditionModelList={agentInteractableLootTableModel.caseConditionModelList} />
+            component: <GeneralLootTableConditionSegment caseConditionModelList={agentInteractableLootTableModel.caseConditionModelList} />
           })
         }
 
@@ -225,7 +227,7 @@ export default function InteractablePage() {
           children.push({
             label: 'Items',
             id: 'Items',
-            component: <InteractableLootTableItemSegment itemModelList={agentInteractableLootTableModel.itemModelList}/>
+            component: <GeneralLootTableItemSegment itemModelList={agentInteractableLootTableModel.itemModelList}/>
           })
         }
 
@@ -331,6 +333,23 @@ export default function InteractablePage() {
 
   if (utilitySegment.children?.length !== 0)
     contentSegments.push(utilitySegment);
+
+  const featuredSegment = {
+    label: 'Featured',
+    id: 'Featured',
+    children: []
+  } as ContentSegment;
+
+  if (mailEventModelList.length > 0) {
+    featuredSegment.children!.push({
+      label: 'Mail',
+      id: 'Mail',
+      component: <InteractableFeaturedMailSegment />
+    });
+  }
+
+  if (featuredSegment.children?.length !== 0)
+    contentSegments.push(featuredSegment);
 
   const sourceSegment = {
     label: 'Source',

@@ -7,12 +7,16 @@ export class TaskCaseConditionModel {
   taskActive!: boolean;
   taskComplete!: boolean;
 
-  taskModel!: TaskModel;
+  taskModelList!: TaskModel[];
 
   constructor(init:Partial<TaskCaseConditionModel>) {  
     Object.assign(this, init);
 
-    if (this.taskModel) this.taskModel = new TaskModel(this.taskModel);
+    this.taskModelList = this.taskModelList.map((model) => new TaskModel(model));
+  }
+
+  get taskModel(): TaskModel {
+    return this.taskModelList[0];
   }
 
   get descriptionComponent(): React.ReactNode {

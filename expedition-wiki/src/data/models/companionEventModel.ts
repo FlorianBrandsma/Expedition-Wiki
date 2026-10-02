@@ -6,12 +6,16 @@ export class CompanionEventModel {
 
   eventName!: string;
 
-  eventModel!: EventModel;
+  eventModelList!: EventModel[];
 
   constructor(init:Partial<CompanionEventModel>) {  
     Object.assign(this, init);
 
-    if (this.eventModel) this.eventModel = new EventModel(this.eventModel);
+    this.eventModelList = this.eventModelList.map((model) => new EventModel(model));
+  }
+
+  get eventModel(): EventModel {
+    return this.eventModelList[0];
   }
 
   get typeDescription(): string {

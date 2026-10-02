@@ -4,8 +4,6 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import { Box } from '@mui/material';
-
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExLink from '../../../components/exLink/exLink';
@@ -53,8 +51,6 @@ export default function ItemUtilityRelinquishSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={relinquishItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rowKey="id" rows={relinquishItemEventItemModelList} headCells={headers} />
   )
 }

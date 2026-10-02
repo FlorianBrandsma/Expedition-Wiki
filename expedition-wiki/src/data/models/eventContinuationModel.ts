@@ -11,20 +11,29 @@ export class EventContinuationModel {
 
   eventName!: string;
 
-  eventModel!: EventModel;
-  
   continuationEventName!: string;
   
-  continuationEventModel!: EventModel;
-
   caseConditionModelList!: CaseConditionModel[];
+
+  eventModelList!: EventModel[];
+
+  continuationEventModelList!: EventModel[];
 
   constructor(init:Partial<EventContinuationModel>) {  
     Object.assign(this, init);
 
-    if (this.eventModel)             this.eventModel             = new EventModel(this.eventModel);
-    if (this.continuationEventModel) this.continuationEventModel = new EventModel(this.continuationEventModel);
+    this.caseConditionModelList     = this.caseConditionModelList    .map((model) => new CaseConditionModel(model));
 
-    this.caseConditionModelList = this.caseConditionModelList.map((model) => new CaseConditionModel(model));
+    this.eventModelList             = this.eventModelList            .map((model) => new EventModel        (model));
+
+    this.continuationEventModelList = this.continuationEventModelList.map((model) => new EventModel        (model));
+  }
+
+  get eventModel(): EventModel {
+    return this.eventModelList[0];
+  }
+
+  get continuationEventModel(): EventModel {
+    return this.continuationEventModelList[0];
   }
 }

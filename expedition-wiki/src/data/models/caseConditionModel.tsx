@@ -22,32 +22,25 @@ export class CaseConditionModel {
 
   type!: number;
 
-  chargeAbilityModel!:              ChargeAbilityModel;
-  agentInteractableReactionModel!:  AgentInteractableReactionModel;
-  agentInteractableLootTableModel!: AgentInteractableLootTableModel;
-  interactionTriggerModel!:         InteractionTriggerModel;
-  eventContinuationModel!:          EventContinuationModel;
-  itemEventItemModel!:              ItemEventItemModel;
+  resourceCaseConditionModelList!:      ResourceCaseConditionModel[];
+  effectCaseConditionModelList!:        EffectCaseConditionModel[];
+  itemCaseConditionModelList!:          ItemCaseConditionModel[];
+  factionCaseConditionModelList!:       FactionCaseConditionModel[];
+  characterCaseConditionModelList!:     CharacterCaseConditionModel[];
+  companionCaseConditionModelList!:     CompanionCaseConditionModel[];
+  taskCaseConditionModelList!:          TaskCaseConditionModel[];
+  combatCaseConditionModelList!:        CombatCaseConditionModel[];
+  lootCaseConditionModelList!:          LootCaseConditionModel[];
 
-  resourceCaseConditionModelList!:  ResourceCaseConditionModel[];
-  effectCaseConditionModelList!:    EffectCaseConditionModel[];
-  itemCaseConditionModelList!:      ItemCaseConditionModel[];
-  factionCaseConditionModelList!:   FactionCaseConditionModel[];
-  characterCaseConditionModelList!: CharacterCaseConditionModel[];
-  companionCaseConditionModelList!: CompanionCaseConditionModel[];
-  taskCaseConditionModelList!:      TaskCaseConditionModel[];
-  combatCaseConditionModelList!:    CombatCaseConditionModel[];
-  lootCaseConditionModelList!:      LootCaseConditionModel[];
+  chargeAbilityModelList!:              ChargeAbilityModel[];
+  agentInteractableReactionModelList!:  AgentInteractableReactionModel[];
+  agentInteractableLootTableModelList!: AgentInteractableLootTableModel[];
+  interactionTriggerModelList!:         InteractionTriggerModel[];
+  eventContinuationModelList!:          EventContinuationModel[];
+  itemEventItemModelList!:              ItemEventItemModel[];
 
   constructor(init:Partial<CaseConditionModel>) {  
     Object.assign(this, init);
-
-    if (this.chargeAbilityModel)              this.chargeAbilityModel               = new ChargeAbilityModel             (this.chargeAbilityModel);
-    if (this.agentInteractableReactionModel)  this.agentInteractableReactionModel   = new AgentInteractableReactionModel (this.agentInteractableReactionModel);
-    if (this.agentInteractableLootTableModel) this.agentInteractableLootTableModel  = new AgentInteractableLootTableModel(this.agentInteractableLootTableModel);
-    if (this.interactionTriggerModel)         this.interactionTriggerModel          = new InteractionTriggerModel        (this.interactionTriggerModel);
-    if (this.eventContinuationModel)          this.eventContinuationModel           = new EventContinuationModel         (this.eventContinuationModel);
-    if (this.itemEventItemModel)              this.itemEventItemModel               = new ItemEventItemModel             (this.itemEventItemModel);
 
     this.resourceCaseConditionModelList  = this.resourceCaseConditionModelList .map((model) => new ResourceCaseConditionModel (model));
     this.effectCaseConditionModelList    = this.effectCaseConditionModelList   .map((model) => new EffectCaseConditionModel   (model));
@@ -58,6 +51,13 @@ export class CaseConditionModel {
     this.taskCaseConditionModelList      = this.taskCaseConditionModelList     .map((model) => new TaskCaseConditionModel     (model));
     this.combatCaseConditionModelList    = this.combatCaseConditionModelList   .map((model) => new CombatCaseConditionModel   (model));
     this.lootCaseConditionModelList      = this.lootCaseConditionModelList     .map((model) => new LootCaseConditionModel     (model));
+
+    this.chargeAbilityModelList = this.chargeAbilityModelList.map((model) => new ChargeAbilityModel(model));
+    this.agentInteractableReactionModelList = this.agentInteractableReactionModelList.map((model) => new AgentInteractableReactionModel(model));
+    this.agentInteractableLootTableModelList = this.agentInteractableLootTableModelList.map((model) => new AgentInteractableLootTableModel(model));
+    this.interactionTriggerModelList = this.interactionTriggerModelList.map((model) => new InteractionTriggerModel(model));
+    this.eventContinuationModelList = this.eventContinuationModelList.map((model) => new EventContinuationModel(model));
+    this.itemEventItemModelList = this.itemEventItemModelList.map((model) => new ItemEventItemModel(model));
   }
 
   get resourceCaseConditionModel(): ResourceCaseConditionModel {  
@@ -94,6 +94,30 @@ export class CaseConditionModel {
 
   get lootCaseConditionModel(): LootCaseConditionModel {  
     return this.lootCaseConditionModelList[0];
+  }
+
+  get chargeAbilityModel(): ChargeAbilityModel {
+    return this.chargeAbilityModelList[0];
+  }
+
+  get agentInteractableReactionModel(): AgentInteractableReactionModel {
+    return this.agentInteractableReactionModelList[0];
+  }
+
+  get agentInteractableLootTableModel(): AgentInteractableLootTableModel {
+    return this.agentInteractableLootTableModelList[0];
+  }
+
+  get interactionTriggerModel(): InteractionTriggerModel {
+    return this.interactionTriggerModelList[0];
+  }
+
+  get eventContinuationModel(): EventContinuationModel {
+    return this.eventContinuationModelList[0];
+  }
+
+  get itemEventItemModel(): ItemEventItemModel {
+    return this.itemEventItemModelList[0];
   }
 
   get descriptionComponent(): React.ReactNode {

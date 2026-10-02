@@ -3,6 +3,11 @@ import ReferenceDescription from "../../services/textReferenceManager";
 
 export class EventEffectModel {
 
+  id!: number;
+
+  effectName!: string;
+  effectIconResourceName!: string;
+
   description!: string;
 
   textReferenceModelList!: TextReferenceModel[];
@@ -17,10 +22,9 @@ export class EventEffectModel {
     return 'Event';
   }
 
-  descriptionComponent(): React.ReactNode {
-    
+  get descriptionComponent(): React.ReactNode {
     return (
-      <>{ReferenceDescription(this.description, this.textReferenceModelList)}</>
+      ReferenceDescription(this.description, this.textReferenceModelList)
     )
   }
 }

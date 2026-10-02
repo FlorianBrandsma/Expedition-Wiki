@@ -15,9 +15,9 @@ export class NoteModel {
     this.textReferenceModelList = this.textReferenceModelList.map((model) => new TextReferenceModel(model));
   }
 
-  textComponent(): React.ReactNode {
+  get textComponent(): React.ReactNode {
     return (
-      <>{ReferenceDescription(this.text, this.textReferenceModelList)}</>
+      ReferenceDescription(this.text, this.textReferenceModelList)
     )
   }
 }

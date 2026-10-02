@@ -2,9 +2,11 @@ import { useMemo } from 'react';
 
 import { useClassPageContext } from '../classPageContext';
 
-import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
-import { Box } from '@mui/material';
 import type { NoteModel } from '../../../data/models/noteModel';
+
+import { Box } from '@mui/material';
+
+import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 
 export default function ClassNoteSegment() {
 
@@ -18,7 +20,7 @@ export default function ClassNoteSegment() {
       sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'300px'}}>
-          {row.textComponent()}
+          {row.textComponent}
         </Box>
       )
     }

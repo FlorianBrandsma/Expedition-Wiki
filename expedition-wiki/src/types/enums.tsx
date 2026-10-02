@@ -418,6 +418,8 @@ export const CombatState = [
   'Defeated'
 ] as const;
 
+export type CombatState = typeof CombatState[number];
+
 export const QuestType = [
   'Main',
   'Side'
@@ -480,6 +482,13 @@ export const EventType = [
   'Loot',
   'Signal',
   'Intel'
+] as const;
+
+export const SpeechType = [
+  'Think',
+  'Whisper',
+  'Speak',
+  'Shout'
 ] as const;
 
 export const ItemEventType = [

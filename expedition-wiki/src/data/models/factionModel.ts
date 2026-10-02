@@ -11,6 +11,7 @@ export class FactionModel {
   iconResourceName!: string;
   
   factionRank!: number;
+  reputation!: number;
 
   constructor(init:Partial<FactionModel>) {  
     Object.assign(this, init);

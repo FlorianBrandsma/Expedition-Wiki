@@ -4,8 +4,6 @@ import { useEffectPageContext } from '../effectPageContext';
 
 import type { EffectEventModel } from '../../../data/models/effectEventModel';
 
-import { Box } from '@mui/material';
-
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
 
@@ -30,8 +28,6 @@ export default function EffectSourceEventSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={effectEventModelList} headCells={headers} />
-    </Box>
+    <BasicTable rowKey='id' rows={effectEventModelList} headCells={headers} />
   )
 }

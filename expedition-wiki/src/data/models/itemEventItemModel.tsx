@@ -19,8 +19,6 @@ export class ItemEventItemModel {
 
   itemEventName!: string;
 
-  itemEventModel!: ItemEventModel;
-
   itemName!: string;
   
   itemAssetIconResourceName!: string;
@@ -36,10 +34,10 @@ export class ItemEventItemModel {
 
   caseConditionModelList!: CaseConditionModel[];
 
+  itemEventModelList!: ItemEventModel[];
+
   constructor(init:Partial<ItemEventItemModel>) {  
     Object.assign(this, init);
-
-    if (this.itemEventModel) this.itemEventModel = new ItemEventModel(this.itemEventModel);
 
     this.stealItemEventItemModelList      = this.stealItemEventItemModelList     .map((model) => new StealItemEventItemModel     (model));
     this.tradeItemEventItemModelList      = this.tradeItemEventItemModelList     .map((model) => new TradeItemEventItemModel     (model));
@@ -51,6 +49,8 @@ export class ItemEventItemModel {
     this.limitedItemEventItemModelList    = this.limitedItemEventItemModelList   .map((model) => new LimitedItemEventItemModel   (model));
     
     this.caseConditionModelList           = this.caseConditionModelList          .map((model) => new CaseConditionModel          (model));
+
+    this.itemEventModelList               = this.itemEventModelList              .map((model) => new ItemEventModel              (model));
   }
 
   get stealItemEventItemModel(): StealItemEventItemModel {  
@@ -79,6 +79,10 @@ export class ItemEventItemModel {
 
   get limitedItemEventItemModel(): LimitedItemEventItemModel {  
     return this.limitedItemEventItemModelList[0];
+  }
+
+  get itemEventModel(): ItemEventModel {
+    return this.itemEventModelList[0];
   }
 
   get tradeItemEventItemRelinquishItemModelList(): ItemModel[] {
@@ -118,15 +122,15 @@ export class ItemEventItemModel {
   }
 
   get costCraftItemEventItemQuantity(): number {  
-    return this.craftItemEventItemModel.costCraftItemEventItemModel.quantity;
+    return this.craftItemEventItemModel.costCraftItemEventItemModel?.quantity ?? 0;
   }
 
   get costCraftItemEventItemName(): string {
-    return this.craftItemEventItemModel.costCraftItemEventItemModel.itemName;
+    return this.craftItemEventItemModel.costCraftItemEventItemModel?.itemName ?? '';
   }
 
   get costCraftItemEventItemIconResourceName(): string {
-    return this.craftItemEventItemModel.costCraftItemEventItemModel.itemIconResourceName;
+    return this.craftItemEventItemModel.costCraftItemEventItemModel?.itemIconResourceName ?? '';
   }
 
   get distributeItemEventItemQuantityDescription(): string {

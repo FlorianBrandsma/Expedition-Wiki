@@ -10,6 +10,8 @@ export class WorldInteractableModel {
 
   type!: number;
 
+  objectiveWorldInteractableId!: number;
+
   terrainName!: string;
   regionName!: string;
 
@@ -46,7 +48,7 @@ export class WorldInteractableModel {
     return WorldInteractableParentType[this.worldInteractableParentType];
   }
 
-  get typeDescription(): string {
+  get typeDescription(): WorldInteractableType {
     return WorldInteractableType[this.type];
   }
 
@@ -61,7 +63,7 @@ export class WorldInteractableModel {
   }
 
   get params(): string[] {
-    console.log(this);
+
     const params = [
       this.originType,
       ...this.parentParams,

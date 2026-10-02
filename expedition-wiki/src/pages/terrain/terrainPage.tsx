@@ -15,6 +15,7 @@ import { Divider, Box, Typography } from '@mui/material';
 import TerrainPropertyCard from './terrainPropertyCard';
 import TerrainClimateSegment from './segments/terrainClimateSegment';
 import TerrainInteractableSegment from './segments/terrainInteractableSegment';
+import TerrainTransportSegment from './segments/terrainTransportSegment';
 
 export default function TerrainPage() {
 
@@ -46,7 +47,8 @@ export default function TerrainPage() {
 
   const { 
     terrainModel,
-    worldInteractableModelList
+    worldInteractableModelList,
+    transportEventModelList
   } = terrainPageModel;
 
   contentSegments.push({
@@ -60,6 +62,14 @@ export default function TerrainPage() {
       label: 'Interactables',
       id: 'Interactables',
       component: <TerrainInteractableSegment />
+    })
+  }
+
+  if (transportEventModelList.length > 0) {
+    contentSegments.push({
+      label: 'Transport',
+      id: 'Transport',
+      component: <TerrainTransportSegment />
     })
   }
 

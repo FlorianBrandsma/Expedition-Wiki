@@ -1,21 +1,23 @@
 import { useMemo } from 'react';
 
+import { useEventPageContext } from '../eventPageContext';
+
 import type { ItemModel } from '../../../data/models/itemModel';
+
+import { Box } from '@mui/material';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
 
-interface InteractableLootTableItemSegmentProps {
-  itemModelList: ItemModel[];
-}
+export default function EventMailItemSegment() {
 
-export default function InteractableLootTableItemSegment({ itemModelList }: InteractableLootTableItemSegmentProps) {
+  const eventPageModel = useEventPageContext();
+    const { itemModelList } = eventPageModel;
 
   const headers = useMemo<HeadCell<ItemModel>[]>(() => [
     { 
-      label: 'Name',
+      label: 'Item',
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignInteractables: 'center', gap: 0.5 }}>
@@ -25,14 +27,9 @@ export default function InteractableLootTableItemSegment({ itemModelList }: Inte
       )
     },
     {
-      id: 'quantityDescription',
+      id: 'quantity',
       label: 'Quantity',
       align: 'center'
-    },
-    {
-      id: 'rarityDescription',
-      label: 'Rarity',
-      align: 'left'
     }
     ], [itemModelList]);
 

@@ -22,12 +22,9 @@ export default function ItemUtilityRestSegment() {
       )
     },
     {
-      id: 'quantity',
+      id: 'quantityDescription',
       label: 'Quantity',
-      align: 'right',
-      render: (row) => (
-        <>{row.quantity} / hr</>
-      )
+      align: 'center'
     }
   ], [itemPageModel]);
 

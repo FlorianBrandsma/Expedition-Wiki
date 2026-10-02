@@ -23,7 +23,7 @@ export class ObjectiveModel {
 
   get descriptionComponent(): React.ReactNode {
     return (
-      <>{ReferenceDescription(this.description, this.textReferenceModelList)}</>
+      ReferenceDescription(this.description, this.textReferenceModelList)
     )
   }
 

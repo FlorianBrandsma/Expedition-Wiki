@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 
-import type { CaseConditionModel } from '../../../data/models/caseConditionModel';
+import type { CaseConditionModel } from '../../../../data/models/caseConditionModel';
 
-import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
+import BasicTable, { type HeadCell } from '../../../../components/basicTable/basicTable';
 
 interface InteractableLootTableConditionSegmentProps {
   caseConditionModelList: CaseConditionModel[];
 }
 
-export default function InteractableLootTableConditionSegment({ caseConditionModelList }: InteractableLootTableConditionSegmentProps) {
+export default function GeneralLootTableConditionSegment({ caseConditionModelList }: InteractableLootTableConditionSegmentProps) {
 
   const headers = useMemo<HeadCell<CaseConditionModel>[]>(() => [
       {

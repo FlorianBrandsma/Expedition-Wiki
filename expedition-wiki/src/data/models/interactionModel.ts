@@ -14,8 +14,6 @@ export class InteractionModel {
   startTime!: number;
   endTime!: number;
 
-  taskModel!: TaskModel;
-
   statusEffectState!: number;
 
   statusEffectStack!: number;
@@ -24,18 +22,24 @@ export class InteractionModel {
 
   behaviourInteractionModelList!: BehaviourInteractionModel[];
 
+  taskModelList!: TaskModel[];
+
   constructor(init:Partial<InteractionModel>) {  
     Object.assign(this, init);
 
-    if (this.taskModel) this.taskModel = new TaskModel(this.taskModel);
+    this.activeStatusEffectRepetitionTime = Number(init.activeStatusEffectRepetitionTime!.toFixed(2));
 
     this.behaviourInteractionModelList = this.behaviourInteractionModelList.map((model) => new BehaviourInteractionModel(model));
 
-    this.activeStatusEffectRepetitionTime = Number(init.activeStatusEffectRepetitionTime!.toFixed(2));
+    this.taskModelList                 = this.taskModelList                .map((model) => new TaskModel                (model));
   }
 
   get behaviourInteractionModel(): BehaviourInteractionModel {
     return this.behaviourInteractionModelList[0];
+  }
+
+  get taskModel(): TaskModel {
+    return this.taskModelList[0];
   }
 
   get timeDescription(): string {

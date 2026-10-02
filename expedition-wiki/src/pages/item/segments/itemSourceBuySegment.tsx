@@ -41,7 +41,7 @@ export default function ItemSourceBuySegment() {
         label: 'Rate',
         align: 'center',
         render: (row) => (
-          <>{row.shopItemEventItemRate.toFixed(2)}</>
+          row.shopItemEventItemRate.toFixed(2)
         )
       }
     ];
@@ -75,8 +75,6 @@ export default function ItemSourceBuySegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={sourceShopItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rowKey="id" rows={sourceShopItemEventItemModelList} headCells={headers} />
   )
 }

@@ -18,7 +18,7 @@ export default function InteractableNoteSegment() {
       sx: { whiteSpace: 'normal' },
       render: (row) => (
         <Box sx={{ maxWidth:'300px'}}>
-          {row.textComponent()}
+          {row.textComponent}
         </Box>
       )
     }

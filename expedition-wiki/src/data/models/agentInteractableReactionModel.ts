@@ -12,16 +12,20 @@ export class AgentInteractableReactionModel {
 
   eventName!: string;
 
-  eventModel!: EventModel;
-
   caseConditionModelList!: CaseConditionModel[];
+  
+  eventModelList!: EventModel[];
 
   constructor(init:Partial<AgentInteractableReactionModel>) {  
     Object.assign(this, init);
 
-    if (this.eventModel) this.eventModel = new EventModel(this.eventModel);
-
     this.caseConditionModelList = this.caseConditionModelList.map((model) => new CaseConditionModel(model));
+
+    this.eventModelList         = this.eventModelList        .map((model) => new EventModel       (model));
+  }
+
+  get eventModel(): EventModel {
+    return this.eventModelList[0];
   }
 
   get successChanceDescription(): string {

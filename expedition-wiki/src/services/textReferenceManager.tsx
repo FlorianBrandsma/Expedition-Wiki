@@ -3,7 +3,7 @@ import type { TextReferenceModel } from "../data/models/textReferenceModel";
 
 import ExLink from "../components/exLink/exLink";
 
-export default function ReferenceDescription(description: string, textReferenceModelList: TextReferenceModel[]) {
+export default function ReferenceDescription(description: string, textReferenceModelList: TextReferenceModel[]): React.ReactNode {
 
     const referenceDictionary: Record<string, TextReferenceModel> = textReferenceModelList.reduce((accumlator, model) => {
       accumlator[model.referenceCode] = model;
@@ -27,6 +27,6 @@ export default function ReferenceDescription(description: string, textReferenceM
     });
 
     return (
-      <>{descriptionComponent}</>
+      descriptionComponent
     )
   }

@@ -68,7 +68,7 @@ export class EffectModel {
     switch (EffectType[this.type])
     {
       case 'Resource': return this.resourceEffectModel!.description(currentStack);
-      case 'Event':    return this.eventEffectModel   !.descriptionComponent();
+      case 'Event':    return this.eventEffectModel   !.descriptionComponent;
       case 'Status':   return this.statusEffectModel  !.descriptionComponent(currentStack);
     }
   }

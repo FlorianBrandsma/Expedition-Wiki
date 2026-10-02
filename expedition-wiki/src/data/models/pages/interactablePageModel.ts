@@ -13,6 +13,7 @@ import { CaseConditionModel } from "../caseConditionModel";
 import { CompanionEventModel } from "../companionEventModel";
 import { WorldInteractableModel } from "../worldInteractableModel";
 import { EventModel } from "../eventModel";
+import { MailEventModel } from "../mailEventModel";
 
 export class InteractablePageModel {
 
@@ -22,6 +23,10 @@ export class InteractablePageModel {
   classModel!:                     ClassModel;
 
   noteModelList!:                          NoteModel[];
+
+  eventModelList!:                         EventModel[];
+
+  mailEventModelList!:                     MailEventModel[];
 
   agentInteractableBehaviourModelList!:    AgentInteractableBehaviourModel[];
   agentInteractableReactionModelList!:     AgentInteractableReactionModel[];
@@ -34,8 +39,6 @@ export class InteractablePageModel {
   dischargeAbilityModelList!:              DischargeAbilityModel[];
 
   worldInteractableModelList!:             WorldInteractableModel[];
-
-  eventModelList!:                         EventModel[];
 
   caseConditionModelList!:                 CaseConditionModel[];
 
@@ -51,6 +54,10 @@ export class InteractablePageModel {
 
     this.noteModelList                          = this.noteModelList                         .map((model) => new NoteModel                      (model));
 
+    this.eventModelList                         = this.eventModelList                        .map((model) => new EventModel                     (model));
+
+    this.mailEventModelList                     = this.mailEventModelList                    .map((model) => new MailEventModel                 (model));
+
     this.agentInteractableBehaviourModelList    = this.agentInteractableBehaviourModelList   .map((model) => new AgentInteractableBehaviourModel(model));
     this.agentInteractableReactionModelList     = this.agentInteractableReactionModelList    .map((model) => new AgentInteractableReactionModel (model));
     this.agentInteractableLootTableModelList    = this.agentInteractableLootTableModelList   .map((model) => new AgentInteractableLootTableModel(model));
@@ -62,8 +69,6 @@ export class InteractablePageModel {
     this.dischargeAbilityModelList              = this.dischargeAbilityModelList             .map((model) => new DischargeAbilityModel          (model));
 
     this.worldInteractableModelList             = this.worldInteractableModelList            .map((model) => new WorldInteractableModel         (model));
-
-    this.eventModelList                         = this.eventModelList                        .map((model) => new EventModel                     (model));
 
     this.caseConditionModelList                 = this.caseConditionModelList                .map((model) => new CaseConditionModel             (model));
 

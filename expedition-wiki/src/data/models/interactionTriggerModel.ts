@@ -15,28 +15,36 @@ export class InteractionTriggerModel {
 
   eventName!: string;
 
-  interactionModel!: InteractionModel;
-
-  eventModel!: EventModel;
-
   inputInteractionTriggerModelList!: InputInteractionTriggerModel[];
 
   caseConditionModelList!: CaseConditionModel[];
 
+  interactionModelList!: InteractionModel[];
+
+  eventModelList!: EventModel[];
+
   constructor(init:Partial<InteractionTriggerModel>) {  
     Object.assign(this, init);
-
-    if (this.interactionModel) this.interactionModel = new InteractionModel(this.interactionModel);
-
-    if (this.eventModel)       this.eventModel       = new EventModel      (this.eventModel);
 
     this.inputInteractionTriggerModelList = this.inputInteractionTriggerModelList.map((model) => new InputInteractionTriggerModel(model));
 
     this.caseConditionModelList           = this.caseConditionModelList          .map((model) => new CaseConditionModel          (model));
+
+    this.interactionModelList             = this.interactionModelList            .map((model) => new InteractionModel            (model));
+
+    this.eventModelList                   = this.eventModelList                  .map((model) => new EventModel                  (model));
   }
 
   get inputInteractionTriggerModel(): InputInteractionTriggerModel {
     return this.inputInteractionTriggerModelList[0];
+  }
+
+  get interactionModel(): InteractionModel {
+    return this.interactionModelList[0];
+  }
+
+  get eventModel(): EventModel {
+    return this.eventModelList[0];
   }
 
   get typeDescription(): string {

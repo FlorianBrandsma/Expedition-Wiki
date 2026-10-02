@@ -31,10 +31,7 @@ export class EventModel {
   completeTask!: boolean;
 
   eventParentType!: number;
-
-  interactableModel!: InteractableModel;
-  interactionModel!:  InteractionModel;
-
+  
   menuEventModelList!:       MenuEventModel[];
   speechEventModelList!:     SpeechEventModel[];
   dialogueEventModelList!:   DialogueEventModel[];
@@ -54,11 +51,11 @@ export class EventModel {
   signalEventModelList!:     SignalEventModel[];
   intelEventModelList!:      IntelEventModel[];
   
+  interactableModelList!:    InteractableModel[];
+  interactionModelList!:     InteractionModel[];
+  
   constructor(init:Partial<EventModel>) {  
     Object.assign(this, init);
-
-    if (this.interactableModel) this.interactableModel = new InteractableModel(this.interactableModel);
-    if (this.interactionModel)  this.interactionModel  = new InteractionModel (this.interactionModel);
 
     this.menuEventModelList       = this.menuEventModelList      .map((model) => new MenuEventModel      (model));
     this.speechEventModelList     = this.speechEventModelList    .map((model) => new SpeechEventModel    (model));
@@ -78,6 +75,9 @@ export class EventModel {
     this.lootEventModelList       = this.lootEventModelList      .map((model) => new LootEventModel      (model));
     this.signalEventModelList     = this.signalEventModelList    .map((model) => new SignalEventModel    (model));
     this.intelEventModelList      = this.intelEventModelList     .map((model) => new IntelEventModel     (model));
+
+    this.interactableModelList    = this.interactableModelList   .map((model) => new InteractableModel   (model));
+    this.interactionModelList     = this.interactionModelList    .map((model) => new InteractionModel    (model));
   }
 
   get menuEventModel(): MenuEventModel {
@@ -152,10 +152,19 @@ export class EventModel {
     return this.intelEventModelList[0];
   }
 
+  get interactableModel(): InteractableModel {
+    return this.interactableModelList[0];
+  }
+
+  get interactionModel(): InteractionModel {
+    return this.interactionModelList[0];
+  }
+
   get typeDescription(): string {
 
     switch (EventType[this.type])
     {
+      case 'Basic':      return 'Basic';
       case 'Menu':       return this.menuEventModel      !.typeDescription;
       case 'Speech':     return this.speechEventModel    !.typeDescription;
       case 'Dialogue':   return this.dialogueEventModel  !.typeDescription;
@@ -174,8 +183,6 @@ export class EventModel {
       case 'Loot':       return this.lootEventModel      !.typeDescription;
       case 'Signal':     return this.signalEventModel    !.typeDescription;
       case 'Intel':      return this.intelEventModel     !.typeDescription;
-
-      default: return '';
     }
   }
 

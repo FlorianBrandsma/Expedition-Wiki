@@ -30,16 +30,13 @@ export class StatusEffectModel {
 
   effectName!: string;
   effectIconResourceName!: string;
-
-  atmosphereModel!: AtmosphereModel;
-  interactionModel!: InteractionModel;
-
+  
   atmosphereStatusEffectId!: number;
   interactionStatusEffectId!: number;
-
+  
   statusEffectState!: number;
   activeStatusEffectRepetitionTime!: number;
-
+  
   basicStatusEffectModelList!:     BasicStatusEffectModel[];
   attributeStatusEffectModelList!: AttributeStatusEffectModel[];
   abilityStatusEffectModelList!:   AbilityStatusEffectModel[];
@@ -52,12 +49,12 @@ export class StatusEffectModel {
   sensorStatusEffectModelList!:    SensorStatusEffectModel[];
   standingStatusEffectModelList!:  StandingStatusEffectModel[];
   clusterStatusEffectModelList!:   ClusterStatusEffectModel[];
+  
+  atmosphereModelList!:            AtmosphereModel[];
+  interactionModelList!:           InteractionModel[];
 
   constructor(init:Partial<StatusEffectModel>) {  
     Object.assign(this, init);
-
-    if (this.atmosphereModel  !== null) this.atmosphereModel  = new AtmosphereModel (this.atmosphereModel);
-    if (this.interactionModel !== null) this.interactionModel = new InteractionModel(this.interactionModel);
 
     this.activeStatusEffectRepetitionTime = Number(init.activeStatusEffectRepetitionTime!.toFixed(2));
 
@@ -73,6 +70,9 @@ export class StatusEffectModel {
     this.sensorStatusEffectModelList    = this.sensorStatusEffectModelList   .map((model) => new SensorStatusEffectModel   (model));
     this.standingStatusEffectModelList  = this.standingStatusEffectModelList .map((model) => new StandingStatusEffectModel (model));
     this.clusterStatusEffectModelList   = this.clusterStatusEffectModelList  .map((model) => new ClusterStatusEffectModel  (model));
+
+    this.atmosphereModelList            = this.atmosphereModelList           .map((model) => new AtmosphereModel           (model));
+    this.interactionModelList           = this.interactionModelList          .map((model) => new InteractionModel          (model));
   }
 
   get basicStatusEffectModel(): BasicStatusEffectModel {  
@@ -121,6 +121,14 @@ export class StatusEffectModel {
 
   get clusterStatusEffectModel(): ClusterStatusEffectModel {  
     return this.clusterStatusEffectModelList[0];
+  }
+
+  get atmosphereModel(): AtmosphereModel {
+    return this.atmosphereModelList[0];
+  }
+
+  get interactionModel(): InteractionModel {
+    return this.interactionModelList[0];
   }
 
   get clusterStatusEffecStatusEffectModelList(): StatusEffectModel[] {  
