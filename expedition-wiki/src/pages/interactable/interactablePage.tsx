@@ -100,7 +100,7 @@ export default function InteractablePage() {
     if (gameWorldInteractableModelList.length > 0) {
       entitySegment.children!.push({
         label: 'Game',
-        id: 'Game',
+        id: `${entitySegment.id}/Game`,
         component: <InteractableWorldSegment worldInteractableModelList={gameWorldInteractableModelList} />
       })
     }
@@ -110,7 +110,7 @@ export default function InteractablePage() {
     if (terrainWorldInteractableModelList.length > 0) {
       entitySegment.children!.push({
         label: 'Terrains',
-        id: 'Terrains',
+        id: `${entitySegment.id}/Terrains`,
         component: <InteractableWorldSegment worldInteractableModelList={terrainWorldInteractableModelList} />
       })
     }
@@ -120,7 +120,7 @@ export default function InteractablePage() {
     if (questWorldInteractableModelList.length > 0) {
       entitySegment.children!.push({
         label: 'Quests',
-        id: 'Quests',
+        id: `${entitySegment.id}/Terrains`,
         component: <InteractableWorldSegment worldInteractableModelList={questWorldInteractableModelList} />
       })
     }
@@ -130,7 +130,7 @@ export default function InteractablePage() {
     if (objectiveWorldInteractableModelList.length > 0) {
       entitySegment.children!.push({
         label: 'Objectives',
-        id: 'Objectives',
+        id: `${entitySegment.id}/Objectives`,
         component: <InteractableWorldSegment worldInteractableModelList={objectiveWorldInteractableModelList} />
       })
     }
@@ -156,7 +156,7 @@ export default function InteractablePage() {
   if (agentInteractableStatusEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Default',
-      id: 'Default',
+      id: `${effectSegment.id}/Default`,
       component: <InteractableEffectDefaultSegment />
     });
   }
@@ -164,7 +164,7 @@ export default function InteractablePage() {
   if (interactionStatusEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Tasks',
-      id: 'Tasks',
+      id: `${effectSegment.id}/Tasks`,
       component: <InteractableEffectTaskSegment />
     });
   }
@@ -211,13 +211,15 @@ export default function InteractablePage() {
       id: 'Loot',
       children: agentInteractableLootTableModelList.map(agentInteractableLootTableModel => {
 
+        const id = `Loot/${agentInteractableLootTableModel.name}`;
+
         const children: ContentSegment[] = [];
 
         if (agentInteractableLootTableModel.caseConditionModelList.length > 0) {
 
           children.push({
             label: 'Conditions',
-            id: 'Conditions',
+            id: `${id}/Conditions`,
             component: <GeneralLootTableConditionSegment caseConditionModelList={agentInteractableLootTableModel.caseConditionModelList} />
           })
         }
@@ -226,15 +228,14 @@ export default function InteractablePage() {
 
           children.push({
             label: 'Items',
-            id: 'Items',
+            id: `${id}/Items`,
             component: <GeneralLootTableItemSegment itemModelList={agentInteractableLootTableModel.itemModelList}/>
           })
         }
 
         return {
           label: agentInteractableLootTableModel.name,
-          id: agentInteractableLootTableModel.name,
-          component: <></>,
+          id: id,
           children: children
         } as ContentSegment;
       })  
@@ -251,7 +252,7 @@ export default function InteractablePage() {
 
     const conditionSegment = {
       label: 'Conditions',
-      id: 'Conditions',
+      id: `${utilitySegment.id}/Conditions`,
       children: []
     } as ContentSegment;
 
@@ -262,7 +263,7 @@ export default function InteractablePage() {
 
       conditionSegment.children!.push({
         label: 'Abilities',
-        id: 'Abilities',
+        id: `${conditionSegment.id}/Abilities`,
         component: <GeneralUtilityConditionAbilitySegment caseConditionModelList={chargeAbilityCaseConditionModelList} />
       });
     }
@@ -274,7 +275,7 @@ export default function InteractablePage() {
 
       conditionSegment.children!.push({
         label: 'Reactions',
-        id: 'Reactions',
+        id: `${conditionSegment.id}/Reactions`,
         component: <GeneralUtilityConditionReactionSegment caseConditionModelList={agentInteractableReactionCaseConditionModelList} />
       });
     }
@@ -286,7 +287,7 @@ export default function InteractablePage() {
 
       conditionSegment.children!.push({
         label: 'Loot',
-        id: 'Loot',
+        id: `${conditionSegment.id}/Loot`,
         component: <GeneralUtilityConditionLootSegment caseConditionModelList={agentInteractableLootTableCaseConditionModelList} />
       });
     }
@@ -298,7 +299,7 @@ export default function InteractablePage() {
 
       conditionSegment.children!.push({
         label: 'Triggers',
-        id: 'Triggers',
+        id: `${conditionSegment.id}/Triggers`,
         component: <GeneralUtilityConditionTriggerSegment caseConditionModelList={interactionTriggerCaseConditionModelList} />
       });
     }
@@ -310,7 +311,7 @@ export default function InteractablePage() {
 
       conditionSegment.children!.push({
         label: 'Events',
-        id: 'Events',
+        id: `${conditionSegment.id}/Events`,
         component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
       });
     }
@@ -322,7 +323,7 @@ export default function InteractablePage() {
 
       conditionSegment.children!.push({
         label: 'Items',
-        id: 'Events',
+       id: `${conditionSegment.id}/Items`,
         component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
       });
     }
@@ -343,7 +344,7 @@ export default function InteractablePage() {
   if (mailEventModelList.length > 0) {
     featuredSegment.children!.push({
       label: 'Mail',
-      id: 'Mail',
+      id: `${featuredSegment.id}/Mail`,
       component: <InteractableFeaturedMailSegment />
     });
   }
@@ -361,7 +362,7 @@ export default function InteractablePage() {
     
     sourceSegment.children!.push({
       label: 'Events',
-      id: 'Events',
+      id: `${sourceSegment.id}/Events`,
       component: <InteractableSourceEventSegment />
     });
   }

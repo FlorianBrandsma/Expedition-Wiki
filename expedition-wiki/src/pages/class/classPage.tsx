@@ -75,7 +75,7 @@ export default function ClassPage() {
   
     equipmentSegment.children!.push({
       label: 'Arms',
-      id: 'Arms',
+      id: `${equipmentSegment.id}/Arms`,
       component: 
         <ClassEquipmentSegment 
           category={category}
@@ -100,7 +100,7 @@ export default function ClassPage() {
 
     equipmentSegment.children!.push({
       label: 'Gear',
-      id: 'Gear',
+      id: `${equipmentSegment.id}/Gear`,
       component: 
         <ClassEquipmentSegment 
           category={category}

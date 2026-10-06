@@ -139,7 +139,7 @@ export default function EffectPage() {
 
     const conditionSegment = {
       label: 'Conditions',
-      id: 'Conditions',
+      id: `${utilitySegment.id}/Conditions`,
       children: []
     } as ContentSegment;
 
@@ -150,7 +150,7 @@ export default function EffectPage() {
 
       conditionSegment.children!.push({
         label: 'Abilities',
-        id: 'Abilities',
+        id: `${conditionSegment.id}/Conditions`,
         component: <GeneralUtilityConditionAbilitySegment caseConditionModelList={chargeAbilityCaseConditionModelList} />
       });
     }
@@ -162,7 +162,7 @@ export default function EffectPage() {
 
       conditionSegment.children!.push({
         label: 'Reactions',
-        id: 'Reactions',
+        id: `${conditionSegment.id}/Reactions`,
         component: <GeneralUtilityConditionReactionSegment caseConditionModelList={agentInteractableReactionCaseConditionModelList} />
       });
     }
@@ -174,7 +174,7 @@ export default function EffectPage() {
 
       conditionSegment.children!.push({
         label: 'Loot',
-        id: 'Loot',
+        id: `${conditionSegment.id}/Loot`,
         component: <GeneralUtilityConditionLootSegment caseConditionModelList={agentInteractableLootTableCaseConditionModelList} />
       });
     }
@@ -186,7 +186,7 @@ export default function EffectPage() {
 
       conditionSegment.children!.push({
         label: 'Triggers',
-        id: 'Triggers',
+        id: `${conditionSegment.id}/Triggers`,
         component: <GeneralUtilityConditionTriggerSegment caseConditionModelList={interactionTriggerCaseConditionModelList} />
       });
     }
@@ -198,7 +198,7 @@ export default function EffectPage() {
 
       conditionSegment.children!.push({
         label: 'Events',
-        id: 'Events',
+        id: `${conditionSegment.id}/Events`,
         component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
       });
     }
@@ -210,7 +210,7 @@ export default function EffectPage() {
 
       conditionSegment.children!.push({
         label: 'Items',
-        id: 'Events',
+        id: `${conditionSegment.id}/Items`,
         component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
       });
     }
@@ -230,14 +230,14 @@ export default function EffectPage() {
 
   const effectSegment = {
     label: 'Effects',
-    id: 'Effects',
+    id: `${sourceSegment.id}/Effects`,
     children: []
   } as ContentSegment;
 
   if (absorbResourceEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Absorb',
-      id: 'Absorb',
+      id: `${effectSegment.id}/Absorb`,
       component: <EffectSourceEffectAbsorbSegment />
     });
   }
@@ -245,7 +245,7 @@ export default function EffectPage() {
   if (abilityStatusEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Ability',
-      id: 'Ability',
+      id: `${effectSegment.id}/Ability`,
       component: <EffectSourceEffectAbilitySegment />
     });
   }
@@ -253,7 +253,7 @@ export default function EffectPage() {
   if (auraStatusEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Aura',
-      id: 'Aura',
+      id: `${effectSegment.id}/Aura`,
       component: <EffectSourceEffectAuraSegment />
     });
   }
@@ -261,7 +261,7 @@ export default function EffectPage() {
   if (repeatStatusEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Repeat',
-      id: 'Repeat',
+      id: `${effectSegment.id}/Repeat`,
       component: <EffectSourceEffectRepeatSegment />
     });
   }
@@ -269,7 +269,7 @@ export default function EffectPage() {
   if (clusterStatusEffectModelList.length > 0) {
     effectSegment.children!.push({
       label: 'Cluster',
-      id: 'Cluster',
+      id: `${effectSegment.id}/Cluster`,
       component: <EffectSourceEffectClusterSegment />
     });
   }
@@ -280,7 +280,7 @@ export default function EffectPage() {
   if (abilityModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Abilities',
-      id: 'Abilities',
+      id: `${sourceSegment.id}/Abilities`,
       component: <EffectSourceAbilitySegment />
     });
   }
@@ -288,7 +288,7 @@ export default function EffectPage() {
   if (equipmentItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Equipment',
-      id: 'Equipment',
+      id: `${sourceSegment.id}/Equipment`,
       component: <EffectSourceEquipmentSegment />
     });
   }
@@ -296,21 +296,21 @@ export default function EffectPage() {
   if (equipmentSetModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Sets',
-      id: 'Sets',
+      id: `${sourceSegment.id}/Sets`,
       component: <EffectSourceSetSegment />
     });
   }
 
   const agentSegment = {
     label: 'Agents',
-    id: 'Agents',
+    id: `${sourceSegment.id}/Agents`,
     children: []
   } as ContentSegment;
 
   if (agentInteractableModelList.length > 0) {
     agentSegment.children!.push({
       label: 'Default',
-      id: 'Default',
+      id: `${agentSegment.id}/Agents`,
       component: <EffectSourceAgentDefaultSegment />
     });
   }
@@ -318,7 +318,7 @@ export default function EffectPage() {
   if (interactionModelList.length > 0) {
     agentSegment.children!.push({
       label: 'Tasks',
-      id: 'Tasks',
+      id: `${agentSegment.id}/Tasks`,
       component: <EffectSourceAgentTaskSegment />
     });
   }
@@ -329,7 +329,7 @@ export default function EffectPage() {
   if (atmosphereModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Climates',
-      id: 'Climates',
+      id: `${sourceSegment.id}/Climates`,
       component: <EffectSourceClimateSegment />
     });
   }
@@ -337,7 +337,7 @@ export default function EffectPage() {
   if (effectEventModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Events',
-      id: 'Events',
+      id: `${sourceSegment.id}/Events`,
       component: <EffectSourceEventSegment />
     });
   }

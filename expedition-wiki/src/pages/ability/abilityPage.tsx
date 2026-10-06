@@ -77,13 +77,11 @@ export default function AbilityPage() {
     contentSegments.push({
       label: 'Charge',
       id: 'Charge',
-      children: [
-        {
-          label: 'Conditions',
-          id: 'Conditions',
-          component: <AbilityChargeConditionSegment />
-        }
-      ]
+      children: [{
+        label: 'Conditions',
+        id: 'Charge/Conditions',
+        component: <AbilityChargeConditionSegment />
+      }]
     });
   }
 
@@ -97,7 +95,7 @@ export default function AbilityPage() {
     
     sourceSegment.children!.push({
       label: 'Arms',
-      id: 'Arms',
+      id: `${sourceSegment.id}/Arms`,
       component: <AbilitySourceArmSegment />
     });
   }
@@ -106,7 +104,7 @@ export default function AbilityPage() {
     
     sourceSegment.children!.push({
       label: 'Characters',
-      id: 'Characters',
+      id: `${sourceSegment.id}/Characters`,
       component: <AbilitySourceCharacterSegment />
     });
   }
@@ -115,7 +113,7 @@ export default function AbilityPage() {
     
     sourceSegment.children!.push({
       label: 'Events',
-      id: 'Events',
+      id: `${sourceSegment.id}/Events`,
       component: <AbilitySourceEventSegment />
     });
   }

@@ -95,7 +95,7 @@ export default function TaskPage() {
   if (behaviourInteractionModelList.length > 0) {
     interactableSegment.children!.push({
       label: 'Behaviour',
-      id: 'Behaviour',
+      id: `${interactableSegment.id}/Behaviour`,
       component: <TaskInteractableBehaviourSegment />
     })
   }
@@ -103,7 +103,7 @@ export default function TaskPage() {
   if (statusEffectModelList.length > 0) {
     interactableSegment.children!.push({
       label: 'Effects',
-      id: 'Effects',
+      id: `${interactableSegment.id}/Effects`,
       component: <TaskInteractableEffectSegment />
     })
   }
@@ -137,7 +137,7 @@ export default function TaskPage() {
 
     const conditionSegment = {
       label: 'Conditions',
-      id: 'Conditions',
+      id: `${utilitySegment.id}/Conditions`,
       children: []
     } as ContentSegment;
 
@@ -148,7 +148,7 @@ export default function TaskPage() {
 
       conditionSegment.children!.push({
         label: 'Abilities',
-        id: 'Abilities',
+        id: `${conditionSegment.id}/Abilities`,
         component: <GeneralUtilityConditionAbilitySegment caseConditionModelList={chargeAbilityCaseConditionModelList} />
       });
     }
@@ -160,7 +160,7 @@ export default function TaskPage() {
 
       conditionSegment.children!.push({
         label: 'Reactions',
-        id: 'Reactions',
+        id: `${conditionSegment.id}/Reactions`,
         component: <GeneralUtilityConditionReactionSegment caseConditionModelList={agentInteractableReactionCaseConditionModelList} />
       });
     }
@@ -172,7 +172,7 @@ export default function TaskPage() {
 
       conditionSegment.children!.push({
         label: 'Loot',
-        id: 'Loot',
+        id: `${conditionSegment.id}/Loot`,
         component: <GeneralUtilityConditionLootSegment caseConditionModelList={agentInteractableLootTableCaseConditionModelList} />
       });
     }
@@ -184,7 +184,7 @@ export default function TaskPage() {
 
       conditionSegment.children!.push({
         label: 'Triggers',
-        id: 'Triggers',
+        id: `${conditionSegment.id}/Triggers`,
         component: <GeneralUtilityConditionTriggerSegment caseConditionModelList={interactionTriggerCaseConditionModelList} />
       });
     }
@@ -196,7 +196,7 @@ export default function TaskPage() {
 
       conditionSegment.children!.push({
         label: 'Events',
-        id: 'Events',
+        id: `${conditionSegment.id}/Events`,
         component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
       });
     }
@@ -208,7 +208,7 @@ export default function TaskPage() {
 
       conditionSegment.children!.push({
         label: 'Items',
-        id: 'Events',
+        id: `${conditionSegment.id}/Items`,
         component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
       });
     }

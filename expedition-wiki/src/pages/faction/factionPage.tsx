@@ -87,7 +87,7 @@ export default function FactionPage() {
   if (friendlyFactionModelList.length > 0) {
     attitudeSegment.children!.push({
       label: 'Friendly',
-      id: 'Friendly',
+      id: `${attitudeSegment.id}/Friendly`,
       component: <FactionAttitudeSegment factionModelList={friendlyFactionModelList} />
     });
   }
@@ -95,7 +95,7 @@ export default function FactionPage() {
   if (hostileFactionModelList.length > 0) {
     attitudeSegment.children!.push({
       label: 'Hostile',
-      id: 'Hostile',
+      id: `${attitudeSegment.id}/Hostile`,
       component: <FactionAttitudeSegment factionModelList={hostileFactionModelList} />
     });
   }
@@ -113,7 +113,7 @@ export default function FactionPage() {
 
     const conditionSegment = {
       label: 'Conditions',
-      id: 'Conditions',
+      id: `${utilitySegment.id}/Conditions`,
       children: []
     } as ContentSegment;
 
@@ -124,7 +124,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Abilities',
-        id: 'Abilities',
+        id: `${conditionSegment.id}/Abilities`,
         component: <GeneralUtilityConditionAbilitySegment caseConditionModelList={chargeAbilityCaseConditionModelList} />
       });
     }
@@ -136,7 +136,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Reactions',
-        id: 'Reactions',
+        id: `${conditionSegment.id}/Reactions`,
         component: <GeneralUtilityConditionReactionSegment caseConditionModelList={agentInteractableReactionCaseConditionModelList} />
       });
     }
@@ -148,7 +148,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Loot',
-        id: 'Loot',
+        id: `${conditionSegment.id}/Loot`,
         component: <GeneralUtilityConditionLootSegment caseConditionModelList={agentInteractableLootTableCaseConditionModelList} />
       });
     }
@@ -160,7 +160,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Triggers',
-        id: 'Triggers',
+        id: `${conditionSegment.id}/Triggers`,
         component: <GeneralUtilityConditionTriggerSegment caseConditionModelList={interactionTriggerCaseConditionModelList} />
       });
     }
@@ -172,7 +172,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Events',
-        id: 'ConditionEvents',
+        id: `${conditionSegment.id}/Events`,
         component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
       });
     }
@@ -184,7 +184,7 @@ export default function FactionPage() {
 
       conditionSegment.children!.push({
         label: 'Items',
-        id: 'Items',
+        id: `${conditionSegment.id}/Items`,
         component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
       });
     }
@@ -205,7 +205,7 @@ export default function FactionPage() {
   if (standingStatusEffectModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Effects',
-      id: 'Effects',
+      id: `${sourceSegment.id}/Effects`,
       component: <FactionSourceEffectSegment />
     });
   }
@@ -213,7 +213,7 @@ export default function FactionPage() {
   if (reputationEventModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Events',
-      id: 'SourceEvents',
+      id: `${sourceSegment.id}/Events`,
       component: <FactionSourceEventSegment />
     });
   }

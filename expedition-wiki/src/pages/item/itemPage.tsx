@@ -116,14 +116,16 @@ export default function ItemPage() {
       children: [
         {
           label: 'Ability',
-          id: 'Ability',
+          id: 'Supply/Ability',
           component: <ItemSupplyAbilitySegment/>
         }
       ]
     } as ContentSegment;
 
-    if (classModelList.length > 0) 
+    if (classModelList.length > 0) {
+      classSegment.id = `${supplySegment.id}/Classes`;
       supplySegment.children!.push(classSegment);
+    }
     
     if (supplySegment.children?.length !== 0)
       contentSegments.push(supplySegment);
@@ -137,13 +139,15 @@ export default function ItemPage() {
       children: []
     } as ContentSegment;
 
-    if (classModelList.length > 0) 
+    if (classModelList.length > 0) {
+      classSegment.id = `${equipmentSegment.id}/Classes`;
       equipmentSegment.children!.push(classSegment);
+    }
 
     if (statusEffectModelList.length > 0) {   
       equipmentSegment.children!.push({
         label: 'Effects',
-        id: 'Effects',
+        id: `${equipmentSegment.id}/Effects`,
         component: <ItemEquipmentEffectSegment/>
       });
     }
@@ -151,7 +155,7 @@ export default function ItemPage() {
     if (dischargeAbilityModelList.length > 0) {
       equipmentSegment.children!.push({
         label: 'Abilities',
-        id: 'Abilities',
+        id: `${equipmentSegment.id}/Abilities`,
         component: <ItemEquipmentAbilitySegment/>
       });
     }
@@ -159,7 +163,7 @@ export default function ItemPage() {
     if (equipmentSetModelList.length > 0) {
       equipmentSegment.children!.push({
         label: 'Sets',
-        id: 'Sets',
+        id: `${equipmentSegment.id}/Sets`,
         component: <ItemEquipmentSetSegment/>
       });
     }
@@ -167,7 +171,7 @@ export default function ItemPage() {
     if (characterAgentInteractableModelList.length > 0) {
       equipmentSegment.children!.push({
         label: 'Equipped',
-        id: 'Equipped',
+        id: `${equipmentSegment.id}/Equipped`,
         component: <ItemEquipmentEquippedSegment />
       });
     }
@@ -190,7 +194,7 @@ export default function ItemPage() {
 
       craftSegment.children!.push({
         label: type,
-        id: type,
+        id: `${craftSegment.id}/${type}`,
         component: <ItemCraftSegment itemComponentModelList={list}/>
       })
     }
@@ -201,14 +205,14 @@ export default function ItemPage() {
   
   const utilitySegment = {
     label: 'Utility',
-    id: 'Utility',
+    id: `Utility`,
     children: []
   } as ContentSegment;
 
   if (createComponentItemModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Component',
-      id: 'Component',
+      id: `${utilitySegment.id}/Component`,
       component: <ItemUtilityComponentSegment />
     })
   }
@@ -216,7 +220,7 @@ export default function ItemPage() {
   if (restEventModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Rest',
-      id: 'Rest',
+      id: `${utilitySegment.id}/Rest`,
       component: <ItemUtilityRestSegment />
     })
   }
@@ -224,7 +228,7 @@ export default function ItemPage() {
   if (shopItemEventItemModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Buy',
-      id: 'Buy',
+      id: `${utilitySegment.id}/Buy`,
       component: <ItemUtilityBuySegment />
     })
   }
@@ -232,7 +236,7 @@ export default function ItemPage() {
   if (shopItemEventModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Sell',
-      id: 'Sell',
+      id: `${utilitySegment.id}/Sell`,
       component: <ItemUtilitySellSegment />
     })
   }
@@ -240,7 +244,7 @@ export default function ItemPage() {
   if (tradeItemEventItemModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Trade',
-      id: 'Trade',
+      id: `${utilitySegment.id}/Trade`,
       component: <ItemUtilityTradeSegment />
     })
   }
@@ -248,7 +252,7 @@ export default function ItemPage() {
   if (craftItemEventItemModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Craft',
-      id: 'Craft',
+      id: `${utilitySegment.id}/Craft`,
       component: <ItemUtilityCraftSegment />
     })
   }
@@ -256,7 +260,7 @@ export default function ItemPage() {
   if (relinquishItemEventItemModelList.length > 0) {
     utilitySegment.children!.push({
       label: 'Relinquish',
-      id: 'Relinquish',
+      id: `${utilitySegment.id}/Relinquish`,
       component: <ItemUtilityRelinquishSegment />
     })
   }
@@ -265,7 +269,7 @@ export default function ItemPage() {
 
     const conditionSegment = {
       label: 'Conditions',
-      id: 'Conditions',
+      id: `${utilitySegment.id}/Conditions`,
       children: []
     } as ContentSegment;
 
@@ -276,7 +280,7 @@ export default function ItemPage() {
 
       conditionSegment.children!.push({
         label: 'Abilities',
-        id: 'Abilities',
+        id: `${conditionSegment.id}/Abilities`,
         component: <GeneralUtilityConditionAbilitySegment caseConditionModelList={chargeAbilityCaseConditionModelList} />
       });
     }
@@ -288,7 +292,7 @@ export default function ItemPage() {
 
       conditionSegment.children!.push({
         label: 'Reactions',
-        id: 'Reactions',
+        id: `${conditionSegment.id}/Reactions`,
         component: <GeneralUtilityConditionReactionSegment caseConditionModelList={agentInteractableReactionCaseConditionModelList} />
       });
     }
@@ -300,7 +304,7 @@ export default function ItemPage() {
 
       conditionSegment.children!.push({
         label: 'Loot',
-        id: 'Loot',
+        id: `${conditionSegment.id}/Loot`,
         component: <GeneralUtilityConditionLootSegment caseConditionModelList={agentInteractableLootTableCaseConditionModelList} />
       });
     }
@@ -312,7 +316,7 @@ export default function ItemPage() {
 
       conditionSegment.children!.push({
         label: 'Triggers',
-        id: 'Triggers',
+        id: `${conditionSegment.id}/Triggers`,
         component: <GeneralUtilityConditionTriggerSegment caseConditionModelList={interactionTriggerCaseConditionModelList} />
       });
     }
@@ -324,7 +328,7 @@ export default function ItemPage() {
 
       conditionSegment.children!.push({
         label: 'Events',
-        id: 'Events',
+        id: `${conditionSegment.id}/Events`,
         component: <GeneralUtilityConditionEventSegment caseConditionModelList={eventContinuationCaseConditionModelList} />
       });
     }
@@ -336,7 +340,7 @@ export default function ItemPage() {
 
       conditionSegment.children!.push({
         label: 'Items',
-        id: 'Events',
+        id: `${conditionSegment.id}/Items`,
         component: <GeneralUtilityConditionItemSegment caseConditionModelList={itemEventItemCaseConditionModelList} />
       });
     }
@@ -357,7 +361,7 @@ export default function ItemPage() {
   if (scrapComponentItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Scrap',
-      id: 'Scrap',
+      id: `${sourceSegment.id}/Scrap`,
       component: <ItemSourceScrapSegment />
     })
   }
@@ -365,7 +369,7 @@ export default function ItemPage() {
   if (agentInteractableLootTableModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Loot',
-      id: 'Loot',
+      id: `${sourceSegment.id}/Loot`,
       component: <ItemSourceLootSegment />
     })
   }
@@ -373,7 +377,7 @@ export default function ItemPage() {
   if (mailEventModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Mail',
-      id: 'Mail',
+      id: `${sourceSegment.id}/Mail`,
       component: <ItemSourceMailSegment />
     })
   }
@@ -381,7 +385,7 @@ export default function ItemPage() {
   if (sourceStealItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Steal',
-      id: 'Steal',
+      id: `${sourceSegment.id}/Steal`,
       component: <ItemSourceStealSegment />
     })
   }
@@ -389,7 +393,7 @@ export default function ItemPage() {
   if (sourceClaimItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Claim',
-      id: 'Claim',
+      id: `${sourceSegment.id}/Claim`,
       component: <ItemSourceClaimSegment />
     })
   }
@@ -397,7 +401,7 @@ export default function ItemPage() {
   if (sourceTradeItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Trade',
-      id: 'Trade',
+      id: `${sourceSegment.id}/Trade`,
       component: <ItemSourceTradeSegment />
     })
   }
@@ -405,7 +409,7 @@ export default function ItemPage() {
   if (sourceShopItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Buy',
-      id: 'Buy',
+      id: `${sourceSegment.id}/Buy`,
       component: <ItemSourceBuySegment />
     })
   }
@@ -413,7 +417,7 @@ export default function ItemPage() {
   if (itemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Sell',
-      id: 'Sell',
+      id: `${sourceSegment.id}/Sell`,
       component: <ItemSourceSellSegment />
     })
   }
@@ -421,7 +425,7 @@ export default function ItemPage() {
   if (sourceCraftItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Craft',
-      id: 'Craft',
+      id: `${sourceSegment.id}/Craft`,
       component: <ItemSourceCraftSegment />
     })
   }
@@ -429,7 +433,7 @@ export default function ItemPage() {
   if (sourceDistributeItemEventItemModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Distribute',
-      id: 'Distribute',
+      id: `${sourceSegment.id}/Distribute`,
       component: <ItemSourceDistributeSegment />
     })
   }

@@ -135,7 +135,7 @@ export default function EventPage() {
       id: 'Menu',
       children: [{
         label: 'Entries',
-        id: 'Entries',
+        id: 'Menu/Entries',
         component: <EventMenuEntrySegment />
       }]   
     })
@@ -147,7 +147,7 @@ export default function EventPage() {
       id: 'Speech',
       children: [{
         label: 'Text',
-        id: 'Text',
+        id: 'Speech/Text',
         component: <EventSpeechTextSegment />
       }]   
     })
@@ -159,7 +159,7 @@ export default function EventPage() {
       id: 'Dialogue',
       children: [{
         label: 'Speech',
-        id: 'Speech',
+        id: 'Dialogue/Speech',
         component: <EventDialogueSpeechSegment />
       }]   
     })
@@ -174,7 +174,7 @@ export default function EventPage() {
   if (eventModel.mailEventModel) {
     mailSegment.children!.push({
       label: 'Message',
-      id: 'Message',
+      id: `${mailSegment.id}/Message`,
       component: <EventMailMessageSegment />
     });
   }
@@ -182,7 +182,7 @@ export default function EventPage() {
   if (itemModelList.length > 0) {
     mailSegment.children!.push({
       label: 'Items',
-      id: 'Items',
+      id: `${mailSegment.id}/Items`,
       component: <EventMailItemSegment />
     });
   }
@@ -198,7 +198,7 @@ export default function EventPage() {
         id: 'Steal',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Steal/Items',
           component: <EventStealItemSegment />
         }]
       })
@@ -210,7 +210,7 @@ export default function EventPage() {
         id: 'Claim',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Claim/Items',
           component: <EventClaimItemSegment />
         }]
       })
@@ -222,7 +222,7 @@ export default function EventPage() {
         id: 'Trade',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Trade/Items',
           component: <EventTradeItemSegment />
         }]
       })
@@ -234,7 +234,7 @@ export default function EventPage() {
         id: 'Shop',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Shop/Items',
           component: <EventShopItemSegment />
         }]
       })
@@ -246,7 +246,7 @@ export default function EventPage() {
         id: 'Craft',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Craft/Items',
           component: <EventCraftItemSegment />
         }]
       })
@@ -258,7 +258,7 @@ export default function EventPage() {
         id: 'Relinquish',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Relinquish/Items',
           component: <EventRelinquishItemSegment />
         }]
       })
@@ -270,7 +270,7 @@ export default function EventPage() {
         id: 'Distribute',
         children: [{
           label: 'Items',
-          id: 'Items',
+          id: 'Distribute/Items',
           component: <EventDistributeItemSegment />
         }]
       })
@@ -283,7 +283,7 @@ export default function EventPage() {
       id: 'Effect',
       children: [{
         label: 'Effects',
-        id: 'Effects',
+        id: 'Effect/Effects',
         component: <EventEffectEffectSegment />
       }]
     })
@@ -295,7 +295,7 @@ export default function EventPage() {
       id: 'Ability',
       children: [{
         label: 'Abilities',
-        id: 'Abilities',
+        id: 'Ability/Abilities',
         component: <EventAbilityAbilitySegment />
       }]
     })
@@ -307,7 +307,7 @@ export default function EventPage() {
       id: 'Companion',
       children: [{
         label: 'Interactables',
-        id: 'Interactables',
+        id: 'Companion/Interactables',
         component: <EventCompanionInteractableSegment />
       }]
     })
@@ -319,7 +319,7 @@ export default function EventPage() {
       id: 'Reputation',
       children: [{
         label: 'Factions',
-        id: 'Factions',
+        id: 'Reputation/Factions',
         component: <EventReputationFactionSegment />
       }]
     })
@@ -332,13 +332,15 @@ export default function EventPage() {
       id: 'Loot',
       children: agentInteractableLootTableModelList.map(agentInteractableLootTableModel => {
 
+        const id = `Loot/${agentInteractableLootTableModel.name}`;
+
         const children: ContentSegment[] = [];
 
         if (agentInteractableLootTableModel.caseConditionModelList.length > 0) {
 
           children.push({
             label: 'Conditions',
-            id: 'Conditions',
+            id: `${id}/Conditions`,
             component: <GeneralLootTableConditionSegment caseConditionModelList={agentInteractableLootTableModel.caseConditionModelList} />
           })
         }
@@ -347,15 +349,14 @@ export default function EventPage() {
 
           children.push({
             label: 'Items',
-            id: 'Items',
+            id: `${id}/Items`,
             component: <GeneralLootTableItemSegment itemModelList={agentInteractableLootTableModel.itemModelList}/>
           })
         }
 
         return {
           label: agentInteractableLootTableModel.name,
-          id: agentInteractableLootTableModel.name,
-          component: <></>,
+          id: id,
           children: children
         } as ContentSegment;
       })  
@@ -368,7 +369,7 @@ export default function EventPage() {
       id: 'Signal',
       children: [{
         label: 'Reflections',
-        id: 'Reflections',
+        id: 'Signal/Reflections',
         component: <EventSignalReflectionSegment />
       }]   
     })
@@ -391,7 +392,7 @@ export default function EventPage() {
   if (sourceAgentInteractableReactionModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Reactions',
-      id: 'Reactions',
+      id: `${sourceSegment.id}/Reactions`,
       component: <EventSourceReactionSegment />
     })
   }
@@ -399,7 +400,7 @@ export default function EventPage() {
   if (sourceEventContinuationModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Events',
-      id: 'Events',
+      id: `${sourceSegment.id}/Events`,
       component: <EventSourceEventSegment />
     })
   }
@@ -407,7 +408,7 @@ export default function EventPage() {
   if (sourceInteractionTriggerModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Triggers',
-      id: 'Triggers',
+      id: `${sourceSegment.id}/Triggers`,
       component: <EventSourceTriggerSegment />
     })
   }
@@ -415,7 +416,7 @@ export default function EventPage() {
   if (sourceMenuEventEntryModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Menus',
-      id: 'Menus',
+      id: `${sourceSegment.id}/Menus`,
       component: <EventSourceMenuSegment />
     })
   }
@@ -423,7 +424,7 @@ export default function EventPage() {
   if (sourceStealItemEventModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Steal',
-      id: 'Steal',
+      id: `${sourceSegment.id}/Steal`,
       component: <EventSourceStealSegment />
     })
   }
@@ -431,7 +432,7 @@ export default function EventPage() {
   if (sourceEventEffectModelList.length > 0) {
     sourceSegment.children!.push({
       label: 'Effects',
-      id: 'Effects',
+      id: `${sourceSegment.id}/Effects`,
       component: <EventSourceEffectSegment />
     })
   }

@@ -6,7 +6,6 @@ import { ClassModel } from '../../../data/models/classModel';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
 
 export default function ItemClassSegment() {
 
@@ -24,8 +23,6 @@ export default function ItemClassSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={classModelList} headCells={headers} />
-    </Box>
+    <BasicTable rowKey="id" rows={classModelList} headCells={headers} />
   )
 }

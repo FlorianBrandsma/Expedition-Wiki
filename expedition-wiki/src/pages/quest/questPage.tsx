@@ -59,7 +59,7 @@ export default function QuestPage() {
   if (questModel.mainQuestModel?.mainQuestModelList.length > 0) {
     requirementSegment.children!.push({
       label: 'Quests',
-      id: 'Quests',
+      id: `${requirementSegment.id}/Quests`,
       component: <QuestRequirementQuestSegment />
     });
   } 
@@ -67,7 +67,7 @@ export default function QuestPage() {
   if (questModel.sideQuestModel?.taskModelList.length > 0) {
     requirementSegment.children!.push({
       label: 'Tasks',
-      id: 'Tasks',
+      id: `${requirementSegment.id}/Tasks`,
       component: <QuestRequirementTaskSegment />
     });
   } 
@@ -87,13 +87,11 @@ export default function QuestPage() {
     contentSegments.push({
       label: 'Utility',
       id: 'Utility',
-      children: [
-        {
-          label: 'Quests',
-          id: 'Quests',
-          component: <QuestUtilityQuestSegment />
-        }
-      ]
+      children: [{
+        label: 'Quests',
+        id: 'Utility/Quests',
+        component: <QuestUtilityQuestSegment />
+      }]
     });
   }
 
