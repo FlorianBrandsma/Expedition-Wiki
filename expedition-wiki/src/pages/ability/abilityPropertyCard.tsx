@@ -2,13 +2,14 @@ import { useAbilityPageContext } from './abilityPageContext';
 
 import { ActionDelayType } from '../../types/enums';
 
-import { CardContent, CardMedia } from '@mui/material';
+import { CardContent } from '@mui/material';
 
 import ExCard from '../../components/exCard/exCard';
 import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
 import ExIconLabel from '../../components/exIconLabel/exIconLabel';
+import ExIconThumbnail from '../../components/exIconThumbnail/exIconThumbnail';
 
 export default function AbilityPropertyCard() {
 
@@ -27,17 +28,9 @@ export default function AbilityPropertyCard() {
           height: '100%', 
           padding: 1, 
           '&:last-child': { paddingBottom: 1 }
-        }}>
-        <CardMedia 
-          component='img'
-          image={`/images/icons/objects/${abilityModel.iconResourceName}.png`}
-          alt={abilityModel.iconResourceName}
-          sx={{
-            width: '66%',
-            display: 'block',
-            margin: 'auto'
-          }}
-        />
+        }}
+      >
+        <ExIconThumbnail resourceName={abilityModel.iconResourceName} />
       </CardContent>
 
       {/* Properties */}
@@ -111,7 +104,7 @@ export default function AbilityPropertyCard() {
                 label={
                   <ExIconLabel 
                     label='Energy'
-                    url='/images/icons/general/ResourceBox_Energy.png'
+                    url='/images/icons/general/resources/ResourceBox_Energy/ResourceBox_Energy_128.webp'
                     size={20}
                     alignment='flex-end'
                   />
@@ -124,7 +117,7 @@ export default function AbilityPropertyCard() {
                 label={
                   <ExIconLabel 
                     label='Mana'
-                    url='/images/icons/general/ResourceBox_Mana.png'
+                    url='/images/icons/general/resources/ResourceBox_Mana/ResourceBox_Mana_128.webp'
                     size={20}
                     alignment='flex-end'
                   />

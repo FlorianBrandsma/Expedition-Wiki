@@ -52,7 +52,7 @@ export default function ElementTable(props: ElementTableProps) {
               <TableCell>
                 <ExIconLabel 
                   label={type}
-                  url={`/images/icons/elements/${type}.png`}
+                  url={`/images/icons/elements/${type}/${type}_64.webp`}
                   size={20}
                   alignment='flex-start'
                 />

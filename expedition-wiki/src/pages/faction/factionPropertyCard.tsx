@@ -1,11 +1,12 @@
 import { useFactionPageContext } from './factionPageContext';
 
-import { CardContent, CardMedia } from '@mui/material';
+import { CardContent } from '@mui/material';
 
 import ExCard from '../../components/exCard/exCard';
 import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
+import ExIconThumbnail from '../../components/exIconThumbnail/exIconThumbnail';
 
 export default function FactionPropertyCard() {
 
@@ -24,17 +25,9 @@ export default function FactionPropertyCard() {
           height: '100%', 
           padding: 1, 
           '&:last-child': { paddingBottom: 1 }
-        }}>
-        <CardMedia 
-          component='img'
-          image={`/images/icons/objects/${factionModel.iconResourceName}.png`}
-          alt={factionModel.iconResourceName}
-          sx={{
-            width: '66%',
-            display: 'block',
-            margin: 'auto'
-          }}
-        />
+        }}
+      >
+        <ExIconThumbnail resourceName={factionModel.iconResourceName} />
       </CardContent>
 
       {/* Properties */}

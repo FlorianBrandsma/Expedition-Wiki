@@ -45,7 +45,7 @@ export default function TaskEventSegment() {
           row.completeTask && (
             <Box
               component="img"
-              src={'/images/icons/general/Progress_Icon.png'}
+              src={'/images/icons/general/selection/Selection_Gold/Selection_Gold_128.webp'}
               sx={{ 
                 height: '2rem',
                 verticalAlign: 'middle' 

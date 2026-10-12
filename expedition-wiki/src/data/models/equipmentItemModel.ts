@@ -1,4 +1,4 @@
-import { EquipmentItemType, EquipmentSlotType } from "../../types/enums";
+import { ElementType, EquipmentItemType, EquipmentSlotType } from "../../types/enums";
 import { ArmEquipmentItemModel } from './armEquipmentItemModel';
 import { GearEquipmentItemModel } from './gearEquipmentItemModel';
 import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
@@ -65,5 +65,9 @@ export class EquipmentItemModel {
       case 'Gear':    return this.gearEquipmentItemModel!.materialTypeDescription;
       case 'Trinket': return this.trinketEquipmentItemModel!.typeDescription;
     }
+  }
+
+  get elementTypeDescription(): ElementType {
+    return ElementType[this.elementType];
   }
 }

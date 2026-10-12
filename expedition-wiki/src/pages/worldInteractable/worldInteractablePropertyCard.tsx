@@ -2,7 +2,7 @@ import { useWorldInteractablePageContext } from './worldInteractablePageContext'
 
 import { WorldInteractableParentType } from '../../types/enums';
 
-import { Box, CardContent, CardMedia } from '@mui/material';
+import { Box, CardContent } from '@mui/material';
 
 import ModelButton from '../../features/modelViewer/components/modelButton';
 import ExCard from '../../components/exCard/exCard';
@@ -11,7 +11,7 @@ import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
 import ExLink from '../../components/exLink/exLink';
 import ExIcon from '../../components/exIcon/exIcon';
-
+import ExAssetThumbnail from '../../components/exAssetThumbnail/exAssetThumbnail';
 
 interface WorldInteractablePropertyCardProps {
   questName?: string;
@@ -41,17 +41,9 @@ export default function WorldInteractablePropertyCard({ questName, objectiveName
               height: '100%', 
               padding: 1, 
               '&:last-child': { paddingBottom: 1 }
-            }}>
-            <CardMedia 
-              component='img'
-              image={`/images/thumbnails/assets/${entityWorldInteractableModel.interactableAssetResourceName}.png`}
-              alt={entityWorldInteractableModel.interactableAssetResourceName}
-              sx={{
-                width: '66%',
-                display: 'block',
-                margin: 'auto'
-              }}
-            />
+            }}
+          >
+            <ExAssetThumbnail resourceName={entityWorldInteractableModel.interactableAssetResourceName} />
             <ModelButton assetType={entityWorldInteractableModel.interactableAssetType} assetResourceName={entityWorldInteractableModel.interactableAssetResourceName} />
           </CardContent>
         </>

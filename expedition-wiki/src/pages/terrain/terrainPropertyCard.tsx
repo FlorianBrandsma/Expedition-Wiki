@@ -4,6 +4,7 @@ import ExCard from '../../components/exCard/exCard';
 import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
+import ExMap from '../../components/exMap/exMap';
 
 export default function TerrainPropertyCard() {
 
@@ -24,6 +25,17 @@ export default function TerrainPropertyCard() {
           value={terrainModel.regionName}
         />
       </ExCardTable>
+
+      {/* Properties */}
+      <ExCardHeader title='Map' /> 
+      <ExMap 
+        terrainModel={terrainModel}
+        sx={{
+          borderRadius: 0,
+          height: 200,
+          width: '100%'
+        }}
+      />      
     </ExCard>
   )
 }

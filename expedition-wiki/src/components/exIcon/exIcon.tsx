@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Avatar from '@mui/material/Avatar';
 
 interface ExIconProps {
@@ -5,12 +7,30 @@ interface ExIconProps {
   size: number;
 }
 
-export default function ExIcon(props:ExIconProps) {
+export default function ExIcon({ resourceName, size}:ExIconProps) {
+
+  const highResSrc = `/images/icons/objects/${resourceName}/${resourceName}_256.webp`;
+  const lowResSrc  = `/images/icons/objects/${resourceName}/${resourceName}_128.webp`;
+
+  const [src, setSrc] = useState<string>(highResSrc);
+
   return (
     <Avatar 
-      src={`/images/icons/objects/${props.resourceName}.png`}
+      src={src}
       variant='rounded'
-      sx={{ width: props.size, height: props.size, backgroundColor: 'white'}}
+      sx={{ 
+        width: size, 
+        height: size, 
+        backgroundColor: 'white'
+      }}
+      slotProps={{
+        img: { 
+          onError: () => {
+            if (src !== lowResSrc)
+              setSrc(lowResSrc);
+          }
+        }
+      }}
     />
   );
 }

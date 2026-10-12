@@ -1,11 +1,12 @@
 import { useEffectPageContext } from './effectPageContext';
 
-import { CardContent, CardMedia } from '@mui/material';
+import { CardContent } from '@mui/material';
 
 import ExCard from '../../components/exCard/exCard';
 import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
+import ExIconThumbnail from '../../components/exIconThumbnail/exIconThumbnail';
 
 export default function EffectPropertyCard() {
 
@@ -25,17 +26,9 @@ export default function EffectPropertyCard() {
           height: '100%', 
           padding: 1, 
           '&:last-child': { paddingBottom: 1 }
-        }}>
-        <CardMedia 
-          component='img'
-          image={`/images/icons/objects/${effectModel.iconResourceName}.png`}
-          alt={effectModel.iconResourceName}
-          sx={{
-            width: '66%',
-            display: 'block',
-            margin: 'auto'
-          }}
-        />
+        }}
+      >
+        <ExIconThumbnail resourceName={effectModel.iconResourceName} />
       </CardContent>
 
       <ExCardHeader title='Properties' /> 

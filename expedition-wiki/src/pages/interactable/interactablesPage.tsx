@@ -9,7 +9,7 @@ import { InteractableModel } from '../../data/models/interactableModel';
 import { InteractableRequestType, InteractableParameters } from '../../data/parameters/interactableParameters';
 import { getData } from '../../services/dataManager';
 
-import { InteractableType, AgentInteractableType, CharacterAgentInteractableType, ElementType } from '../../types/enums'
+import { InteractableType, AgentInteractableType, CharacterAgentInteractableType } from '../../types/enums'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
@@ -132,8 +132,8 @@ export default function InteractablesPage() {
       render: (row) => (
         row.agentInteractableModel && (
           <ExIconLabel 
-            label={ElementType[row.elementType]}
-            url={`/images/icons/elements/${ElementType[row.elementType]}.png`}
+            label={row.agentInteractableModel.elementTypeDescription}
+            url={`/images/icons/elements/${row.agentInteractableModel.elementTypeDescription}/${row.agentInteractableModel.elementTypeDescription}_64.webp`}
             size={20}
             alignment='flex-start'
           />

@@ -2,7 +2,7 @@ import { useClimatePageContext } from './climatePageContext';
 
 import type { ChunkModel } from '../../data/models/chunkModel';
 
-import { CardContent, CardMedia, TableBody, TableCell, TableRow } from '@mui/material';
+import { CardContent, TableBody, TableCell, TableRow } from '@mui/material';
 
 import ExCard from '../../components/exCard/exCard';
 import ExCardHeader from '../../components/exCard/exCardHeader';
@@ -11,6 +11,7 @@ import ExCardTable from '../../components/exCard/exCardTable';
 import ExLink from '../../components/exLink/exLink';
 import ExCollapse from '../../components/exCollapse/exCollapse';
 import ExTable from '../../components/exTable/exTable';
+import ExIconThumbnail from '../../components/exIconThumbnail/exIconThumbnail';
 
 interface ChunkTableProps {
   chunkModelList: ChunkModel[];
@@ -52,17 +53,9 @@ export default function ClimatePropertyCard() {
               height: '100%', 
               padding: 1, 
               '&:last-child': { paddingBottom: 1 }
-            }}>
-            <CardMedia 
-              component='img'
-              image={`/images/icons/objects/${climateModel.iconResourceName}.png`}
-              alt={climateModel.iconResourceName}
-              sx={{
-                width: '66%',
-                display: 'block',
-                margin: 'auto'
-              }}
-            />
+            }}
+          >
+            <ExIconThumbnail resourceName={climateModel.iconResourceName} />
           </CardContent>
         </>
       )}

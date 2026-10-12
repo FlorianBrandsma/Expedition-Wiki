@@ -9,7 +9,7 @@ import { ItemModel } from '../../data/models/itemModel';
 import { ItemRequestType, ItemParameters } from '../../data/parameters/itemParameters';
 import { getData } from '../../services/dataManager';
 
-import { ItemType, SupplyItemType, EquipmentItemType, ElementType, ArmEquipmentItemType, GearEquipmentItemMaterialType, TrinketEquipmentItemType } from '../../types/enums'
+import { ItemType, SupplyItemType, EquipmentItemType, ArmEquipmentItemType, GearEquipmentItemMaterialType, TrinketEquipmentItemType } from '../../types/enums'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
@@ -172,8 +172,8 @@ export default function ItemsPage() {
       render: (row) => (
         row.equipmentItemModel && (
           <ExIconLabel 
-            label={ElementType[row.elementType]}
-            url={`/images/icons/elements/${ElementType[row.elementType]}.png`}
+            label={row.equipmentItemModel.elementTypeDescription}
+            url={`/images/icons/elements/${row.equipmentItemModel.elementTypeDescription}/${row.equipmentItemModel.elementTypeDescription}_64.webp`}
             size={20}
             alignment='flex-start'
           />

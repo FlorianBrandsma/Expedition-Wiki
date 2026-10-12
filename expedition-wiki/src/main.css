@@ -7,9 +7,16 @@ a, a:link {
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:visited {
-    color:#5A5A50;
+  color:#5A5A50;
+}
+
+.leaflet-tooltip.mui-tooltip-marker {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }

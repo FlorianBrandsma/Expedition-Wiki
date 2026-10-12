@@ -21,7 +21,7 @@ import FactionPage from './pages/faction/factionPage';
 import ClassesPage from './pages/class/classesPage';
 import ClassPage from './pages/class/classPage';
 
-import MenuBG from './images/MenuBG.png'
+import MenuBG from './images/MenuBG.webp'
 import TerrainsPage from './pages/terrain/terrainsPage';
 import TerrainPage from './pages/terrain/terrainPage';
 import ClimatePage from './pages/climate/climatePage';

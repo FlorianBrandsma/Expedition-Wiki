@@ -379,6 +379,13 @@ export const RarityType = [
   'Very rare'
 ] as const;
 
+export const WaypointType = [
+  'Minor',
+  'Major'
+] as const;
+
+export type WaypointType = typeof WaypointType[number];
+
 export const WorldInteractableParentType = [
   'Game',
   'Terrain',

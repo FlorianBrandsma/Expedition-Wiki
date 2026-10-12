@@ -1,10 +1,8 @@
 import { useItemPageContext } from './itemPageContext';
 
-import { ElementType } from '../../types/enums';
-
 import type { CurrencyItemModel } from '../../data/models/currencyItemModel';
 
-import { CardContent, CardMedia, TableBody, TableRow, TableCell, Box } from '@mui/material';
+import { CardContent, TableBody, TableRow, TableCell, Box } from '@mui/material';
 
 import ModelButton from '../../features/modelViewer/components/modelButton';
 import ExTable from '../../components/exTable/exTable';
@@ -17,6 +15,7 @@ import ExIconLabel from '../../components/exIconLabel/exIconLabel';
 import ElementTable from '../../components/elementTable/elementTable';
 import ExCollapse from '../../components/exCollapse/exCollapse';
 import ExLink from '../../components/exLink/exLink';
+import ExAssetThumbnail from '../../components/exAssetThumbnail/exAssetThumbnail';
 
 interface CurrencyTableProps {
   currencyItemModelList: CurrencyItemModel[];
@@ -65,17 +64,9 @@ export default function ItemPropertyCard() {
           height: '100%', 
           padding: 1, 
           '&:last-child': { paddingBottom: 1 }
-        }}>
-        <CardMedia 
-          component='img'
-          image={`/images/thumbnails/assets/${itemModel.assetResourceName}.png`}
-          alt={itemModel.assetResourceName}
-          sx={{
-            width: '66%',
-            display: 'block',
-            margin: 'auto'
-          }}
-        />
+        }}
+      >
+        <ExAssetThumbnail resourceName={itemModel.assetResourceName} />
         <ModelButton assetType={itemModel.assetType} assetResourceName={itemModel.assetResourceName} />
       </CardContent>
 
@@ -108,8 +99,8 @@ export default function ItemPropertyCard() {
             label='Element' 
             value={
               <ExIconLabel 
-                label={ElementType[equipmentItemModel.elementType]}
-                url={`/images/icons/elements/${ElementType[equipmentItemModel.elementType]}.png`}
+                label={equipmentItemModel.elementTypeDescription}
+                url={`/images/icons/elements/${equipmentItemModel.elementTypeDescription}/${equipmentItemModel.elementTypeDescription}_64.webp`}
                 size={20}
                 alignment='flex-start'
               />
@@ -151,7 +142,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Health'
-                url='/images/icons/general/ResourceBox_Health.png'
+                url='/images/icons/general/resources/ResourceBox_Health/ResourceBox_Health_128.webp'
                 size={20}
                 alignment='flex-end'
               />
@@ -162,7 +153,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Mana'
-                url='/images/icons/general/ResourceBox_Mana.png'
+                url='/images/icons/general/resources/ResourceBox_Mana/ResourceBox_Mana_128.webp'
                 size={20}
                 alignment='flex-end'
               />
@@ -182,7 +173,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Physical'
-                url= '/images/icons/general/Physical.png'
+                url= '/images/icons/general/combat/Melee/Melee_128.webp'
                 size={20}
                 alignment='flex-end'
               />
@@ -193,7 +184,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Magical'
-                url= '/images/icons/general/Magical.png'
+                url= '/images/icons/general/combat/Magic/Magic_128.webp'
                 size={20}
                 alignment='flex-end'
               />
@@ -222,7 +213,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Physical'
-                url= '/images/icons/general/Physical.png'
+                url= '/images/icons/general/combat/Melee/Melee_128.webp'
                 size={20}
                 alignment='flex-end'
               />
@@ -233,7 +224,7 @@ export default function ItemPropertyCard() {
             label={
               <ExIconLabel 
                 label='Magical'
-                url= '/images/icons/general/Magical.png'
+                url= '/images/icons/general/combat/Magic/Magic_128.webp'
                 size={20}
                 alignment='flex-end'
               />

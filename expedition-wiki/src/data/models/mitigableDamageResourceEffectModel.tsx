@@ -18,18 +18,22 @@ export class MitigableDamageResourceEffectModel {
     this.damageResourceEffectModel = damageResourceEffectModel;
   }
 
+  get elementTypeDescription(): ElementType {
+    return ElementType[this.elementType];
+  }
+
   descriptionComponent(stack: number): React.ReactNode {
 
     const amount = (this.damageResourceEffectModel.resourceEffectModel?.amount ?? this.damageResourceEffectModel.resourceEffectAmount) * stack;
     
-    const element = ElementType[this.elementType] !== 'Normal' && (
+    const element = this.elementTypeDescription !== 'Normal' && (
       <Box 
         component='span'
         sx={{ display: 'inline-flex', verticalAlign: 'bottom', ml: 0.5 }}
       >
         <ExIconLabel 
-          label={ElementType[this.elementType]}
-          url={`/images/icons/elements/${ElementType[this.elementType]}.png`}
+          label={this.elementTypeDescription}
+          url={`/images/icons/elements/${this.elementTypeDescription}/${this.elementTypeDescription}_64.webp`}
           size={15}
           alignment='flex-start'
         />

@@ -1,4 +1,4 @@
-import { AgentInteractableType } from "../../types/enums";
+import { AgentInteractableType, ElementType } from "../../types/enums";
 import { CharacterAgentInteractableModel } from "./characterAgentInteractableModel";
 
 export class AgentInteractableModel {
@@ -35,5 +35,9 @@ export class AgentInteractableModel {
 
   get typeDescription(): string {
     return `${AgentInteractableType[this.type]} Agent`;
+  }
+
+  get elementTypeDescription(): ElementType {
+    return ElementType[this.elementType];
   }
 }
