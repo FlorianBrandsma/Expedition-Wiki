@@ -1,3 +1,5 @@
+import { useSearchParams } from 'react-router-dom';
+
 import { useTerrainPageContext } from './terrainPageContext';
 
 import ExCard from '../../components/exCard/exCard';
@@ -8,10 +10,15 @@ import ExMap from '../../components/exMap/exMap';
 
 export default function TerrainPropertyCard() {
 
+  const [searchParams] = useSearchParams();
+
   const { terrainModel } = useTerrainPageContext();
+  
+  const waypointModel = terrainModel.waypointModelList.find(x => x.name === searchParams.get('waypoint'));
 
   return (
-    <ExCard sx={{ 
+    <ExCard 
+      sx={{ 
         float: 'right', 
         width: '250px',
         ml: 1, mb: 1
@@ -35,6 +42,12 @@ export default function TerrainPropertyCard() {
           height: 200,
           width: '100%'
         }}
+        {...(waypointModel ? { 
+          position: {
+            x: waypointModel.positionX, z: 
+            waypointModel.positionZ
+          }
+        } : {})}
       />      
     </ExCard>
   )

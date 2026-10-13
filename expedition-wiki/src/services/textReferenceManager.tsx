@@ -15,15 +15,26 @@ export default function ReferenceDescription(description: string, textReferenceM
 
     const descriptionComponent = descriptionParts.map((part, index) => {
 
+      const textReferenceModel = referenceDictionary[part];
+
       return part.startsWith('@') ? (
-        <ExLink
-          key={index}
-          name={referenceDictionary[part].name}
-          params={[TextReferenceType[referenceDictionary[part].type].toLowerCase(), referenceDictionary[part].name]} 
-        />
+        textReferenceModel.waypointTextReferenceModel ? (
+          <ExLink
+            key={index}
+            name={textReferenceModel.name}
+            params={['terrain', textReferenceModel.waypointTextReferenceModel.regionName, textReferenceModel.waypointTextReferenceModel.terrainName]}
+            optionalParams={{waypoint: textReferenceModel.name}}
+          />
+        ) : (
+          <ExLink
+            key={index}
+            name={textReferenceModel.name}
+            params={[TextReferenceType[textReferenceModel.type].toLowerCase(), textReferenceModel.name]} 
+          />
+        )
       ) : (
         <span key={index}>{part}</span>
-      )
+      );
     });
 
     return (

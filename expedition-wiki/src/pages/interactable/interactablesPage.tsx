@@ -29,9 +29,9 @@ export default function InteractablesPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [name,              setName]              = useState<string>('');
-  const [interactableType,          setInteractableType]          = useState<number[]>([]);
-  const [agentInteractableType,    setAgentInteractableType]    = useState<number[]>([]);
+  const [name,                           setName]                           = useState<string>('');
+  const [interactableType,               setInteractableType]               = useState<number[]>([]);
+  const [agentInteractableType,          setAgentInteractableType]          = useState<number[]>([]);
   const [characterAgentInteractableType, setCharacterAgentInteractableType] = useState<number[]>([]);
 
   const [nameInput, setNameInput] = useState<string>('');

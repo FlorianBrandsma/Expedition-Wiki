@@ -58,8 +58,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
   }
 })) as typeof Button;
 
-interface CustomListItemProps
-{
+interface CustomListItemProps {
   depth: number,
   category: Category
   closeDrawer: () => void

@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
-import L from 'leaflet';
+import L, { type LatLngExpression } from 'leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.fullscreen/dist/Control.FullScreen.css';
@@ -19,12 +19,17 @@ const topLeftCRS = L.Util.extend({}, L.CRS.Simple, {
 interface ExMapProps {
   terrainModel: TerrainModel;
   sx?: SxProps<Theme>
+  position?: { 
+    x: number, 
+    z: number 
+  }
 }
 
-export default function ExMap({ terrainModel, sx }: ExMapProps) {
+export default function ExMap({ terrainModel, sx, position }: ExMapProps) {
   
   const { 
-    tileSetResourceName, 
+    tileSetResourceName,
+    tileSize,
     mapGrid
   } = terrainModel;
 
@@ -40,7 +45,14 @@ export default function ExMap({ terrainModel, sx }: ExMapProps) {
 
   const bounds = L.latLngBounds([0, 0], [gridHeight * tileImageSize, gridWidth * tileImageSize]);
 
-  const center = [(gridHeight * tileImageSize) / 2, (gridWidth * tileImageSize) / 2] as L.LatLngExpression;
+  //const center = [(gridHeight * tileImageSize) / 2, (gridWidth * tileImageSize) / 2] as L.LatLngExpression;
+  const worldScale = tileImageSize / tileSize;
+
+  const center = position ? [position.x * worldScale, 
+                             position.z * worldScale] as LatLngExpression :
+
+                            [(gridHeight * tileImageSize) / 2, 
+                             (gridWidth  * tileImageSize) / 2] as LatLngExpression;
 
   return (
     <Box sx={sx}>

@@ -20,7 +20,7 @@ import TerrainTransportSegment from './segments/terrainTransportSegment';
 export default function TerrainPage() {
 
   const params = useParams<{ regionName: string, terrainName: string }>();
-  
+
   const regionName  = params.regionName ?.replaceAll('_', ' ');
   const terrainName = params.terrainName?.replaceAll('_', ' ');
   document.title = `${terrainName} - Expedition Wiki`;
