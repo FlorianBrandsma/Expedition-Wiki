@@ -23,6 +23,6 @@ export default function QuestRequirementTaskSegment() {
   ], [questPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={questModel.sideQuestModel.taskModelList} headCells={headers} />
+    <BasicTable rows={questModel.sideQuestModel.taskModelList} headCells={headers} />
   )
 }

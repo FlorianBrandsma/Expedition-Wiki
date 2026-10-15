@@ -5,8 +5,6 @@ import ExLink from "../../components/exLink/exLink";
 
 export class AbilityStatusEffectModel {
 
-  id!: number;
-
   successChance!: number;
   
   targetType!: number;

@@ -34,7 +34,7 @@ export default function InteractableBehaviourSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={agentInteractableBehaviourModelList} headCells={headers} />
+      <BasicTable rows={agentInteractableBehaviourModelList} headCells={headers} />
     </Box>
   )
 }

@@ -4,8 +4,6 @@ import { ArmEquipmentGroupList } from '../../services/typeManager';
 
 export class ArmEquipmentItemModel {
 
-  id!: number;
-
   type!: number;
 
   equipmentItemName!: string;

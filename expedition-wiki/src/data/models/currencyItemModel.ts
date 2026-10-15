@@ -1,6 +1,4 @@
 export class CurrencyItemModel {
-  
-  id!: number;
 
   itemName!: string;
 

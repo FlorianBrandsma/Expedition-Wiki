@@ -73,7 +73,7 @@ export default function InteractableEffectDefaultSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
+      <BasicTable rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

@@ -23,6 +23,6 @@ export default function QuestRequirementQuestSegment() {
   ], [questPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={questModel.mainQuestModel.mainQuestModelList} headCells={headers} />
+    <BasicTable rows={questModel.mainQuestModel.mainQuestModelList} headCells={headers} />
   )
 }

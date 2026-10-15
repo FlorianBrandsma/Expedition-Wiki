@@ -51,7 +51,7 @@ export default function WorldInteractableTaskSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={taskModelList} headCells={headers} />
+      <BasicTable rows={taskModelList} headCells={headers} />
     </Box>
   )
 }

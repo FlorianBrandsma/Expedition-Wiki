@@ -39,7 +39,7 @@ export default function FactionStandingSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={factionStandingModelList} headCells={headers} />
+      <BasicTable rows={factionStandingModelList} headCells={headers} />
     </Box>
   )
 }

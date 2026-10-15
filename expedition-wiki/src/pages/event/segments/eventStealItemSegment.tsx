@@ -73,6 +73,6 @@ export default function EventStealItemSegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={itemEventItemModelList} headCells={headers} />
+    <BasicTable rows={itemEventItemModelList} headCells={headers} />
   )
 }

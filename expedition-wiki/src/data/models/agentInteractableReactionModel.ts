@@ -3,8 +3,6 @@ import { EventModel } from "./eventModel";
 
 export class AgentInteractableReactionModel {
 
-  id!: number;
-
   successChance!: number;
 
   agentInteractableName!: string;

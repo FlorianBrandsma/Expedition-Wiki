@@ -64,8 +64,6 @@ export default function EffectSourceClimateSegment() {
   }, [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={atmosphereModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={atmosphereModelList} headCells={headers} />
   )
 }

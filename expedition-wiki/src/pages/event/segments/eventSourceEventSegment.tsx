@@ -46,6 +46,6 @@ export default function EventSourceEventSegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceEventContinuationModelList} headCells={headers} />
+    <BasicTable rows={sourceEventContinuationModelList} headCells={headers} />
   )
 }

@@ -63,8 +63,6 @@ export default function ItemUtilityCraftSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={craftItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={craftItemEventItemModelList} headCells={headers} />
   )
 }

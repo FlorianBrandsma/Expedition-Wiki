@@ -27,6 +27,7 @@ import TaskInteractableEffectSegment from './segments/taskInteractableEffectSegm
 import TaskTriggerSegment from './segments/taskTriggerSegment';
 import TaskInteractableBehaviourSegment from './segments/taskInteractableBehaviourSegment';
 import TaskEventSegment from './segments/taskEventSegment';
+import TaskInteractableLocationSegment from './segments/taskInteractableLocationSegment';
 
 export default function TaskPage() {
 
@@ -83,6 +84,7 @@ export default function TaskPage() {
     eventModelList,
     interactionTriggerModelList,
     statusEffectModelList,
+    interactionModelList,
     caseConditionModelList
   } = taskPageModel;
 
@@ -91,6 +93,14 @@ export default function TaskPage() {
     id: 'Interactable',
     children: []
   } as ContentSegment
+
+  if (interactionModelList.length > 0) {
+    interactableSegment.children!.push({
+      label: 'Locations',
+      id: `${interactableSegment.id}/Locations`,
+      component: <TaskInteractableLocationSegment />
+    })
+  }
 
   if (behaviourInteractionModelList.length > 0) {
     interactableSegment.children!.push({

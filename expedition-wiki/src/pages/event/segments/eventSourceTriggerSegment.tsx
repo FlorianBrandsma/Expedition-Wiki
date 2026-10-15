@@ -99,6 +99,6 @@ export default function EventSourceTriggerSegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceInteractionTriggerModelList} headCells={headers} />
+    <BasicTable rows={sourceInteractionTriggerModelList} headCells={headers} />
   )
 }

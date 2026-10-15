@@ -61,7 +61,7 @@ export default function InteractableReactionSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={agentInteractableReactionModelList} headCells={headers} />
+      <BasicTable rows={agentInteractableReactionModelList} headCells={headers} />
     </Box>
   )
 }

@@ -11,8 +11,6 @@ import { TradeItemEventModel } from "./tradeItemEventModel";
 
 export class ItemEventModel {
 
-  id!: number;
-
   type!: number;
 
   eventName!: string;

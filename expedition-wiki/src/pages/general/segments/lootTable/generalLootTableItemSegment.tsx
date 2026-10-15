@@ -37,6 +37,6 @@ export default function GeneralLootTableItemSegment({ itemModelList }: Interacta
     ], [itemModelList]);
 
   return (
-    <BasicTable rowKey='id' rows={itemModelList} headCells={headers} />
+    <BasicTable rows={itemModelList} headCells={headers} />
   )
 }

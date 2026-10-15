@@ -3,8 +3,6 @@ import ReferenceDescription from "../../services/textReferenceManager";
 
 export class ObjectiveModel {
 
-  id!: string;
-
   orderNumber!: number;
 
   name!: string;

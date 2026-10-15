@@ -25,7 +25,7 @@ export default function AbilityClassSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={classModelList} headCells={headers} />
+      <BasicTable rows={classModelList} headCells={headers} />
     </Box>
   )
 }

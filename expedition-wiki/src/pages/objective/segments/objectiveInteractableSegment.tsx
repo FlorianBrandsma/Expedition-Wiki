@@ -77,7 +77,7 @@ export default function ObjectiveInteractableSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={worldInteractableModelList} headCells={headers} />
+      <BasicTable rows={worldInteractableModelList} headCells={headers} />
     </Box>
   )
 }

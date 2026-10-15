@@ -7,7 +7,7 @@ interface ExIconProps {
   size: number;
 }
 
-export default function ExIcon({ resourceName, size}:ExIconProps) {
+export default function ExIcon({ resourceName, size }:ExIconProps) {
 
   const highResSrc = `/images/icons/objects/${resourceName}/${resourceName}_256.webp`;
   const lowResSrc  = `/images/icons/objects/${resourceName}/${resourceName}_128.webp`;

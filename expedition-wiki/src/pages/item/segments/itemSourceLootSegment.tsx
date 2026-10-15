@@ -66,8 +66,6 @@ export default function ItemSourceLootSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={agentInteractableLootTableModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={agentInteractableLootTableModelList} headCells={headers} />
   )
 }

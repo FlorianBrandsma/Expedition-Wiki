@@ -89,7 +89,7 @@ export default function ClimateEffectSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='atmosphereStatusEffectId' rows={statusEffectModelList} headCells={headers} />
+      <BasicTable rows={statusEffectModelList} headCells={headers} />
     </Box>
   )
 }

@@ -38,6 +38,6 @@ export default function ItemEquipmentAbilitySegment() {
   ], [itemPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
+    <BasicTable rows={dischargeAbilityModelList} headCells={headers} />
   )
 }

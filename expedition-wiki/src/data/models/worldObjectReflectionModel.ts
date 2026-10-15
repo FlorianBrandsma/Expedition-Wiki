@@ -1,7 +1,5 @@
 export class WorldObjectReflectionModel {
 
-  id!: number;
-
   positionX!: number;
   positionZ!: number;
 
@@ -17,5 +15,8 @@ export class WorldObjectReflectionModel {
 
   constructor(init:Partial<WorldObjectReflectionModel>) {  
     Object.assign(this, init);
+
+    this.positionX = Number(init.positionX!.toFixed(2));
+    this.positionZ = Number(init.positionZ!.toFixed(2));
   }
 }

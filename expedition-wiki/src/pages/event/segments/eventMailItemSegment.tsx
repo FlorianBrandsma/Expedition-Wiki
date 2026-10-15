@@ -34,6 +34,6 @@ export default function EventMailItemSegment() {
     ], [itemModelList]);
 
   return (
-    <BasicTable rowKey='id' rows={itemModelList} headCells={headers} />
+    <BasicTable rows={itemModelList} headCells={headers} />
   )
 }

@@ -20,6 +20,6 @@ export default function GeneralLootTableConditionSegment({ caseConditionModelLis
     ], [caseConditionModelList]);
 
   return (
-    <BasicTable rowKey='id' rows={caseConditionModelList} headCells={headers} />
+    <BasicTable rows={caseConditionModelList} headCells={headers} />
   )
 }

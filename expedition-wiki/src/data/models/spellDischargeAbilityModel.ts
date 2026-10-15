@@ -1,7 +1,5 @@
 export class SpellDischargeAbilityModel {
 
-  id!: number;
-
   mana!: number;
 
   abilityName!: string;

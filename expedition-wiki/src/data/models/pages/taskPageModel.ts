@@ -5,6 +5,8 @@ import { StatusEffectModel } from "../statusEffectModel";
 import { CaseConditionModel } from "../caseConditionModel";
 import { EventModel } from "../eventModel";
 import { ObjectiveModel } from "../objectiveModel";
+import { InteractionModel } from "../interactionModel";
+import { TerrainModel } from "../terrainModel";
 
 export class TaskPageModel {
 
@@ -15,12 +17,16 @@ export class TaskPageModel {
   objectiveModelList!: ObjectiveModel[];
 
   behaviourInteractionModelList!: BehaviourInteractionModel[];
-
+  
   eventModelList!: EventModel[];
-
+  
   interactionTriggerModelList!: InteractionTriggerModel[];
-
+  
   statusEffectModelList!: StatusEffectModel[];
+
+  interactionModelList!: InteractionModel[];
+
+  terrainModelList!: TerrainModel[];
 
   caseConditionModelList!: CaseConditionModel[];
 
@@ -40,6 +46,10 @@ export class TaskPageModel {
     this.interactionTriggerModelList   = this.interactionTriggerModelList  .map((model) => new InteractionTriggerModel  (model));
 
     this.statusEffectModelList         = this.statusEffectModelList        .map((model) => new StatusEffectModel        (model));
+
+    this.interactionModelList         = this.interactionModelList          .map((model) => new InteractionModel         (model));
+
+    this.terrainModelList             = this.terrainModelList              .map((model) => new TerrainModel             (model));
 
     this.caseConditionModelList        = this.caseConditionModelList       .map((model) => new CaseConditionModel       (model));
   }

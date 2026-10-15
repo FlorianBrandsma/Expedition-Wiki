@@ -1,7 +1,5 @@
 export class ItemComponentModel {
 
-  id!: number;
-
   type!: number;
   
   quantity!: number;

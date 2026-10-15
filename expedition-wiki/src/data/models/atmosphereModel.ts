@@ -3,8 +3,6 @@ import { StatusEffectState } from "../../types/enums";
 
 export class AtmosphereModel {
 
-  id!: number;
-
   isDefault!: boolean;
 
   startTime!: number;

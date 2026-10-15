@@ -5,8 +5,6 @@ import ExLink from "../../components/exLink/exLink";
 
 export class AuraStatusEffectModel {
 
-  id!: number;
-
   targetType!: number;
   combatState!: number;
   auraRange!: number;

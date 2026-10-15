@@ -41,7 +41,7 @@ export default function EffectAbsorbSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={damageResourceEffectModelList} headCells={headers} />
+      <BasicTable rows={damageResourceEffectModelList} headCells={headers} />
     </Box>
   )
 }

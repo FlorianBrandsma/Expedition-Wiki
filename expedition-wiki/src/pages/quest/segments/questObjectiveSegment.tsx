@@ -35,7 +35,7 @@ export default function QuestObjectiveSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={objectiveModelList} headCells={headers} />
+      <BasicTable rows={objectiveModelList} headCells={headers} />
     </Box>
   )
 }

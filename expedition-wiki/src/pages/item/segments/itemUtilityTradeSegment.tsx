@@ -84,8 +84,6 @@ export default function ItemUtilityTradeSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={tradeItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={tradeItemEventItemModelList} headCells={headers} />
   )
 }

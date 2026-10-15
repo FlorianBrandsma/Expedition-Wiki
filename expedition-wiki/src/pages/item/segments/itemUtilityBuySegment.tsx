@@ -86,8 +86,6 @@ export default function ItemUtilityBuySegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={shopItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={shopItemEventItemModelList} headCells={headers} />
   )
 }

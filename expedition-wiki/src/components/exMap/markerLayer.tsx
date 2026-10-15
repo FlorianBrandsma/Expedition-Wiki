@@ -1,20 +1,25 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { Marker, useMapEvents } from 'react-leaflet';
+import { Marker, useMap, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
+
+import type { MapCoordinates } from '../../services/interfaces';
 
 import type { TerrainModel } from '../../data/models/terrainModel';
 
 import WaypointMarker from './waypointMarker';
+import PinMarker from './pinMarker';
 
 const ImageResolution = 128;
 
 interface MarkerLayerProps {
   tileImageSize: number;
   terrainModel: TerrainModel;
+  maxZoom: number;
+  pins?: MapCoordinates[];
 }
 
-export default function MarkerLayer({ tileImageSize, terrainModel }: MarkerLayerProps) {
+export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pins }: MarkerLayerProps) {
 
   const { 
     tileSize,
@@ -24,6 +29,8 @@ export default function MarkerLayer({ tileImageSize, terrainModel }: MarkerLayer
 
   const [zoom, setZoom] = useState(0);
 
+  const map = useMap();
+
   useMapEvents({
     zoomend(e) {
       setZoom(e.target.getZoom())
@@ -32,11 +39,25 @@ export default function MarkerLayer({ tileImageSize, terrainModel }: MarkerLayer
 
   const worldScale = tileImageSize / tileSize;
 
+  useEffect(() => {
+
+    if (!pins || pins.length === 0) return;
+
+    const coordinates = pins.map(pin => L.latLng(pin.z * worldScale, 
+                                                 pin.x * worldScale));
+    const bounds = L.latLngBounds(coordinates);
+
+    map.fitBounds(bounds, {
+      padding:[20,20],
+      maxZoom: pins.length === 1 ? map.getZoom() : maxZoom 
+    });
+  }, [pins]);
+
   const objectMarkers = useMemo(() => {
 
     const cache = {} as Record<string, L.Icon>;
 
-    return worldObjectReflectionModelList.map((worldObjectReflectionModel) => {
+    return worldObjectReflectionModelList.map((worldObjectReflectionModel, index) => {
 
       const assetSize = Math.max(worldObjectReflectionModel.worldObjectAssetSizeX,
                                  worldObjectReflectionModel.worldObjectAssetSizeY, 
@@ -55,12 +76,12 @@ export default function MarkerLayer({ tileImageSize, terrainModel }: MarkerLayer
         })
       }
 
-      const position = [worldObjectReflectionModel.positionZ * worldScale, 
-                        worldObjectReflectionModel.positionX * worldScale] as L.LatLngExpression;
+      const position = L.latLng(worldObjectReflectionModel.positionZ * worldScale, 
+                                worldObjectReflectionModel.positionX * worldScale);
 
       return (
         <Marker
-          key={worldObjectReflectionModel.id}
+          key={index}
           position={position}
           icon={cache[cacheKey]}
           interactive={false}
@@ -72,17 +93,17 @@ export default function MarkerLayer({ tileImageSize, terrainModel }: MarkerLayer
 
   const waypointMarkers = useMemo(() => {
 
-    return waypointModelList.map((waypointModel) => {
+    return waypointModelList.map((waypointModel, index) => {
 
-      const position = [waypointModel.positionZ * worldScale, 
-                        waypointModel.positionX * worldScale] as L.LatLngExpression;
+      const position = L.latLng(waypointModel.positionZ * worldScale, 
+                                waypointModel.positionX * worldScale);
 
       if (zoom < -1 && waypointModel.typeDescription == 'Minor') 
         return null;
 
       return (
         <WaypointMarker
-          key={waypointModel.id}
+          key={index}
           waypointModel={waypointModel} 
           position={position} 
           zoom={zoom} 
@@ -92,10 +113,28 @@ export default function MarkerLayer({ tileImageSize, terrainModel }: MarkerLayer
     
   }, [waypointModelList, zoom])
 
+  const pinMarkers = useMemo(() => {
+
+    return pins?.map((mapPin, index) => {
+
+      const position = L.latLng(mapPin.z * worldScale,
+                                mapPin.x * worldScale);
+
+      return (
+        <PinMarker
+          key={index}
+          position={position}
+        />
+      )
+    })
+
+  }, [pins])
+
   return (
     <>
       {objectMarkers}
       {waypointMarkers}
+      {pinMarkers}
     </>
   )
 }

@@ -3,8 +3,6 @@ import { MenuEventModel } from "./menuEventModel";
 
 export class MenuEventEntryModel {
 
-  id!: number;
-
   name!: string;
 
   menuEventModelList!: MenuEventModel[];

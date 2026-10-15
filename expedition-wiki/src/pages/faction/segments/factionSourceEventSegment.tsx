@@ -4,8 +4,6 @@ import { useFactionPageContext } from '../factionPageContext';
 
 import type { ReputationEventModel } from '../../../data/models/reputationEventModel';
 
-import { Box } from '@mui/material';
-
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
 
@@ -30,8 +28,6 @@ export default function FactionSourceEventSegment() {
   ], [factionPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={reputationEventModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={reputationEventModelList} headCells={headers} />
   )
 }

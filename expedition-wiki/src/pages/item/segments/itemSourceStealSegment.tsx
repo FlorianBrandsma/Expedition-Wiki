@@ -67,6 +67,6 @@ export default function ItemSourceStealSegment() {
   }, [itemPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceStealItemEventItemModelList} headCells={headers} />
+    <BasicTable rows={sourceStealItemEventItemModelList} headCells={headers} />
   )
 }

@@ -83,7 +83,7 @@ export default function ItemSourceCraftSegment() {
           {'Create'}
         </Link>
       </Typography>
-      <BasicTable rowKey="id" rows={sourceCraftItemEventItemModelList} headCells={headers} />
+      <BasicTable rows={sourceCraftItemEventItemModelList} headCells={headers} />
     </Box>
   )
 }

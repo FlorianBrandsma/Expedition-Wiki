@@ -46,8 +46,6 @@ export default function ItemUtilityComponentSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={createComponentItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={createComponentItemModelList} headCells={headers} />
   )
 }

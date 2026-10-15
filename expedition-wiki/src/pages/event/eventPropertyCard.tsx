@@ -7,6 +7,7 @@ import ExCardTable from '../../components/exCard/exCardTable';
 import ExLink from '../../components/exLink/exLink';
 import { Box } from '@mui/material';
 import ExIcon from '../../components/exIcon/exIcon';
+import ExMap from '../../components/exMap/exMap';
 
 export default function EventPropertyCard() {
 
@@ -92,6 +93,23 @@ export default function EventPropertyCard() {
               }
             />
           </ExCardTable>
+          {/* Map */}
+          <ExCardHeader title='Map' /> 
+          <ExMap 
+            terrainModel={transportEventModel.terrainModel}
+            position={{
+              x: transportEventModel.positionX, 
+              z: transportEventModel.positionZ
+            }}
+            pins={[{
+              x: transportEventModel.positionX, 
+              z: transportEventModel.positionZ
+            }]}
+            sx={{
+              height: 200,
+              width: '100%'
+            }}
+          />      
         </>
       )}
       {/* Rest */}

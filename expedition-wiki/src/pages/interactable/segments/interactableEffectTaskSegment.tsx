@@ -101,8 +101,6 @@ export default function InteractableEffectTaskSegment() {
   }, [interactablePageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='interactionStatusEffectId' rows={interactionStatusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={interactionStatusEffectModelList} headCells={headers} />
   )
 }

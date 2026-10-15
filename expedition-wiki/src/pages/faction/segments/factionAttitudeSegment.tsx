@@ -31,8 +31,6 @@ export default function FactionAttitudeSegment({ factionModelList }: FactionAtti
   ], [factionPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={factionModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={factionModelList} headCells={headers} />
   )
 }

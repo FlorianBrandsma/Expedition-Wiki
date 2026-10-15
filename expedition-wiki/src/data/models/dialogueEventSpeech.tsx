@@ -5,8 +5,6 @@ import { WorldInteractableModel } from "./worldInteractableModel";
 
 export class DialogueEventSpeechModel {
 
-  id!: number;
-
   speechType!: number;
 
   text!: string;

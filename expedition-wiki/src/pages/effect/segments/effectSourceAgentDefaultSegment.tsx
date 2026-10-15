@@ -33,8 +33,6 @@ export default function EffectSourceAgentDefaultSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={agentInteractableModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={agentInteractableModelList} headCells={headers} />
   )
 }

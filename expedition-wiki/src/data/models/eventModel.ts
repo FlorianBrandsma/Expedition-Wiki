@@ -22,8 +22,6 @@ import { TransportEventModel } from "./transportEventModel";
 
 export class EventModel {
 
-  id!: number;
-
   type!: number;
 
   name!: string;

@@ -39,8 +39,6 @@ export default function ItemSourceSellSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={itemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={itemModelList} headCells={headers} />
   )
 }

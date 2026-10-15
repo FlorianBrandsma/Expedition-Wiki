@@ -1,6 +1,7 @@
 export class ClassModel {
   
   id!: number;
+  
   type!: number;
 
   name!: string;

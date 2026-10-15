@@ -63,7 +63,7 @@ export default function AbilityEffectSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={abilityModel.effectModelList} headCells={headers} />
+      <BasicTable rows={abilityModel.effectModelList} headCells={headers} />
     </Box>
   )
 }

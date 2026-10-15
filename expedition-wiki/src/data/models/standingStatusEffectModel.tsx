@@ -2,8 +2,6 @@ import ExLink from "../../components/exLink/exLink";
 
 export class StandingStatusEffectModel {
 
-  id!: number;
-
   statusEffectName!: string;
 
   statusEffectIconResourceName!: string;

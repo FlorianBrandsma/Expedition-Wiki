@@ -1,7 +1,5 @@
 export class MainQuestModel {
 
-  id!: number;
-
   questName!: string;
   
   mainQuestModelList!: MainQuestModel[];

@@ -13,8 +13,6 @@ import { AbilityAgentInteractableBehaviourCommandModel } from "./abilityAgentInt
 
 export class AgentInteractableBehaviourModel {
 
-  id!: number;
-
   relationshipType!: number;
   conditionType!: number;
   commandType!: number;

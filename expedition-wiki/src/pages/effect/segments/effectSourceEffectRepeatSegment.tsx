@@ -38,8 +38,6 @@ export default function EffectSourceEffectRepeatSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={repeatStatusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={repeatStatusEffectModelList} headCells={headers} />
   )
 }

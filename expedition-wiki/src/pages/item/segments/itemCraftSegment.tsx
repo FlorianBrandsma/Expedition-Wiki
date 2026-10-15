@@ -34,8 +34,6 @@ export default function ItemCraftSegment(props: ItemCraftSegmentProps) {
   ], [itemComponentModelList]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={itemComponentModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={itemComponentModelList} headCells={headers} />
   )
 }

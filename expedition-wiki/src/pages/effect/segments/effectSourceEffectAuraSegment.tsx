@@ -38,8 +38,6 @@ export default function EffectSourceEffectAuraSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={auraStatusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={auraStatusEffectModelList} headCells={headers} />
   )
 }

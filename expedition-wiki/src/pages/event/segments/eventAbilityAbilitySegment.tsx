@@ -39,6 +39,6 @@ export default function EventAbilityAbilitySegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
+    <BasicTable rows={dischargeAbilityModelList} headCells={headers} />
   )
 }

@@ -1,7 +1,5 @@
 export class ActionDelayModel {
 
-  id!: number;
-
   type!: number;
 
   duration!: number;

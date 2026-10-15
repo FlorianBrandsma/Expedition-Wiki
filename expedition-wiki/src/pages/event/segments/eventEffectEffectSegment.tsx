@@ -44,6 +44,6 @@ export default function EventEffectEffectSegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={effectModelList} headCells={headers} />
+    <BasicTable rows={effectModelList} headCells={headers} />
   )
 }

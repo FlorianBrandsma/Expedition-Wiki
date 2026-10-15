@@ -28,6 +28,6 @@ export default function EventSourceMenuSegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceMenuEventEntryModelList} headCells={headers} />
+    <BasicTable rows={sourceMenuEventEntryModelList} headCells={headers} />
   )
 }

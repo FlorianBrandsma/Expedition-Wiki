@@ -5,8 +5,6 @@ import { TrinketEquipmentItemModel } from './trinketEquipmentItemModel';
 
 export class EquipmentItemModel {
 
-  id!: number;
-
   type!: number;
 
   elementType!: number;

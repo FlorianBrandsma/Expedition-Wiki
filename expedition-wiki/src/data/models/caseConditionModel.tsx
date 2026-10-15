@@ -18,8 +18,6 @@ import { ItemEventItemModel } from "./itemEventItemModel";
 
 export class CaseConditionModel {
 
-  id!: number;
-
   type!: number;
 
   resourceCaseConditionModelList!:      ResourceCaseConditionModel[];

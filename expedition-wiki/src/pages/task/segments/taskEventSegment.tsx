@@ -62,7 +62,7 @@ export default function TaskEventSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={eventModelList} headCells={headers} />
+      <BasicTable rows={eventModelList} headCells={headers} />
     </Box>
   )
 }

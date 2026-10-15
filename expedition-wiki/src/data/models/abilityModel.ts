@@ -7,6 +7,7 @@ import { EffectModel } from "./effectModel";
 export class AbilityModel {
   
   id!: number;
+  
   type!: number;
 
   name!: string;

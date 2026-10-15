@@ -23,6 +23,6 @@ export default function ItemClassSegment() {
   ], [itemPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={classModelList} headCells={headers} />
+    <BasicTable rows={classModelList} headCells={headers} />
   )
 }

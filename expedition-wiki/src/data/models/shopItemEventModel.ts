@@ -2,8 +2,6 @@ import { ItemEventModel } from "./itemEventModel";
 
 export class ShopItemEventModel {
 
-  id!: string;
-
   eventName!: string;
 
   currencyItemName!: string;

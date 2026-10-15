@@ -3,8 +3,6 @@ import { EventModel } from "./eventModel";
 
 export class EventContinuationModel {
 
-  id!: number;
-
   type!: number;
   targetType!: number;
   activationType!: number;

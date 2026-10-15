@@ -29,8 +29,6 @@ export default function ItemUtilityRestSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={restEventModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={restEventModelList} headCells={headers} />
   )
 }

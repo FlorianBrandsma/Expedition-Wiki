@@ -52,12 +52,11 @@ function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
 
 interface BasicTableProps<T> extends BasicTableHeadProps<T> {
   rows: T[];
-  rowKey: keyof T;
 }
 
 export default function BasicTable<T extends Record<string, any>>(props: BasicTableProps<T>) {
 
-  const { rows, headCells, rowKey } = props;
+  const { rows, headCells } = props;
 
   return (
     <Paper 
@@ -76,34 +75,29 @@ export default function BasicTable<T extends Record<string, any>>(props: BasicTa
           <TableBody>
             {rows.map((row, index) => {
               return (
-                <TableRow key={String(row[rowKey])}>
+                <TableRow key={index}>
                   {
-                    headCells.map((cell, cellIndex) => {
+                    headCells.map((cell, cellIndex) => (
+                      <TableCell
+                        key={`$c-${index}-${cellIndex}`}
+                        align={cell.align}
+                        component={cellIndex === 0 ? 'th' : 'td'}
+                        scope={cellIndex === 0 ? 'row' : undefined}
+                        sx={{ whiteSpace: 'nowrap', ...cell.sx }}
+                      >
+                        {cell.render ? (
+                          cell.render(row)
+                        ) : (
+                          (() => {
 
-                      const cellKey = (cell.id as string) || `$c-${index}-${cellIndex}`;
-
-                      return (
-                        <TableCell
-                          key={cellKey}
-                          align={cell.align}
-                          component={cellIndex === 0 ? 'th' : 'td'}
-                          scope={cellIndex === 0 ? 'row' : undefined}
-                          sx={{ whiteSpace: 'nowrap', ...cell.sx }}
-                        >
-                          {cell.render ? (
-                            cell.render(row)
-                          ) : (
-                            (() => {
-
-                              if (!cell.id) return;
-                              
-                              const value = row[cell.id];
-                              return typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
-                            })()
-                          )}
-                        </TableCell>
-                      )
-                    })
+                            if (!cell.id) return;
+                            
+                            const value = row[cell.id];
+                            return typeof value === 'object' ? JSON.stringify(value) : String(value ?? '')
+                          })()
+                        )}
+                      </TableCell>
+                    ))
                   }
                 </TableRow>
               );

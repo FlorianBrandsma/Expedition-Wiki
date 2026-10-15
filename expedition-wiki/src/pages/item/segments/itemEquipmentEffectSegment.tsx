@@ -70,8 +70,6 @@ export default function ItemEquipmentEffectSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={statusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={statusEffectModelList} headCells={headers} />
   )
 }

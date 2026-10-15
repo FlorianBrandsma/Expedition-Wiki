@@ -2,8 +2,6 @@ import { EventModel } from "./eventModel";
 
 export class MailEventModel {
 
-  id!: number;
-
   subjectText!: string;
   message!: string;
 

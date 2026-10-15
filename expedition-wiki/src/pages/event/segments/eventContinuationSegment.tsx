@@ -49,7 +49,7 @@ export default function EventContinuationSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={eventContinuationModelList} headCells={headers} />
+      <BasicTable rows={eventContinuationModelList} headCells={headers} />
     </Box>
   )
 }

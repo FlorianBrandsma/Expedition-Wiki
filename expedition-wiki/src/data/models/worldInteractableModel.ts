@@ -6,11 +6,7 @@ import { TaskModel } from "./taskModel";
 
 export class WorldInteractableModel {
 
-  id!: string;
-
   type!: number;
-
-  objectiveWorldInteractableId!: number;
 
   terrainName!: string;
   regionName!: string;

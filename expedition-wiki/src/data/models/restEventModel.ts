@@ -2,8 +2,6 @@ import { EventModel } from "./eventModel";
 
 export class RestEventModel {
 
-  id!: number;
-
   quantity!: string;
   
   eventName!: string;

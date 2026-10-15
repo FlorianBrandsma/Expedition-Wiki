@@ -7,8 +7,6 @@ import { Box } from "@mui/material";
 
 export class AbsorbResourceEffectModel {
 
-  id!: number;
-
   resourceEffectName!: string;
   resourceEffectIconResourceName!: string;
 

@@ -28,7 +28,7 @@ export default function ClassNoteSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={noteModelList} headCells={headers} />
+      <BasicTable rows={noteModelList} headCells={headers} />
     </Box>
   )
 }

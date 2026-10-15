@@ -33,8 +33,6 @@ export default function EffectSourceEquipmentSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={equipmentItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={equipmentItemModelList} headCells={headers} />
   )
 }

@@ -2,8 +2,6 @@ import { EventModel } from "./eventModel";
 
 export class ReputationEventModel {
 
-  id!: number;
-
   eventName!: string;
   
   factionReputation!: number;

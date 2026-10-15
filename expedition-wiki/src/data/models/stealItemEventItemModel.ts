@@ -1,7 +1,5 @@
 export class StealItemEventItemModel {
 
-  id!: number;
-
   minimumQuantity!: number;
   maximumQuantity!: number;
 

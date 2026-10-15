@@ -37,6 +37,6 @@ export default function EventSignalReflectionSegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={worldInteractableReflectionModelList} headCells={headers} />
+    <BasicTable rows={worldInteractableReflectionModelList} headCells={headers} />
   )
 }

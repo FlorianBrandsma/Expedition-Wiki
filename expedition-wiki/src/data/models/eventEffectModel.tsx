@@ -3,8 +3,6 @@ import ReferenceDescription from "../../services/textReferenceManager";
 
 export class EventEffectModel {
 
-  id!: number;
-
   effectName!: string;
   effectIconResourceName!: string;
 

@@ -16,8 +16,6 @@ import { AtmosphereModel } from "./atmosphereModel";
 import { InteractionModel } from "./interactionModel";
 
 export class StatusEffectModel {
-  
-  id!: number;
 
   type!: number;
 
@@ -30,10 +28,7 @@ export class StatusEffectModel {
 
   effectName!: string;
   effectIconResourceName!: string;
-  
-  atmosphereStatusEffectId!: number;
-  interactionStatusEffectId!: number;
-  
+
   statusEffectState!: number;
   activeStatusEffectRepetitionTime!: number;
   

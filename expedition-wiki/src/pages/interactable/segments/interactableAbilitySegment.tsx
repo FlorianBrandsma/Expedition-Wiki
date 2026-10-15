@@ -39,7 +39,7 @@ export default function InteractableAbilitySegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={dischargeAbilityModelList} headCells={headers} />
+      <BasicTable rows={dischargeAbilityModelList} headCells={headers} />
     </Box>
   )
 }

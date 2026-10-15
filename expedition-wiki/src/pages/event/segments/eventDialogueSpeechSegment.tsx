@@ -60,6 +60,6 @@ export default function EventDialogueSpeechSegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={dialogueEventSpeechModelList} headCells={headers} />
+    <BasicTable rows={dialogueEventSpeechModelList} headCells={headers} />
   )
 }

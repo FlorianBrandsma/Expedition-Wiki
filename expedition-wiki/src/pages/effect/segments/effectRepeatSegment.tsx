@@ -41,7 +41,7 @@ export default function EffectRepeatSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={effectModelList} headCells={headers} />
+      <BasicTable rows={effectModelList} headCells={headers} />
     </Box>
   )
 }

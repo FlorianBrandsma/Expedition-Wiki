@@ -38,8 +38,6 @@ export default function EffectSourceEffectAbsorbSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={absorbResourceEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={absorbResourceEffectModelList} headCells={headers} />
   )
 }

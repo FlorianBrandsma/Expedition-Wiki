@@ -11,8 +11,6 @@ import { ItemEventModel } from "./itemEventModel";
 
 export class ItemEventItemModel {
 
-  id!: number;
-
   itemEventType!: number;
 
   type!: number;

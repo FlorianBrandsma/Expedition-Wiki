@@ -2,8 +2,6 @@ import { EventModel } from "./eventModel";
 
 export class CompanionEventModel {
 
-  id!: number;
-
   eventName!: string;
 
   eventModelList!: EventModel[];

@@ -38,8 +38,6 @@ export default function ItemSupplyAbilitySegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={spellDischargeAbilityModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={spellDischargeAbilityModelList} headCells={headers} />
   )
 }

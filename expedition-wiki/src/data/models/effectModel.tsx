@@ -6,6 +6,7 @@ import { StatusEffectModel } from "./statusEffectModel";
 export class EffectModel {
   
   id!: number;
+  
   type!: number;
 
   name!: string;

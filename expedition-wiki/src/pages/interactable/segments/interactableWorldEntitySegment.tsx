@@ -42,6 +42,6 @@ export default function InteractableWorldSegment({ worldInteractableModelList }:
   ], [interactablePageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={worldInteractableModelList} headCells={headers} />
+    <BasicTable rows={worldInteractableModelList} headCells={headers} />
   )
 }

@@ -5,8 +5,6 @@ import ExLink from "../../components/exLink/exLink";
 
 export class RepeatStatusEffectModel {
 
-  id!: string;
-
   successChance!: number;
   duration!: number;
   

@@ -45,8 +45,6 @@ export default function ItemUtilitySellSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={shopItemEventModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={shopItemEventModelList} headCells={headers} />
   )
 }

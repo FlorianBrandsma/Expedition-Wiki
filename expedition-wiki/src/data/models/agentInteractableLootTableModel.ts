@@ -5,8 +5,6 @@ import { CaseConditionModel } from "./caseConditionModel";
 
 export class AgentInteractableLootTableModel {
 
-  id!: number;
-
   name!: string;
 
   agentInteractableName!: string;

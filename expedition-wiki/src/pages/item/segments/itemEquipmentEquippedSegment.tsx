@@ -33,8 +33,6 @@ export default function ItemEquipmentEquippedSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={characterAgentInteractableModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={characterAgentInteractableModelList} headCells={headers} />
   )
 }

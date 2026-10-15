@@ -29,7 +29,7 @@ export default function FactionMemberSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={interactableModelList} headCells={headers} />
+      <BasicTable rows={interactableModelList} headCells={headers} />
     </Box>
   )
 }

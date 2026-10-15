@@ -27,8 +27,6 @@ export default function AbilityChargeConditionSegment() {
   ], [abilityPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={caseConditionModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={caseConditionModelList} headCells={headers} />
   )
 }

@@ -28,6 +28,6 @@ export default function EffectSourceEventSegment() {
   ], [effectPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={effectEventModelList} headCells={headers} />
+    <BasicTable rows={effectEventModelList} headCells={headers} />
   )
 }

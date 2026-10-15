@@ -26,8 +26,11 @@ export default function WorldInteractablePropertyCard({ questName, objectiveName
 
   const { entityWorldInteractableModel } = worldInteractableModel;
 
+  const isObjectiveWorldInteractable = questName && objectiveName;
+
   return (
-    <ExCard sx={{ 
+    <ExCard 
+      sx={{ 
         float: 'right', 
         width: '250px',
         ml: 1, mb: 1
@@ -55,27 +58,35 @@ export default function WorldInteractablePropertyCard({ questName, objectiveName
           label='Type' 
           value={worldInteractableModel.typeDescription}
         />
-        {entityWorldInteractableModel && (
+        {worldInteractableModel && (
           <ExCardTableRow 
             label='Interactable' 
             value={
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <ExIcon resourceName={entityWorldInteractableModel.interactableIconResourceName} size={20} />
-                <ExLink name={entityWorldInteractableModel.interactableName} params={['interactable', entityWorldInteractableModel.interactableName]} />
+                {entityWorldInteractableModel && (
+                  <ExIcon resourceName={entityWorldInteractableModel.interactableIconResourceName} size={20} />
+                )}
+                <ExLink 
+                  name={worldInteractableModel.name} 
+                  params={isObjectiveWorldInteractable && worldInteractableModel.originType === 'terrain' ? worldInteractableModel.params : ['interactable', worldInteractableModel.name]} />
               </Box>
             }
           />
         )}
-        {questName && objectiveName && (
+        {isObjectiveWorldInteractable && (
           <ExCardTableRow 
             label='Objective'
-            value={<ExLink name={objectiveName} params={['objective', questName, objectiveName]} />}
+            value={
+              <ExLink name={objectiveName} params={['objective', questName, objectiveName]} />
+            }
           />
         )}
-        {worldInteractableModel.worldInteractableParentType === WorldInteractableParentType.indexOf('Terrain') && (
+        {WorldInteractableParentType[worldInteractableModel.worldInteractableParentType] === 'Terrain' && (
           <ExCardTableRow 
             label='Terrain'
-            value={<ExLink name={worldInteractableModel.terrainName} params={['terrain', worldInteractableModel.regionName, worldInteractableModel.terrainName]} />}
+            value={
+              <ExLink name={worldInteractableModel.terrainName} params={['terrain', worldInteractableModel.regionName, worldInteractableModel.terrainName]} />
+            }
           />
         )}
       </ExCardTable>

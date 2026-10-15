@@ -7,8 +7,6 @@ import { EventModel } from "./eventModel";
 
 export class InteractionTriggerModel {
 
-  id!: number;
-
   type!: number;
   targetType!: number;
   activationType!: number;

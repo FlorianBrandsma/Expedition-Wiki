@@ -4,8 +4,6 @@ import { useInteractablePageContext } from '../interactablePageContext';
 
 import type { CompanionEventModel } from '../../../data/models/companionEventModel';
 
-import { Box } from '@mui/material';
-
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
 
@@ -25,8 +23,6 @@ export default function InteractableSourceEventSegment() {
   ], [interactablePageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={companionEventModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={companionEventModelList} headCells={headers} />
   )
 }

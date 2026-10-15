@@ -3,8 +3,6 @@ import { ItemEventModel } from "./itemEventModel";
 
 export class StealItemEventModel {
 
-  id!: number;
-
   itemEventModelList!: ItemEventModel[];
 
   eventModelList!: EventModel[];

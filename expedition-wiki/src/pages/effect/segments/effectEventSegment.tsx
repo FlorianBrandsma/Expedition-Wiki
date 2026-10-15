@@ -26,8 +26,8 @@ export default function EffectEventSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box sx={{ mt: 1  }}>
-      <BasicTable rowKey='id' rows={eventModelList} headCells={headers} />
+    <Box sx={{ mt: 1 }}>
+      <BasicTable rows={eventModelList} headCells={headers} />
     </Box>
   )
 }

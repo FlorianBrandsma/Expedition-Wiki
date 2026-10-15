@@ -28,6 +28,6 @@ export default function InteractableFeaturedMailSegment() {
   ], [interactablePageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={mailEventModelList} headCells={headers} />
+    <BasicTable rows={mailEventModelList} headCells={headers} />
   )
 }

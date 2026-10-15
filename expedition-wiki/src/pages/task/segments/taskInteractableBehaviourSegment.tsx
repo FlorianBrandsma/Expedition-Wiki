@@ -36,6 +36,6 @@ export default function TaskInteractableBehaviourSegment() {
   }, [taskPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={behaviourInteractionModelList} headCells={headers} />
+    <BasicTable rows={behaviourInteractionModelList} headCells={headers} />
   )
 }

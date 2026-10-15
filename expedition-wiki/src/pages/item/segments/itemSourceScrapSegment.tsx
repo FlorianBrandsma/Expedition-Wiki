@@ -45,8 +45,6 @@ export default function ItemSourceScrapSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={scrapComponentItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={scrapComponentItemModelList} headCells={headers} />
   )
 }

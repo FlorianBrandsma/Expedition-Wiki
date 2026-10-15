@@ -2,8 +2,6 @@ import { EventModel } from "./eventModel";
 
 export class AbilityEventModel {
 
-  id!: number;
-
   eventName!: string;
 
   eventModelList!: EventModel[];

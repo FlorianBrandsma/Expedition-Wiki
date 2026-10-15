@@ -5,7 +5,6 @@ import { useItemPageContext } from '../itemPageContext';
 import type { MailEventModel } from '../../../data/models/mailEventModel';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
-import { Box } from '@mui/material';
 import ExLink from '../../../components/exLink/exLink';
 
 export default function ItemSourceMailSegment() {
@@ -29,8 +28,6 @@ export default function ItemSourceMailSegment() {
   ], [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={mailEventModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={mailEventModelList} headCells={headers} />
   )
 }

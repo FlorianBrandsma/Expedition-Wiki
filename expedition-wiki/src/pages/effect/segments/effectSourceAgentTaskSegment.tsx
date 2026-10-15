@@ -68,8 +68,6 @@ export default function EffectSourceAgentTaskSegment() {
   }, [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={interactionModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={interactionModelList} headCells={headers} />
   )
 }

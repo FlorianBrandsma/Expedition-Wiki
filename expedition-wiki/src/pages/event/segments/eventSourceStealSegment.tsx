@@ -23,6 +23,6 @@ export default function EventSourceStealSegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceStealItemEventModelList} headCells={headers} />
+    <BasicTable rows={sourceStealItemEventModelList} headCells={headers} />
   )
 }

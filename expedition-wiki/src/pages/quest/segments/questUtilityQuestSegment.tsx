@@ -42,6 +42,6 @@ export default function QuestUtilityQuestSegment() {
     ], [mainQuestModelList]);
 
   return (
-    <BasicTable rowKey='id' rows={mainQuestModelList} headCells={headers} />
+    <BasicTable rows={mainQuestModelList} headCells={headers} />
   )
 }

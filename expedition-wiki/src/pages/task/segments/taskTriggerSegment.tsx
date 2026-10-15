@@ -100,7 +100,7 @@ export default function TaskTriggerSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={interactionTriggerModelList} headCells={headers} />
+      <BasicTable rows={interactionTriggerModelList} headCells={headers} />
     </Box>
   )
 }

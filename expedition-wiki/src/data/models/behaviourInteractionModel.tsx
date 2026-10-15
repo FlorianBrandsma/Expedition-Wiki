@@ -5,8 +5,6 @@ import ExLink from "../../components/exLink/exLink";
 
 export class BehaviourInteractionModel {
 
-  id!: number;
-
   affiliationType!: number;
   combatState!: number;
 

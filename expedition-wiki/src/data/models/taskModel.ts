@@ -2,8 +2,6 @@ import { WorldInteractableParentType, WorldInteractableType } from "../../types/
 
 export class TaskModel {
 
-  id!: string;
-
   orderNumber!: number;
 
   name!: string;

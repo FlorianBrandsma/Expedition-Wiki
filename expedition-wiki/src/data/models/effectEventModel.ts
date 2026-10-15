@@ -2,8 +2,6 @@ import { EventModel } from "./eventModel";
 
 export class EffectEventModel {
 
-  id!: number;
-
   effectStack!: number;
   
   eventModelList!: EventModel[];

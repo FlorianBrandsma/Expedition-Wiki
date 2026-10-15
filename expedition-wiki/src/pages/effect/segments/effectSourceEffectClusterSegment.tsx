@@ -48,8 +48,6 @@ export default function EffectSourceEffectClusterSegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={clusterStatusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={clusterStatusEffectModelList} headCells={headers} />
   )
 }

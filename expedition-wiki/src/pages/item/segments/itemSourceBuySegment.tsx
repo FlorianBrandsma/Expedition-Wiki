@@ -75,6 +75,6 @@ export default function ItemSourceBuySegment() {
   }, [itemPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceShopItemEventItemModelList} headCells={headers} />
+    <BasicTable rows={sourceShopItemEventItemModelList} headCells={headers} />
   )
 }

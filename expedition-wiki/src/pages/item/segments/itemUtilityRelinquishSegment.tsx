@@ -51,6 +51,6 @@ export default function ItemUtilityRelinquishSegment() {
   }, [itemPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={relinquishItemEventItemModelList} headCells={headers} />
+    <BasicTable rows={relinquishItemEventItemModelList} headCells={headers} />
   )
 }

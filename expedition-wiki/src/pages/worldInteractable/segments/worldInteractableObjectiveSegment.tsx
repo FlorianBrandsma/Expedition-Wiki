@@ -28,7 +28,9 @@ export default function WorldInteractableObjectiveSegment() {
       align: 'left',
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ExIcon resourceName={row.iconResourceName} size={20} />
+          {row.iconResourceName && (
+            <ExIcon resourceName={row.iconResourceName} size={20} />
+          )}
           <ExLink name={row.objectiveName} params={row.params} />
         </Box>
       )
@@ -37,7 +39,7 @@ export default function WorldInteractableObjectiveSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="objectiveWorldInteractableId" rows={worldInteractableModelList} headCells={headers} />
+      <BasicTable rows={worldInteractableModelList} headCells={headers} />
     </Box>
   )
 }

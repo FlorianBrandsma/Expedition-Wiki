@@ -39,6 +39,6 @@ export default function EventMenuEntrySegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={menuEventEntryModelList} headCells={headers} />
+    <BasicTable rows={menuEventEntryModelList} headCells={headers} />
   )
 }

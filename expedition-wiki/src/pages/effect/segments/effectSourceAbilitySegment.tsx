@@ -38,8 +38,6 @@ export default function EffectSourceAbilitySegment() {
   ], [effectPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={abilityModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={abilityModelList} headCells={headers} />
   )
 }

@@ -2,8 +2,6 @@ import { StatusEffectModel } from "./statusEffectModel";
 
 export class ClusterStatusEffectModel {
 
-  id!: number;
-
   description!: string;
   
   statusEffectName!: string;

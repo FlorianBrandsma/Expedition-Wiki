@@ -34,7 +34,7 @@ export default function InteractableEquipmentSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="equipmentSlotType" rows={equipmentItemModelList} headCells={headers} />
+      <BasicTable rows={equipmentItemModelList} headCells={headers} />
     </Box>
   )
 }

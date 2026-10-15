@@ -89,6 +89,6 @@ export default function TaskInteractableEffectSegment() {
   }, [taskPageModel]);
 
   return (
-    <BasicTable rowKey='interactionStatusEffectId' rows={statusEffectModelList} headCells={headers} />
+    <BasicTable rows={statusEffectModelList} headCells={headers} />
   )
 }

@@ -28,8 +28,6 @@ export default function AbilitySourceCharacterSegment() {
   ], [abilityPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={characterAgentInteractableModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={characterAgentInteractableModelList} headCells={headers} />
   )
 }

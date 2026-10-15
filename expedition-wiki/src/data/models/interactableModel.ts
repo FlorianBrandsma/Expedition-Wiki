@@ -4,7 +4,9 @@ import { AgentInteractableModel } from "./agentInteractableModel";
 export class InteractableModel {
   
   id!: number;
+
   type!: number;
+  
   name!: string;
   
   sightRange!: number;

@@ -4,8 +4,6 @@ import { SpellDischargeAbilityModel } from "./spellDischargeAbilityModel";
 
 export class DischargeAbilityModel {
 
-  id!: number;
-
   type!: number;
 
   targetRelationshipType!: number;

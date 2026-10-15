@@ -1,8 +1,6 @@
 import { ChunkModel } from "./chunkModel";
 
 export class ClimateModel {
-  
-  id!: number;
 
   name!: string;
 

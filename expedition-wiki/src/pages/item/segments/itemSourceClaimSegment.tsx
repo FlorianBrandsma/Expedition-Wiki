@@ -56,6 +56,6 @@ export default function ItemSourceClaimSegment() {
   }, [itemPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceClaimItemEventItemModelList} headCells={headers} />
+    <BasicTable rows={sourceClaimItemEventItemModelList} headCells={headers} />
   )
 }

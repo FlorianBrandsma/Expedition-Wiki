@@ -34,6 +34,6 @@ export default function EventReputationFactionSegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey='id' rows={factionModelList} headCells={headers} />
+    <BasicTable rows={factionModelList} headCells={headers} />
   )
 }

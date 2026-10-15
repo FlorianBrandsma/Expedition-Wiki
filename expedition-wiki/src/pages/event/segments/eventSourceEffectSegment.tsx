@@ -39,6 +39,6 @@ export default function EventSourceEffectSegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceEventEffectModelList} headCells={headers} />
+    <BasicTable rows={sourceEventEffectModelList} headCells={headers} />
   )
 }

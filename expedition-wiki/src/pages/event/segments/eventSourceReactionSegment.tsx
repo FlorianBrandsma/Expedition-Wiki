@@ -52,6 +52,6 @@ export default function EventSourceReactionSegment() {
   }, [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={sourceAgentInteractableReactionModelList} headCells={headers} />
+    <BasicTable rows={sourceAgentInteractableReactionModelList} headCells={headers} />
   )
 }

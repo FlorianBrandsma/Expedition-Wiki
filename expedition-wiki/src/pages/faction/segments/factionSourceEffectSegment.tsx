@@ -38,8 +38,6 @@ export default function FactionSourceEffectSegment() {
   ], [factionPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey='id' rows={standingStatusEffectModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={standingStatusEffectModelList} headCells={headers} />
   )
 }

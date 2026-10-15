@@ -3,8 +3,6 @@ import ReferenceDescription from "../../services/textReferenceManager";
 
 export class NoteModel {
 
-  id!: string;
-
   text!: string;
 
   textReferenceModelList!: TextReferenceModel[];

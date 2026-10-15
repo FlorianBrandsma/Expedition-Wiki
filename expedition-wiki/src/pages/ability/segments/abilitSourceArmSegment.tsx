@@ -33,8 +33,6 @@ export default function AbilitySourceArmSegment() {
   ], [abilityPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={armEquipmentItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={armEquipmentItemModelList} headCells={headers} />
   )
 }

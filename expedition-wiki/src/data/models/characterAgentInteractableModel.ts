@@ -2,8 +2,6 @@ import { CharacterAgentInteractableType, EquipmentSlotType } from "../../types/e
 
 export class CharacterAgentInteractableModel {
 
-  id!: number;
-
   type!: number;
   
   agentInteractableName!: string;

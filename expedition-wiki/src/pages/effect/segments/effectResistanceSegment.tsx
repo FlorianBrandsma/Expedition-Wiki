@@ -39,7 +39,7 @@ export default function EffectResistanceSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={resistStatusEffectModelList} headCells={headers} />
+      <BasicTable rows={resistStatusEffectModelList} headCells={headers} />
     </Box>
   )
 }

@@ -33,21 +33,20 @@ export default function TerrainPropertyCard() {
         />
       </ExCardTable>
 
-      {/* Properties */}
+      {/* Map */}
       <ExCardHeader title='Map' /> 
       <ExMap 
         terrainModel={terrainModel}
+        {...(waypointModel ? { 
+          position: {
+            x: waypointModel.positionX, 
+            z: waypointModel.positionZ
+          }
+        } : {})}
         sx={{
-          borderRadius: 0,
           height: 200,
           width: '100%'
         }}
-        {...(waypointModel ? { 
-          position: {
-            x: waypointModel.positionX, z: 
-            waypointModel.positionZ
-          }
-        } : {})}
       />      
     </ExCard>
   )

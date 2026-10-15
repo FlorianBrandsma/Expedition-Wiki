@@ -3,8 +3,6 @@ import { WorldInteractableModel } from "./worldInteractableModel";
 
 export class WorldInteractableReflectionModel {
 
-  id!: number;
-
   type!: number;
 
   orderNumber!: number;

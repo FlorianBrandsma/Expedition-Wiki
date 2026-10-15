@@ -78,8 +78,6 @@ export default function ItemSourceTradeSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={sourceTradeItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={sourceTradeItemEventItemModelList} headCells={headers} />
   )
 }

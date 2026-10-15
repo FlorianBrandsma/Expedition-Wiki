@@ -2,8 +2,6 @@ import { ChunkTileModel } from "./chunkTileModel";
 import { WorldObjectReflectionModel } from "./worldObjectReflectionModel";
 
 export class ChunkModel {
-  
-  id!: number;
 
   orderNumber!: number;
 

@@ -5,8 +5,6 @@ import ExLink from "../../components/exLink/exLink";
 
 export class ResistStatusEffectModel {
 
-  id!: number;
-
   statusEffectName!: string;
   statusEffectIconResourceName!: string;
 

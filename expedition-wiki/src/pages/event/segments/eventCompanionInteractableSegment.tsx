@@ -29,6 +29,6 @@ export default function EventCompanionInteractableSegment() {
   ], [eventPageModel]);
 
   return (
-    <BasicTable rowKey="id" rows={playableCharacterAgentInteractableModelList} headCells={headers} />
+    <BasicTable rows={playableCharacterAgentInteractableModelList} headCells={headers} />
   )
 }

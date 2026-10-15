@@ -7,8 +7,6 @@ import { UnmitigableDamageResourceEffectModel } from "./unmitigableDamageResourc
 
 export class DamageResourceEffectModel {
 
-  id!: number;
-
   type!: number;
 
   resourceEffectAmount!: number;

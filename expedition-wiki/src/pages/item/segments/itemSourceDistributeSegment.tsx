@@ -4,8 +4,6 @@ import { useItemPageContext } from '../itemPageContext';
 
 import type { ItemEventItemModel } from '../../../data/models/itemEventItemModel';
 
-import { Box } from '@mui/material';
-
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import CellTable from '../../../components/cellTable/cellTable';
 import ExLink from '../../../components/exLink/exLink';
@@ -63,8 +61,6 @@ export default function ItemSourceDistributeSegment() {
   }, [itemPageModel]);
 
   return (
-    <Box>
-      <BasicTable rowKey="id" rows={sourceDistributeItemEventItemModelList} headCells={headers} />
-    </Box>
+    <BasicTable rows={sourceDistributeItemEventItemModelList} headCells={headers} />
   )
 }
