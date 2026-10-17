@@ -101,10 +101,12 @@ export default function EventPropertyCard() {
               x: transportEventModel.positionX, 
               z: transportEventModel.positionZ
             }}
-            pins={[{
-              x: transportEventModel.positionX, 
-              z: transportEventModel.positionZ
-            }]}
+            pinGroups={[{
+              mapCoordinates: [{
+                x: transportEventModel.positionX,
+                z: transportEventModel.positionZ
+              }]
+            }]} 
             sx={{
               height: 200,
               width: '100%'

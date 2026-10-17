@@ -33,9 +33,11 @@ export default function TerrainTransportSegment() {
             x: row.positionX, 
             z: row.positionZ
           }}
-          pins={[{
-            x: row.positionX, 
-            z: row.positionZ
+          pinGroups={[{
+            mapCoordinates: [{
+              x: row.positionX,
+              z: row.positionZ
+            }]
           }]}
           sx={{
             height: 200,

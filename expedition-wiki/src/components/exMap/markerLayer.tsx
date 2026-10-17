@@ -1,25 +1,23 @@
-import { useEffect, useMemo, useState } from 'react';
-
-import { Marker, useMap, useMapEvents } from 'react-leaflet';
+import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Circle, Marker, useMap, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 
-import type { MapCoordinates } from '../../services/interfaces';
+import type { PinGroup } from '../../services/interfaces';
 
 import type { TerrainModel } from '../../data/models/terrainModel';
 
 import WaypointMarker from './waypointMarker';
 import PinMarker from './pinMarker';
-
-const ImageResolution = 128;
+import DecoratedPolyline from './decoratedPolyline';
 
 interface MarkerLayerProps {
   tileImageSize: number;
   terrainModel: TerrainModel;
   maxZoom: number;
-  pins?: MapCoordinates[];
+  pinGroups?: PinGroup[];
 }
 
-export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pins }: MarkerLayerProps) {
+export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinGroups }: MarkerLayerProps) {
 
   const { 
     tileSize,
@@ -41,23 +39,32 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pins
 
   useEffect(() => {
 
-    if (!pins || pins.length === 0) return;
+    if (!pinGroups || pinGroups.length === 0) return;
 
-    const coordinates = pins.map(pin => L.latLng(pin.z * worldScale, 
-                                                 pin.x * worldScale));
+    const pinCoordinates = pinGroups.flatMap(pinGroup => pinGroup.mapCoordinates);
+
+    if (pinCoordinates.length === 0) return;
+
+    const coordinates = pinCoordinates.map(pin => 
+      L.latLng(pin.z * worldScale, pin.x * worldScale)
+    );
+
     const bounds = L.latLngBounds(coordinates);
 
     map.fitBounds(bounds, {
       padding:[20,20],
-      maxZoom: pins.length === 1 ? map.getZoom() : maxZoom 
+      maxZoom: pinCoordinates.length === 1 ? map.getZoom() : maxZoom 
     });
-  }, [pins]);
+
+  }, [pinGroups]);
 
   const objectMarkers = useMemo(() => {
 
     const cache = {} as Record<string, L.Icon>;
 
     return worldObjectReflectionModelList.map((worldObjectReflectionModel, index) => {
+
+      const imageResolution = 128;
 
       const assetSize = Math.max(worldObjectReflectionModel.worldObjectAssetSizeX,
                                  worldObjectReflectionModel.worldObjectAssetSizeY, 
@@ -70,7 +77,7 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pins
 
       if (!cache[cacheKey]) {
         cache[cacheKey] = L.icon({
-          iconUrl: `/images/icons/objects/${iconResourceName}/${iconResourceName}_${ImageResolution}.webp`,
+          iconUrl: `/images/icons/objects/${iconResourceName}/${iconResourceName}_${imageResolution}.webp`,
           iconSize: [scaledSize, scaledSize],
           iconAnchor: [scaledSize / 2, scaledSize / 2]
         })
@@ -115,20 +122,71 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pins
 
   const pinMarkers = useMemo(() => {
 
-    return pins?.map((mapPin, index) => {
+    if (!pinGroups) return null;
 
-      const position = L.latLng(mapPin.z * worldScale,
-                                mapPin.x * worldScale);
+    const markerColor = '#cf4221';
+
+    return pinGroups.map((pinGroup, groupIndex) => {
+
+      const pinPositions = pinGroup.mapCoordinates.map(pin => 
+        L.latLng(pin.z * worldScale, pin.x * worldScale)
+      );
+
+      const linePositions = pinGroup.arrivalType === 'Repeat' && pinPositions.length > 1 ?
+        [...pinPositions, pinPositions[0]] : pinPositions;
+
+      const polylineOptions = {
+        color: markerColor,
+        weight: 2,
+        dashArray: '5, 5',
+        interactive: false
+      };
 
       return (
-        <PinMarker
-          key={index}
-          position={position}
-        />
-      )
-    })
+        <Fragment key={`group-${groupIndex}`}>
+          {pinGroup.mapCoordinates.map((mapCoordinates, pinIndex) => {
+            
+            const position = pinPositions[pinIndex];
 
-  }, [pins])
+            return (
+              <Fragment key={`pin-${groupIndex}-${pinIndex}`}>
+                {!!mapCoordinates.variance && (
+                  <Circle 
+                    center={position}
+                    radius={mapCoordinates.variance * worldScale}
+                    color={markerColor}
+                    weight={1}
+                    interactive={false}
+                  />
+                )}
+                <PinMarker 
+                  position={position}
+                  mainPin={pinIndex === 0}
+                />
+              </Fragment>
+            )
+          })}
+
+          {pinPositions.length > 1 && (
+            <>
+              <DecoratedPolyline 
+                positions={linePositions}
+                pathOptions={polylineOptions}
+              />
+              {pinGroup.arrivalType === 'Backtrace' && (
+                <DecoratedPolyline 
+                  positions={linePositions}
+                  pathOptions={polylineOptions}
+                  reverse={true}
+                />
+              )}
+            </>
+          )}
+        </Fragment>
+      )
+    });
+
+  }, [pinGroups, worldScale])
 
   return (
     <>

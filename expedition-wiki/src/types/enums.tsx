@@ -403,6 +403,14 @@ export const WorldInteractableType = [
 
 export type WorldInteractableType = typeof WorldInteractableType[number];
 
+export const EntityWorldInteractableReflectionMovementArrivalType = [
+  'Stay',
+  'Backtrace',
+  'Repeat'
+] as const;
+
+export type EntityWorldInteractableReflectionMovementArrivalType = typeof EntityWorldInteractableReflectionMovementArrivalType[number];
+
 export const AffiliationType = [
   'Faction',
   'Ally',

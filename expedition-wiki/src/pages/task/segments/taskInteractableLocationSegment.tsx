@@ -49,7 +49,9 @@ export default function TaskInteractableLocationSegment() {
 
           if (!terrainModel) return;
 
-          const { pins } = row;
+          const { pinGroups } = row;
+
+          const pins = pinGroups.flatMap(x => x.mapCoordinates);
 
           return (
             <ExMap 
@@ -60,7 +62,7 @@ export default function TaskInteractableLocationSegment() {
                   z: pins.reduce((sum, pin) => sum + pin.z, 0) / pins.length
                 }
               } : {})}
-              pins={pins}
+              pinGroups={pinGroups}
               sx={{
                 height: 200,
                 width: 200

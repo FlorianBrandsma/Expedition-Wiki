@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.fullscreen/dist/Control.FullScreen.css';
 import 'leaflet.fullscreen';
 
-import type { MapCoordinates } from '../../services/interfaces';
+import type { MapCoordinates, PinGroup } from '../../services/interfaces';
 
 import type { TerrainModel } from '../../data/models/terrainModel';
 
@@ -21,11 +21,11 @@ const topLeftCRS = L.Util.extend({}, L.CRS.Simple, {
 interface ExMapProps {
   terrainModel: TerrainModel;
   position?: MapCoordinates;
-  pins?: MapCoordinates[]
+  pinGroups?: PinGroup[]
   sx?: SxProps<Theme>;
 }
 
-export default function ExMap({ terrainModel, sx, position, pins }: ExMapProps) {
+export default function ExMap({ terrainModel, sx, position, pinGroups }: ExMapProps) {
   
   const { 
     tileSetResourceName,
@@ -53,7 +53,14 @@ export default function ExMap({ terrainModel, sx, position, pins }: ExMapProps) 
                                      (gridWidth  * tileImageSize) / 2);
 
   return (
-    <Box sx={sx}>
+    <Box 
+      sx={{
+        ...sx,
+        '& .leaflet-control-zoom, & .leaflet-control-fullscreen': {
+          opacity: 0.75
+        }
+      }}
+    >
       <MapContainer
         preferCanvas={true}
         crs={topLeftCRS}
@@ -95,7 +102,7 @@ export default function ExMap({ terrainModel, sx, position, pins }: ExMapProps) 
           tileImageSize={tileImageSize}
           terrainModel={terrainModel}
           maxZoom={maxZoom}
-          pins={pins}
+          pinGroups={pinGroups}
         />
 
         <PseudoFullscreenEscapeHandler />

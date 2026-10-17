@@ -1,10 +1,10 @@
 import { FormatTime } from "../../services/timeManager";
-import { StatusEffectState } from "../../types/enums";
+import { EntityWorldInteractableReflectionMovementArrivalType, StatusEffectState } from "../../types/enums";
 import { TaskModel } from "./taskModel";
 import { BehaviourInteractionModel } from "./behaviourInteractionModel";
 import { EntityWorldInteractableReflectionMovementModel } from "./entityWorldInteractableReflectionMovementModel";
 import { TriggerWorldInteractableReflectionModel } from "./triggerWorldInteractableReflectionModel";
-import type { MapCoordinates } from "../../services/interfaces";
+import type { MapCoordinates, PinGroup } from "../../services/interfaces";
 
 export class InteractionModel {
 
@@ -64,29 +64,31 @@ export class InteractionModel {
     return this.activeStatusEffectRepetitionTime > 0 ? `${this.activeStatusEffectRepetitionTime.toFixed(2)}s` : '';
   }
 
-  get pins(): MapCoordinates[] {
+  get pinGroups(): PinGroup[] {
 
     if (this.entityWorldInteractableReflectionMovementModelList.length > 0) {
 
-      return this.entityWorldInteractableReflectionMovementModelList.map(model => {
-              
-        const destinationModel = model.entityWorldInteractableReflectionMovementDestinationModelList[0];
+      return this.entityWorldInteractableReflectionMovementModelList.map(model => ({
 
-        return {
+        mapCoordinates: model.entityWorldInteractableReflectionMovementDestinationModelList.map(destinationModel => ({
           x: destinationModel.positionX, 
-          z: destinationModel.positionZ
-        } as MapCoordinates
-      })
+          z: destinationModel.positionZ,
+          variance: destinationModel.positionVariance
+        } as MapCoordinates)),
+        
+        arrivalType: EntityWorldInteractableReflectionMovementArrivalType[model.arrivalType]
+
+      } as PinGroup));
     }
 
     if (this.triggerWorldInteractableReflectionModelList.length > 0) {
 
-      return this.triggerWorldInteractableReflectionModelList.map(model => (
-        {
+      return [{
+        mapCoordinates: this.triggerWorldInteractableReflectionModelList.map(model => ({
           x: model.positionX,
           z: model.positionZ
-        } as MapCoordinates
-      ));
+        }) as MapCoordinates)
+      } as PinGroup];
     }
 
     return [];

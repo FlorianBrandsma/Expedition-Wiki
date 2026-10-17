@@ -2,6 +2,8 @@ import { EntityWorldInteractableReflectionMovementDestinationModel } from "./ent
 
 export class EntityWorldInteractableReflectionMovementModel {
 
+  arrivalType!: number
+
   entityWorldInteractableReflectionMovementDestinationModelList!: EntityWorldInteractableReflectionMovementDestinationModel[];
 
   constructor(init:Partial<EntityWorldInteractableReflectionMovementModel>) {  
