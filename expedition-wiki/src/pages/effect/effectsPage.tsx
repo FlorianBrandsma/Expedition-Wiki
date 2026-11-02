@@ -93,7 +93,7 @@ export default function EffectsPage() {
     effectType: effectType,
     resourceEffectType: resourceEffectType,
     statusEffectType: statusEffectType,
-    name: name
+    partialName: name
 	});
 
 	const effectQuery = useQuery<EffectModel[]>({
@@ -166,10 +166,7 @@ export default function EffectsPage() {
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={effectQuery.data} headCells={effectHeaders} enableOrder enablePagination />
-					<Button 
-						variant="contained" 
-						onClick={() => effectQuery.refetch()}
-					>
+					<Button onClick={() => effectQuery.refetch()}>
 						Reload
 					</Button>
 				</Stack>

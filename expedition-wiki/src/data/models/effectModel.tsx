@@ -73,4 +73,8 @@ export class EffectModel {
       case 'Status':   return this.statusEffectModel  !.descriptionComponent(currentStack);
     }
   }
+
+  get params(): string[] {
+    return ['effect', this.name];
+  }
 }

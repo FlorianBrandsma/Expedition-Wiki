@@ -51,10 +51,11 @@ const CustomButton = styled(Button)(({ theme }) => ({
   margin: '1px',
   background: theme.palette.primary.light,
   textTransform: 'none',
-  color: 'black',
+  transition: 'none',
+  color: `${theme.palette.text.primary} !important`,
   textAlign: 'left',
   '&:hover': {
-    background: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha('#000', 0.05)
   }
 })) as typeof Button;
 

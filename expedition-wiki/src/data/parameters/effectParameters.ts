@@ -21,7 +21,7 @@ export class EffectParameters implements IParameters {
   resourceEffectType?: number[];
   statusEffectType?: number[];
 
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<EffectParameters>) {
     Object.assign(this, init);

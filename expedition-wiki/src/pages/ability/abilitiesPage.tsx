@@ -93,7 +93,7 @@ export default function AbilitiesPage() {
     abilityType: abilityType,
     chargeAbilityType: chargeAbilityType,
     dischargeAbilityType: dischargeAbilityType,
-    name: name
+    partialName: name
 	});
 
 	const abilityQuery = useQuery<AbilityModel[]>({
@@ -171,10 +171,7 @@ export default function AbilitiesPage() {
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={abilityQuery.data} headCells={abilityHeaders} enableOrder enablePagination />
-					<Button 
-						variant="contained" 
-						onClick={() => abilityQuery.refetch()}
-					>
+					<Button onClick={() => abilityQuery.refetch()} >
 						Reload
 					</Button>
 				</Stack>

@@ -3,6 +3,8 @@ import ReferenceDescription from "../../services/textReferenceManager";
 
 export class ObjectiveModel {
 
+  id!: number;
+
   orderNumber!: number;
 
   name!: string;
@@ -26,13 +28,6 @@ export class ObjectiveModel {
   }
 
   get params(): string[] {
-  
-      const params = [
-        'objective',
-        this.questName,
-        this.name
-      ]
-  
-      return params;
-    }
+    return ['objective', this.questName, this.name];
+  }
 }

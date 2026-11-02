@@ -104,9 +104,13 @@ export default function QuestPage() {
           <Box sx={{ mt: 1 }}>
             <QuestPropertyCard />
 
-            {contentSegments.length > 0 && (
-              <ContentTable segments={contentSegments} />
-            )}
+            <Box sx={{
+              maxWidth: (theme) => `calc(50% - ${theme.spacing(1)})`
+            }}>
+              {contentSegments.length > 0 && (
+                <ContentTable segments={contentSegments} />
+              )}
+            </Box>
 
             {contentSegments.map((segment) => (
               <Segment key={segment.id} segment={segment}/>

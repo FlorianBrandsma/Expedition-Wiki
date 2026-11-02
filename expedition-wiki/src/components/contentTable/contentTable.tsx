@@ -57,16 +57,16 @@ export default function ContentTable(props: ContentTableProps) {
 
   return (
     <Box sx={{
-        display: 'inline-block',
-        minWidth: '150px',
-        mt: 1.5
-      }}>
+      display: 'inline-block',
+      minWidth: '150px',
+      maxWidth: '100%'
+    }}>
       <ExCollapse 
         label='Content'
         isOpen={true}
         collapseComponent={
           <ExCard>
-            <List sx={{ py: 1.25, px: 2.5}}>
+            <List sx={{ py: 1.25, px: 2.5 }}>
               {segments.map((segment) => (
                 <ContentTableItem key={segment.id} segment={segment} />
               ))}

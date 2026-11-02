@@ -17,7 +17,7 @@ export class EquipmentSetParameters implements IParameters {
   excludeId?: number[];
   gameId?: number[];
 
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<EquipmentSetParameters>) {
     Object.assign(this, init);

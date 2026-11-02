@@ -15,11 +15,11 @@ export default function EffectPropertyCard() {
 
   return (
     <ExCard sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       <ExCardHeader title={effectModel.name} />
       <CardContent 
         sx={{ 

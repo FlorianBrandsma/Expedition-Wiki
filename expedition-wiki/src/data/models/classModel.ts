@@ -9,4 +9,8 @@ export class ClassModel {
   constructor(init:Partial<ClassModel>) {  
     Object.assign(this, init);
   }
+
+  get params(): string[] {
+    return ['class', this.name];
+  }
 }

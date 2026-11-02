@@ -1,4 +1,4 @@
-import { TableBody, TableRow, TableCell, Typography } from '@mui/material';
+import { TableBody, TableRow, TableCell, Typography, Box } from '@mui/material';
 
 import ExTable from '../../components/exTable/exTable';
 import ExIconLabel from '../../components/exIconLabel/exIconLabel';
@@ -50,23 +50,29 @@ export default function ElementTable(props: ElementTableProps) {
           return (
             <TableRow key={type}>
               <TableCell>
-                <ExIconLabel 
-                  label={type}
-                  url={`/images/icons/elements/${type}/${type}_64.webp`}
-                  size={20}
-                  alignment='flex-start'
-                />
-              </TableCell>
-              <TableCell width='50%' align='right'>
-                <Typography 
-                  variant='inherit'
-                  sx={{
-                    color: percentageValue > 0 ? 'green' : 
-                           percentageValue < 0 ? 'red'   : 
-                                                 'text.primary'
-                  }}>
-                  {`${percentageValue}%`}
-                </Typography>
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  width: '100%'
+                }}>
+                  <ExIconLabel 
+                    label={type}
+                    url={`/images/icons/elements/${type}/${type}_64.webp`}
+                    size={20}
+                    alignment='flex-start'
+                  />
+                  <Typography 
+                    variant='inherit'
+                    sx={{
+                      color: percentageValue > 0 ? 'green' : 
+                             percentageValue < 0 ? 'red'   : 
+                                                   'text.primary'
+                    }}>
+                    {`${percentageValue}%`}
+                  </Typography>
+                </Box>
+                
               </TableCell>
             </TableRow>
           )}

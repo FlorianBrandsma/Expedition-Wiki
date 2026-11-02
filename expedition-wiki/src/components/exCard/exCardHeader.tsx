@@ -24,7 +24,7 @@ function BaseCardHeader({ title, ...props }: BaseCardHeaderProps) {
 
 const ExCardHeader = styled(BaseCardHeader)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
-  padding: 1
+  padding: 0
 }));
 
 export default ExCardHeader;

@@ -33,7 +33,7 @@ export default function EquipmentSetsPage() {
     requestType: EquipmentSetRequestType.GetFilterEquipmentSets,
 		gameId: [gameModel.id],
     includeDependencies: true,
-    name: name
+    partialName: name
 	});
 
 	const equipmentSetQuery = useQuery<EquipmentSetModel[]>({
@@ -80,10 +80,7 @@ export default function EquipmentSetsPage() {
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={equipmentSetQuery.data} headCells={equipmentSetHeaders} enableOrder enablePagination />
-					<Button 
-						variant="contained" 
-						onClick={() => equipmentSetQuery.refetch()}
-					>
+					<Button onClick={() => equipmentSetQuery.refetch()}>
 						Reload
 					</Button>
 				</Stack>

@@ -52,4 +52,8 @@ export class TerrainModel {
   get worldObjectReflectionModelList(): WorldObjectReflectionModel[] {
     return this.chunkModelList.flatMap(chunkModel => chunkModel.worldObjectReflectionModelList);
   }
+
+  get params(): string[] {
+    return ['terrain', this.regionName, this.name];
+  }
 }

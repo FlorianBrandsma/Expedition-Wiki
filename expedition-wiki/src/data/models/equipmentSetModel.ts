@@ -11,4 +11,8 @@ export class EquipmentSetModel {
   constructor(init:Partial<EquipmentSetModel>) {  
     Object.assign(this, init);
   }
+
+  get params(): string[] {
+    return ['set', this.name];
+  }
 }

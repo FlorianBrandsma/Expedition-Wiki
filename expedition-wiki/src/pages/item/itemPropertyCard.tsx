@@ -28,8 +28,8 @@ function CurrencyTable({ currencyItemModelList }: CurrencyTableProps) {
   return (
     <ExTable size='small'>
       <TableBody>
-        {currencyItemModelList.map((row) => (
-          <TableRow key={row.id}>
+        {currencyItemModelList.map((row, index) => (
+          <TableRow key={index}>
             <TableCell>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 0.5 }}>
                 <ExIcon resourceName={row.itemAssetIconResourceName} size={20} />
@@ -53,11 +53,11 @@ export default function ItemPropertyCard() {
 
   return (
     <ExCard sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       <ExCardHeader title={itemModel.name} />
       <CardContent 
         sx={{ 
@@ -127,7 +127,9 @@ export default function ItemPropertyCard() {
                 label='Currencies'
                 collapseComponent={
                   <CurrencyTable currencyItemModelList={currencyItemModelList} />
-                }/>
+                }
+                sx={{ mt: 1 }}
+              />
             </TableCell>
           </TableRow>
         )}  
@@ -197,7 +199,9 @@ export default function ItemPropertyCard() {
                 label='Elements'
                 collapseComponent={
                   <ElementTable normalAttributeType='Attack' model={equipmentItemModel} />
-                }/>
+                }
+                sx={{ mt: 1 }}
+              />
             </TableCell>
           </TableRow> 
         </ExCardTable>
@@ -237,7 +241,9 @@ export default function ItemPropertyCard() {
                 label='Elements'
                 collapseComponent={
                   <ElementTable normalAttributeType='Defence' model={equipmentItemModel} />
-                }/>
+                }
+                sx={{ mt: 1 }}
+              />
             </TableCell>
           </TableRow>
         </ExCardTable>

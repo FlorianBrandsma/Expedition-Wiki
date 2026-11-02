@@ -29,11 +29,11 @@ export default function InteractablePropertyCard() {
 
   return (
     <ExCard sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       <ExCardHeader title={interactableModel.name} />
       <CardContent 
         sx={{ 
@@ -117,7 +117,7 @@ export default function InteractablePropertyCard() {
                     bulleted
                     list={interactableProximityAreaModel.dimensionList} 
                     component={(dimension) => (
-                      <Box sx={{ display: 'flex', flexDirection: 'row', paddingRight: 1 }}>
+                      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, paddingRight: 1 }}>
                         <Box sx={{ flexGrow: 1, textAlign: 'left' }}>{dimension.label}</Box>
                         <Box sx={{ flexGrow: 1, textAlign: 'right'}}>{`${dimension.value}m`}</Box>
                       </Box>
@@ -194,7 +194,9 @@ export default function InteractablePropertyCard() {
                 label='Elements'
                 collapseComponent={
                   <ElementTable normalAttributeType='Attack' model={agentInteractableModel} equipmentItemModelList={equipmentItemModelList} />
-                }/>
+                }
+                sx={{ mt: 1 }}
+              />
             </TableCell>
           </TableRow> 
         </ExCardTable>
@@ -234,7 +236,9 @@ export default function InteractablePropertyCard() {
                 label='Elements'
                 collapseComponent={
                   <ElementTable normalAttributeType='Defence' model={agentInteractableModel} equipmentItemModelList={equipmentItemModelList} />
-                }/>
+                }
+                sx={{ mt: 1 }}
+              />
             </TableCell>
           </TableRow>
         </ExCardTable>

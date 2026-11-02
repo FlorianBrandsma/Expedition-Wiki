@@ -45,6 +45,8 @@ export default function App() {
   const exMain  = '#B4B4A0';
   const exDark  = '#5A5A50';
 
+  const exContrastText = '#FFF';
+
   const theme = createTheme({
 
     palette: {
@@ -52,7 +54,7 @@ export default function App() {
         light: exLight,
         main: exMain,
         dark: exDark,
-        contrastText: '#FFF'
+        contrastText: exContrastText
       },
     },
 
@@ -79,14 +81,11 @@ export default function App() {
       MuiButton: {
         styleOverrides: {
           root: {
-            color: 'black',
+            color: exContrastText,
             fontSize: '1rem',
             textTransform: 'none',
             borderRadius: 0,
-            background: `linear-gradient( ${ exLight } 50%, ${ exMain })`,
-            '&.Mui-disabled': {
-              background: `linear-gradient( ${ exMain } 50%, ${ exDark })`
-            }
+            background: exDark
           }
         },
         defaultProps: {

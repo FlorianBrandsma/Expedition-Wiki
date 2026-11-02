@@ -2,6 +2,8 @@ import { WorldInteractableParentType, WorldInteractableType } from "../../types/
 
 export class TaskModel {
 
+  id!: number;
+
   orderNumber!: number;
 
   name!: string;
@@ -40,8 +42,7 @@ export class TaskModel {
   }
 
   get params(): string[] {
-
-    const params = [
+    return [
       this.originType,
       ...this.parentParams,
       'interactable',
@@ -50,8 +51,6 @@ export class TaskModel {
       this.worldInteractableName,
       'task',
       this.name
-    ]
-
-    return params;
+    ];
   }
 }

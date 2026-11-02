@@ -27,9 +27,9 @@ export default function QuestsPage() {
 
   /* Get quests of the selected game */
 	const parameters = new QuestParameters({
-    requestType: QuestRequestType.GetFilterQuests,
+    requestType: QuestRequestType.GetGameQuests,
 		gameId: [gameModel.id],
-    name: name
+    partialName: name
 	});
 
 	const questQuery = useQuery<QuestModel[]>({
@@ -78,10 +78,7 @@ export default function QuestsPage() {
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={questQuery.data} headCells={questHeaders} enableOrder enablePagination />
-					<Button 
-						variant="contained" 
-						onClick={() => questQuery.refetch()}
-					>
+					<Button onClick={() => questQuery.refetch()}>
 						Reload
 					</Button>
 				</Stack>

@@ -13,7 +13,14 @@ export default function Segment(props: SegmentProps) {
   const { label, id, component, children } = segment;
 
   return (
-    <Box id={id} sx={{ mt: subSegment ? 1 : 3, scrollMarginTop: '64px' }}>
+    <Box 
+      id={id} 
+      sx={{ 
+        mt: subSegment ? 1 : 3, 
+        scrollMarginTop: '64px', 
+        clear: { xs: 'both', md: 'none' }
+      }}
+    >
       <Typography variant={ subSegment ? 'h6' : 'h5'}>{label}</Typography>
       {!subSegment && <Divider/>}
       {component}

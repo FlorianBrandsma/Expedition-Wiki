@@ -67,7 +67,14 @@ export default function BasicTable<T extends Record<string, any>>(props: BasicTa
         maxWidth: '100%'
       }} 
     >
-      <TableContainer sx={{ overflowX: 'auto', maxWidth: '100%' }}>
+      <TableContainer 
+        sx={{ 
+          overflowX: 'auto', 
+          maxWidth: '100%',
+          overscrollBehaviorX: 'none',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         <ExTable size='small'>
           <BasicTableHead
             headCells={headCells}

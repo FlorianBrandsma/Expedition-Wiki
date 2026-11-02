@@ -23,7 +23,7 @@ export default function ReferenceDescription(description: string, textReferenceM
             key={index}
             name={textReferenceModel.name}
             params={['terrain', textReferenceModel.waypointTextReferenceModel.regionName, textReferenceModel.waypointTextReferenceModel.terrainName]}
-            optionalParams={{waypoint: textReferenceModel.name}}
+            optionalParams={{ waypoint: textReferenceModel.name }}
           />
         ) : (
           <ExLink

@@ -17,7 +17,7 @@ export class ClassParameters implements IParameters {
   excludeId?: number[];
   gameId?: number[];
 
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<ClassParameters>) {
     Object.assign(this, init);

@@ -353,14 +353,23 @@ export default function EffectPage() {
           <Divider/>
           <Box sx={{ mt: 1 }}>
             <EffectPropertyCard />
-            <Typography variant="body1" component='div'>
-              {effectModel.descriptionComponent()}
-            </Typography>
+            
+            <Box sx={{
+              maxWidth: (theme) => `calc(50% - ${theme.spacing(1)})`
+            }}>
+              <Typography 
+                variant="body1" 
+                component='div' 
+                sx={{ mb: 1 }}
+              >
+                {effectModel.descriptionComponent()}
+              </Typography>
 
-            {contentSegments.length > 0 && (
-              <ContentTable segments={contentSegments} />
-            )}
-
+              {contentSegments.length > 0 && (
+                <ContentTable segments={contentSegments} />
+              )}
+            </Box>
+            
             {contentSegments.map((segment) => (
               <Segment key={segment.id} segment={segment}/>
             ))}

@@ -22,6 +22,8 @@ import { TransportEventModel } from "./transportEventModel";
 
 export class EventModel {
 
+  id!: number;
+
   type!: number;
 
   name!: string;
@@ -194,14 +196,11 @@ export class EventModel {
   }
 
   get params(): string[] {
-  
-      const params = [
-        ...this.parentParams,
-        'event',
-        EventParentType[this.eventParentType].toLowerCase(),
-        this.name
-      ]
-
-      return params;
-    }
+    return [
+      ...this.parentParams,
+      'event',
+      EventParentType[this.eventParentType].toLowerCase(),
+      this.name
+    ];
+  }
 }

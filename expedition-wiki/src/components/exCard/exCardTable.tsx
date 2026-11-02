@@ -8,7 +8,12 @@ interface ExCardTableProps
 export default function ExCardTable(props:ExCardTableProps) {
 
   return (
-    <Box sx={{ padding: 1 }}>
+    <Box sx={{ 
+      padding: 1, 
+      overflowX: 'auto', 
+      WebkitOverflowScrolling: 'touch',
+      display: 'block' 
+    }}>
       <Table size='small' sx={{ 
         '& .MuiTableCell-root': { 
           lineHeight: 1

@@ -16,7 +16,7 @@ export class TerrainParameters implements IParameters {
 
   gameId?: number[];
 
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<TerrainParameters>) {
     Object.assign(this, init);

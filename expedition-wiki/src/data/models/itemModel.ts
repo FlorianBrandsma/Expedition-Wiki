@@ -80,4 +80,8 @@ export class ItemModel {
   get rarityDescription(): string {
     return `${RarityType[this.rarityType]}`;
   }
+
+  get params(): string[] {
+    return ['item', this.name];
+  }
 }

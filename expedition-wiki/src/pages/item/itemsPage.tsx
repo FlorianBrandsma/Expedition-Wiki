@@ -122,15 +122,15 @@ export default function ItemsPage() {
 
   /* Get items of the selected game */
 	const parameters = new ItemParameters({
-    requestType: ItemRequestType.GetFilterItems,
-		gameId: [gameModel.id],
-    itemType: itemType,
-    supplyItemType: supplyItemType,
-    equipmentItemType: equipmentItemType,
-    armEquipmentItemType: armEquipmentItemType,
+    requestType:                   ItemRequestType.GetFilterItems,
+		gameId:                        [gameModel.id],
+    itemType:                      itemType,
+    supplyItemType:                supplyItemType,
+    equipmentItemType:             equipmentItemType,
+    armEquipmentItemType:          armEquipmentItemType,
     gearEquipmentItemMaterialType: gearEquipmentItemMaterialType,
-    trinketEquipmentItemType: trinketEquipmentItemType,
-    name: name
+    trinketEquipmentItemType:      trinketEquipmentItemType,
+    partialName:                   name
 	});
 
 	const itemQuery = useQuery<ItemModel[]>({
@@ -247,10 +247,7 @@ export default function ItemsPage() {
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={itemQuery.data} headCells={itemHeaders} enableOrder enablePagination />
-					<Button 
-						variant="contained" 
-						onClick={() => itemQuery.refetch()}
-					>
+					<Button onClick={() => itemQuery.refetch()}>
 						Reload
 					</Button>
 				</Stack>

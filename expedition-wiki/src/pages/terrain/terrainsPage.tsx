@@ -29,7 +29,7 @@ export default function TerrainsPage() {
 	const parameters = new TerrainParameters({
     requestType: TerrainRequestType.GetFilterTerrains,
 		gameId: [gameModel.id],
-    name: name
+    partialName: name
 	});
 
 	const terrainQuery = useQuery<TerrainModel[]>({
@@ -73,10 +73,7 @@ export default function TerrainsPage() {
 			) : (
 				<Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={terrainQuery.data} headCells={terrainHeaders} enableOrder enablePagination />
-					<Button 
-						variant="contained" 
-						onClick={() => terrainQuery.refetch()}
-					>
+					<Button onClick={() => terrainQuery.refetch()}>
 						Reload
 					</Button>
 				</Stack>

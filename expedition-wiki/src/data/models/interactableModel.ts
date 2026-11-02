@@ -53,12 +53,6 @@ export class InteractableModel {
   }
 
   get params(): string[] {
-  
-    const params = [
-      'interactable',
-      this.name
-    ]
-
-    return params;
+    return ['interactable', this.name];
   }
 }

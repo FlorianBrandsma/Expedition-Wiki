@@ -23,11 +23,11 @@ export default function TaskPropertyCard() {
 
   return (
     <ExCard sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       {/* Properties */}
       <ExCardHeader title='Properties' /> 
       <ExCardTable>

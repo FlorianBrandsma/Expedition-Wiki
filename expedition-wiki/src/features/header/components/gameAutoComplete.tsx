@@ -52,8 +52,8 @@ function BaseAutoComplete({...props}) {
 
     /* Open game page on selection */
     navigate(`/${ option.name }`, {
-        mask:`/${ option.name.replaceAll(' ', '_')}`
-      })
+      mask:`/${ option.name.replaceAll(' ', '_')}`
+    })
   }
 
   return (

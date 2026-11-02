@@ -129,13 +129,21 @@ export default function AbilityPage() {
           <Divider/>
           <Box sx={{ mt: 1 }}>
             <AbilityPropertyCard />
-            <Typography variant="body1">
-              {abilityModel.description}
-            </Typography>
 
-            {contentSegments.length > 0 && (
-              <ContentTable segments={contentSegments} />
-            )}
+            <Box sx={{
+              maxWidth: (theme) => `calc(50% - ${theme.spacing(1)})`
+            }}>
+              <Typography 
+                variant="body1" 
+                sx={{ mb: 1 }}
+              >
+                {abilityModel.description}
+              </Typography>
+
+              {contentSegments.length > 0 && (
+                <ContentTable segments={contentSegments} />
+              )}
+            </Box>
 
             {contentSegments.map((segment) => (
               <Segment key={segment.id} segment={segment}/>

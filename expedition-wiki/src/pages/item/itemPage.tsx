@@ -449,11 +449,21 @@ export default function ItemPage() {
           <Divider/>
           <Box sx={{ mt: 1 }}>
             <ItemPropertyCard />
-            <Typography variant="body1">{itemModel.description}</Typography>
 
-            {contentSegments.length > 0 && (
-              <ContentTable segments={contentSegments} />
-            )}
+            <Box sx={{
+              maxWidth: (theme) => `calc(50% - ${theme.spacing(1)})`
+            }}>
+              <Typography 
+                variant="body1"
+                sx={{ mb: 1 }}
+              >
+                {itemModel.description}
+              </Typography>
+
+              {contentSegments.length > 0 && (
+                <ContentTable segments={contentSegments} />
+              )}
+            </Box>
 
             {contentSegments.map((segment) => (
               <Segment key={segment.id} segment={segment}/>

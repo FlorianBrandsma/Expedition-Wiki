@@ -165,7 +165,14 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
         maxWidth: '100%'
       }} 
     >
-      <TableContainer sx={{ overflowX: 'auto', maxWidth: '100%' }}>
+      <TableContainer 
+        sx={{ 
+          overflowX: 'auto', 
+          maxWidth: '100%',
+          overscrollBehaviorX: 'none',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         <ExTable size='small'>
           {enableOrder ? (
             <EnhancedTableHead
@@ -218,14 +225,33 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
       {enablePagination && (
         <TablePagination
           rowsPerPageOptions={rowsPerPageOptions}
-          component="div"
+          component='div'
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
           sx={{ 
-            backgroundColor: 'primary.light'
+            backgroundColor: 'primary.light',
+            maxWidth: '100%',
+
+            '& .MuiTablePagination-toolbar': {
+              flexWrap: { xs: 'wrap', sm: 'nowrap' },
+              justifyContent: { xs: 'center', sm: 'flex-end' },
+              paddingLeft: { xs: 1, sm: 0 },
+              paddingRight: { xs: 1, sm: 0},
+              minHeight: { xs: 1, sm: '52px' },
+              py: { xs: 1, sm: 0 }
+            },
+
+            '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows': {
+              my: { xs: 0.5, sm: 0 }
+            },
+
+            '& .MuiTablePagination-actions': {
+              marginLeft: { xs: 'auto', sm: 2 },
+              marginRight: { xs: 'auto', sm: 0 }
+            }
           }}
           slotProps={{
             select: {

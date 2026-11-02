@@ -33,14 +33,14 @@ export default function ModelButton(props: ModelCardProps) {
       open={openModelViewer}
       setOpen={setOpenModelViewer}
     />
-    <Button 
-      variant="contained"
-      disabled={fileExists == false}
-      onClick={() => setOpenModelViewer(true)}
-      sx={{ width:'100%' }}
-    >
-      View in 3D
-    </Button>
+    {fileExists && (
+      <Button 
+        onClick={() => setOpenModelViewer(true)}
+        sx={{ width:'100%' }}
+      >
+        View in 3D
+      </Button>
+    )}
   </>
   )
 }

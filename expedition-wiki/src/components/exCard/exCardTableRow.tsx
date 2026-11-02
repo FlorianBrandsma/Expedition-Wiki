@@ -5,13 +5,20 @@ export interface ExCardTableRowProps {
   value: React.ReactNode;
 }
 
-export default function ExCardTableRow(props:ExCardTableRowProps) {
+export default function ExCardTableRow(props: ExCardTableRowProps) {
   
   return (
     <TableRow 
       sx={{ 
-        '& > .MuiTableCell-root': { borderBottom: 'unset' },
-        '& .MuiTableCell-root': { padding: '4px 6px' } 
+        '& > .MuiTableCell-root': { 
+          borderBottom: 'unset' 
+        },
+        '& .MuiTableCell-root': { 
+          padding: { 
+            xs: '2px 4px', 
+            sm: '2px 6px'
+          } 
+        }
       }}
     >
       <TableCell 
@@ -24,8 +31,9 @@ export default function ExCardTableRow(props:ExCardTableRowProps) {
         {props.label} 
       </TableCell>
       <TableCell 
-        sx={{ 
-          width: '60%' 
+        sx={{
+          maxWidth: 0,
+          width: '60%'
         }}> 
         {props.value} 
       </TableCell>

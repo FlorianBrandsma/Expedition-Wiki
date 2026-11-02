@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { IconButton, Box, Typography, Collapse } from '@mui/material';
+import { type SxProps, type Theme, IconButton, Box, Typography, Collapse } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -8,19 +8,19 @@ interface ExCollapseProps {
   label: string;
   collapseComponent: React.ReactNode;
   isOpen?: boolean;
+  sx?: SxProps<Theme>;
 }
 
-export default function ExCollapse({ label, collapseComponent, isOpen }: ExCollapseProps) {
+export default function ExCollapse({ label, collapseComponent, isOpen, sx }: ExCollapseProps) {
 
   const [open, setOpen] = useState(isOpen);
 
   return (
-    <>
+    <Box sx={sx}>
       <IconButton
         size="small"
         onClick={() => setOpen(!open)}
         sx={{
-          marginTop: 1,
           padding: 0,
           borderRadius: 0,
           width: '100%',
@@ -37,6 +37,6 @@ export default function ExCollapse({ label, collapseComponent, isOpen }: ExColla
       <Collapse in={open} unmountOnExit>
         {collapseComponent}
       </Collapse>
-    </>
+    </Box>
   )
 }

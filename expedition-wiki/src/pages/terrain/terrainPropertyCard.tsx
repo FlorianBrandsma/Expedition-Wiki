@@ -17,13 +17,12 @@ export default function TerrainPropertyCard() {
   const waypointModel = terrainModel.waypointModelList.find(x => x.name === searchParams.get('waypoint'));
 
   return (
-    <ExCard 
-      sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+    <ExCard sx={{ 
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       {/* Properties */}
       <ExCardHeader title='Properties' /> 
       <ExCardTable>

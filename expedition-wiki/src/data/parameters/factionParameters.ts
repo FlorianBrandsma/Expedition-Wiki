@@ -17,7 +17,7 @@ export class FactionParameters implements IParameters {
   excludeId?: number[];
   gameId?: number[];
 
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<FactionParameters>) {
     Object.assign(this, init);

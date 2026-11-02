@@ -135,7 +135,7 @@ export default function ClassPage() {
         <ClassPageContext.Provider value={ classPageModel }>
           <Typography variant="h5">{classModel.name}</Typography>
           <Divider/>
-          <Box>
+          <Box sx={{ mt: 1 }}>
 
             {contentSegments.length > 0 && (
               <ContentTable segments={contentSegments} />

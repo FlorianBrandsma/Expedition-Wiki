@@ -29,13 +29,12 @@ export default function WorldInteractablePropertyCard({ questName, objectiveName
   const isObjectiveWorldInteractable = questName && objectiveName;
 
   return (
-    <ExCard 
-      sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+    <ExCard sx={{ 
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       {entityWorldInteractableModel && (
         <>
           <ExCardHeader title={entityWorldInteractableModel.interactableName} />

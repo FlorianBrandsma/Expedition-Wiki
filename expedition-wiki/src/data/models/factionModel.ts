@@ -21,4 +21,8 @@ export class FactionModel {
   get attitudeDescription(): string {
     return this.factionRank >= this.allyRank ? 'Friendly' : 'Hostile';
   }
+
+  get params(): string[] {
+    return ['faction', this.name];
+  }
 }

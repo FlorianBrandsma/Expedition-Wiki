@@ -2,6 +2,8 @@ import { WaypointType } from "../../types/enums";
 
 export class WaypointModel {
 
+  id!: number;
+
   name!: string;
 
   type!: number;
@@ -10,6 +12,9 @@ export class WaypointModel {
   positionZ!: number;
 
   radius!: number;
+
+  regionName!: string;
+  terrainName!: string;
 
   constructor(init:Partial<WaypointModel>) {  
     Object.assign(this, init);
@@ -20,5 +25,13 @@ export class WaypointModel {
 
   get typeDescription(): WaypointType {
     return WaypointType[this.type];
+  }
+  
+  get params(): string[] {
+    return ['terrain', this.regionName, this.terrainName];
+  }
+
+  get optionalParams(): Record<string, string> {
+    return { waypoint: this.name };
   }
 }

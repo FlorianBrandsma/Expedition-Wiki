@@ -31,7 +31,7 @@ export default function ClassesPage() {
   const parameters = new ClassParameters({
     requestType: ClassRequestType.GetFilterClasses,
     gameId: [gameModel.id],
-    name: name
+    partialName: name
   });
 
   const classQuery = useQuery<ClassModel[]>({
@@ -77,10 +77,7 @@ export default function ClassesPage() {
       ) : (
         <Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={classQuery.data} headCells={classHeaders} enableOrder enablePagination />
-          <Button 
-            variant="contained" 
-            onClick={() => classQuery.refetch()}
-          >
+          <Button onClick={() => classQuery.refetch()} >
             Reload
           </Button>
         </Stack>

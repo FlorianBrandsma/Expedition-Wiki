@@ -23,7 +23,7 @@ export class InteractableParameters implements IParameters {
   agentInteractableType?: number[];
   characterAgentInteractableType?: number[];
   
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<InteractableParameters>) {
     Object.assign(this, init);

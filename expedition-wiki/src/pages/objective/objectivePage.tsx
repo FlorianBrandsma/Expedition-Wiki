@@ -65,11 +65,21 @@ export default function ObjectivePage() {
           <Divider/>
           <Box sx={{ mt: 1 }}>
             <ObjectivePropertyCard />
-            <Typography variant="body1">{objectiveModel.descriptionComponent}</Typography>
 
-            {contentSegments.length > 0 && (
-              <ContentTable segments={contentSegments} />
-            )}
+            <Box sx={{
+              maxWidth: (theme) => `calc(50% - ${theme.spacing(1)})`
+            }}>
+              <Typography 
+                variant="body1"
+                sx={{ mb: 1 }}
+              >
+                {objectiveModel.descriptionComponent}
+              </Typography>
+
+              {contentSegments.length > 0 && (
+                <ContentTable segments={contentSegments} />
+              )}
+            </Box>
 
             {contentSegments.map((segment) => (
               <Segment key={segment.id} segment={segment}/>

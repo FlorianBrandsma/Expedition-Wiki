@@ -21,7 +21,7 @@ export class AbilityParameters implements IParameters {
   chargeAbilityType?: number[];
   dischargeAbilityType?: number[];
   
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<AbilityParameters>) {
     Object.assign(this, init);

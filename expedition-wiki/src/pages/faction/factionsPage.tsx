@@ -32,7 +32,7 @@ export default function FactionsPage() {
   const parameters = new FactionParameters({
     requestType: FactionRequestType.GetFilterFactions,
     gameId: [gameModel.id],
-    name: name
+    partialName: name
   });
 
   const factionQuery = useQuery<FactionModel[]>({
@@ -79,10 +79,7 @@ export default function FactionsPage() {
       ) : (
         <Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={factionQuery.data} headCells={factionHeaders} enableOrder enablePagination />
-          <Button 
-            variant="contained" 
-            onClick={() => factionQuery.refetch()}
-          >
+          <Button onClick={() => factionQuery.refetch()}>
             Reload
           </Button>
         </Stack>

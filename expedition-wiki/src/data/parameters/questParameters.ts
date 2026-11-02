@@ -2,7 +2,7 @@ import type { IParameters } from "./interfaces";
 
 export const QuestRequestType = {
   Custom: 0,
-  GetFilterQuests: 1
+  GetGameQuests: 1
 }  as const;
 
 export class QuestParameters implements IParameters {
@@ -16,7 +16,7 @@ export class QuestParameters implements IParameters {
 
   gameId?: number[];
 
-  name?: string;
+  partialName?: string;
 
   constructor(init?:Partial<QuestParameters>) {
     Object.assign(this, init);

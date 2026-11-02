@@ -1,9 +1,9 @@
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
-import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ExTextField from '../exTextField/exTextField';
+import ExAutocomplete from '../exAutocomplete/exAutoComplete';
   
 interface BaseFilterSelectionProps {
   label: string
@@ -24,7 +24,7 @@ function BaseFilterSelection({ label, types, type, setType, ...props }: BaseFilt
   }
 
   return (
-    <Autocomplete
+    <ExAutocomplete
       {...props}
       multiple
       options={types}
@@ -33,32 +33,6 @@ function BaseFilterSelection({ label, types, type, setType, ...props }: BaseFilt
       disableCloseOnSelect
       getOptionLabel={(option) => option}
       onChange={(_event, options) => { handleChange(options) }}
-      slotProps={{ 
-        paper: { 
-          sx: { 
-            borderRadius: 0, 
-            backgroundColor: 'primary.main'
-          } 
-        },
-        listbox: {
-          sx: {
-            maxHeight: 500,
-            scrollbarColor: '#888 #ffffff00',
-
-            '& .MuiAutocomplete-option': {
-              '&:hover': {
-                backgroundColor: alpha('#000', 0.1)
-              }
-            },
-            "& .MuiAutocomplete-option[aria-selected='true']": {
-              backgroundColor: alpha('#000', 0.2),
-              "&.Mui-focused": {
-                backgroundColor: alpha('#000', 0.3),
-              }
-            }
-          } 
-        }
-      }}
       renderOption={(props, option, { selected }) => {
         const { key, ...optionProps } = props;
         const SelectionIcon = selected ? CheckBoxIcon : CheckBoxOutlineBlankIcon;

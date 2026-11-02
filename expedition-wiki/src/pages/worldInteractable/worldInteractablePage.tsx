@@ -95,9 +95,13 @@ export default function WorldInteractablePage() {
           <Box sx={{ mt: 1 }}>
             <WorldInteractablePropertyCard questName={questName} objectiveName={objectiveName} />
 
-            {contentSegments.length > 0 && (
-              <ContentTable segments={contentSegments} />
-            )}
+            <Box sx={{
+              maxWidth: (theme) => `calc(50% - ${theme.spacing(1)})`
+            }}>
+              {contentSegments.length > 0 && (
+                <ContentTable segments={contentSegments} />
+              )}
+            </Box>
 
             {contentSegments.map((segment) => (
               <Segment key={segment.id} segment={segment}/>

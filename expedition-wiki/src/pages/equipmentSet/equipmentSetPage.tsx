@@ -66,7 +66,7 @@ export default function EquipmentSetPage() {
         <EquipmentSetPageContext.Provider value={ equipmentSetPageModel }>
           <Typography variant="h5">{equipmentSetModel.name}</Typography>
           <Divider/>
-          <Box>
+          <Box sx={{ mt: 1 }}>
 
             {contentSegments.length > 0 && (
               <ContentTable segments={contentSegments} />

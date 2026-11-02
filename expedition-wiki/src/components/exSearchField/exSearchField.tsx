@@ -1,31 +1,49 @@
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useDebounce } from '../../hooks/useDebounce';
+
+import { useGameContext } from '../../context/gameContext';
+
+import { WikiSearchResultParameters } from '../../data/parameters/wikiSearchResultParameters';
+import { WikiSearchResultModel } from '../../data/models/wikiSearchResultModel';
+import { getData } from '../../services/dataManager';
+
 import { styled, alpha } from '@mui/material/styles';
-import { InputBase } from '@mui/material';
+import { TextField, CircularProgress, IconButton, Box, Button, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 
-const SearchField = styled('div')(({ theme }) => ({
-  position: 'relative',
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+import ExAutocomplete from '../exAutocomplete/exAutoComplete';
+import SearchFieldOption from './searchFieldOption';
+
+function BlurActiveInput() {
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
   }
-}));
+}
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+const StyledAutocomplete = styled(ExAutocomplete<WikiSearchResultModel, false, true, false>)(({ theme }) => ({
+  width: '100%',
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  '& .MuiOutlinedInput-root': {
+    position: 'relative',
+    padding: theme.spacing(0.5, 1, 0.5, 5),
+    color: 'inherit',
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    borderRadius: 0,
+
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.3)
+    },
+
+    '& fieldset': {
+      border: 'none'
+    }
+  },
+
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${ theme.spacing(4) })`,
-    width: '100%'
+    color: 'inherit',
+    padding: `${theme.spacing(1, 1, 1, 0)} !important`
   }
 }));
 
@@ -33,17 +51,192 @@ interface BaseSearchFieldProps {
   placeholder: string
 }
 
-function BaseSearchField({ placeholder, ...props }:BaseSearchFieldProps) {
+function BaseSearchField({ placeholder, ...props }: BaseSearchFieldProps) {
+
+  const { gameModel } = useGameContext();
+
+  const [isFocused, setIsFocused] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const debouncedValue = useDebounce<string>(inputValue, 250);
+
+  const parameters = new WikiSearchResultParameters({
+		gameId: [gameModel.id],
+    partialName: debouncedValue,
+    limit: 10
+	});
+
+	const wikiSearchResultQuery = useQuery<WikiSearchResultModel[]>({
+		queryKey: ["parameters", parameters],
+		queryFn: () => getData(parameters, WikiSearchResultModel),
+		enabled: !!debouncedValue,
+    initialData: []
+	});
+
+  const isPanelOpen = inputValue.length > 0 && isFocused;
+
   return (
-    <SearchField {...props}>
-      <SearchIconWrapper>
+    <Box 
+      {...props}
+      sx={{
+        position: 'relative',
+        display: 'inline-block'
+      }}
+    >
+      <Box sx={{
+        px: 2,
+        py: 0,
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
         <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder={placeholder}
-        inputProps={{ 'aria-label': 'search' }}
+      </Box>
+
+      <StyledAutocomplete
+        open={isPanelOpen}
+        onOpen={() => setIsFocused(true)}
+        onClose={() => setIsFocused(false)}
+        options={wikiSearchResultQuery.data}
+        loading={wikiSearchResultQuery.isLoading}
+        clearOnBlur={false}
+        popupIcon={null}
+        disableClearable={true}
+        filterOptions={(x) => x}
+        getOptionKey={(option) => option.key}
+        getOptionLabel={(option) => option.name}
+        inputValue={inputValue}
+        onInputChange={(_, newInputValue, reason) => {
+
+          if (reason === 'reset') return;
+          
+          setInputValue(newInputValue);
+        }}
+
+        onChange={(_, option) => {
+          if (option) {
+            document.getElementById(`search-btn-${option.key}`)?.click();
+            
+            setInputValue('');
+            BlurActiveInput();
+          }
+        }}
+
+        slots={{
+          paper: ({ children, ...paperProps }) => (
+            <Paper
+              {...paperProps}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+
+                '& .MuiAutocomplete-listbox': {
+                  maxHeight: '40vh',
+                  overflowY: 'auto'
+                }
+              }}
+            >
+              <Box sx={{ flex: 1 }}>
+                {children}
+              </Box>
+
+              <Button sx={{ 
+                mx: 2,
+                my: 1,
+                display: 'flex', 
+                justifyContent: 'center' 
+              }}>
+                View All Search Results
+              </Button>
+            </Paper>
+          )
+        }}
+
+        slotProps={{
+          popper: {
+            sx: {
+              '& .MuiAutocomplete-option': {
+
+                touchAction: 'pan-y',
+
+                '&:hover, &[aria-selected="true"], &.Mui-focused': {
+                  backgroundColor: 'transparent !important',
+                },
+                '&.Mui-focused .MuiButton-root': {
+                  backgroundColor: alpha('#000', 0.05),
+                }
+              }
+            }
+          }
+        }}
+
+        renderOption={(props, option, state) => {
+          const { key, ...optionProps } = props;
+          return (
+            <SearchFieldOption 
+              key={`${key}-${state.index}`}
+              optionProps={optionProps}
+              option={option}
+              state={state}
+              onClickHandler={() => {
+                setInputValue('')
+                BlurActiveInput();
+              }}
+            />
+          );
+        }}
+
+        renderInput={(params) => {
+          
+          const { input, ...slotProps } = params.slotProps || {};
+
+          return (
+            <TextField
+              {...params}
+              placeholder={placeholder}
+              variant='outlined'
+              slotProps={{
+                ...slotProps,
+                input: {
+                  ...input,
+                  endAdornment: (
+                    <>
+                      {wikiSearchResultQuery.isFetching && (
+                        <CircularProgress color='inherit' size={16} />
+                      )}
+                      {input?.endAdornment}
+                    </>
+                  )
+                }
+              }}
+            />
+          )
+        }}
       />
-    </SearchField>
+
+      <Box sx={{
+        px: 1,
+        py: 0,
+        height: '100%',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <IconButton
+          color='inherit'
+          disabled={inputValue.length === 0}
+          onClick={() => setInputValue('')}
+        >
+          <CloseIcon/>
+        </IconButton>
+      </Box>
+    </Box>
   )
 }
 

@@ -5,7 +5,7 @@ import { useGameContext } from '../../../context/gameContext';
 import type { Category } from '../../../services/categoryManager';
 
 import ExTable from '../../../components/exTable/exTable';
-import { Box, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import { Paper, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 
 interface ClassEquipmentSegmentProps {
   category: Category;
@@ -18,7 +18,7 @@ export default function ClassEquipmentSegmen({ category, typeList, enumKey }: Cl
   const { gameModel } = useGameContext();
 
   return (
-    <Box sx={{ mt: 1, maxWidth: '200px' }}>
+    <Paper sx={{ mt: 1, maxWidth: '200px' }}>
       <ExTable size='small'>
         <TableHead>
           <TableRow sx={{ backgroundColor: 'primary.dark' }}>
@@ -63,6 +63,6 @@ export default function ClassEquipmentSegmen({ category, typeList, enumKey }: Cl
           })}
         </TableBody>
       </ExTable>
-    </Box>
+    </Paper>
   )
 }

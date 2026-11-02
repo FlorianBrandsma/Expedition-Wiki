@@ -22,8 +22,8 @@ function ChunkTable({ chunkModelList }: ChunkTableProps) {
   return (
     <ExTable size='small'>
       <TableBody>
-        {chunkModelList.map((row) => (
-          <TableRow key={row.id}>
+        {chunkModelList.map((row, index) => (
+          <TableRow key={index}>
             <TableCell>
               {row.name}
             </TableCell>
@@ -40,11 +40,11 @@ export default function ClimatePropertyCard() {
 
   return (
     <ExCard sx={{ 
-        float: 'right', 
-        width: '250px',
-        ml: 1, mb: 1
-      }}
-    >
+      float: 'right', 
+      width: '250px',
+      maxWidth: '50%',
+      ml: 1, mb: 1
+    }}>
       {climateModel.iconResourceName && (
         <>
           <ExCardHeader title={climateModel.name} />
@@ -76,7 +76,9 @@ export default function ClimatePropertyCard() {
                 label='Chunks'
                 collapseComponent={
                   <ChunkTable chunkModelList={climateModel.chunkModelList} />
-                }/>
+                }
+                sx={{ mt: 1 }}
+              />
             </TableCell>
           </TableRow>
         )} 

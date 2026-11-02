@@ -95,7 +95,7 @@ export default function InteractablesPage() {
     interactableType: interactableType,
     agentInteractableType: agentInteractableType,
     characterAgentInteractableType: characterAgentInteractableType,
-    name: name
+    partialName: name
   });
 
   const interactableQuery = useQuery<InteractableModel[]>({
@@ -196,10 +196,7 @@ export default function InteractablesPage() {
       ) : (
         <Stack spacing={1} direction="column" sx={{ width: '750px', maxWidth: '100%' }}>
           <EnhancedTable rowKey="id" rows={interactableQuery.data} headCells={interactableHeaders} enableOrder enablePagination />
-          <Button 
-            variant="contained" 
-            onClick={() => interactableQuery.refetch()}
-          >
+          <Button onClick={() => interactableQuery.refetch()}>
             Reload
           </Button>
         </Stack>

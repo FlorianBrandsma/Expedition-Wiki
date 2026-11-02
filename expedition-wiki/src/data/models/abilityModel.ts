@@ -84,4 +84,8 @@ export class AbilityModel {
   get mana(): number {
     return this.dischargeAbilityModel?.spellDischargeAbilityModel?.mana ?? 0;
   }
+
+  get params(): string[] {
+    return ['ability', this.name];
+  }
 }

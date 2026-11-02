@@ -34,7 +34,7 @@ export class ItemParameters implements IParameters {
 	trinketEquipmentItemType?: number[];
 	equipmentSlotType?: number[];
 
-	name?: string;
+	partialName?: string;
 
 	constructor(init?:Partial<ItemParameters>) {
 		Object.assign(this, init);

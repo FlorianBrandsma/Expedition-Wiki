@@ -536,3 +536,22 @@ export const CraftItemEventActionType = [
   'Create',
   'Scrap'
 ] as const;
+
+export const WikiSearchResultType = [
+  'Effect',
+  'Ability',
+  'Item',
+  'Set',
+  'Faction',
+  'Class',
+  'Interactable',
+  'Terrain',
+  'Climate',
+  'Waypoint',
+  'Quest',
+  'Objective',
+  'Task',
+  'Event'
+] as const;
+
+export type WikiSearchResultType = typeof WikiSearchResultType[number];

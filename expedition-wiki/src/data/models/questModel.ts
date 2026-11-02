@@ -33,4 +33,8 @@ export class QuestModel {
   get typeDescription(): string {
     return QuestType[this.type];
   }
+
+  get params(): string[] {
+    return ['quest', this.expansionName, this.name];
+  }
 }

@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
+
 import { useGameContext } from "../../context/gameContext";
+
+import { getPath } from "../../services/pathManager";
 
 interface ExLinkProps {
   name: string;
@@ -7,19 +10,11 @@ interface ExLinkProps {
   optionalParams?: Record<string, string>;
 }
 
-export default function ExLink(props: ExLinkProps) {
+export default function ExLink({ name, params, optionalParams }: ExLinkProps) {
 
   const { gameModel } = useGameContext();
 
-  const { name, params, optionalParams } = props;
-
-  const gameName = gameModel.name.replaceAll(' ', '_');
-
-  const urlParams = params.map(x => `/${x.replaceAll(' ', '_')}`).join('');
-  
-  const searchParams = optionalParams ? `?${new URLSearchParams(optionalParams).toString()}` : '';
-
-  const path = `/${gameName}/${urlParams}${searchParams}`;
+  const path = getPath(gameModel.name, params, optionalParams);
 
   return (
     <Link 
