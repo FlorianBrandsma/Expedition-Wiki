@@ -4,10 +4,11 @@ import { useClassPageContext } from '../classPageContext';
 
 import type { DischargeAbilityModel } from '../../../data/models/dischargeAbilityModel';
 
+import { Box } from '@mui/material';
+
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExIcon from '../../../components/exIcon/exIcon';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
 
 export default function ClassAbilitySegment() {
 

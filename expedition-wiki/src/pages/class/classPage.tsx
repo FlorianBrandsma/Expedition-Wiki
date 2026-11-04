@@ -23,6 +23,7 @@ import Segment from '../../components/segment/segment';
 import ClassAbilitySegment from './segments.tsx/classAbilitySegment';
 import ClassNoteSegment from './segments.tsx/classNoteSegment';
 import ClassEquipmentSegment from './segments.tsx/classEquipmentSegment';
+import ClassCharacterSegment from './segments.tsx/classCharacterSegment';
 
 export default function ClassPage() {
 
@@ -55,7 +56,8 @@ export default function ClassPage() {
     armEquipmentItemTypeList,
     gearEquipmentItemMaterialTypeList,
     dischargeAbilityModelList,
-    noteModelList
+    noteModelList,
+    characterAgentInteractableModelList
   } = classPageModel;
 
   const equipmentSegment = {
@@ -130,6 +132,14 @@ export default function ClassPage() {
       label: 'Notes',
       id: 'Notes',
       component: <ClassNoteSegment />
+    })
+  }
+
+  if (characterAgentInteractableModelList.length > 0) {
+    contentSegments.push({
+      label: 'Characters',
+      id: 'Characters',
+      component: <ClassCharacterSegment />
     })
   }
 

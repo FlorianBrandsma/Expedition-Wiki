@@ -9,7 +9,7 @@ import { WikiSearchResultModel } from '../../data/models/wikiSearchResultModel';
 import { getData } from '../../services/dataManager';
 
 import { styled, alpha } from '@mui/material/styles';
-import { TextField, CircularProgress, IconButton, Box, Button, Paper, Typography } from '@mui/material';
+import { TextField, CircularProgress, IconButton, Box, Button, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
