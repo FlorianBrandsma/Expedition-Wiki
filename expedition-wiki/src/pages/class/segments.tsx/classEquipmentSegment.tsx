@@ -23,12 +23,10 @@ export default function ClassEquipmentSegmen({ category, typeList, enumKey }: Cl
         <TableHead>
           <TableRow sx={{ backgroundColor: 'primary.dark' }}>
             <TableCell>
-              <Typography
-                sx={{
-                  color: 'primary.contrastText',
-                  fontSize: '1rem'
-                }}
-              >
+              <Typography sx={{
+                color: 'primary.contrastText',
+                fontSize: '1rem'
+              }}>
                 {category.label}
               </Typography>
             </TableCell>

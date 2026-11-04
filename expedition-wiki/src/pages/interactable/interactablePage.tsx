@@ -4,37 +4,42 @@ import { useQuery } from '@tanstack/react-query';
 import { useGameContext } from '../../context/gameContext';
 import { InteractablePageContext } from './interactablePageContext';
 
+import { WorldInteractableParentType } from '../../types/enums';
+
 import { InteractablePageModel } from '../../data/models/pages/interactablePageModel';
 import { InteractablePageParameters } from '../../data/parameters/pages/interactablePageParameters';
 import { getData } from '../../services/dataManager';
 
-import { Divider, Box, Typography } from '@mui/material';
+import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
+import ContentTable from '../../components/contentTable/contentTable';
+import Segment from '../../components/segment/segment';
 
 import InteractablePropertyCard from './interactablePropertyCard';
 
-import type { ContentSegment } from '../../components/contentTable/contentTable';
-import ContentTable from '../../components/contentTable/contentTable';
-import Segment from '../../components/segment/segment';
 import InteractableEffectDefaultSegment from './segments/interactableEffectDefaultSegment';
+import InteractableEquipmentSegment from './segments/interactableEquipmentSegment';
+import InteractableAbilitySegment from './segments/interactableAbilitySegment';
+import InteractableNoteSegment from './segments/interactableNoteSegment';
+import InteractableBehaviourSegment from './segments/interactableBehaviourSegment';
+import InteractableReactionSegment from './segments/interactableReactionSegment';
+import InteractableSourceEventSegment from './segments/interactableSourceEventSegment';
+import InteractableEffectTaskSegment from './segments/interactableEffectTaskSegment';
+import InteractableEventSegment from './segments/interactableEventSegment';
+import InteractableWorldSegment from './segments/interactableWorldEntitySegment';
+import InteractableFeaturedMailSegment from './segments/interactableFeaturedMailSegment';
+
+import GeneralLootTableConditionSegment from '../general/segments/lootTable/generalLootTableConditionSegment';
+import GeneralLootTableItemSegment from '../general/segments/lootTable/generalLootTableItemSegment';
 import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
 import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
 import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
 import GeneralUtilityConditionTriggerSegment from '../general/segments/utility/condition/generalUtilityConditionTriggerSegment';
 import GeneralUtilityConditionEventSegment from '../general/segments/utility/condition/generalUtilityConditionEventSegment';
 import GeneralUtilityConditionItemSegment from '../general/segments/utility/condition/generalUtilityConditionItemSegment';
-import InteractableEquipmentSegment from './segments/interactableEquipmentSegment';
-import InteractableAbilitySegment from './segments/interactableAbilitySegment';
-import InteractableNoteSegment from './segments/interactableNoteSegment';
-import InteractableBehaviourSegment from './segments/interactableBehaviourSegment';
-import InteractableReactionSegment from './segments/interactableReactionSegment';
-import GeneralLootTableConditionSegment from '../general/segments/lootTable/generalLootTableConditionSegment';
-import GeneralLootTableItemSegment from '../general/segments/lootTable/generalLootTableItemSegment';
-import InteractableSourceEventSegment from './segments/interactableSourceEventSegment';
-import InteractableEffectTaskSegment from './segments/interactableEffectTaskSegment';
-import InteractableEventSegment from './segments/interactableEventSegment';
-import InteractableWorldSegment from './segments/interactableWorldEntitySegment';
-import { WorldInteractableParentType } from '../../types/enums';
-import InteractableFeaturedMailSegment from './segments/interactableFeaturedMailSegment';
 
 export default function InteractablePage() {
 
@@ -374,8 +379,12 @@ export default function InteractablePage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <InteractablePageContext.Provider value={ interactablePageModel }>
-          <Typography variant="h5">{interactableModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={interactableModel.name} 
+            secondaryName='Interactable' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <InteractablePropertyCard />
 

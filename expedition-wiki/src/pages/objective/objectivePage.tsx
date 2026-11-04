@@ -9,11 +9,15 @@ import { ObjectivePageParameters } from '../../data/parameters/pages/objectivePa
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
 
 import ObjectivePropertyCard from './objectivePropertyCard';
+
 import ObjectiveInteractableSegment from './segments/objectiveInteractableSegment';
 
 export default function ObjectivePage() {
@@ -61,8 +65,12 @@ export default function ObjectivePage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <ObjectivePageContext.Provider value={ objectivePageModel }>
-          <Typography variant="h5">{objectiveModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={objectiveModel.name} 
+            secondaryName='Objective' 
+          />
+          
           <Box sx={{ mt: 1 }}>
             <ObjectivePropertyCard />
 

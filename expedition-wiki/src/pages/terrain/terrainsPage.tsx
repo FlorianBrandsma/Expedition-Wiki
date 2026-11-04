@@ -8,7 +8,9 @@ import { TerrainModel } from '../../data/models/terrainModel';
 import { TerrainRequestType, TerrainParameters } from '../../data/parameters/terrainParameters';
 import { getData } from '../../services/dataManager';
 
-import { Box, Button, Divider, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ExTextField from '../../components/exTextField/exTextField';
 import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
 import ExLink from '../../components/exLink/exLink';
@@ -60,8 +62,7 @@ export default function TerrainsPage() {
 
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column"}}>
-			<Typography variant="h5">Terrains</Typography>
-      <Divider/>
+			<PageHeader primaryName='Terrains' />
       <Stack sx={{ pt: 1, pb: 1, width: '750px', maxWidth: '100%' }} >
         <ExTextField
           label={"Name"}

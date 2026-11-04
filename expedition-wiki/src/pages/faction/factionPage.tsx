@@ -9,15 +9,21 @@ import { FactionPageParameters } from '../../data/parameters/pages/factionPagePa
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
 import FactionPropertyCard from './factionPropertyCard';
+
 import FactionMemberSegment from './segments/factionMemberSegment';
 import FactionStandingSegment from './segments/factionStandingSegment';
 import FactionAttitudeSegment from './segments/factionAttitudeSegment';
 import FactionSourceEffectSegment from './segments/factionSourceEffectSegment';
 import FactionSourceEventSegment from './segments/factionSourceEventSegment';
+
 import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
 import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
 import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
@@ -225,8 +231,12 @@ export default function FactionPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <FactionPageContext.Provider value={ factionPageModel }>
-          <Typography variant="h5">{factionModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={factionModel.name} 
+            secondaryName='Faction' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <FactionPropertyCard />
 

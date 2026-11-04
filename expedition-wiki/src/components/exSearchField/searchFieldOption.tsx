@@ -22,7 +22,7 @@ interface SearchFieldOptionProps {
   onClickHandler: () => void;
 }
 
-export default function SearchFieldOption({ optionProps, option, state, onClickHandler }: SearchFieldOptionProps) {
+export default function SearchFieldOption({ optionProps, option, onClickHandler }: SearchFieldOptionProps) {
 
   const { gameModel } = useGameContext();
 

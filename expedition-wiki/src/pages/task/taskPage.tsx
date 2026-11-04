@@ -11,11 +11,20 @@ import { TaskPageParameters } from '../../data/parameters/pages/taskPageParamete
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
 
 import TaskPropertyCard from './taskPropertyCard';
+
+import TaskInteractableEffectSegment from './segments/taskInteractableEffectSegment';
+import TaskTriggerSegment from './segments/taskTriggerSegment';
+import TaskInteractableBehaviourSegment from './segments/taskInteractableBehaviourSegment';
+import TaskEventSegment from './segments/taskEventSegment';
+import TaskInteractableLocationSegment from './segments/taskInteractableLocationSegment';
 
 import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
 import GeneralUtilityConditionEventSegment from '../general/segments/utility/condition/generalUtilityConditionEventSegment';
@@ -23,11 +32,6 @@ import GeneralUtilityConditionItemSegment from '../general/segments/utility/cond
 import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
 import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
 import GeneralUtilityConditionTriggerSegment from '../general/segments/utility/condition/generalUtilityConditionTriggerSegment';
-import TaskInteractableEffectSegment from './segments/taskInteractableEffectSegment';
-import TaskTriggerSegment from './segments/taskTriggerSegment';
-import TaskInteractableBehaviourSegment from './segments/taskInteractableBehaviourSegment';
-import TaskEventSegment from './segments/taskEventSegment';
-import TaskInteractableLocationSegment from './segments/taskInteractableLocationSegment';
 
 export default function TaskPage() {
 
@@ -234,8 +238,12 @@ export default function TaskPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <TaskPageContext.Provider value={taskPageModel} >
-          <Typography variant="h5">{taskModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={taskModel.name} 
+            secondaryName='Task' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <TaskPropertyCard />
 

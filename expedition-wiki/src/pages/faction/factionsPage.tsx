@@ -8,12 +8,12 @@ import { FactionModel } from '../../data/models/factionModel';
 import { FactionRequestType, FactionParameters } from '../../data/parameters/factionParameters';
 import { getData } from '../../services/dataManager';
 
-import { Box, Button, Divider, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 
+import PageHeader from '../general/components/pageHeader';
 import ExTextField from '../../components/exTextField/exTextField';
 import ExIcon from '../../components/exIcon/exIcon';
 import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
-
 import ExLink from '../../components/exLink/exLink';
 
 export default function FactionsPage() {
@@ -61,8 +61,7 @@ export default function FactionsPage() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column"}}>
-      <Typography variant="h5">Factions</Typography>
-      <Divider/>
+      <PageHeader primaryName='Factions' />
       <Stack 
         spacing={2} 
         direction="column" 

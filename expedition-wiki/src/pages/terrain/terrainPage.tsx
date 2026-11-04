@@ -9,10 +9,15 @@ import { TerrainPageParameters } from '../../data/parameters/pages/terrainPagePa
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
 import TerrainPropertyCard from './terrainPropertyCard';
+
 import TerrainClimateSegment from './segments/terrainClimateSegment';
 import TerrainInteractableSegment from './segments/terrainInteractableSegment';
 import TerrainTransportSegment from './segments/terrainTransportSegment';
@@ -77,8 +82,12 @@ export default function TerrainPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <TerrainPageContext.Provider value={ terrainPageModel }>
-          <Typography variant="h5">{terrainModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={terrainModel.name} 
+            secondaryName='Terrain' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <TerrainPropertyCard />
 

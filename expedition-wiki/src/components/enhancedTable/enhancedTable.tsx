@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { alpha, type SxProps, type Theme } from '@mui/material/styles';
-import { Paper, Typography, TableContainer, TableHead, TableBody, TableRow, TableCell, TableSortLabel, TablePagination } from '@mui/material';
+import { type SxProps, type Theme } from '@mui/material/styles';
+import { Paper, Typography, TableContainer, TableHead, TableBody, TableRow, TableCell, TableSortLabel } from '@mui/material';
+import { EnhancedTablePagination } from './enhancedTablePagination';
 import ExTable from '../../components/exTable/exTable';
 
 export interface HeadCell<T> {
@@ -71,7 +72,6 @@ interface BasicTableHeadProps<T> {
 }
 
 function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
-
   return (
     <TableHead>
       <TableRow sx={{ backgroundColor: 'primary.dark' }}>
@@ -96,12 +96,36 @@ function BasicTableHead<T>({ headCells }: BasicTableHeadProps<T>) {
   );
 }
 
-interface EnhancedTableProps<T> extends BasicTableHeadProps<T> {
+interface BaseTableProps<T> extends BasicTableHeadProps<T> {
   rows: T[];
   rowKey: keyof T;
   enableOrder?: boolean | undefined;
   enablePagination?: boolean | undefined;
 }
+
+interface ClientPaginatedProps<T> extends BaseTableProps<T> {
+  totalCount?: never;
+  page?: never;
+  rowsPerPage?: never;
+  onPageChange?: never;
+  onRowsPerPageChange?: never;
+  order?: never;
+  orderBy?: never;
+  onRequestSort?: never;
+}
+
+interface ServerPaginatedProps<T> extends BaseTableProps<T> {
+  totalCount: number;
+  page: number;
+  rowsPerPage: number;
+  onPageChange: (page: number) => void;
+  onRowsPerPageChange: (rowsPerPage: number) => void;
+  order?: Order;
+  orderBy?: keyof T | undefined;
+  onRequestSort?: (property: keyof T) => void;
+}
+
+type EnhancedTableProps<T> = ClientPaginatedProps<T> | ServerPaginatedProps<T>;
 
 function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
 
@@ -123,38 +147,85 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
 
   const { rows, headCells, rowKey, enableOrder, enablePagination } = props;
 
-  const [order, setOrder] = React.useState<Order>();
-  const [orderBy, setOrderBy] = React.useState<keyof T | undefined>();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
+  const [order, setOrder] = React.useState<Order>();
+  const [orderBy, setOrderBy] = React.useState<keyof T | undefined>();
+
+  const serverProps = props.totalCount !== undefined ? (props as ServerPaginatedProps<T>) : null;
+
+  const activePage        = serverProps?.page ?? page;
+  const activeRowsPerPage = serverProps?.rowsPerPage ?? rowsPerPage;
+  const activeTotalCount  = serverProps?.totalCount ?? rows.length;
+  const activeOrder       = serverProps?.order ?? order;
+  const activeOrderBy     = serverProps?.orderBy ?? orderBy;
 
   const handleRequestSort = (_event: React.MouseEvent<unknown>, property: keyof T ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
+    if (serverProps?.onRequestSort) {
+
+      serverProps.onRequestSort(property);
+
+    } else {
+
+      const isAsc = orderBy === property && order === 'asc';
+      setOrder(isAsc ? 'desc' : 'asc');
+      setOrderBy(property);
+    }
   }
 
   const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
+    if (serverProps) {     
+
+      serverProps.onPageChange(newPage);
+
+    } else {
+
+      setPage(newPage);
+    }
   }
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+
+    const newRowsPerPage = parseInt(event.target.value, 10);
+
+    if (serverProps) {
+
+      serverProps.onRowsPerPageChange(newRowsPerPage);
+
+    } else {
+
+      setRowsPerPage(newRowsPerPage);
+      setPage(0);
+    }
   }
 
   const visibleRows = React.useMemo(() => {
 
-    const sortedRows = orderBy ? [...rows].sort(getComparator(order, orderBy)) : [...rows];
+    if (serverProps) {
+      return rows;
+    }
+
+    const sortedRows = activeOrderBy ? [...rows].sort(getComparator(activeOrder, activeOrderBy)) : [...rows];
     
     if (enablePagination) {
-      return sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      return sortedRows.slice(activePage * activeRowsPerPage, activePage * activeRowsPerPage + activeRowsPerPage)
     }
     
     return sortedRows;
 
-    }, [order, orderBy, page, rowsPerPage, rows]
+    }, [activeOrder, activeOrderBy, activePage, activeRowsPerPage, rows]
   );
+
+  const paginationComponent = enablePagination && (
+    <EnhancedTablePagination 
+      rowsPerPageOptions={rowsPerPageOptions}
+      totalCount={activeTotalCount}
+      rowsPerPage={activeRowsPerPage}
+      page={activePage}
+      onPageChange={handleChangePage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+    />
+  )
 
   return (
     <Paper 
@@ -165,6 +236,7 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
         maxWidth: '100%'
       }} 
     >
+      {paginationComponent}
       <TableContainer 
         sx={{ 
           overflowX: 'auto', 
@@ -176,8 +248,8 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
         <ExTable size='small'>
           {enableOrder ? (
             <EnhancedTableHead
-              order={order}
-              orderBy={orderBy}
+              order={activeOrder}
+              orderBy={activeOrderBy}
               headCells={headCells}
               onRequestSort={handleRequestSort}
             />
@@ -221,65 +293,7 @@ export default function EnhancedTable<T extends Record<string, any>>(props: Enha
           </TableBody>
         </ExTable>
       </TableContainer>
-
-      {enablePagination && (
-        <TablePagination
-          rowsPerPageOptions={rowsPerPageOptions}
-          component='div'
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          sx={{ 
-            backgroundColor: 'primary.light',
-            maxWidth: '100%',
-
-            '& .MuiTablePagination-toolbar': {
-              flexWrap: { xs: 'wrap', sm: 'nowrap' },
-              justifyContent: { xs: 'center', sm: 'flex-end' },
-              paddingLeft: { xs: 1, sm: 0 },
-              paddingRight: { xs: 1, sm: 0},
-              minHeight: { xs: 1, sm: '52px' },
-              py: { xs: 1, sm: 0 }
-            },
-
-            '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows': {
-              my: { xs: 0.5, sm: 0 }
-            },
-
-            '& .MuiTablePagination-actions': {
-              marginLeft: { xs: 'auto', sm: 2 },
-              marginRight: { xs: 'auto', sm: 0 }
-            }
-          }}
-          slotProps={{
-            select: {
-              MenuProps: {
-                slotProps: {
-                  paper: {
-                    sx: {
-                      backgroundColor: 'primary.light',
-                      borderRadius: 0,
-                      '& .MuiMenuItem-root ': {
-                        '&:hover': {
-                          backgroundColor: alpha('#000', 0.1)
-                        },
-                        '&.Mui-selected': {
-                          backgroundColor: alpha('#000', 0.2),
-                          '&:hover': {
-                            backgroundColor: alpha('#000', 0.3)
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }}
-        />
-      )}
+      {paginationComponent}
     </Paper>
   );
 }

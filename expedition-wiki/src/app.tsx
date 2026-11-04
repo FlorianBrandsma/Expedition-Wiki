@@ -31,6 +31,7 @@ import ObjectivePage from './pages/objective/objectivePage';
 import WorldInteractablePage from './pages/worldInteractable/worldInteractablePage';
 import TaskPage from './pages/task/taskPage';
 import EventPage from './pages/event/eventPage';
+import SearchPage from './pages/search/searchPage';
 
 export default function App() {
 
@@ -105,6 +106,10 @@ export default function App() {
           {
             path:'/:gameName',
             element: <GamePage />
+          },
+          {
+            path:'/:gameName/search',
+            element: <SearchPage />
           },
           {
             path:'/:gameName/terrain',

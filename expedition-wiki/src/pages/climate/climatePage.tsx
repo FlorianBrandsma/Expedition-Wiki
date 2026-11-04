@@ -9,10 +9,15 @@ import { ClimatePageParameters } from '../../data/parameters/pages/climatePagePa
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
 import ClimatePropertyCard from './climatePropertyCard';
+
 import ClimateEffectSegment from './segments/climateEffectSegment';
 
 export default function ClimatePage() {
@@ -62,8 +67,12 @@ export default function ClimatePage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <ClimatePageContext.Provider value={ climatePageModel }>
-          <Typography variant="h5">{climateModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={climateModel.name} 
+            secondaryName='Climate' 
+          />
+          
           <Box sx={{ mt: 1 }}>
             <ClimatePropertyCard />
 

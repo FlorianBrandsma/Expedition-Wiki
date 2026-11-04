@@ -9,9 +9,13 @@ import { EquipmentSetPageParameters } from '../../data/parameters/pages/equipmen
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
 import EquipmentSetEquipmentSegment from './segments/equipmentSetEquipmentSegment';
 import EquipmentSetEffectSegment from './segments/equipmentSetEffectSegment';
 
@@ -64,8 +68,12 @@ export default function EquipmentSetPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <EquipmentSetPageContext.Provider value={ equipmentSetPageModel }>
-          <Typography variant="h5">{equipmentSetModel.name}</Typography>
-          <Divider/>
+          
+          <PageHeader 
+            primaryName={equipmentSetModel.name} 
+            secondaryName='Set' 
+          />
+
           <Box sx={{ mt: 1 }}>
 
             {contentSegments.length > 0 && (

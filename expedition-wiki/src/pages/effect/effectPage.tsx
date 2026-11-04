@@ -9,10 +9,15 @@ import { EffectPageParameters } from '../../data/parameters/pages/effectPagePara
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
-import EffectPropertyCard from './effectPropertyCard';
+
+import { Box, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
+import EffectPropertyCard from './effectPropertyCard';
+
 import EffectClusterEffectSegment from './segments/effectClusterEffectSegment';
 import EffectResistanceSegment from './segments/effectResistanceSegment';
 import EffectSourceEquipmentSegment from './segments/effectSourceEquipment';
@@ -29,13 +34,14 @@ import EffectSourceAbilitySegment from './segments/effectSourceAbilitySegment';
 import EffectSourceEffectAbsorbSegment from './segments/effectSourceEffectAbsorbSegment';
 import EffectSourceEffectAuraSegment from './segments/effectSourceEffectAuraSegment';
 import EffectSourceEffectRepeatSegment from './segments/effectSourceEffectRepeatSegment';
+import EffectSourceAgentTaskSegment from './segments/effectSourceAgentTaskSegment';
+
 import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
 import GeneralUtilityConditionEventSegment from '../general/segments/utility/condition/generalUtilityConditionEventSegment';
 import GeneralUtilityConditionItemSegment from '../general/segments/utility/condition/generalUtilityConditionItemSegment';
 import GeneralUtilityConditionLootSegment from '../general/segments/utility/condition/generalUtilityConditionLootSegment';
 import GeneralUtilityConditionReactionSegment from '../general/segments/utility/condition/generalUtilityConditionReactionSegment';
 import GeneralUtilityConditionTriggerSegment from '../general/segments/utility/condition/generalUtilityConditionTriggerSegment';
-import EffectSourceAgentTaskSegment from './segments/effectSourceAgentTaskSegment';
 
 export default function EffectPage() {
 
@@ -349,8 +355,12 @@ export default function EffectPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <EffectPageContext.Provider value={ effectPageModel }>
-          <Typography variant="h5">{effectModel.name}</Typography>
-          <Divider/>
+          
+          <PageHeader 
+            primaryName={effectModel.name} 
+            secondaryName='Effect' 
+          />
+          
           <Box sx={{ mt: 1 }}>
             <EffectPropertyCard />
             

@@ -8,8 +8,8 @@ export default function EventSpeechTextSegment() {
   const { speechEventModel } = eventModel;
 
   return (
-    <Box sx={{ display:'inline-block', minWidth: '200px' }}>
-      <Typography sx={{ fontStyle: 'italic', textIndent: '2rem' }}>
+    <Box sx={{ mx: 4, display: 'inline-block', minWidth: '200px' }}>
+      <Typography sx={{ fontStyle: 'italic' }}>
         {'"'}{speechEventModel.textComponent}{'"'}
       </Typography>
     </Box>

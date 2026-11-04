@@ -4,13 +4,15 @@ import TextField from '@mui/material/TextField';
 
 interface BaseTextFieldProps {
   label: string
+  defaultValue?: string;
   setValue?: React.Dispatch<React.SetStateAction<string>>
 }
 
-function BaseTextField({ label, setValue, ...props }: BaseTextFieldProps) {
+function BaseTextField({ label, defaultValue, setValue, ...props }: BaseTextFieldProps) {
   return (
     <TextField
       {...props}
+      defaultValue={defaultValue}
       label={label}
       onChange={(e) => setValue && setValue(e.target.value)}
     />

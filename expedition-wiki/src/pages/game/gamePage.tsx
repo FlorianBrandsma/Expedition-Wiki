@@ -2,9 +2,12 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 
 import { useGameContext } from '../../context/gameContext';
 
+import { Box, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import Segment from '../../components/segment/segment';
+
 import GameCategorySegment from './gameCategorySegment';
-import { Box, Divider, Typography } from '@mui/material';
 
 export default function GamePage() {
 
@@ -21,8 +24,7 @@ export default function GamePage() {
 
 	return (
     <>
-      <Typography variant="h5">{gameModel.name}</Typography>
-      <Divider/>
+      <PageHeader primaryName={gameModel.name} />
       <Box sx={{ mt: 1 }}>
         <Typography variant="body1">{gameModel.description}</Typography>
 

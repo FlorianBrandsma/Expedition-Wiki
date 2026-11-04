@@ -8,11 +8,11 @@ import { ClassModel } from '../../data/models/classModel';
 import { ClassRequestType, ClassParameters } from '../../data/parameters/classParameters';
 import { getData } from '../../services/dataManager';
 
-import { Box, Button, Divider, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 
-import ExTextField from '../../components/exTextField/exTextField';
+import PageHeader from '../general/components/pageHeader';
 import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
-
+import ExTextField from '../../components/exTextField/exTextField';
 import ExLink from '../../components/exLink/exLink';
 
 export default function ClassesPage() {
@@ -59,8 +59,7 @@ export default function ClassesPage() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column"}}>
-      <Typography variant="h5">Classes</Typography>
-      <Divider/>
+      <PageHeader primaryName='Classes' />
       <Stack 
         spacing={2} 
         direction="column" 

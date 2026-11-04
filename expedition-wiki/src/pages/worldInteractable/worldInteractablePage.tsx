@@ -4,17 +4,22 @@ import { useQuery } from '@tanstack/react-query';
 import { useGameContext } from '../../context/gameContext';
 import { WorldInteractablePageContext } from './worldInteractablePageContext';
 
+import { WorldInteractableType, WorldInteractableParentType } from '../../types/enums';
+
 import { WorldInteractablePageModel } from '../../data/models/pages/worldInteractablePageModel';
 import { WorldInteractablePageParameters } from '../../data/parameters/pages/worldInteractablePageParameters';
 import { getData } from '../../services/dataManager';
 
+import { Box } from '@mui/material';
+
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
 
 import WorldInteractablePropertyCard from './worldInteractablePropertyCard';
-import { WorldInteractableType, WorldInteractableParentType } from '../../types/enums';
+
 import WorldInteractableTaskSegment from './segments/worldInteractableTaskSegment';
 import WorldInteractableObjectiveSegment from './segments/worldInteractableObjectiveSegment';
 
@@ -89,9 +94,13 @@ export default function WorldInteractablePage() {
   return (
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
-        <WorldInteractablePageContext.Provider value={worldInteractablePageModel} >
-          <Typography variant="h5">{worldInteractableModel.name}</Typography>
-          <Divider/>
+        <WorldInteractablePageContext.Provider value={worldInteractablePageModel}>
+
+          <PageHeader 
+            primaryName={worldInteractableModel.name} 
+            secondaryName='Entity' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <WorldInteractablePropertyCard questName={questName} objectiveName={objectiveName} />
 

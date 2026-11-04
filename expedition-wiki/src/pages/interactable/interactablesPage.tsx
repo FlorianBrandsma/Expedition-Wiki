@@ -12,6 +12,8 @@ import { getData } from '../../services/dataManager';
 import { InteractableType, AgentInteractableType, CharacterAgentInteractableType } from '../../types/enums'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
 import ExTextField from '../../components/exTextField/exTextField';
 import ExIcon from '../../components/exIcon/exIcon';
@@ -157,7 +159,7 @@ export default function InteractablesPage() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column"}}>
-      <Typography variant="h5">Interactables</Typography>
+      <PageHeader primaryName='Interactables' />
       <Divider/>
       <Stack 
         spacing={2} 

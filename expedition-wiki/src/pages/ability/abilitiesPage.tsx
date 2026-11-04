@@ -11,11 +11,13 @@ import { getData } from '../../services/dataManager';
 
 import { AbilityType, ChargeAbilityType, DischargeAbilityType } from '../../types/enums'
 
-import { Box, Button, Divider, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
+import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
 import ExFilterSelection from '../../components/exFilterSelection/exFilterSelection';
 import ExTextField from '../../components/exTextField/exTextField';
 import ExIcon from '../../components/exIcon/exIcon';
-import EnhancedTable, { type HeadCell } from '../../components/enhancedTable/enhancedTable';
 import ExLink from '../../components/exLink/exLink';
 
 export default function AbilitiesPage() {
@@ -132,8 +134,7 @@ export default function AbilitiesPage() {
 
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column"}}>
-			<Typography variant="h5">Abilities</Typography>
-      <Divider/>
+      <PageHeader primaryName='Abilities' />
       <Stack 
         spacing={2} 
         direction="column" 

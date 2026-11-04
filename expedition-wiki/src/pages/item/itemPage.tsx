@@ -10,15 +10,18 @@ import { getData } from '../../services/dataManager';
 
 import { ItemComponentType } from '../../types/enums';
 
-import { Divider, Box, Typography } from '@mui/material';
-
-import ItemPropertyCard from './itemPropertyCard';
-import ItemClassSegment from './segments/itemClassSegment';
-import ItemSupplyAbilitySegment from './segments/itemSupplyAbilitySegment';
+import { Box, Typography } from '@mui/material';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
+
+import ItemPropertyCard from './itemPropertyCard';
+
+import ItemClassSegment from './segments/itemClassSegment';
+import ItemSupplyAbilitySegment from './segments/itemSupplyAbilitySegment';
 import ItemEquipmentAbilitySegment from './segments/itemEquipmentAbilitySegment';
 import ItemEquipmentEffectSegment from './segments/itemEquipmentEffectSegment';
 import ItemEquipmentSetSegment from './segments/itemEquipmentSetSegment';
@@ -41,6 +44,7 @@ import ItemSourceDistributeSegment from './segments/itemSourceDistributeSegment'
 import ItemSourceScrapSegment from './segments/itemSourceScrapSegment';
 import ItemUtilitySellSegment from './segments/itemUtilitySellSegment';
 import ItemSourceSellSegment from './segments/itemSourceSellSegment';
+
 import GeneralUtilityConditionAbilitySegment from '../general/segments/utility/condition/generalUtilityConditionAbilitySegment';
 import GeneralUtilityConditionEventSegment from '../general/segments/utility/condition/generalUtilityConditionEventSegment';
 import GeneralUtilityConditionItemSegment from '../general/segments/utility/condition/generalUtilityConditionItemSegment';
@@ -445,8 +449,12 @@ export default function ItemPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <ItemPageContext.Provider value={ itemPageModel }>
-          <Typography variant="h5">{itemModel.name}</Typography>
-          <Divider/>
+          
+          <PageHeader 
+            primaryName={itemModel.name} 
+            secondaryName='Item' 
+          />
+          
           <Box sx={{ mt: 1 }}>
             <ItemPropertyCard />
 

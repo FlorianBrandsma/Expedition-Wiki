@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '../../hooks/useDebounce';
-
 import { useGameContext } from '../../context/gameContext';
 
 import { WikiSearchResultParameters } from '../../data/parameters/wikiSearchResultParameters';
@@ -9,12 +9,13 @@ import { WikiSearchResultModel } from '../../data/models/wikiSearchResultModel';
 import { getData } from '../../services/dataManager';
 
 import { styled, alpha } from '@mui/material/styles';
-import { TextField, CircularProgress, IconButton, Box, Button, Paper } from '@mui/material';
+import { TextField, CircularProgress, IconButton, Box, Button, Paper, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
 import ExAutocomplete from '../exAutocomplete/exAutoComplete';
 import SearchFieldOption from './searchFieldOption';
+import { getPath } from '../../services/pathManager';
 
 function BlurActiveInput() {
   if (document.activeElement instanceof HTMLElement) {
@@ -53,27 +54,31 @@ interface BaseSearchFieldProps {
 
 function BaseSearchField({ placeholder, ...props }: BaseSearchFieldProps) {
 
+  const navigate = useNavigate();
+
   const { gameModel } = useGameContext();
 
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const debouncedValue = useDebounce<string>(inputValue, 250);
+  const debouncedName = useDebounce<string>(inputValue, 250);
 
   const parameters = new WikiSearchResultParameters({
 		gameId: [gameModel.id],
-    partialName: debouncedValue,
+    partialName: debouncedName,
     limit: 10
 	});
 
 	const wikiSearchResultQuery = useQuery<WikiSearchResultModel[]>({
 		queryKey: ["parameters", parameters],
 		queryFn: () => getData(parameters, WikiSearchResultModel),
-		enabled: !!debouncedValue,
+		enabled: !!debouncedName,
     initialData: []
 	});
 
   const isPanelOpen = inputValue.length > 0 && isFocused;
+
+  const path = getPath(gameModel.name, ['search'], {name: inputValue});
 
   return (
     <Box 
@@ -143,12 +148,24 @@ function BaseSearchField({ placeholder, ...props }: BaseSearchFieldProps) {
                 {children}
               </Box>
 
-              <Button sx={{ 
-                mx: 2,
-                my: 1,
-                display: 'flex', 
-                justifyContent: 'center' 
-              }}>
+              <Button 
+                component={Link}
+                to={path}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                }}
+                onClick={() => {
+                  setInputValue('');
+                  BlurActiveInput();
+                }}
+                sx={{ 
+                  mx: 2,
+                  my: 1,
+                  display: 'flex', 
+                  justifyContent: 'center',
+                  color: (theme) => `${theme.palette.primary.contrastText} !important`,
+                }}
+              >
                 View All Search Results
               </Button>
             </Paper>
@@ -198,6 +215,15 @@ function BaseSearchField({ placeholder, ...props }: BaseSearchFieldProps) {
               {...params}
               placeholder={placeholder}
               variant='outlined'
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+
+                  navigate(path);
+
+                  setInputValue('');
+                  BlurActiveInput();
+                }
+              }}
               slotProps={{
                 ...slotProps,
                 input: {

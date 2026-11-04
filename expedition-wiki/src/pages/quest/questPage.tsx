@@ -9,10 +9,15 @@ import { QuestPageParameters } from '../../data/parameters/pages/questPageParame
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
 import QuestPropertyCard from './questPropertyCard';
+
 import QuestObjectiveSegment from './segments/questObjectiveSegment';
 import QuestRequirementQuestSegment from './segments/questRequirementsQuestSegment';
 import QuestRequirementTaskSegment from './segments/questRequirementsTaskSegment';
@@ -99,8 +104,12 @@ export default function QuestPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <QuestPageContext.Provider value={ questPageModel }>
-          <Typography variant="h5">{questModel.name}</Typography>
-          <Divider/>
+          
+          <PageHeader 
+            primaryName={questModel.name} 
+            secondaryName='Quest' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <QuestPropertyCard />
 

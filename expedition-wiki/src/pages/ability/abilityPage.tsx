@@ -9,10 +9,15 @@ import { AbilityPageParameters } from '../../data/parameters/pages/abilityPagePa
 import { getData } from '../../services/dataManager';
 
 import type { ContentSegment } from '../../components/contentTable/contentTable';
-import AbilityPropertyCard from './abilityPropertyCard';
+
+import { Box, Typography } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
+
+import AbilityPropertyCard from './abilityPropertyCard';
+
 import AbilityEffectSegment from './segments/abilityEffectSegment';
 import AbilityChargeConditionSegment from './segments/abilityChargeConditionSegment';
 import AbilityClassSegment from './segments/abilityClassSegment';
@@ -125,8 +130,12 @@ export default function AbilityPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <AbilityPageContext.Provider value={ abilityPageModel }>
-          <Typography variant="h5">{abilityModel.name}</Typography>
-          <Divider/>
+
+          <PageHeader 
+            primaryName={abilityModel.name} 
+            secondaryName='Ability' 
+          />
+          
           <Box sx={{ mt: 1 }}>
             <AbilityPropertyCard />
 

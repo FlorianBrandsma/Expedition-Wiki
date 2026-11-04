@@ -10,13 +10,17 @@ import { EventPageModel } from '../../data/models/pages/eventPageModel';
 import { EventPageParameters } from '../../data/parameters/pages/eventPageParameters';
 import { getData } from '../../services/dataManager';
 
+import { ConvertTime } from '../../services/timeManager';
+
 import type { ContentSegment } from '../../components/contentTable/contentTable';
+
+import { Box } from '@mui/material';
+
+import PageHeader from '../general/components/pageHeader';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
-import { Divider, Box, Typography } from '@mui/material';
 
 import EventPropertyCard from './eventPropertyCard';
-import { ConvertTime } from '../../services/timeManager';
 import EventSpeechTextSegment from './segments/eventSpeechTextSegment';
 import EventDialogueSpeechSegment from './segments/eventDialogueSpeechSegment';
 import EventMenuEntrySegment from './segments/eventMenuEntrySegment';
@@ -444,8 +448,12 @@ export default function EventPage() {
     <Box sx={{ justifyContent: "left"}}>
       <Box sx={{ display: "flex", flexDirection: "column"}}>
         <EventPageContext.Provider value={eventPageModel} >
-          <Typography variant="h5">{eventModel.name}</Typography>
-          <Divider/>
+          
+          <PageHeader 
+            primaryName={eventModel.name} 
+            secondaryName='Event' 
+          />
+
           <Box sx={{ mt: 1 }}>
             <EventPropertyCard />
 
