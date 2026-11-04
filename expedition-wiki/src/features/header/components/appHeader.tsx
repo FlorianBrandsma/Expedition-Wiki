@@ -23,77 +23,82 @@ export default function AppHeader() {
             px: { xs: 2, sm: 3 }
           }}
         >
-          {showMobileSearch ? (
-            <>
-              <IconButton
-                size='large'
-                edge='start'
-                color='inherit'
-                onClick={() => setShowMobileSearch(false)}
-                sx={{
-                  mr: { xs: 0.5, sm: 1.5 }
+          <Box sx={{
+            display: { xs: showMobileSearch ? 'flex' : 'none', sm: 'none'},
+            alignItems: 'center',
+            flex: 1
+          }}>
+            <IconButton
+              size='large'
+              edge='start'
+              color='inherit'
+              onClick={() => setShowMobileSearch(false)}
+              sx={{
+                mr: { xs: 0.5, sm: 1.5 }
+              }}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+            <ExSearchField 
+              placeholder="Search..." 
+              sx={{ flex: 1 }}
+            />
+          </Box>
+
+          <Box sx={{
+            display: { xs: showMobileSearch ? 'none' : 'flex', sm: 'flex' },
+            alignItems: 'center',
+            flex: 1
+          }}>
+            <IconButton
+              size='large'
+              edge='start'
+              color='inherit'
+              onClick={() => setOpenDrawer(true)}
+              sx={{
+                mr: { xs: 0.5, sm: 1.5 }
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <Box sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flex: 1
+            }}>
+              <GameAutoComplete 
+                sx={{ 
+                  minWidth: 250,
+                  flex: { xs: 1, sm: 'initial' }
                 }}
-              >
-                <ArrowBackIcon />
-              </IconButton>
+              />
+
               <ExSearchField 
                 placeholder="Search..." 
-                sx={{ flex: 1 }}
+                sx={{ 
+                  flex: 1, 
+                  marginLeft: 1, 
+                  marginRight: '314px',
+                  width: 'auto',
+                  display: { xs: 'none', sm: 'block' }
+                }}
               />
-            </>
-          ) : (
-            <>
-              <IconButton
-                size='large'
-                edge='start'
-                color='inherit'
-                onClick={() => setOpenDrawer(true)}
-                sx={{
-                  mr: { xs: 0.5, sm: 1.5 }
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
+            </Box>
 
-              <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flex: 1
-              }}>
-                <GameAutoComplete 
-                  sx={{ 
-                    minWidth: 250,
-                    flex: { xs: 1, sm: 'initial' }
-                  }}
-                />
-
-                <ExSearchField 
-                  placeholder="Search..." 
-                  sx={{ 
-                    flex: 1, 
-                    marginLeft: 1, 
-                    marginRight: '314px',
-                    width: 'auto',
-                    display: { xs: 'none', sm: 'block' }
-                  }}
-                />
-              </Box>
-
-              <IconButton
-                size='large'
-                edge='end'
-                color='inherit'
-                onClick={() => setShowMobileSearch(true)}
-                sx={{
-                  ml: { xs: 0.5, sm: 0 },
-                  display: { xs: 'inline-flex', sm: 'none' }
-                }}
-              >
-                <SearchIcon />
-              </IconButton>
-            </>
-          )}
-
+            <IconButton
+              size='large'
+              edge='end'
+              color='inherit'
+              onClick={() => setShowMobileSearch(true)}
+              sx={{
+                ml: { xs: 0.5, sm: 0 },
+                display: { xs: 'inline-flex', sm: 'none' }
+              }}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <Toolbar/>
