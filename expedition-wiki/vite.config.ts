@@ -13,6 +13,12 @@ export default defineConfig({
     host: true,
     watch: {
       usePolling: true
+    },
+    proxy: {
+      '/api': {
+        target: 'http://host.docker.internal:5000',
+        changeOrigin: true
+      }
     }
   }
 })

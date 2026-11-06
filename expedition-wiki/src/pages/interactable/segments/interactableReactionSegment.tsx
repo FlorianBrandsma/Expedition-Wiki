@@ -47,7 +47,6 @@ export default function InteractableReactionSegment() {
             <CellTable 
               bulleted
               list={row.caseConditionModelList} 
-              highlited={(caseConditionModel) => caseConditionModel.id === row.id}
               component={(caseConditionModel) => caseConditionModel.descriptionComponent}
             />
           </Box>

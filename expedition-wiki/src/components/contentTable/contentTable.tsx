@@ -71,8 +71,9 @@ export default function ContentTable(props: ContentTableProps) {
                 <ContentTableItem key={segment.id} segment={segment} />
               ))}
             </List>
-        </ExCard>
-      }/>  
+          </ExCard>
+        }
+      />  
     </Box>
   )
 }

@@ -67,7 +67,7 @@ export default function HomePage() {
         },
         mx: 'auto',
         mb: '5px',
-        padding: '25px',
+        padding: { xs: '5px', sm: '25px'},
         backgroundColor: 'primary.main'
       }}>
         <Outlet />

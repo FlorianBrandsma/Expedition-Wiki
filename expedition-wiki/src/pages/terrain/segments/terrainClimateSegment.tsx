@@ -54,7 +54,7 @@ export default function TerrainClimateSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey='id' rows={climateModelList} headCells={headers} />
+      <BasicTable rows={climateModelList} headCells={headers} />
     </Box>
   )
 }

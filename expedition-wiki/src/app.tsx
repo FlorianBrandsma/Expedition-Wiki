@@ -2,7 +2,9 @@ import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-qu
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useAlert } from './context/alertContext';
 
-import { createTheme, ThemeProvider } from '@mui/material';
+import { HttpError } from './services/dataManager';
+
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import HomePage from './pages/homePage';
 import GamePage from './pages/game/gamePage';
@@ -49,7 +51,6 @@ export default function App() {
   const exContrastText = '#FFF';
 
   const theme = createTheme({
-
     palette: {
       primary: {
         light: exLight,
@@ -60,6 +61,17 @@ export default function App() {
     },
 
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          html: {
+            colorScheme: 'dark'
+          },
+          body: {
+            backgroundColor: exDark,
+            colorScheme: 'light'
+          }
+        }
+      },
       MuiAppBar: {
         styleOverrides: {
           root: {
@@ -244,13 +256,18 @@ export default function App() {
 
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
-      onError: (error) => showAlert(`${ error.cause.status }: ${ error.cause.statusText }`, error.severity)
+      onError: (error) => {
+        if (error instanceof HttpError) {
+          showAlert(`${ error.details.status }: ${ error.details.statusText }`, error.severity)
+        }
+      }
     })
   });
 
   return (
     <QueryClientProvider client={ queryClient }>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <RouterProvider router={router}/>
       </ThemeProvider>
     </QueryClientProvider>

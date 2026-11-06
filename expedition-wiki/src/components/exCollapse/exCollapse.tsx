@@ -24,9 +24,10 @@ export default function ExCollapse({ label, collapseComponent, isOpen, sx }: ExC
           padding: 0,
           borderRadius: 0,
           width: '100%',
+          display: 'flex',
           position: 'relative',
           justifyContent: 'center',
-          backgroundColor: 'primary.dark'
+          backgroundColor: 'primary.dark',
         }}
       >
         <Box sx={{ position: 'absolute', right: 8, display: 'flex'}}>

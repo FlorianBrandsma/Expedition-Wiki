@@ -5,7 +5,6 @@ import { useItemPageContext } from '../itemPageContext';
 import type { RestEventModel } from '../../../data/models/restEventModel';
 
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
-import { Box } from '@mui/material';
 import ExLink from '../../../components/exLink/exLink';
 
 export default function ItemUtilityRestSegment() {

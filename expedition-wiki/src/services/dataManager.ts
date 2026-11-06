@@ -1,23 +1,25 @@
 import type { IParameters } from '../data/parameters/interfaces';
 import type { AlertColor } from '@mui/material/Alert';
 
-interface Cause {
+const API_URL = import.meta.env.VITE_API_URL;
+
+interface Details {
   status: number;
   statusText: string;
 }
 
 export class HttpError extends Error {
 
-  cause: Cause;
+  details: Details;
 
-  constructor(message: string, cause: Cause) {
+  constructor(message: string, details: Details) {
     super(message);
-    this.cause = cause;
+    this.details = details;
   }
 
   get severity(): AlertColor {
 
-    switch (this.cause.status)
+    switch (this.details.status)
     {
       case 400:
       case 500: return 'error';
@@ -35,7 +37,7 @@ export async function getData<T>(parameters: IParameters, ClassRef: new (data: a
     body: JSON.stringify(parameters)
   }
 
-  const response = await fetch(`https://localhost:5001/api/${ parameters.dataType }/searchRequest`, requestOptions)
+  const response = await fetch(`${API_URL}/${ parameters.dataType }/searchRequest`, requestOptions)
 
   if (!response.ok) {
 

@@ -31,7 +31,7 @@ export default function QuestUtilityQuestSegment() {
             <CellTable 
               bulleted
               list={row.mainQuestModelList} 
-              highlited={(mainQuestModel) => mainQuestModel.id === questModel.mainQuestModel.id}
+              highlited={(mainQuestModel) => mainQuestModel.questName === questModel.mainQuestModel.questName}
               component={(mainQuestModel) => (
                 <ExLink name={mainQuestModel.questName} params={['quest', mainQuestModel.questName]} />
               )}

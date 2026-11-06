@@ -1,6 +1,6 @@
 import { HttpError } from './dataManager';
 
-declare module '@tanStack/react-query' {
+declare module '@tanstack/react-query' {
   interface Register {
     defaultError: HttpError
   }

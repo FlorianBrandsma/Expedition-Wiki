@@ -50,7 +50,7 @@ export default function TerrainInteractableSegment() {
 
   return (
     <Box sx={{ mt: 1 }}>
-      <BasicTable rowKey="id" rows={worldInteractableModelList} headCells={headers} />
+      <BasicTable rows={worldInteractableModelList} headCells={headers} />
     </Box>
   )
 }
