@@ -20,6 +20,6 @@ export class ClimateModel {
   }
 
   get params(): string[] {
-    return ['climiate', this.regionName, this.terrainName, this.name];
+    return ['climate', this.regionName, this.terrainName, this.name];
   }
 }

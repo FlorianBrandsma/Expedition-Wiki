@@ -1,42 +1,20 @@
 import { useClimatePageContext } from './climatePageContext';
 
-import type { ChunkModel } from '../../data/models/chunkModel';
-
-import { CardContent, TableBody, TableCell, TableRow } from '@mui/material';
+import { CardContent } from '@mui/material';
 
 import ExCard from '../../components/exCard/exCard';
 import ExCardHeader from '../../components/exCard/exCardHeader';
 import ExCardTableRow from '../../components/exCard/exCardTableRow';
 import ExCardTable from '../../components/exCard/exCardTable';
 import ExLink from '../../components/exLink/exLink';
-import ExCollapse from '../../components/exCollapse/exCollapse';
-import ExTable from '../../components/exTable/exTable';
 import ExIconThumbnail from '../../components/exIconThumbnail/exIconThumbnail';
-
-interface ChunkTableProps {
-  chunkModelList: ChunkModel[];
-}
-
-function ChunkTable({ chunkModelList }: ChunkTableProps) {
-
-  return (
-    <ExTable size='small'>
-      <TableBody>
-        {chunkModelList.map((row, index) => (
-          <TableRow key={index}>
-            <TableCell>
-              {row.name}
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </ExTable>
-  )
-}
+import ExMap from '../../components/exMap/exMap';
 
 export default function ClimatePropertyCard() {
 
-  const { climateModel } = useClimatePageContext();
+  const { climateModel, terrainModel } = useClimatePageContext();
+
+  const coordinates = climateModel.chunkModelList.flatMap(x => x.centerCoordinates);
 
   return (
     <ExCard sx={{ 
@@ -67,22 +45,25 @@ export default function ClimatePropertyCard() {
           label='Terrain' 
           value={<ExLink name={climateModel.terrainName} params={['terrain', climateModel.regionName, climateModel.terrainName]} />}
         />
-
-        {/* Chunks */}
-        {climateModel.chunkModelList.length > 0 && (
-          <TableRow sx={{ '& > .MuiTableCell-root': { borderBottom: 'unset' } }}>
-            <TableCell colSpan={2} sx={{ padding: 0 }}>
-              <ExCollapse 
-                label='Chunks'
-                collapseComponent={
-                  <ChunkTable chunkModelList={climateModel.chunkModelList} />
-                }
-                sx={{ mt: 1 }}
-              />
-            </TableCell>
-          </TableRow>
-        )} 
       </ExCardTable>
+      
+      {/* Map */}
+        <ExCardHeader title='Map' /> 
+        <ExMap 
+          terrainModel={terrainModel}
+          chunkModelList={climateModel.chunkModelList}
+          {...(coordinates.length > 0 ? {
+            position: {
+              x: coordinates.reduce((sum, pin) => sum + pin.x, 0) / coordinates.length, 
+              z: coordinates.reduce((sum, pin) => sum + pin.z, 0) / coordinates.length
+            }
+          } : {})}
+          focusMapCoordinates={coordinates}
+          sx={{
+            height: 200,
+            width: '100%'
+          }} 
+        />
     </ExCard>
   )
 }

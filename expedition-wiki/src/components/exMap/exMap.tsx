@@ -8,6 +8,7 @@ import 'leaflet.fullscreen';
 import type { MapCoordinates, PinGroup } from '../../services/interfaces';
 
 import type { TerrainModel } from '../../data/models/terrainModel';
+import type { ChunkModel } from '../../data/models/chunkModel';
 
 import { useTheme, type SxProps } from '@mui/material/styles';
 import { Box, type Theme } from "@mui/material";
@@ -20,12 +21,14 @@ const topLeftCRS = L.Util.extend({}, L.CRS.Simple, {
 
 interface ExMapProps {
   terrainModel: TerrainModel;
+  chunkModelList?: ChunkModel[];
   position?: MapCoordinates;
-  pinGroups?: PinGroup[]
+  focusMapCoordinates?: MapCoordinates[];
+  pinGroups?: PinGroup[];
   sx?: SxProps<Theme>;
 }
 
-export default function ExMap({ terrainModel, sx, position, pinGroups }: ExMapProps) {
+export default function ExMap({ terrainModel, chunkModelList, position, focusMapCoordinates, pinGroups, sx }: ExMapProps) {
   
   const { 
     tileSetResourceName,
@@ -100,8 +103,10 @@ export default function ExMap({ terrainModel, sx, position, pinGroups }: ExMapPr
 
         <MarkerLayer 
           tileImageSize={tileImageSize}
-          terrainModel={terrainModel}
           maxZoom={maxZoom}
+          terrainModel={terrainModel}
+          chunkModelList={chunkModelList}
+          focusMapCoordinates={focusMapCoordinates}
           pinGroups={pinGroups}
         />
 

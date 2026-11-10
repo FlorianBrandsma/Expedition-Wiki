@@ -1,3 +1,4 @@
+import type { MapCoordinates } from "../../services/interfaces";
 import { EventModel } from "./eventModel";
 import { TerrainModel } from "./terrainModel";
 
@@ -34,5 +35,12 @@ export class TransportEventModel {
 
   get typeDescription(): string {
     return 'Transport';
+  }
+
+  get coordinates(): MapCoordinates {
+    return {
+      x: this.positionX, 
+      z: this.positionZ
+    };
   }
 }

@@ -1,3 +1,4 @@
+import type { MapCoordinates } from "../../services/interfaces";
 import { WaypointType } from "../../types/enums";
 
 export class WaypointModel {
@@ -27,6 +28,13 @@ export class WaypointModel {
     return WaypointType[this.type];
   }
   
+  get coordinates(): MapCoordinates {
+    return {
+      x: this.positionX, 
+      z: this.positionZ
+    };
+  }
+
   get params(): string[] {
     return ['terrain', this.regionName, this.terrainName];
   }

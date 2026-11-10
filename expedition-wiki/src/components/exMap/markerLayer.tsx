@@ -1,25 +1,29 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
-import { Circle, Marker, useMap, useMapEvents } from 'react-leaflet';
+import { Circle, Rectangle, Marker, useMap, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 
-import type { PinGroup } from '../../services/interfaces';
+import type { MapCoordinates, PinGroup } from '../../services/interfaces';
 
 import type { TerrainModel } from '../../data/models/terrainModel';
+import type { ChunkModel } from '../../data/models/chunkModel';
 
 import WaypointMarker from './waypointMarker';
 import PinMarker from './pinMarker';
 import DecoratedPolyline from './decoratedPolyline';
 
 interface MarkerLayerProps {
+  maxZoom: number;
   tileImageSize: number;
   terrainModel: TerrainModel;
-  maxZoom: number;
+  chunkModelList?: ChunkModel[];
+  focusMapCoordinates?: MapCoordinates[];
   pinGroups?: PinGroup[];
 }
 
-export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinGroups }: MarkerLayerProps) {
+export default function MarkerLayer({ tileImageSize, maxZoom, terrainModel, chunkModelList, focusMapCoordinates, pinGroups }: MarkerLayerProps) {
 
   const { 
+    chunkSize,
     tileSize,
     worldObjectReflectionModelList, 
     waypointModelList 
@@ -37,26 +41,54 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinG
 
   const worldScale = tileImageSize / tileSize;
 
+  const markerColor = '#cf4221';
+  
+  const pathOptions = { 
+    color: markerColor, 
+    weight: 1 
+  };
+
   useEffect(() => {
 
-    if (!pinGroups || pinGroups.length === 0) return;
+    if (!focusMapCoordinates || focusMapCoordinates.length === 0) return;
 
-    const pinCoordinates = pinGroups.flatMap(pinGroup => pinGroup.mapCoordinates);
-
-    if (pinCoordinates.length === 0) return;
-
-    const coordinates = pinCoordinates.map(pin => 
-      L.latLng(pin.z * worldScale, pin.x * worldScale)
+    const coordinates = focusMapCoordinates.map(coordinates => 
+      L.latLng(coordinates.z * worldScale, coordinates.x * worldScale)
     );
 
     const bounds = L.latLngBounds(coordinates);
 
     map.fitBounds(bounds, {
       padding:[20,20],
-      maxZoom: pinCoordinates.length === 1 ? map.getZoom() : maxZoom 
+      maxZoom: focusMapCoordinates.length === 1 ? map.getZoom() : maxZoom 
     });
 
-  }, [pinGroups]);
+  }, [focusMapCoordinates]);
+
+  const chunkMarkers = useMemo(() => {
+
+    if (!chunkModelList) return null;
+
+    const size = chunkSize * tileSize * worldScale;
+
+    return chunkModelList.map((chunkModel) => {
+
+      const startCoordinates = chunkModel.startCoordinates;
+
+      const bounds = L.latLngBounds([startCoordinates.z * size,        startCoordinates.x * size], 
+                                    [startCoordinates.z * size + size, startCoordinates.x * size + size]);
+
+      return (
+        <Rectangle
+          key={chunkModel.orderNumber}
+          bounds={bounds}
+          pathOptions={pathOptions}
+          interactive={false}
+        />
+      )
+    })
+
+  }, [chunkModelList]);
 
   const objectMarkers = useMemo(() => {
 
@@ -96,7 +128,7 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinG
       )
     });
 
-  }, [worldObjectReflectionModelList, zoom])
+  }, [worldObjectReflectionModelList, zoom]);
 
   const waypointMarkers = useMemo(() => {
 
@@ -118,13 +150,11 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinG
       )
     });
     
-  }, [waypointModelList, zoom])
+  }, [waypointModelList, zoom]);
 
   const pinMarkers = useMemo(() => {
 
     if (!pinGroups) return null;
-
-    const markerColor = '#cf4221';
 
     return pinGroups.map((pinGroup, groupIndex) => {
 
@@ -154,8 +184,7 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinG
                   <Circle 
                     center={position}
                     radius={mapCoordinates.variance * worldScale}
-                    color={markerColor}
-                    weight={1}
+                    pathOptions={pathOptions}
                     interactive={false}
                   />
                 )}
@@ -186,12 +215,13 @@ export default function MarkerLayer({ tileImageSize, terrainModel, maxZoom, pinG
       )
     });
 
-  }, [pinGroups, worldScale])
+  }, [pinGroups, worldScale]);
 
   return (
     <>
       {objectMarkers}
       {waypointMarkers}
+      {chunkMarkers}
       {pinMarkers}
     </>
   )

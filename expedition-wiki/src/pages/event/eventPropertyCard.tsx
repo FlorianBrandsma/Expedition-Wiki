@@ -97,21 +97,16 @@ export default function EventPropertyCard() {
           <ExCardHeader title='Map' /> 
           <ExMap 
             terrainModel={transportEventModel.terrainModel}
-            position={{
-              x: transportEventModel.positionX, 
-              z: transportEventModel.positionZ
-            }}
+            position={transportEventModel.coordinates}
+            focusMapCoordinates={[transportEventModel.coordinates]}
             pinGroups={[{
-              mapCoordinates: [{
-                x: transportEventModel.positionX,
-                z: transportEventModel.positionZ
-              }]
+              mapCoordinates: [transportEventModel.coordinates]
             }]} 
             sx={{
               height: 200,
               width: '100%'
             }}
-          />      
+          />
         </>
       )}
       {/* Rest */}

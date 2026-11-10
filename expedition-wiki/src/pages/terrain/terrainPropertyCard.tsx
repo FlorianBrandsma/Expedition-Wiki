@@ -37,16 +37,13 @@ export default function TerrainPropertyCard() {
       <ExMap 
         terrainModel={terrainModel}
         {...(waypointModel ? { 
-          position: {
-            x: waypointModel.positionX, 
-            z: waypointModel.positionZ
-          }
+          position: waypointModel.coordinates
         } : {})}
         sx={{
           height: 200,
           width: '100%'
         }}
-      />      
+      />
     </ExCard>
   )
 }

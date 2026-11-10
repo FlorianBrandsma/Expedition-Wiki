@@ -4,11 +4,12 @@ import { useTerrainPageContext } from '../terrainPageContext';
 
 import type { ClimateModel } from '../../../data/models/climateModel';
 
+import { Box } from '@mui/material';
+
 import BasicTable, { type HeadCell } from '../../../components/basicTable/basicTable';
 import ExLink from '../../../components/exLink/exLink';
-import { Box } from '@mui/material';
-import CellTable from '../../../components/cellTable/cellTable';
 import ExIcon from '../../../components/exIcon/exIcon';
+import ExMap from '../../../components/exMap/exMap';
 
 export default function TerrainClimateSegment() {
 
@@ -31,20 +32,33 @@ export default function TerrainClimateSegment() {
     ]
 
     if (climateModelList.some(model => model.chunkModelList?.length > 0)) {
-      
+
         headers.push({
           label: 'Chunks',
-          align: 'left',
+          align: 'center',
           sx: { whiteSpace: 'normal' },
-          render: (row) => (
-            <Box sx={{ maxWidth:'200px'}}>
-              <CellTable 
-                list={row.chunkModelList} 
-                component={(chunkModel) => chunkModel.name}
-                bulleted
+          render: (row) => {
+            
+            const coordinates = row.chunkModelList.flatMap(x => x.centerCoordinates);
+
+            return (
+              <ExMap 
+                terrainModel={terrainModel}
+                chunkModelList={row.chunkModelList}
+                {...(coordinates.length > 0 ? {
+                  position: {
+                    x: coordinates.reduce((sum, pin) => sum + pin.x, 0) / coordinates.length, 
+                    z: coordinates.reduce((sum, pin) => sum + pin.z, 0) / coordinates.length
+                  }
+                } : {})}
+                focusMapCoordinates={coordinates}
+                sx={{
+                  height: 200,
+                  width: 200
+                }} 
               />
-            </Box>
-          )
+            )
+          }
         })
       }
 

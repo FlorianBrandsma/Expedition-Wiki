@@ -29,15 +29,10 @@ export default function TerrainTransportSegment() {
       render: (row) => (
         <ExMap 
           terrainModel={terrainModel}
-          position={{
-            x: row.positionX, 
-            z: row.positionZ
-          }}
+          position={row.coordinates}
+          focusMapCoordinates={[row.coordinates]}
           pinGroups={[{
-            mapCoordinates: [{
-              x: row.positionX,
-              z: row.positionZ
-            }]
+            mapCoordinates: [row.coordinates]
           }]}
           sx={{
             height: 200,
