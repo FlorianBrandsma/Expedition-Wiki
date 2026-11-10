@@ -28,27 +28,32 @@ export class ChunkModel {
 
     const positionX =           (this.orderNumber % this.terrainSize);
     const positionY = Math.floor(this.orderNumber / this.terrainSize);
-    
-    const mapCoordinates = {
+
+    return {
       x: positionX,
       z: positionY
-    } as MapCoordinates;
-
-    return mapCoordinates;
+    };
   }
 
   get centerCoordinates(): MapCoordinates {
 
-    const startPosition = this.startCoordinates;
+    const startCoordinates = this.startCoordinates;
+    const size = this.chunkSize * this.tileSize;
 
-    const scale = this.chunkSize * this.tileSize;
-
-    const positionX = (scale / 2) + startPosition.x * scale;
-    const positionZ = (scale / 2) + startPosition.z * scale;
+    const positionX = (size / 2) + startCoordinates.x * size;
+    const positionZ = (size / 2) + startCoordinates.z * size;
 
     return {
       x: positionX,
       z: positionZ
     };
+  }
+
+  get boundsCoordinates(): MapCoordinates[] {
+
+    const size = this.chunkSize * this.tileSize;
+
+    return [{ x: this.startCoordinates.z * size,        z: this.startCoordinates.x * size },
+            { x: this.startCoordinates.z * size + size, z: this.startCoordinates.x * size + size }];
   }
 }

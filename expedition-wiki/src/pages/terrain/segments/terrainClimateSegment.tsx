@@ -39,19 +39,20 @@ export default function TerrainClimateSegment() {
           sx: { whiteSpace: 'normal' },
           render: (row) => {
             
-            const coordinates = row.chunkModelList.flatMap(x => x.centerCoordinates);
+            const centerCoordinates = row.chunkModelList.flatMap(x => x.centerCoordinates);
+            const boundsCoordinates = row.chunkModelList.flatMap(x => x.boundsCoordinates);
 
             return (
               <ExMap 
                 terrainModel={terrainModel}
                 chunkModelList={row.chunkModelList}
-                {...(coordinates.length > 0 ? {
+                {...(centerCoordinates.length > 0 ? {
                   position: {
-                    x: coordinates.reduce((sum, pin) => sum + pin.x, 0) / coordinates.length, 
-                    z: coordinates.reduce((sum, pin) => sum + pin.z, 0) / coordinates.length
+                    x: centerCoordinates.reduce((sum, coordinates) => sum + coordinates.x, 0) / centerCoordinates.length, 
+                    z: centerCoordinates.reduce((sum, coordinates) => sum + coordinates.z, 0) / centerCoordinates.length
                   }
                 } : {})}
-                focusMapCoordinates={coordinates}
+                focusMapCoordinates={boundsCoordinates}
                 sx={{
                   height: 200,
                   width: 200

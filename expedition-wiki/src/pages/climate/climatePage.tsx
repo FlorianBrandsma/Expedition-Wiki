@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -42,11 +43,14 @@ export default function ClimatePage() {
 
   const climatePageQuery = useQuery<ClimatePageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<ClimatePageModel>(parameters, ClimatePageModel),
-    initialData: []
+    queryFn: () => getData<ClimatePageModel>(parameters, ClimatePageModel)
   });
 
-  if (climatePageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || climatePageQuery.isPending || climatePageQuery.isError) return;
+
+  if (climatePageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const climatePageModel = climatePageQuery.data[0];
 

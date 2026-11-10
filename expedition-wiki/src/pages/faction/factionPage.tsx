@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -49,11 +50,14 @@ export default function FactionPage() {
 
   const factionPageQuery = useQuery<FactionPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<FactionPageModel>(parameters, FactionPageModel),
-    initialData: []
+    queryFn: () => getData<FactionPageModel>(parameters, FactionPageModel)
   });
 
-  if (factionPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || factionPageQuery.isPending || factionPageQuery.isError) return;
+
+  if (factionPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const factionPageModel = factionPageQuery.data[0];
 

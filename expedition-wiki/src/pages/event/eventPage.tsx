@@ -17,6 +17,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -102,11 +103,14 @@ export default function EventPage() {
 
   const eventPageQuery = useQuery<EventPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<EventPageModel>(parameters, EventPageModel),
-    initialData: []
+    queryFn: () => getData<EventPageModel>(parameters, EventPageModel)
   });
 
-  if (eventPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || eventPageQuery.isPending || eventPageQuery.isError) return;
+
+  if (eventPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const eventPageModel = eventPageQuery.data[0];
 

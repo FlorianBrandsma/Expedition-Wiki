@@ -22,6 +22,7 @@ import QuestObjectiveSegment from './segments/questObjectiveSegment';
 import QuestRequirementQuestSegment from './segments/questRequirementsQuestSegment';
 import QuestRequirementTaskSegment from './segments/questRequirementsTaskSegment';
 import QuestUtilityQuestSegment from './segments/questUtilityQuestSegment';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 
 export default function QuestPage() {
 
@@ -41,11 +42,14 @@ export default function QuestPage() {
 
   const questPageQuery = useQuery<QuestPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<QuestPageModel>(parameters, QuestPageModel),
-    initialData: []
+    queryFn: () => getData<QuestPageModel>(parameters, QuestPageModel)
   });
 
-  if (questPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || questPageQuery.isPending || questPageQuery.isError) return;
+
+  if (questPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const questPageModel = questPageQuery.data[0];
 

@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box, Typography } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -43,11 +44,14 @@ export default function AbilityPage() {
 
   const abilityPageQuery = useQuery<AbilityPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<AbilityPageModel>(parameters, AbilityPageModel),
-    initialData: []
+    queryFn: () => getData<AbilityPageModel>(parameters, AbilityPageModel)
   });
 
-  if (abilityPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || abilityPageQuery.isPending || abilityPageQuery.isError) return;
+
+  if (abilityPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const abilityPageModel = abilityPageQuery.data[0];
 

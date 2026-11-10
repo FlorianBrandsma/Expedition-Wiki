@@ -15,6 +15,7 @@ import { Box, Typography } from '@mui/material';
 import type { ContentSegment } from '../../components/contentTable/contentTable';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -70,11 +71,14 @@ export default function ItemPage() {
 
   const itemPageQuery = useQuery<ItemPageModel[]>({
     queryKey: ['parameters', parameters],
-    queryFn: () => getData<ItemPageModel>(parameters, ItemPageModel),
-    initialData: []
+    queryFn: () => getData<ItemPageModel>(parameters, ItemPageModel)
   });
 
-  if (itemPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || itemPageQuery.isPending || itemPageQuery.isError) return;
+  
+  if (itemPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const itemPageModel = itemPageQuery.data[0];
   

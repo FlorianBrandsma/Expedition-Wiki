@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -37,11 +38,14 @@ export default function EquipmentSetPage() {
 
   const equipmentSetPageQuery = useQuery<EquipmentSetPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<EquipmentSetPageModel>(parameters, EquipmentSetPageModel),
-    initialData: []
+    queryFn: () => getData<EquipmentSetPageModel>(parameters, EquipmentSetPageModel)
   });
 
-  if (equipmentSetPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || equipmentSetPageQuery.isPending || equipmentSetPageQuery.isError) return;
+
+  if (equipmentSetPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const equipmentSetPageModel = equipmentSetPageQuery.data[0];
 

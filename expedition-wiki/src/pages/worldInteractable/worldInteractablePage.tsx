@@ -15,6 +15,7 @@ import { Box } from '@mui/material';
 import type { ContentSegment } from '../../components/contentTable/contentTable';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -61,11 +62,14 @@ export default function WorldInteractablePage() {
 
   const worldInteractablePageQuery = useQuery<WorldInteractablePageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<WorldInteractablePageModel>(parameters, WorldInteractablePageModel),
-    initialData: []
+    queryFn: () => getData<WorldInteractablePageModel>(parameters, WorldInteractablePageModel)
   });
 
-  if (worldInteractablePageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || worldInteractablePageQuery.isPending || worldInteractablePageQuery.isError) return;
+
+  if (worldInteractablePageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const worldInteractablePageModel = worldInteractablePageQuery.data[0];
 

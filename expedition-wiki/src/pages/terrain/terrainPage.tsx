@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -42,11 +43,14 @@ export default function TerrainPage() {
 
   const terrainPageQuery = useQuery<TerrainPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<TerrainPageModel>(parameters, TerrainPageModel),
-    initialData: []
+    queryFn: () => getData<TerrainPageModel>(parameters, TerrainPageModel)
   });
 
-  if (terrainPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || terrainPageQuery.isPending || terrainPageQuery.isError) return;
+  
+  if (terrainPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const terrainPageModel = terrainPageQuery.data[0];
 

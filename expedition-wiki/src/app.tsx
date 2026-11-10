@@ -52,6 +52,7 @@ export default function App() {
 
   const theme = createTheme({
     palette: {
+      mode: 'light',
       primary: {
         light: exLight,
         main: exMain,

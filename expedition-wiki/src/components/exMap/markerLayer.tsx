@@ -22,8 +22,7 @@ interface MarkerLayerProps {
 
 export default function MarkerLayer({ tileImageSize, maxZoom, terrainModel, chunkModelList, focusMapCoordinates, pinGroups }: MarkerLayerProps) {
 
-  const { 
-    chunkSize,
+  const {
     tileSize,
     worldObjectReflectionModelList, 
     waypointModelList 
@@ -69,14 +68,12 @@ export default function MarkerLayer({ tileImageSize, maxZoom, terrainModel, chun
 
     if (!chunkModelList) return null;
 
-    const size = chunkSize * tileSize * worldScale;
-
     return chunkModelList.map((chunkModel) => {
 
-      const startCoordinates = chunkModel.startCoordinates;
+      const boundsCoordinates = chunkModel.boundsCoordinates;
 
-      const bounds = L.latLngBounds([startCoordinates.z * size,        startCoordinates.x * size], 
-                                    [startCoordinates.z * size + size, startCoordinates.x * size + size]);
+      const bounds = L.latLngBounds([boundsCoordinates[0].z * worldScale, boundsCoordinates[0].x * worldScale], 
+                                    [boundsCoordinates[1].z * worldScale, boundsCoordinates[1].x * worldScale]);
 
       return (
         <Rectangle

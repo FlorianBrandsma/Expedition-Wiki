@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box, Typography } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -40,11 +41,14 @@ export default function ObjectivePage() {
 
   const objectivePageQuery = useQuery<ObjectivePageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<ObjectivePageModel>(parameters, ObjectivePageModel),
-    initialData: []
+    queryFn: () => getData<ObjectivePageModel>(parameters, ObjectivePageModel)
   });
 
-  if (objectivePageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || objectivePageQuery.isPending || objectivePageQuery.isError) return;
+
+  if (objectivePageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const objectivePageModel = objectivePageQuery.data[0];
 

@@ -13,6 +13,7 @@ import type { ContentSegment } from '../../components/contentTable/contentTable'
 import { Box, Typography } from '@mui/material';
 
 import PageHeader from '../general/components/pageHeader';
+import PageDataNotFound from '../general/components/pageDataNotFound';
 import ContentTable from '../../components/contentTable/contentTable';
 import Segment from '../../components/segment/segment';
 
@@ -61,11 +62,14 @@ export default function EffectPage() {
 
   const effectPageQuery = useQuery<EffectPageModel[]>({
     queryKey: ["parameters", parameters],
-    queryFn: () => getData<EffectPageModel>(parameters, EffectPageModel),
-    initialData: []
+    queryFn: () => getData<EffectPageModel>(parameters, EffectPageModel)
   });
 
-  if (effectPageQuery.data?.length === 0) return;
+  if (gameModel.id === 0 || effectPageQuery.isPending || effectPageQuery.isError) return;
+
+  if (effectPageQuery.data.length === 0) return (
+    <PageDataNotFound />
+  );
 
   const effectPageModel = effectPageQuery.data[0];
 
