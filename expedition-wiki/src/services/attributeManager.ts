@@ -31,9 +31,9 @@ export const ElementList: Element[] = [
     weakness: ['Fire']
   },
   {
-    elementType: 'Lightning',
+    elementType: 'Electric',
     strength: ['Wind', 'Machine'],
-    weakness: ['Lightning', 'Ground']
+    weakness: ['Electric', 'Ground']
   },
   {
     elementType: 'Water',
@@ -47,18 +47,18 @@ export const ElementList: Element[] = [
   },
   {
     elementType: 'Ground',
-    strength: ['Lightning'],
+    strength: ['Electric'],
     weakness: ['Wind']
   },
   {
     elementType: 'Nature',
-    strength: ['Water', 'Lightning'],
+    strength: ['Water', 'Electric'],
     weakness: ['Ice', 'Nature']
   },
   {
     elementType: 'Machine',
     strength: ['Nature'],
-    weakness: ['Lightning']
+    weakness: ['Electric']
   },
   {
     elementType: 'Light',

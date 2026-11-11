@@ -49,7 +49,7 @@ export const ElementType = [
   'Normal',
   'Fire',
   'Ice',
-  'Lightning',
+  'Electric',
   'Water',
   'Wind',
   'Ground',
