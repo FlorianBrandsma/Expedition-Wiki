@@ -4,6 +4,10 @@ export class SupplyItemModel {
 
   type!: number;
 
+  itemName!: string;
+  
+  itemAssetIconResourceName!: string;
+
   constructor(init:Partial<SupplyItemModel>) {  
     Object.assign(this, init);
 	}

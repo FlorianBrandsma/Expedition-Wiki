@@ -25,6 +25,7 @@ import AbilityClassSegment from './segments/abilityClassSegment';
 import AbilitySourceEventSegment from './segments/abilitySourceEventSegment';
 import AbilitySourceCharacterSegment from './segments/abilitSourceCharacterSegment';
 import AbilitySourceArmSegment from './segments/abilitSourceArmSegment';
+import AbilitySourceSupplySegment from './segments/abilitySourceSupplySegment';
 
 export default function AbilityPage() {
 
@@ -58,6 +59,7 @@ export default function AbilityPage() {
   const { 
     abilityModel,
     classModelList,
+    supplyItemModelList,
     armEquipmentItemModelList,
     characterAgentInteractableModelList,
     abilityEventModelList
@@ -99,6 +101,15 @@ export default function AbilityPage() {
     id: 'Source',
     children: []
   } as ContentSegment;
+
+  if (supplyItemModelList.length > 0) {
+    
+    sourceSegment.children!.push({
+      label: 'Supplies',
+      id: `${sourceSegment.id}/Supplies`,
+      component: <AbilitySourceSupplySegment />
+    });
+  }
 
   if (armEquipmentItemModelList.length > 0) {
     
